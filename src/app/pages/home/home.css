@@ -1,1 +1,7 @@
-/* Home page — no extra styles needed, sections handle their own */
+/* Home page local utilities */
+.section-divider {
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--color-border-2), transparent);
+	margin: 0 auto;
+	max-width: 1200px;
+}

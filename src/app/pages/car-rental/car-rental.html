@@ -25,6 +25,10 @@
         <h1 class="hero-title">{{ project.title }}</h1>
         <p class="hero-summary">{{ project.summary }}</p>
 
+        @if (project.companyNote) {
+          <p class="company-note">{{ project.companyNote }}</p>
+        }
+
         <div class="hero-tech-stack">
           @for (tech of project.techStack; track tech) {
             <span class="hero-tech-tag">{{ tech }}</span>
@@ -309,23 +313,19 @@
 <section class="detail-section nav-closure">
   <div class="detail-container">
     <div class="nav-closure-inner" appFadeIn>
-      @if (prevProject) {
-        <a [routerLink]="'/projects/' + prevProject.id" class="nav-link prev-link">
-          <span class="nav-direction">← Previous Project</span>
-          <span class="nav-project-name">{{ prevProject.title }}</span>
-        </a>
-      }
+      <a routerLink="/projects/chellysport" class="nav-link prev-link">
+        <span class="nav-direction">← Previous Project</span>
+        <span class="nav-project-name">ChellySport — Multi-Sport Club Management</span>
+      </a>
 
       <a routerLink="/" fragment="projects" class="nav-link back-link-center">
         Back to All Projects
       </a>
 
-      @if (nextProject) {
-        <a [routerLink]="'/projects/' + nextProject.id" class="nav-link next-link">
-          <span class="nav-direction">Next Project →</span>
-          <span class="nav-project-name">{{ nextProject.title }}</span>
-        </a>
-      }
+      <a routerLink="/projects/delivery-tracking" class="nav-link next-link">
+        <span class="nav-direction">Next Project →</span>
+        <span class="nav-project-name">SwiftDeliver — Delivery Management & Tracking</span>
+      </a>
     </div>
   </div>
 </section>

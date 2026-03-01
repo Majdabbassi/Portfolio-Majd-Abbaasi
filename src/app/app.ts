@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar';
 import { FooterComponent } from './components/footer/footer';
@@ -13,5 +13,6 @@ import { FooterComponent } from './components/footer/footer';
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class App { }

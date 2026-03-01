@@ -1,0 +1,332 @@
+@if (project) {
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 2 — PROJECT HERO SECTION
+     Technical document header — NOT a homepage hero
+     ═══════════════════════════════════════════════════════════ -->
+<section class="project-hero">
+  <div class="project-hero-container">
+
+    <!-- Back link -->
+    <a routerLink="/" fragment="projects" class="back-link" appFadeIn>
+      <span class="back-arrow">←</span> Back to Projects
+    </a>
+
+    <div class="hero-grid" appFadeIn>
+      <!-- Left: Meta -->
+      <div class="hero-meta">
+        <div class="hero-badges">
+          <span class="status-badge" [class]="project.status">
+            <span class="status-indicator"></span>
+            {{ getStatusLabel(project.status) }}
+          </span>
+          <span class="role-badge">{{ project.role }}</span>
+        </div>
+
+        <h1 class="hero-title">{{ project.title }}</h1>
+        <p class="hero-summary">{{ project.summary }}</p>
+
+        @if (project.companyNote) {
+          <p class="company-note">{{ project.companyNote }}</p>
+        }
+
+        <div class="hero-tech-stack">
+          @for (tech of project.techStack; track tech) {
+            <span class="hero-tech-tag">{{ tech }}</span>
+          }
+        </div>
+      </div>
+
+      <!-- Right: Visual Anchor -->
+      <div class="hero-visual">
+        <div class="visual-container">
+          <div class="visual-frame">
+            <div class="visual-placeholder">
+              <span class="visual-icon">◈</span>
+              <span class="visual-label">{{ project.architecture.diagramPlaceholder }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 3 — CONTEXT & PROBLEM
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section section-alt">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">Context</p>
+      <h2 class="section-heading">Why this project exists</h2>
+    </div>
+
+    <div class="context-grid" appFadeIn>
+      <!-- Problem -->
+      <div class="context-block">
+        <h3 class="context-label">Problem</h3>
+        <p class="context-text">{{ project.context.problem }}</p>
+      </div>
+
+      <!-- Constraints -->
+      <div class="context-block">
+        <h3 class="context-label">Constraints</h3>
+        <ul class="context-list">
+          @for (constraint of project.context.constraints; track constraint) {
+            <li>{{ constraint }}</li>
+          }
+        </ul>
+      </div>
+
+      <!-- Goals -->
+      <div class="context-block">
+        <h3 class="context-label">Goals</h3>
+        <ul class="context-list">
+          @for (goal of project.context.goals; track goal) {
+            <li>{{ goal }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 4 — ARCHITECTURE & SYSTEM DESIGN
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">Architecture</p>
+      <h2 class="section-heading">System design & structure</h2>
+    </div>
+
+    <div class="architecture-grid" appFadeIn>
+      <!-- Left: Diagram Placeholder -->
+      <div class="architecture-diagram">
+        <div class="diagram-frame">
+          <div class="diagram-placeholder">
+            <span class="diagram-icon">⬡</span>
+            <span class="diagram-label">{{ project.architecture.diagramPlaceholder }}</span>
+            <span class="diagram-hint">Architecture Diagram</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Explanation -->
+      <div class="architecture-details">
+        <ul class="arch-bullets">
+          @for (bullet of project.architecture.bullets; track bullet) {
+            <li>{{ bullet }}</li>
+          }
+        </ul>
+
+        <!-- Highlight Callout Cards -->
+        <div class="arch-highlights">
+          @for (highlight of project.architecture.highlights; track highlight.title) {
+            <div class="highlight-card">
+              <span class="highlight-title">{{ highlight.title }}</span>
+              <span class="highlight-desc">{{ highlight.description }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 5 — KEY TECHNICAL DECISIONS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section section-alt">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">Decisions</p>
+      <h2 class="section-heading">Key technical decisions</h2>
+    </div>
+
+    <div class="decisions-stack" appFadeIn>
+      @for (decision of project.decisions; track decision.title) {
+        <div class="decision-card">
+          <h3 class="decision-title">{{ decision.title }}</h3>
+          <div class="decision-body">
+            <div class="decision-section">
+              <span class="decision-label">Why it mattered</span>
+              <p>{{ decision.reasoning }}</p>
+            </div>
+            <div class="decision-section">
+              <span class="decision-label">Tradeoffs</span>
+              <p>{{ decision.tradeoffs }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 6 — DEPLOYMENT & PRODUCTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">Deployment</p>
+      @if (project.deployment.isDeployed) {
+        <h2 class="section-heading">Production deployment</h2>
+      } @else {
+        <h2 class="section-heading">Production considerations</h2>
+      }
+    </div>
+
+    <div class="deployment-content" appFadeIn>
+      @if (project.deployment.isDeployed) {
+        <!-- Deployed -->
+        @if (project.deployment.flow) {
+          <div class="deployment-flow">
+            <h3 class="deploy-label">Deployment Flow</h3>
+            <div class="flow-pipeline">
+              @for (step of project.deployment.flow!.split(' → '); track step) {
+                <span class="flow-step">{{ step }}</span>
+                @if (!$last) {
+                  <span class="flow-arrow">→</span>
+                }
+              }
+            </div>
+          </div>
+        }
+
+        @if (project.deployment.environment) {
+          <div class="deploy-env">
+            <h3 class="deploy-label">Environment</h3>
+            <p class="deploy-env-text">{{ project.deployment.environment }}</p>
+          </div>
+        }
+
+        <div class="deploy-details">
+          <h3 class="deploy-label">Infrastructure Details</h3>
+          <ul class="deploy-list">
+            @for (detail of project.deployment.details; track detail) {
+              <li>{{ detail }}</li>
+            }
+          </ul>
+        </div>
+      } @else {
+        <!-- Not Deployed — Production Considerations -->
+        <div class="deploy-considerations">
+          <p class="considerations-intro">
+            This project was built as a case study. Here's what a production deployment would require:
+          </p>
+          <ul class="deploy-list">
+            @for (consideration of project.deployment.considerations; track consideration) {
+              <li>{{ consideration }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 7 — CHALLENGES & SOLUTIONS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section section-alt">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">Challenges</p>
+      <h2 class="section-heading">Problems faced & solved</h2>
+    </div>
+
+    <div class="challenges-stack" appFadeIn>
+      @for (item of project.challenges; track item.challenge) {
+        <div class="challenge-card">
+          <div class="challenge-row">
+            <span class="challenge-marker">Challenge</span>
+            <p class="challenge-text">{{ item.challenge }}</p>
+          </div>
+          <div class="challenge-row solution-row">
+            <span class="challenge-marker solution-marker">Solution</span>
+            <p class="challenge-text">{{ item.solution }}</p>
+          </div>
+          <div class="challenge-row outcome-row">
+            <span class="challenge-marker outcome-marker">Outcome</span>
+            <p class="challenge-text">{{ item.outcome }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 8 — IMPACT & LEARNINGS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">Reflection</p>
+      <h2 class="section-heading">Impact & learnings</h2>
+    </div>
+
+    <div class="impact-grid" appFadeIn>
+      <div class="impact-block">
+        <h3 class="impact-label">What improved</h3>
+        <ul class="impact-list">
+          @for (item of project.impact.improvements; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="impact-block">
+        <h3 class="impact-label">What I learned</h3>
+        <ul class="impact-list">
+          @for (item of project.impact.learnings; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="impact-block">
+        <h3 class="impact-label">What I'd refactor</h3>
+        <ul class="impact-list">
+          @for (item of project.impact.wouldRefactor; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     FINAL — NAVIGATION CLOSURE
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section nav-closure">
+  <div class="detail-container">
+    <div class="nav-closure-inner" appFadeIn>
+      <a routerLink="/projects/document-marketplace" class="nav-link prev-link">
+        <span class="nav-direction">← Previous Project</span>
+        <span class="nav-project-name">DocMarket — Digital Document Marketplace</span>
+      </a>
+
+      <a routerLink="/" fragment="projects" class="nav-link back-link-center">
+        Back to All Projects
+      </a>
+
+      <a routerLink="/projects/car-rental" class="nav-link next-link">
+        <span class="nav-direction">Next Project →</span>
+        <span class="nav-project-name">AutoRent — Vehicle Rental Management</span>
+      </a>
+    </div>
+  </div>
+</section>
+}

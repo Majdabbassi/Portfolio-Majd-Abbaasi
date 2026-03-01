@@ -4,49 +4,117 @@
         <!-- Header -->
         <div class="mb-10 projects-header" appFadeIn>
             <p class="section-label">Selected Systems</p>
-            <h2 class="section-title">Production-ready architectures</h2>
+            <h2 class="section-title">Real projects, real architecture</h2>
             <p class="section-subtitle">
-                Featuring <span class="gradient-text">automation pipelines</span> and <span class="gradient-text">scalable apps</span>
+                From <span class="gradient-text">production systems</span> to <span class="gradient-text">evolving builds</span>
             </p>
         </div>
 
-        <!-- Projects Grid -->
-        <div class="projects-grid">
-            @for (project of projects; track project.id) {
-            <a [routerLink]="'/projects/' + project.id" class="project-card group" appFadeIn [id]="project.id">
-                
-                <!-- Background Image (Optional) -->
-                @if (project.backgroundImage) {
-                    <div class="project-bg" [style.background-image]="'url(' + project.backgroundImage + ')'"></div>
-                    <div class="project-bg-overlay"></div>
-                }
+        <!-- ── Featured Systems ──────────────────────────── -->
+        <div class="category-section" appFadeIn>
+            <div class="category-header">
+                <span class="category-dot featured"></span>
+                <h3 class="category-title">Featured Systems</h3>
+            </div>
+            <div class="projects-grid featured-grid">
+                @for (project of featuredProjects; track project.id) {
+                <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id">
+                    <div class="project-content">
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <p class="project-impact">{{ project.impact }}</p>
 
-                <!-- Project Content -->
-                <div class="project-content">
-                    <h3 class="project-title">{{ project.title }}</h3>
-                    <p class="project-impact">{{ project.impact }}</p>
-                    
-                    <!-- Tech Stack -->
-                    <div class="project-tech">
-                        @for (tech of project.techStack; track tech) {
-                        <span class="tech-tag">{{ tech }}</span>
+                        @if (project.companyNote) {
+                            <p class="company-note">{{ project.companyNote }}</p>
                         }
-                    </div>
-                </div>
 
-                <!-- Footer (Action + Status) -->
-                <div class="card-footer">
-                    <div class="project-action">
-                        View Case Study <span class="arrow">→</span>
+                        <div class="project-tech">
+                            @for (tech of project.techStack; track tech) {
+                            <span class="tech-tag">{{ tech }}</span>
+                            }
+                        </div>
                     </div>
-                    
-                    <div class="project-status">
-                        <span class="status-dot" [class]="project.status"></span>
-                        {{ getStatusLabel(project.status) }}
+
+                    <div class="card-footer">
+                        <div class="project-action">
+                            View Case Study <span class="arrow">→</span>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot" [class]="project.status"></span>
+                            {{ getStatusLabel(project.status) }}
+                        </div>
                     </div>
-                </div>
-            </a>
-            }
+                </a>
+                }
+            </div>
         </div>
+
+        <!-- ── Engineering Projects ──────────────────────── -->
+        <div class="category-section" appFadeIn>
+            <div class="category-header">
+                <span class="category-dot engineering"></span>
+                <h3 class="category-title">Engineering Projects</h3>
+            </div>
+            <div class="projects-grid engineering-grid">
+                @for (project of engineeringProjects; track project.id) {
+                <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id">
+                    <div class="project-content">
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <p class="project-impact">{{ project.impact }}</p>
+
+                        <div class="project-tech">
+                            @for (tech of project.techStack; track tech) {
+                            <span class="tech-tag">{{ tech }}</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="project-action">
+                            View Case Study <span class="arrow">→</span>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot" [class]="project.status"></span>
+                            {{ getStatusLabel(project.status) }}
+                        </div>
+                    </div>
+                </a>
+                }
+            </div>
+        </div>
+
+        <!-- ── In Development ────────────────────────────── -->
+        <div class="category-section" appFadeIn>
+            <div class="category-header">
+                <span class="category-dot development"></span>
+                <h3 class="category-title">In Development</h3>
+            </div>
+            <div class="projects-grid development-grid">
+                @for (project of developmentProjects; track project.id) {
+                <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id">
+                    <div class="project-content">
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <p class="project-impact">{{ project.impact }}</p>
+
+                        <div class="project-tech">
+                            @for (tech of project.techStack; track tech) {
+                            <span class="tech-tag">{{ tech }}</span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="project-action">
+                            View Architecture <span class="arrow">→</span>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot" [class]="project.status"></span>
+                            {{ getStatusLabel(project.status) }}
+                        </div>
+                    </div>
+                </a>
+                }
+            </div>
+        </div>
+
     </div>
 </section>

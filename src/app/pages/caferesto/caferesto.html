@@ -1,0 +1,691 @@
+<!-- ═══════════════════════════════════════════════════════════
+     CAFÉRESTO — ELITE CASE STUDY PAGE
+     Technical product documentation meets SaaS case study
+     ═══════════════════════════════════════════════════════════ -->
+
+<!-- ─── 1. HERO SECTION (60/40 Split) ────────────────────── -->
+<section class="cr-hero">
+  <div class="cr-hero-container">
+
+    <a routerLink="/" fragment="projects" class="cr-back-link" appFadeIn>
+      <span class="cr-back-arrow">←</span> Back to Projects
+    </a>
+
+    <div class="cr-hero-grid">
+      <!-- Left 60% -->
+      <div class="cr-hero-left" appFadeIn>
+        <div class="cr-hero-badges">
+          <span class="cr-status-badge production">
+            <span class="cr-status-dot"></span>
+            Production
+          </span>
+          <span class="cr-role-badge">Backend Architect</span>
+        </div>
+
+        <h1 class="cr-hero-title">CaféResto</h1>
+        <p class="cr-hero-subtitle">Multi-Tenant Restaurant Ecosystem</p>
+
+        <p class="cr-hero-statement">
+          A modular, multi-tenant restaurant platform — from <strong>QR ordering</strong> and
+          <strong>real-time updates</strong> to <strong>stock automation</strong>,
+          <strong>role-based workflows</strong>, and <strong>production-grade monitoring</strong>.
+        </p>
+
+        <div class="cr-hero-meta">
+          <span class="cr-meta-item">
+            <span class="cr-meta-label">Team</span>
+            Pentiyo
+          </span>
+          <span class="cr-meta-divider"></span>
+          <span class="cr-meta-item">
+            <span class="cr-meta-label">Status</span>
+            Previously Deployed
+          </span>
+        </div>
+
+        <div class="cr-hero-stack">
+          <span class="cr-stack-chip">Spring Boot</span>
+          <span class="cr-stack-chip">PostgreSQL</span>
+          <span class="cr-stack-chip">Flyway</span>
+          <span class="cr-stack-chip">JWT</span>
+          <span class="cr-stack-chip">WebSocket</span>
+          <span class="cr-stack-chip">Docker</span>
+          <span class="cr-stack-chip">Prometheus</span>
+          <span class="cr-stack-chip">Grafana</span>
+        </div>
+      </div>
+
+      <!-- Right 40% — Architecture Diagram -->
+      <div class="cr-hero-right" appFadeIn>
+        <div class="cr-arch-diagram">
+          <div class="cr-arch-title">System Overview</div>
+          <div class="cr-arch-flow">
+            <div class="cr-arch-node client">
+              <span class="cr-arch-icon">📱</span>
+              <span>Client</span>
+            </div>
+            <div class="cr-arch-connector"></div>
+            <div class="cr-arch-node proxy">
+              <span class="cr-arch-icon">🔀</span>
+              <span>Nginx</span>
+            </div>
+            <div class="cr-arch-connector"></div>
+            <div class="cr-arch-node backend">
+              <span class="cr-arch-icon">⚙</span>
+              <span>Spring Boot</span>
+            </div>
+            <div class="cr-arch-connector"></div>
+            <div class="cr-arch-node database">
+              <span class="cr-arch-icon">🗄</span>
+              <span>PostgreSQL</span>
+            </div>
+            <div class="cr-arch-connector-branch"></div>
+            <div class="cr-arch-node monitor">
+              <span class="cr-arch-icon">📊</span>
+              <span>Monitoring</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 2. VISION & PRODUCT THINKING ─────────────────────── -->
+<section class="cr-section cr-section-light">
+  <div class="cr-container" appFadeIn>
+    <p class="cr-label">Vision & Product Scope</p>
+    <h2 class="cr-heading">Not a simple ordering app</h2>
+
+    <p class="cr-body">
+      CaféResto models a <strong>complete restaurant environment</strong> where clients order via
+      QR code, staff manage orders and table flow, owners configure operational rules, and stock
+      updates automatically based on recipes. The goal was to design a <strong>configurable,
+      scalable domain architecture</strong> capable of adapting to different restaurant behaviors.
+    </p>
+
+    <div class="cr-vision-grid">
+      <div class="cr-vision-card" appFadeIn>
+        <span class="cr-vision-icon">🏢</span>
+        <h4>Multi-Tenant</h4>
+        <p>Single database, strict ownership isolation per restaurant entity.</p>
+      </div>
+      <div class="cr-vision-card" appFadeIn>
+        <span class="cr-vision-icon">⚡</span>
+        <h4>Real-Time</h4>
+        <p>WebSocket-driven live updates for orders, status, and waiter calls.</p>
+      </div>
+      <div class="cr-vision-card" appFadeIn>
+        <span class="cr-vision-icon">🧩</span>
+        <h4>Modular Domain</h4>
+        <p>Feature-gated subsystems — enable or disable without breaking core flow.</p>
+      </div>
+      <div class="cr-vision-card" appFadeIn>
+        <span class="cr-vision-icon">🐳</span>
+        <h4>Production Infra</h4>
+        <p>Dockerized stack with monitoring, alerting, and automated backups.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 3. ARCHITECTURE SECTION ───────────────────────────── -->
+<section class="cr-section cr-section-alt">
+  <div class="cr-container">
+    <div class="cr-two-col">
+
+      <!-- Left: Explanation -->
+      <div class="cr-col-text" appFadeIn>
+        <p class="cr-label">Architecture Strategy</p>
+        <h2 class="cr-heading">Multi-Tenant Model</h2>
+
+        <p class="cr-body">
+          Single <strong>PostgreSQL database</strong> shared across all restaurants with strict
+          data isolation using <strong>ownership-based filtering</strong> (<code>cafeResto_id</code>).
+          Authorization goes beyond roles — every resource is validated against ownership.
+        </p>
+
+        <div class="cr-arch-details">
+          <div class="cr-detail-item">
+            <span class="cr-detail-marker"></span>
+            <div>
+              <strong>Single PostgreSQL DB</strong>
+              <p>Shared database with tenant isolation by foreign key ownership chains.</p>
+            </div>
+          </div>
+          <div class="cr-detail-item">
+            <span class="cr-detail-marker"></span>
+            <div>
+              <strong>Ownership Validation</strong>
+              <p>Authorization beyond roles — every resource verified against restaurant ownership.</p>
+            </div>
+          </div>
+          <div class="cr-detail-item">
+            <span class="cr-detail-marker"></span>
+            <div>
+              <strong>Flyway Migrations</strong>
+              <p>Controlled forward/rollback migrations. Hibernate validates only — no auto schema generation.</p>
+            </div>
+          </div>
+          <div class="cr-detail-item">
+            <span class="cr-detail-marker"></span>
+            <div>
+              <strong>Production Discipline</strong>
+              <p><code>ddl-auto=validate</code> enforcing schema discipline in production environments.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Diagram -->
+      <div class="cr-col-diagram" appFadeIn>
+        <div class="cr-tenant-diagram">
+          <div class="cr-tenant-title">Data Isolation Model</div>
+          <div class="cr-tenant-visual">
+            <div class="cr-tenant-db">
+              <span class="cr-db-label">PostgreSQL</span>
+              <div class="cr-tenant-rows">
+                <div class="cr-tenant-row">
+                  <span class="cr-row-badge a">Restaurant A</span>
+                  <span class="cr-row-data">orders, menus, staff</span>
+                </div>
+                <div class="cr-tenant-divider"></div>
+                <div class="cr-tenant-row">
+                  <span class="cr-row-badge b">Restaurant B</span>
+                  <span class="cr-row-data">orders, menus, staff</span>
+                </div>
+                <div class="cr-tenant-divider"></div>
+                <div class="cr-tenant-row">
+                  <span class="cr-row-badge c">Restaurant C</span>
+                  <span class="cr-row-data">orders, menus, staff</span>
+                </div>
+              </div>
+              <div class="cr-tenant-footer">
+                <span>Filtered by <code>cafeResto_id</code></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 4. DOMAIN COMPLEXITY ──────────────────────────────── -->
+<section class="cr-section cr-section-light">
+  <div class="cr-container" appFadeIn>
+    <p class="cr-label">Domain Architecture</p>
+    <h2 class="cr-heading">Feature-Driven Domain Architecture</h2>
+
+    <p class="cr-body">
+      Enabling optional subsystems without breaking order consistency. Each module can be
+      <strong>enabled or disabled via configuration</strong> — all branching logic remains
+      <strong>transaction-safe</strong> and centralized within the service layer.
+    </p>
+
+    <div class="cr-domain-flow">
+      <!-- Core -->
+      <div class="cr-domain-core" appFadeIn>
+        <div class="cr-domain-node core">
+          <span class="cr-domain-icon">📋</span>
+          <span>Core Order Flow</span>
+        </div>
+      </div>
+
+      <!-- Branches -->
+      <div class="cr-domain-branches" appFadeIn>
+        <div class="cr-branch">
+          <div class="cr-branch-line"></div>
+          <div class="cr-domain-node optional">
+            <span class="cr-domain-badge">Optional</span>
+            <span class="cr-domain-icon">📦</span>
+            <span>Stock Management</span>
+          </div>
+          <p class="cr-branch-desc">
+            Auto-deducts ingredients via recipes.<br>Block or allow negative stock.
+          </p>
+        </div>
+        <div class="cr-branch">
+          <div class="cr-branch-line"></div>
+          <div class="cr-domain-node optional">
+            <span class="cr-domain-badge">Optional</span>
+            <span class="cr-domain-icon">🕐</span>
+            <span>Shift Management</span>
+          </div>
+          <p class="cr-branch-desc">
+            Staff scheduling and shift-based operations.
+          </p>
+        </div>
+        <div class="cr-branch">
+          <div class="cr-branch-line"></div>
+          <div class="cr-domain-node optional">
+            <span class="cr-domain-badge">Optional</span>
+            <span class="cr-domain-icon">📅</span>
+            <span>Reservation System</span>
+          </div>
+          <p class="cr-branch-desc">
+            Table booking with real-time availability.
+          </p>
+        </div>
+        <div class="cr-branch">
+          <div class="cr-branch-line"></div>
+          <div class="cr-domain-node optional">
+            <span class="cr-domain-badge">Optional</span>
+            <span class="cr-domain-icon">⭐</span>
+            <span>Loyalty & Points</span>
+          </div>
+          <p class="cr-branch-desc">
+            Points accrual and redemption system.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transaction Safety Note -->
+    <div class="cr-callout" appFadeIn>
+      <span class="cr-callout-icon">🔒</span>
+      <div>
+        <strong>Transactional Integrity</strong>
+        <p>
+          Order creation touches multiple aggregates — Orders, Items, Recipes, Ingredients, Stock Records.
+          All wrapped in <code>&#64;Transactional</code> service methods. If any validation fails, the entire
+          transaction rolls back.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 5. SECURITY & ACCESS CONTROL ──────────────────────── -->
+<section class="cr-section cr-section-alt">
+  <div class="cr-container">
+    <div class="cr-two-col">
+
+      <!-- Left -->
+      <div class="cr-col-text" appFadeIn>
+        <p class="cr-label">Security & Integrity</p>
+        <h2 class="cr-heading">Multi-Layer Access Control</h2>
+
+        <ul class="cr-check-list">
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>JWT Access & Refresh Tokens</strong> — Stateless authentication with secure rotation</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>Custom JWT Filter</strong> — Fine-grained request interception and validation</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>Role + Ownership Validation</strong> — Actions verified against restaurant ownership</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>Rate Limiting</strong> — Bucket-based throttling preventing abuse</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>Transactional Safety</strong> — All mutations wrapped in atomic transactions</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Security Flow Diagram -->
+      <div class="cr-col-diagram" appFadeIn>
+        <div class="cr-security-flow">
+          <div class="cr-security-title">Authentication Flow</div>
+          <div class="cr-security-steps">
+            <div class="cr-sec-step">
+              <span class="cr-sec-num">01</span>
+              <span>Login Request</span>
+            </div>
+            <div class="cr-sec-arrow">→</div>
+            <div class="cr-sec-step">
+              <span class="cr-sec-num">02</span>
+              <span>JWT Issued</span>
+            </div>
+            <div class="cr-sec-arrow">→</div>
+            <div class="cr-sec-step">
+              <span class="cr-sec-num">03</span>
+              <span>Filter Chain</span>
+            </div>
+            <div class="cr-sec-arrow">→</div>
+            <div class="cr-sec-step">
+              <span class="cr-sec-num">04</span>
+              <span>Role Check</span>
+            </div>
+            <div class="cr-sec-arrow">→</div>
+            <div class="cr-sec-step highlight">
+              <span class="cr-sec-num">05</span>
+              <span>Ownership Check</span>
+            </div>
+          </div>
+          <p class="cr-security-note">
+            Ownership validation prevents cross-tenant data leaks — even if the role permits the action.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 6. REAL-TIME SYSTEM ───────────────────────────────── -->
+<section class="cr-section cr-section-dark">
+  <div class="cr-container" appFadeIn>
+    <p class="cr-label light">Real-Time Layer</p>
+    <h2 class="cr-heading light">Event-Driven Experience</h2>
+
+    <p class="cr-body light">
+      Separation between <strong>REST API</strong> for core operations and <strong>WebSocket layer</strong>
+      for live synchronization — maintaining clarity while enabling responsive user experience.
+    </p>
+
+    <div class="cr-realtime-grid">
+      <div class="cr-rt-card" appFadeIn>
+        <div class="cr-rt-layer">REST API</div>
+        <p>Core CRUD operations, business logic, validation, persistence.</p>
+      </div>
+      <div class="cr-rt-bridge">
+        <div class="cr-rt-pulse"></div>
+      </div>
+      <div class="cr-rt-card" appFadeIn>
+        <div class="cr-rt-layer">WebSocket Events</div>
+        <p>Live synchronization, broadcast, real-time user experience.</p>
+      </div>
+    </div>
+
+    <div class="cr-rt-events" appFadeIn>
+      <div class="cr-rt-event">
+        <span class="cr-rt-dot"></span>
+        New order broadcast
+      </div>
+      <div class="cr-rt-event">
+        <span class="cr-rt-dot"></span>
+        Order status updates
+      </div>
+      <div class="cr-rt-event">
+        <span class="cr-rt-dot"></span>
+        Waiter call notifications
+      </div>
+      <div class="cr-rt-event">
+        <span class="cr-rt-dot"></span>
+        Reservation updates
+      </div>
+      <div class="cr-rt-event">
+        <span class="cr-rt-dot"></span>
+        Internal chat system
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 7. OBSERVABILITY & MONITORING ─────────────────────── -->
+<section class="cr-section cr-section-light">
+  <div class="cr-container" appFadeIn>
+    <p class="cr-label">Observability</p>
+    <h2 class="cr-heading">Production-Grade Observability Stack</h2>
+
+    <div class="cr-obs-layout">
+      <!-- Layered diagram -->
+      <div class="cr-obs-diagram" appFadeIn>
+        <div class="cr-obs-layer app">
+          <span class="cr-obs-label">Application Layer</span>
+          <span class="cr-obs-sub">Spring Boot + Actuator</span>
+        </div>
+        <div class="cr-obs-arrow">↓</div>
+        <div class="cr-obs-layer prometheus">
+          <span class="cr-obs-label">Prometheus</span>
+          <span class="cr-obs-sub">Metrics collection & storage</span>
+        </div>
+        <div class="cr-obs-arrow">↓</div>
+        <div class="cr-obs-layer grafana">
+          <span class="cr-obs-label">Grafana</span>
+          <span class="cr-obs-sub">Dashboards & visualization</span>
+        </div>
+        <div class="cr-obs-arrow">↓</div>
+        <div class="cr-obs-layer alertmanager">
+          <span class="cr-obs-label">Alertmanager</span>
+          <span class="cr-obs-sub">Telegram notifications</span>
+        </div>
+      </div>
+
+      <!-- Metric Sources -->
+      <div class="cr-obs-sources" appFadeIn>
+        <h4 class="cr-obs-sources-title">Metric Sources</h4>
+        <div class="cr-obs-source-list">
+          <div class="cr-obs-source">
+            <span class="cr-obs-src-dot"></span>
+            <span><strong>Spring Actuator</strong> — Application metrics</span>
+          </div>
+          <div class="cr-obs-source">
+            <span class="cr-obs-src-dot"></span>
+            <span><strong>PostgreSQL Exporter</strong> — Database metrics</span>
+          </div>
+          <div class="cr-obs-source">
+            <span class="cr-obs-src-dot"></span>
+            <span><strong>Node Exporter</strong> — CPU, RAM, disk</span>
+          </div>
+          <div class="cr-obs-source">
+            <span class="cr-obs-src-dot"></span>
+            <span><strong>cAdvisor</strong> — Docker container metrics</span>
+          </div>
+          <div class="cr-obs-source">
+            <span class="cr-obs-src-dot"></span>
+            <span><strong>Nginx Exporter</strong> — Proxy metrics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 8. DEPLOYMENT ─────────────────────────────────────── -->
+<section class="cr-section cr-section-alt">
+  <div class="cr-container">
+    <div class="cr-two-col">
+
+      <div class="cr-col-text" appFadeIn>
+        <p class="cr-label">Infrastructure</p>
+        <h2 class="cr-heading">Dockerized Production Stack</h2>
+
+        <ul class="cr-deploy-list">
+          <li><strong>Docker Compose</strong> — Full system orchestration</li>
+          <li><strong>Bridge Network</strong> — Service-level isolation</li>
+          <li><strong>Health Checks</strong> — Container readiness verification</li>
+          <li><strong>Persistent Volumes</strong> — Data & log durability</li>
+          <li><strong>Automated Backups</strong> — Scheduled database snapshots</li>
+          <li><strong>Local-Bound Ports</strong> — 127.0.0.1 with reverse proxy exposure</li>
+        </ul>
+
+        <div class="cr-deploy-note">
+          <span class="cr-deploy-note-icon">ℹ</span>
+          Previously deployed on VPS with full Dockerized infrastructure.
+          Currently offline due to hosting constraints.
+        </div>
+      </div>
+
+      <div class="cr-col-diagram" appFadeIn>
+        <div class="cr-container-map">
+          <div class="cr-container-title">Container Architecture</div>
+          <div class="cr-containers">
+            <div class="cr-ctr-row">
+              <div class="cr-ctr core">Nginx</div>
+              <div class="cr-ctr core">Spring Boot</div>
+              <div class="cr-ctr core">PostgreSQL</div>
+            </div>
+            <div class="cr-ctr-row">
+              <div class="cr-ctr support">pgAdmin</div>
+              <div class="cr-ctr support">Backup Service</div>
+            </div>
+            <div class="cr-ctr-row">
+              <div class="cr-ctr monitor">Prometheus</div>
+              <div class="cr-ctr monitor">Grafana</div>
+              <div class="cr-ctr monitor">Alertmanager</div>
+            </div>
+            <div class="cr-ctr-row">
+              <div class="cr-ctr exporter">Node Exp.</div>
+              <div class="cr-ctr exporter">PG Exp.</div>
+              <div class="cr-ctr exporter">cAdvisor</div>
+              <div class="cr-ctr exporter">Nginx Exp.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 9. ENGINEERING CHALLENGES ─────────────────────────── -->
+<section class="cr-section cr-section-light">
+  <div class="cr-container" appFadeIn>
+    <p class="cr-label">Engineering</p>
+    <h2 class="cr-heading">What Was Hard</h2>
+
+    <p class="cr-body">
+      The most complex problem was not feature implementation — it was
+      <strong>architectural modularization</strong>. Designing a domain capable of toggling entire
+      subsystems while preserving transactional integrity and code clarity.
+    </p>
+
+    <div class="cr-challenges-grid">
+      <div class="cr-challenge" appFadeIn>
+        <span class="cr-challenge-num">01</span>
+        <h4>Modular Subsystems</h4>
+        <p>Enabling and disabling features (stock, shifts, reservations) without breaking core order flow.</p>
+      </div>
+      <div class="cr-challenge" appFadeIn>
+        <span class="cr-challenge-num">02</span>
+        <h4>No Spaghetti Branching</h4>
+        <p>Keeping conditional logic clean and centralized within the service layer, avoiding scattered if-else chains.</p>
+      </div>
+      <div class="cr-challenge" appFadeIn>
+        <span class="cr-challenge-num">03</span>
+        <h4>Transaction Safety</h4>
+        <p>Ensuring rollback consistency across multi-aggregate operations when any validation fails.</p>
+      </div>
+      <div class="cr-challenge" appFadeIn>
+        <span class="cr-challenge-num">04</span>
+        <h4>Feature Flag Clarity</h4>
+        <p>Maintaining readable, maintainable code while supporting dynamic behavior changes per restaurant.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 10. LESSONS & GROWTH ──────────────────────────────── -->
+<section class="cr-section cr-section-alt">
+  <div class="cr-container" appFadeIn>
+    <p class="cr-label">Reflection</p>
+    <h2 class="cr-heading">Lessons & Future Improvements</h2>
+
+    <div class="cr-lessons-grid">
+      <div class="cr-lesson-card" appFadeIn>
+        <h4>What I'd improve</h4>
+        <ul>
+          <li>Implement <strong>ingredient reservation</strong> for concurrency safety</li>
+          <li>Introduce <strong>domain events</strong> for cleaner module decoupling</li>
+          <li>Add <strong>CI/CD automation</strong> pipeline</li>
+          <li>Improve <strong>structured logging</strong> & tracing</li>
+          <li>Consider splitting heavy subsystems into <strong>microservices</strong> if scale demands</li>
+        </ul>
+      </div>
+      <div class="cr-lesson-card" appFadeIn>
+        <h4>What I learned</h4>
+        <ul>
+          <li><strong>Multi-tenant isolation</strong> requires discipline at every query level</li>
+          <li><strong>Feature-gated architecture</strong> demands clean service boundaries</li>
+          <li><strong>Production monitoring</strong> is not optional — it's foundational</li>
+          <li><strong>Docker Compose</strong> can power real production single-server deployments</li>
+          <li><strong>Schema control</strong> (Flyway) prevents silent production breakage</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 11. VISUAL PROOF ──────────────────────────────────── -->
+<section class="cr-section cr-section-light">
+  <div class="cr-container" appFadeIn>
+    <p class="cr-label">Visual Proof</p>
+    <h2 class="cr-heading">Screenshots & Evidence</h2>
+
+    <div class="cr-gallery">
+      <div class="cr-gallery-item" (click)="openLightbox('assets/projects/caferesto-admin.png', 'Admin Dashboard')">
+        <div class="cr-gallery-placeholder">
+          <span class="cr-gallery-icon">🖥</span>
+          <span class="cr-gallery-label">Admin Dashboard</span>
+        </div>
+        <div class="cr-gallery-overlay">Click to expand</div>
+      </div>
+      <div class="cr-gallery-item" (click)="openLightbox('assets/projects/caferesto-client.png', 'Client Ordering')">
+        <div class="cr-gallery-placeholder">
+          <span class="cr-gallery-icon">📱</span>
+          <span class="cr-gallery-label">Client Ordering</span>
+        </div>
+        <div class="cr-gallery-overlay">Click to expand</div>
+      </div>
+      <div class="cr-gallery-item" (click)="openLightbox('assets/projects/caferesto-grafana.png', 'Grafana Dashboard')">
+        <div class="cr-gallery-placeholder">
+          <span class="cr-gallery-icon">📊</span>
+          <span class="cr-gallery-label">Grafana Dashboard</span>
+        </div>
+        <div class="cr-gallery-overlay">Click to expand</div>
+      </div>
+      <div class="cr-gallery-item" (click)="openLightbox('assets/projects/caferesto-schema.png', 'Database Schema')">
+        <div class="cr-gallery-placeholder">
+          <span class="cr-gallery-icon">🗄</span>
+          <span class="cr-gallery-label">Database Schema</span>
+        </div>
+        <div class="cr-gallery-overlay">Click to expand</div>
+      </div>
+    </div>
+
+    <p class="cr-gallery-note">
+      Screenshots will be added as the project visual assets are prepared.
+    </p>
+  </div>
+</section>
+
+
+<!-- ─── 12. NAVIGATION CLOSURE ───────────────────────────── -->
+<section class="cr-section cr-nav-closure">
+  <div class="cr-container">
+    <div class="cr-nav-closure-inner" appFadeIn>
+      <a routerLink="/projects/delivery-tracking" class="cr-nav-link cr-prev-link">
+        <span class="cr-nav-direction">← Previous Project</span>
+        <span class="cr-nav-project-name">SwiftDeliver — Delivery Management & Tracking</span>
+      </a>
+
+      <a routerLink="/" fragment="projects" class="cr-nav-link cr-back-link-center">
+        Back to All Projects
+      </a>
+
+      <a routerLink="/projects/document-marketplace" class="cr-nav-link cr-next-link">
+        <span class="cr-nav-direction">Next Project →</span>
+        <span class="cr-nav-project-name">DocMarket — Digital Document Marketplace</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── LIGHTBOX ──────────────────────────────────────────── -->
+@if (lightboxImage) {
+  <div class="cr-lightbox" (click)="closeLightbox()">
+    <div class="cr-lightbox-content" (click)="$event.stopPropagation()">
+      <button class="cr-lightbox-close" (click)="closeLightbox()" aria-label="Close lightbox">✕</button>
+      <img [src]="lightboxImage" [alt]="lightboxAlt" class="cr-lightbox-img" />
+      <p class="cr-lightbox-caption">{{ lightboxAlt }}</p>
+    </div>
+  </div>
+}

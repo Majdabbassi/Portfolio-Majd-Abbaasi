@@ -1,0 +1,84 @@
+/* App-level global styles (intentionally hosted here, not in styles.css) */
+:root {
+    --color-bg: #fafafa;
+    --color-surface: #ffffff;
+    --color-surface-2: #f4f4f5;
+    --color-border: #e5e5e5;
+    --color-border-2: #d4d4d4;
+
+    --color-accent: #a68b6c;
+    --color-accent-light: #c0a080;
+    --color-accent-2: #8a7369;
+    --color-accent-glow: rgba(166, 139, 108, 0.1);
+
+    --color-text: #171717;
+    --color-text-2: #525252;
+    --color-muted: #737373;
+
+    --color-success: #059669;
+    --color-warning: #d97706;
+
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    --radius-sm: 0.375rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+@keyframes vt-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@keyframes vt-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+::view-transition-old(root) {
+    animation: vt-fade-out 200ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(root) {
+    animation: vt-fade-in-up 350ms cubic-bezier(0, 0, 0.2, 1) 100ms both;
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

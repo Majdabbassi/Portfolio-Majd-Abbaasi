@@ -84,16 +84,16 @@
   background: rgba(5, 150, 105, 0.06);
 }
 
-.status-badge.case-study {
-  border-color: rgba(217, 119, 6, 0.3);
-  color: var(--color-warning);
-  background: rgba(217, 119, 6, 0.06);
-}
-
-.status-badge.experimental {
+.status-badge.completed {
   border-color: rgba(166, 139, 108, 0.3);
   color: var(--color-accent);
   background: rgba(166, 139, 108, 0.06);
+}
+
+.status-badge.in-development {
+  border-color: rgba(136, 136, 136, 0.3);
+  color: var(--color-muted);
+  background: rgba(136, 136, 136, 0.06);
 }
 
 .status-indicator {
@@ -134,6 +134,16 @@
   line-height: 1.7;
   margin-bottom: 1.5rem;
   max-width: 500px;
+}
+
+.company-note {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--color-muted);
+  margin-bottom: 1.25rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--color-border);
+  line-height: 1.5;
 }
 
 .hero-tech-stack {
@@ -781,6 +791,15 @@
 
 .back-link-center:hover {
   color: var(--color-accent);
+}
+
+.solo-link {
+  justify-content: center;
+  text-align: center;
+}
+
+.independent-link {
+  text-align: center;
 }
 
 

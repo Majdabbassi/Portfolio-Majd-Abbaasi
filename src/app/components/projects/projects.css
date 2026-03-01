@@ -1,3 +1,14 @@
+/* ─── Local Section Utilities ───────────────────────────── */
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section-padding {
+    padding: 2rem 0;
+}
+
 /* ─── Projects Header ────────────────────────────────────── */
 .projects-header {
     text-align: left;
@@ -14,7 +25,7 @@
 }
 
 .projects-header .section-title {
-    font-size: clamp(1.5rem, 3vw, 2rem); /* Reduced size */
+    font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 0.5rem;
     line-height: 1.2;
     font-weight: 800;
@@ -23,7 +34,7 @@
 }
 
 .projects-header .section-subtitle {
-    font-size: 0.95rem; /* Reduced size */
+    font-size: 0.95rem;
     color: var(--color-text-2);
     font-weight: 500;
     max-width: 600px;
@@ -38,17 +49,76 @@
     font-weight: 700;
 }
 
+/* ─── Category Sections ──────────────────────────────────── */
+.category-section {
+    margin-bottom: 2.5rem;
+}
+
+.category-section:last-child {
+    margin-bottom: 0;
+}
+
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.category-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.category-dot.featured {
+    background: var(--color-success, #10b981);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.category-dot.engineering {
+    background: var(--color-accent);
+    box-shadow: 0 0 8px rgba(166, 139, 108, 0.4);
+}
+
+.category-dot.development {
+    background: var(--color-muted, #888);
+    box-shadow: 0 0 8px rgba(136, 136, 136, 0.3);
+}
+
+.category-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-2);
+    margin: 0;
+}
+
 /* ─── Projects Grid ───────────────────────────────────────── */
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem; /* Reduced gap */
+    gap: 1.5rem;
 }
 
-@media (min-width: 1024px) {
-    .projects-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns for 6 cards */
-        gap: 1.5rem;
+/* Featured: 2 columns on desktop */
+@media (min-width: 768px) {
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Engineering: centered single card */
+.engineering-grid {
+    max-width: 640px;
+}
+
+/* Development: 2 columns on desktop */
+@media (min-width: 768px) {
+    .development-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -60,42 +130,13 @@
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: 1.5rem; /* Reduced padding */
+    padding: 1.5rem;
     position: relative;
     overflow: hidden;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     height: 100%;
     z-index: 1;
-}
-
-/* ─── Background Images ──────────────────────────────────── */
-.project-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.3; /* Reverted to lighter base, but will be stronger on hover */
-    transition: opacity 0.5s ease, transform 0.7s ease, filter 0.5s ease;
-    z-index: -2;
-    transform: scale(1.05);
-    filter: grayscale(100%);
-}
-
-.project-bg-overlay {
-    position: absolute;
-    inset: 0;
-    /* Much lighter gradient at top to let image show through */
-    background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.95) 100%);
-    z-index: -1;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.project-card:hover .project-bg {
-    opacity: 0.5; /* Strong visibility on hover */
-    transform: scale(1);
-    filter: grayscale(0%);
 }
 
 .project-card:hover {
@@ -114,7 +155,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 0.6rem; /* Smaller font */
+    font-size: 0.6rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -133,18 +174,26 @@
 }
 
 .status-dot.production {
-    background: var(--color-success);
+    background: var(--color-success, #10b981);
     box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+.status-dot.completed {
+    background: var(--color-accent);
+    box-shadow: 0 0 6px rgba(166, 139, 108, 0.4);
+}
+
+.status-dot.in-development {
+    background: var(--color-muted, #888);
 }
 
 /* ─── Content ────────────────────────────────────────────── */
 .project-content {
     margin-bottom: 1.5rem;
-    /* margin-top removed */
 }
 
 .project-title {
-    font-size: 1.1rem; /* Reduced from 1.4rem */
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-text);
     margin-bottom: 0.5rem;
@@ -153,10 +202,20 @@
 }
 
 .project-impact {
-    font-size: 0.85rem; /* Reduced from 0.95rem */
+    font-size: 0.85rem;
     line-height: 1.6;
     color: var(--color-text-2);
     margin-bottom: 1rem;
+}
+
+/* ─── Company Note ───────────────────────────────────────── */
+.company-note {
+    font-size: 0.7rem;
+    font-style: italic;
+    color: var(--color-muted);
+    margin-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--color-border);
 }
 
 /* ─── Tech Stack ─────────────────────────────────────────── */
@@ -168,9 +227,9 @@
 
 .tech-tag {
     font-family: var(--font-mono);
-    font-size: 0.65rem; /* Smaller tech tags */
+    font-size: 0.65rem;
     color: var(--color-text-2);
-    background: rgba(166, 139, 108, 0.08); /* Accent tint */
+    background: rgba(166, 139, 108, 0.08);
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     border: 1px solid rgba(166, 139, 108, 0.15);
