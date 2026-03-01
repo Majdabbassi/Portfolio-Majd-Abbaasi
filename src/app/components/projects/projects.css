@@ -1,0 +1,217 @@
+/* ─── Projects Header ────────────────────────────────────── */
+.projects-header {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.projects-header .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.projects-header .section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem); /* Reduced size */
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+}
+
+.projects-header .section-subtitle {
+    font-size: 0.95rem; /* Reduced size */
+    color: var(--color-text-2);
+    font-weight: 500;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-text) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* ─── Projects Grid ───────────────────────────────────────── */
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem; /* Reduced gap */
+}
+
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for 6 cards */
+        gap: 1.5rem;
+    }
+}
+
+/* ─── Project Card ───────────────────────────────────────── */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem; /* Reduced padding */
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+    z-index: 1;
+}
+
+/* ─── Background Images ──────────────────────────────────── */
+.project-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Reverted to lighter base, but will be stronger on hover */
+    transition: opacity 0.5s ease, transform 0.7s ease, filter 0.5s ease;
+    z-index: -2;
+    transform: scale(1.05);
+    filter: grayscale(100%);
+}
+
+.project-bg-overlay {
+    position: absolute;
+    inset: 0;
+    /* Much lighter gradient at top to let image show through */
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.95) 100%);
+    z-index: -1;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-bg {
+    opacity: 0.5; /* Strong visibility on hover */
+    transform: scale(1);
+    filter: grayscale(0%);
+}
+
+.project-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: var(--color-accent);
+    box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.1);
+}
+
+.project-card:active {
+    transform: translateY(-2px) scale(1.03);
+    transition-duration: 0.1s;
+}
+
+/* ─── Status Badge ───────────────────────────────────────── */
+.project-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.6rem; /* Smaller font */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+    background: var(--color-surface-2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+}
+
+.status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-muted);
+}
+
+.status-dot.production {
+    background: var(--color-success);
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+/* ─── Content ────────────────────────────────────────────── */
+.project-content {
+    margin-bottom: 1.5rem;
+    /* margin-top removed */
+}
+
+.project-title {
+    font-size: 1.1rem; /* Reduced from 1.4rem */
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+    padding-right: 0;
+    line-height: 1.3;
+}
+
+.project-impact {
+    font-size: 0.85rem; /* Reduced from 0.95rem */
+    line-height: 1.6;
+    color: var(--color-text-2);
+    margin-bottom: 1rem;
+}
+
+/* ─── Tech Stack ─────────────────────────────────────────── */
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem; /* Smaller tech tags */
+    color: var(--color-text-2);
+    background: rgba(166, 139, 108, 0.08); /* Accent tint */
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(166, 139, 108, 0.15);
+    transition: all 0.2s ease;
+}
+
+.project-card:hover .tech-tag {
+    border-color: rgba(166, 139, 108, 0.4);
+    color: var(--color-accent);
+}
+
+/* ─── Footer Action ──────────────────────────────────────── */
+.card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.project-action {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.project-card:hover .project-action {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.arrow {
+    transition: transform 0.2s ease;
+}
+
+.project-card:hover .arrow {
+    transform: translateX(4px);
+}

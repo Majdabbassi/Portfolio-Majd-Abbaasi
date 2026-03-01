@@ -1,0 +1,52 @@
+<section id="projects" class="section-padding" style="background: var(--color-bg)">
+    <div class="section-container">
+
+        <!-- Header -->
+        <div class="mb-10 projects-header" appFadeIn>
+            <p class="section-label">Selected Systems</p>
+            <h2 class="section-title">Production-ready architectures</h2>
+            <p class="section-subtitle">
+                Featuring <span class="gradient-text">automation pipelines</span> and <span class="gradient-text">scalable apps</span>
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            @for (project of projects; track project.id) {
+            <a [routerLink]="'/projects/' + project.id" class="project-card group" appFadeIn [id]="project.id">
+                
+                <!-- Background Image (Optional) -->
+                @if (project.backgroundImage) {
+                    <div class="project-bg" [style.background-image]="'url(' + project.backgroundImage + ')'"></div>
+                    <div class="project-bg-overlay"></div>
+                }
+
+                <!-- Project Content -->
+                <div class="project-content">
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-impact">{{ project.impact }}</p>
+                    
+                    <!-- Tech Stack -->
+                    <div class="project-tech">
+                        @for (tech of project.techStack; track tech) {
+                        <span class="tech-tag">{{ tech }}</span>
+                        }
+                    </div>
+                </div>
+
+                <!-- Footer (Action + Status) -->
+                <div class="card-footer">
+                    <div class="project-action">
+                        View Case Study <span class="arrow">→</span>
+                    </div>
+                    
+                    <div class="project-status">
+                        <span class="status-dot" [class]="project.status"></span>
+                        {{ getStatusLabel(project.status) }}
+                    </div>
+                </div>
+            </a>
+            }
+        </div>
+    </div>
+</section>

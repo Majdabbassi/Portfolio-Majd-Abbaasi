@@ -1,0 +1,168 @@
+/* ─── Navbar ─────────────────────────────────────────────── */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.navbar--scrolled {
+    background: rgba(255, 255, 255, 0.9); /* Light background for scrolled state */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom-color: var(--color-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* 3-column grid: logo | links | cta */
+.nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    height: 72px; /* Increased height for better spacing */
+    display: flex; /* Changed to flex for better control */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text); /* Use main text color for better contrast */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.nav-logo:hover { color: var(--color-accent); }
+
+/* Center links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem; /* Increased gap */
+    position: absolute; /* Absolute center positioning */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-2);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-text);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Right CTA */
+.nav-cta {
+    font-size: 0.875rem;
+    font-weight: 700; /* Stronger text */
+    color: #fff;
+    background: var(--color-accent); /* Accent color base */
+    border-radius: 20px; /* Fully rounded */
+    padding: 0.75rem 1.75rem; /* Larger padding */
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(166, 139, 108, 0.2), 0 2px 4px -1px rgba(166, 139, 108, 0.1); /* Subtle shadow */
+    letter-spacing: 0.02em;
+}
+
+.nav-cta:hover {
+    background: var(--color-accent-2); /* Slightly darker/different accent on hover */
+    transform: translateY(-2px) scale(1.02); /* Lift and subtle scale */
+    box-shadow: 0 10px 15px -3px rgba(166, 139, 108, 0.4), 0 4px 6px -2px rgba(166, 139, 108, 0.2), 0 0 20px rgba(166, 139, 108, 0.3); /* Stronger glow */
+}
+
+.nav-cta:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Hamburger — hidden on desktop */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    z-index: 1001;
+}
+.nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all 0.3s ease;
+    background: var(--color-text);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Mobile panel — hidden on desktop */
+.nav-mobile-panel {
+    display: none;
+    background: rgba(8, 8, 15, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--color-border);
+}
+.nav-mobile-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.25rem 2.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+.nav-mobile-link {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-2);
+    text-decoration: none;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: color 0.2s ease;
+}
+.nav-mobile-link:hover { color: var(--color-text); }
+
+/* Mobile breakpoint */
+@media (max-width: 767px) {
+    .nav-inner {
+        grid-template-columns: 1fr auto;
+    }
+    .nav-links { display: none; }
+    .nav-cta#nav-hire-btn { display: none; }
+    .nav-hamburger { display: flex; }
+    .nav-mobile-panel { display: block; }
+}

@@ -1,0 +1,50 @@
+<nav class="navbar" [class.navbar--scrolled]="isScrolled()">
+    <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="/" (click)="goHome(); $event.preventDefault()" class="nav-logo" id="nav-logo">
+            &lt;Mohamed Majd Eddine Abbassi/&gt;
+        </a>
+
+        <!-- Desktop center links -->
+        <div class="nav-links">
+            @for (link of navLinks; track link.href) {
+            <a [href]="link.href" (click)="navigateTo(link); $event.preventDefault()"
+                class="nav-link" [id]="'nav-' + link.label.toLowerCase()">
+                {{ link.label }}
+            </a>
+            }
+        </div>
+
+        <!-- Desktop CTA -->
+        <a href="mailto:majdabbassi11@gmail.com" class="nav-cta" id="nav-hire-btn">
+            Work With Me
+        </a>
+
+        <!-- Mobile hamburger -->
+        <button class="nav-hamburger" (click)="toggleMobileMenu()"
+            id="nav-mobile-toggle" aria-label="Toggle menu">
+            <span [style.transform]="isMobileMenuOpen() ? 'rotate(45deg) translateY(7px)' : 'none'"></span>
+            <span [style.opacity]="isMobileMenuOpen() ? '0' : '1'"></span>
+            <span [style.transform]="isMobileMenuOpen() ? 'rotate(-45deg) translateY(-7px)' : 'none'"></span>
+        </button>
+
+    </div>
+
+    <!-- Mobile menu -->
+    @if (isMobileMenuOpen()) {
+    <div class="nav-mobile-panel">
+        <div class="nav-mobile-inner">
+            @for (link of navLinks; track link.href) {
+            <a [href]="link.href" (click)="navigateTo(link); $event.preventDefault()"
+                class="nav-mobile-link">
+                {{ link.label }}
+            </a>
+            }
+            <a href="mailto:majdabbassi11@gmail.com" class="nav-cta" id="nav-mobile-hire">
+                Work With Me
+            </a>
+        </div>
+    </div>
+    }
+</nav>

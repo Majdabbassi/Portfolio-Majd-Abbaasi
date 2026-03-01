@@ -1,0 +1,125 @@
+/* ─── Contact Section ──────────────────────────────────── */
+
+/* ─── Intro + Copy ───────────────────────────────────────── */
+.contact-intro {
+    max-width: 640px;
+    margin: 1.75rem auto 0;
+}
+
+.contact-intro p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+
+/* ─── Grid ──────────────────────────────────────────────── */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    max-width: 880px;
+    margin: 3rem auto 0;
+}
+
+@media (min-width: 768px) {
+    .contact-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+    }
+}
+
+/* ─── Contact Card ──────────────────────────────────────── */
+.contact-card {
+    background:
+        linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
+        linear-gradient(135deg, rgba(166, 139, 108, 0.35), rgba(166, 139, 108, 0.05)) border-box;
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 14px 35px -22px rgba(15, 23, 42, 0.5);
+    cursor: pointer;
+}
+
+.contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 45px -24px rgba(15, 23, 42, 0.7);
+}
+
+.contact-icon-box {
+    width: 2.75rem;
+    height: 2.75rem;
+    background: rgba(166, 139, 108, 0.06);
+    border: 1px solid rgba(166, 139, 108, 0.18);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-muted);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.contact-card:hover .contact-icon-box {
+    color: var(--color-accent);
+    background: rgba(166, 139, 108, 0.1);
+    border-color: rgba(166, 139, 108, 0.4);
+    transform: scale(1.06);
+}
+
+.contact-content {
+    min-width: 0;
+    padding-right: 1.75rem;
+}
+
+.contact-label {
+    font-size: 0.7rem;
+    color: var(--color-text-2);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.1rem;
+}
+
+.contact-value {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-card::after {
+    content: '↗';
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    opacity: 0.6;
+    transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.contact-card:hover::after {
+    transform: translate(2px, -50%);
+    color: var(--color-accent);
+    opacity: 1;
+}
+
+/* ─── Footer Note ───────────────────────────────────────── */
+#contact .contact-footer {
+    margin-top: 2.75rem;
+}
+
+#contact .contact-footer p {
+    font-size: 0.8rem;
+    line-height: 1.7;
+}
