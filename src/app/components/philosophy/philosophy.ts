@@ -15,35 +15,35 @@ export class PhilosophyComponent {
             icon: '🏗️',
             title: 'Systems Over Features',
             description:
-                'I think in architectures, not isolated endpoints. Every component is designed with failure, communication, and scalability in mind — not just functionality.',
+                'I design cohesive architectures, not isolated functionality. Every component is built with failure handling, communication, and scalability in mind.',
         },
         {
             id: 'phil-observability',
             icon: '👁️',
             title: 'Observability First',
             description:
-                'A system without visibility is a liability. Metrics, logs, and health checks are designed before optimization decisions are made.',
+                'If a system runs in production, it must be measurable and diagnosable. Visibility is designed in — not added later.',
         },
         {
             id: 'phil-automation',
             icon: '⚡',
             title: 'Automation by Default',
             description:
-                'Manual processes don’t scale. CI/CD pipelines, containerized deployments, and infrastructure automation eliminate human bottlenecks.',
+                'Repeatable processes scale. I favor containerization, structured deployment workflows, and automation over manual operations.',
         },
         {
             id: 'phil-security',
             icon: '🔐',
             title: 'Security as Foundation',
             description:
-                'Authentication, authorization, and secure configuration are built in from day one — not patched after release.',
+                'Access control, tenant isolation, and secure configuration are core design decisions — not post-release patches.',
         },
         {
             id: 'phil-evolution',
             icon: '🔄',
             title: 'Continuous Evolution',
             description:
-                'Deployment is the starting line. I monitor, measure, refine, and improve systems based on real-world usage and performance data.',
+                'Deployment is not the finish line. Systems should be monitored, refined, and improved based on real-world behavior.',
         },
     ];
 }

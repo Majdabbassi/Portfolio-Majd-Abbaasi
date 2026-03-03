@@ -16,10 +16,10 @@ export class NavbarComponent {
     isMobileMenuOpen = signal(false);
 
     navLinks = [
-        { label: 'About', href: '#about', fragment: 'about' },
         { label: 'Projects', href: '#projects', fragment: 'projects' },
         { label: 'Infrastructure', href: '#infrastructure', fragment: 'infrastructure' },
         { label: 'Philosophy', href: '#philosophy', fragment: 'philosophy' },
+        { label: 'About', href: '#about', fragment: 'about' },
         { label: 'Contact', href: '#contact', fragment: 'contact' },
     ];
 

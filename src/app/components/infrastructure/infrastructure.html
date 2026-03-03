@@ -3,34 +3,38 @@
         
         <!-- Header -->
         <div class="infra-header" appFadeIn>
-            <p class="section-label">04 — Production & Infrastructure</p>
+            <p class="section-label">— Infrastructure & Production Engineering</p>
             <h2 class="section-title">Lifecycle Ownership</h2>
             <p class="section-subtitle">
-                From <span class="gradient-text">code commit</span> to <span class="gradient-text">production monitoring</span>.
+                From local development to monitored production systems. <br>
+                I treat deployment as part of engineering — not an afterthought.
             </p>
         </div>
 
         <div class="infra-grid">
-            
             <!-- 1. Deployment Workflow -->
             <div class="infra-card" appFadeIn>
                 <div class="card-header">
                     <span class="card-icon">⚡</span>
                     <h3 class="infra-title">Deployment Workflow</h3>
                 </div>
-                
+                Structured flow from development to live environment:
                 <div class="workflow-steps">
                     <div class="step">
                         <div class="step-dot"></div>
-                        <span class="step-label">Code</span>
+                        <span class="step-label">Commit</span>
                     </div>
                     <div class="step">
                         <div class="step-dot"></div>
-                        <span class="step-label">Container</span>
+                        <span class="step-label">Build</span>
                     </div>
                     <div class="step">
                         <div class="step-dot"></div>
-                        <span class="step-label">CI/CD</span>
+                        <span class="step-label">Containerize</span>
+                    </div>
+                    <div class="step">
+                        <div class="step-dot"></div>
+                        <span class="step-label">Configure</span>
                     </div>
                     <div class="step">
                         <div class="step-dot"></div>
@@ -44,9 +48,13 @@
                         <div class="step-dot"></div>
                         <span class="step-label">Optimize</span>
                     </div>
+                    <div class="step">
+                        <div class="step-dot"></div>
+                        <span class="step-label">Iterate</span>
+                    </div>
                 </div>
+                Each stage tested repeatedly to ensure predictable releases and recoverability.
             </div>
-
             <!-- 2. Infrastructure Principles -->
             <div class="infra-card" appFadeIn>
                 <div class="card-header">
@@ -54,67 +62,31 @@
                     <h3 class="infra-title">Infrastructure Principles</h3>
                 </div>
                 <ul class="infra-list">
-                    <li>Immutable deployments</li>
-                    <li>Environment isolation</li>
-                    <li>Secrets management</li>
-                    <li>Monitoring-first production</li>
-                    <li>Zero-downtime mindset</li>
+                    <li>Environment-based configuration</li>
+                    <li>Service isolation through containerization</li>
+                    <li>Reverse proxy routing & controlled exposure</li>
+                    <li>Monitoring-enabled deployments</li>
+                    <li>Transaction-safe backend design</li>
                 </ul>
+                Focused on reliability and clarity over complexity.
             </div>
-
             <!-- 3. Observability Stack -->
             <div class="infra-card" appFadeIn>
                 <div class="card-header">
                     <span class="card-icon">👁️</span>
                     <h3 class="infra-title">Observability Stack</h3>
                 </div>
+                Operational visibility implemented across systems:
                 <div class="tech-grid">
-                    <div class="tech-item">Metrics</div>
-                    <div class="tech-item">Dashboards</div>
-                    <div class="tech-item">Alerts</div>
-                    <div class="tech-item">Logs</div>
-                    <div class="tech-item">Health checks</div>
+                    <div class="tech-item">Metrics collection</div>
+                    <div class="tech-item">Health-check endpoints</div>
+                    <div class="tech-item">Log inspection</div>
+                    <div class="tech-item">Alert logic for abnormal behavior</div>
+                    <div class="tech-item">Dashboard-based monitoring</div>
                 </div>
                 <p class="card-footer-text">Answering: "What happens after deployment?"</p>
             </div>
-            
         </div>
 
-        <!-- Deployment Lab ──────────────────────────────── -->
-        <div class="deployment-lab" appFadeIn>
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span class="lab-icon">🧪</span>
-                    <div>
-                        <h3 class="lab-title">Deployment Lab</h3>
-                        <p class="lab-subtitle">Hands-on infrastructure training</p>
-                    </div>
-                </div>
-                <p class="lab-description">
-                    Experimented with multiple deployment strategies using a simplified application — 
-                    deploying and redeploying many times to deeply understand server configuration, 
-                    reverse proxies, containerization, and automation workflows.
-                </p>
-                <div class="lab-strategies">
-                    <div class="strategy-item">
-                        <span class="strategy-icon">▸</span>
-                        <span>Nginx reverse proxy (direct deployment)</span>
-                    </div>
-                    <div class="strategy-item">
-                        <span class="strategy-icon">▸</span>
-                        <span>Apache HTTP Server configuration</span>
-                    </div>
-                    <div class="strategy-item">
-                        <span class="strategy-icon">▸</span>
-                        <span>Docker containerization</span>
-                    </div>
-                    <div class="strategy-item">
-                        <span class="strategy-icon">▸</span>
-                        <span>Docker Compose multi-service orchestration</span>
-                    </div>
-                </div>
-                <p class="lab-footer">Not a product — an engineering lab for mastering deployment from the ground up.</p>
-            </div>
-        </div>
     </div>
 </section>
