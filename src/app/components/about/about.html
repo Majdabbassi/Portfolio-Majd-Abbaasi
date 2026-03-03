@@ -1,95 +1,43 @@
-<section id="about" class="section-padding" style="background: var(--color-surface)">
+<section id="about" class="section-padding about-fullscreen" style="background: var(--color-surface)">
     <div class="section-container">
-        <div class="about-grid">
+        <div class="about-shell" appFadeIn>
+            <p class="section-label">{{ i18n.t('about.label') }}</p>
+            <h2 class="section-title">
+                {{ i18n.lang() === 'fr' ? 'Parcours d’ingénierie' : 'Engineering Journey' }}
+            </h2>
 
-            <!-- Left: Bio & Philosophy -->
-            <div class="about-content" appFadeIn>
-                <p class="section-label">{{ i18n.t('about.label') }}</p>
-                <h2 class="section-title">{{ i18n.t('about.title1') }}<br><span class="gradient-text">{{ i18n.t('about.title2') }}</span></h2>
+            <p class="about-lead">
+                {{ i18n.lang() === 'fr'
+                    ? 'Une progression structurée : des fondations académiques vers l’ownership complet des systèmes en production.'
+                    : 'A structured progression from academic foundations to full ownership of production systems.' }}
+            </p>
 
-                <!-- 1. Opening Identity -->
-                <div class="about-intro">
-                    <p>
-                        {{ i18n.t('about.intro') }}
-                    </p>
-                </div>
-
-                <!-- 2. Engineering Philosophy -->
-                <div class="about-philosophy">
-                    <h3 class="subsection-title">{{ i18n.t('about.howThink') }}</h3>
-                    <p>
-                        {{ i18n.t('about.think') }}
-                    </p>
-                </div>
-
-                <!-- 3. Growth Mindset -->
-                <div class="about-growth">
-                    <h3 class="subsection-title">{{ i18n.t('about.evolution') }}</h3>
-                    <p>
-                        {{ i18n.t('about.growth') }}
-                    </p>
-                </div>
+            <div class="growth-timeline">
+                @for (phase of phases(); track phase.id) {
+                <article class="phase-block">
+                    <div class="phase-head">
+                        <span class="phase-index">{{ phase.id }}</span>
+                        <div>
+                            <h3 class="phase-title">{{ phase.title }}</h3>
+                            <p class="phase-subtitle">{{ phase.subtitle }}</p>
+                        </div>
+                    </div>
+                    <ul class="phase-list">
+                        @for (point of phase.points; track point) {
+                        <li>{{ point }}</li>
+                        }
+                    </ul>
+                </article>
+                }
             </div>
 
-            <!-- Right: Structured Capabilities -->
-            <div class="about-cards" appFadeIn>
-                <!-- Card 01: Engineering Mindset -->
-                <div class="about-card">
-                    <div class="card-header">
-                        <span class="card-number">01</span>
-                        <h4 class="card-title">{{ i18n.t('about.card1') }}</h4>
-                    </div>
-                    <ul class="card-list">
-                        <li>{{ i18n.lang() === 'fr' ? 'Systèmes > Fonctionnalités' : 'Systems > Features' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Observabilité d’abord' : 'Observability First' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Automatisation par défaut' : 'Automation by Default' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Fondations sécurité' : 'Security Foundations' }}</li>
-                    </ul>
-                </div>
-
-                <!-- Card 02: Technical Expertise -->
-                <div class="about-card">
-                    <div class="card-header">
-                        <span class="card-number">02</span>
-                        <h4 class="card-title">{{ i18n.t('about.card2') }}</h4>
-                    </div>
-                    <ul class="card-list">
-                        <li>{{ i18n.lang() === 'fr' ? 'APIs Backend (Spring Boot)' : 'Backend APIs (Spring Boot)' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Frontend (Angular)' : 'Frontend (Angular)' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Conteneurisation (Docker)' : 'Containerization (Docker)' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Pipelines CI/CD' : 'CI/CD Pipelines' }}</li>
-                    </ul>
-                </div>
-
-                <!-- Card 03: How I Build -->
-                <div class="about-card">
-                    <div class="card-header">
-                        <span class="card-number">03</span>
-                        <h4 class="card-title">{{ i18n.t('about.card3') }}</h4>
-                    </div>
-                    <ul class="card-list">
-                        <li>{{ i18n.lang() === 'fr' ? 'Architecture propre' : 'Clean Architecture' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Sécurité JWT & RBAC' : 'JWT & RBAC Security' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Optimisation des performances' : 'Performance Tuning' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Design scalable' : 'Scalable Design' }}</li>
-                    </ul>
-                </div>
-
-                <!-- Card 04: Monitoring & Ops -->
-                <div class="about-card">
-                    <div class="card-header">
-                        <span class="card-number">04</span>
-                        <h4 class="card-title">{{ i18n.t('about.card4') }}</h4>
-                    </div>
-                    <ul class="card-list">
-                        <li>{{ i18n.lang() === 'fr' ? 'Prometheus & Grafana' : 'Prometheus & Grafana' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Gestion des logs' : 'Log Management' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Stratégies d’alerte' : 'Alerting Strategies' }}</li>
-                        <li>{{ i18n.lang() === 'fr' ? 'Support production' : 'Production Support' }}</li>
-                    </ul>
-                </div>
+            <div class="today-note">
+                <p>
+                    {{ i18n.lang() === 'fr'
+                        ? 'Aujourd’hui, je construis des systèmes de bout en bout — architecture, déploiement et exploitation — avec une logique de responsabilité long terme.'
+                        : 'Today, I focus on building systems end-to-end — architecture, deployment, and operations — with long-term ownership in mind.' }}
+                </p>
             </div>
-
         </div>
     </div>
 </section>

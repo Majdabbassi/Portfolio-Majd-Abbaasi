@@ -36,6 +36,7 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'React', 'Docker', 'PostgreSQL', 'Nginx'],
             status: 'production',
+            backgroundImage: '/assets/pentiyo.png',
         },
         {
             id: 'document-marketplace',
@@ -46,6 +47,7 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'Angular', 'Flutter', 'WebSocket', 'PostgreSQL'],
             status: 'production',
+            backgroundImage: '/favicon.ico',
             companyNote: {
                 en: 'Developed as part of professional role',
                 fr: 'Développé dans un contexte professionnel',
@@ -61,6 +63,7 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'Angular', 'Flutter', 'MySQL', 'JWT'],
             status: 'completed',
+            backgroundImage: '/favicon.ico',
         },
         // ── In Development ────────────────────────────────
         {
@@ -72,6 +75,7 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'JWT'],
             status: 'in-development',
+            backgroundImage: '/favicon.ico',
         },
         {
             id: 'delivery-tracking',
@@ -82,6 +86,7 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'PostGIS'],
             status: 'in-development',
+            backgroundImage: '/favicon.ico',
         },
     ];
 
@@ -91,6 +96,14 @@ export class ProjectsComponent {
 
     get featuredProjects(): Project[] {
         return this.projects.filter(p => p.status === 'production');
+    }
+
+    get masterProject(): Project | undefined {
+        return this.projects.find(p => p.id === 'caferesto');
+    }
+
+    get secondaryProjects(): Project[] {
+        return this.projects.filter(p => p.id !== 'caferesto');
     }
 
     get engineeringProjects(): Project[] {
@@ -108,6 +121,12 @@ export class ProjectsComponent {
             case 'in-development': return this.i18n.t('status.in-development');
             default: return this.i18n.t('nav.projects');
         }
+    }
+
+    getProjectActionLabel(project: Project): string {
+        return project.status === 'in-development'
+            ? this.i18n.t('projects.viewArch')
+            : this.i18n.t('projects.viewCase');
     }
 
     onProjectFocus(event: MouseEvent, projectId: string): void {
