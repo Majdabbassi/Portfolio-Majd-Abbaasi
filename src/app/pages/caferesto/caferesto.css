@@ -26,11 +26,11 @@
 }
 
 .cr-section-light {
-  background: #ffffff;
+  background: var(--color-surface);
 }
 
 .cr-section-alt {
-  background: #f7f7f8;
+  background: var(--color-bg);
 }
 
 .cr-section-dark {
@@ -126,7 +126,7 @@
    ═══════════════════════════════════════════════════════════ */
 .cr-hero {
   padding: 2.5rem 0 4rem;
-  background: linear-gradient(175deg, #f0f2f5 0%, #fafafa 40%, #ffffff 100%);
+  background: linear-gradient(175deg, color-mix(in srgb, var(--color-surface) 82%, var(--color-accent) 6%) 0%, var(--color-bg) 45%, var(--color-surface) 100%);
   border-bottom: 1px solid var(--color-border);
   position: relative;
 }
@@ -134,7 +134,24 @@
 .cr-hero.cr-hero-focus {
   background:
     radial-gradient(circle at 15% 8%, rgba(166, 139, 108, 0.16) 0%, rgba(166, 139, 108, 0) 38%),
-    linear-gradient(175deg, #eceff3 0%, #f7f8fa 45%, #ffffff 100%);
+    linear-gradient(175deg, color-mix(in srgb, var(--color-surface) 85%, var(--color-accent) 8%) 0%, var(--color-bg) 45%, var(--color-surface) 100%);
+}
+
+:root[data-theme='dark'] .cr-section-dark {
+  background: #121722;
+}
+
+:root[data-theme='dark'] .cr-label.light {
+  color: rgba(243, 245, 248, 0.58);
+}
+
+:root[data-theme='dark'] .cr-body.light {
+  color: rgba(243, 245, 248, 0.82);
+}
+
+:root[data-theme='dark'] .cr-body.light strong,
+:root[data-theme='dark'] .cr-heading.light {
+  color: #f3f5f8;
 }
 
 .cr-hero.cr-hero-focus::after {

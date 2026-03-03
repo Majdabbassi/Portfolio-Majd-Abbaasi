@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { I18nService } from '../../core/i18n.service';
 
 type ProjectStatus = 'production' | 'completed' | 'in-development';
 
@@ -54,7 +55,9 @@ interface ProjectDetail {
   styleUrl: './delivery-tracking.css',
 })
 export class DeliveryTrackingComponent {
-  project: ProjectDetail = {
+  readonly i18n = inject(I18nService);
+
+  private readonly projectEn: ProjectDetail = {
     id: 'delivery-tracking',
     title: 'SwiftDeliver — Delivery Management & Tracking',
     summary:
@@ -127,16 +130,93 @@ export class DeliveryTrackingComponent {
     },
   };
 
+  private readonly projectFr: ProjectDetail = {
+    id: 'delivery-tracking',
+    title: 'SwiftDeliver — Gestion & suivi des livraisons',
+    summary:
+      'Plateforme en cours de développement pour opérations de livraison avec suivi des équipes, contrôle du cycle de commande et visibilité dispatch.',
+    status: 'in-development',
+    role: 'Ingénieur Full Stack',
+    techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'PostGIS', 'JWT'],
+    context: {
+      problem:
+        'Les opérations de livraison manquaient de visibilité centralisée en temps réel sur l’état des livreurs et des commandes en cours.',
+      constraints: [
+        'Suivre de manière fiable les changements d’état de livraison',
+        'Permettre une montée progressive vers le temps réel',
+        'Modéliser clairement le cycle de dispatch',
+      ],
+      goals: [
+        'Créer une base solide de dispatch et tracking centralisés',
+        'Offrir une visibilité opérationnelle exploitable aux managers',
+        'Concevoir une architecture extensible pour le temps réel futur',
+      ],
+    },
+    architecture: {
+      diagramPlaceholder: 'Architecture Delivery Tracking',
+      bullets: [
+        'API Spring Boot pour workflows commande et dispatch',
+        'Dashboard Angular pour monitoring opérationnel',
+        'PostgreSQL + PostGIS pour données géospatiales',
+      ],
+      highlights: [
+        { title: 'Couche de tracking', description: 'Progression d’état structurée et visibilité de livraison.' },
+        { title: 'Base géospatiale', description: 'Préparée pour logique avancée basée localisation.' },
+      ],
+    },
+    decisions: [
+      {
+        title: 'REST d’abord puis évolution temps réel',
+        reasoning: 'Stabiliser le workflow cœur avant la complexité streaming.',
+        tradeoffs: 'UX moins live au départ mais risque d’implémentation réduit.',
+      },
+    ],
+    deployment: {
+      isDeployed: false,
+      details: [],
+      considerations: [
+        'Projet actif non encore déployé en production',
+        'Stabilisation du workflow cœur priorisée avant rollout infra',
+        'Déploiement conteneurisé prévu après maturité fonctionnelle',
+      ],
+    },
+    challenges: [
+      {
+        challenge: 'Choisir la fréquence de mise à jour localisation et la stratégie de stockage.',
+        solution: 'Approche incrémentale avec cadence bornée et chemins de requêtes optimisés.',
+        outcome: 'En cours, avec focus performance et clarté opérationnelle.',
+      },
+    ],
+    impact: {
+      improvements: [
+        'Élargit l’expérience architecture vers tracking et dispatch',
+        'Renforce la modélisation des systèmes opérationnels à états',
+      ],
+      learnings: [
+        'Les systèmes de tracking exigent un bon équilibre latence/coût',
+        'La clarté de machine à états est cruciale en logistique',
+      ],
+      wouldRefactor: [
+        'Ajouter canaux WebSocket pour vraies mises à jour live',
+        'Intégrer optimisation de route et prédiction ETA',
+      ],
+    },
+  };
+
+  get project(): ProjectDetail {
+    return this.i18n.lang() === 'fr' ? this.projectFr : this.projectEn;
+  }
+
   getStatusLabel(status: string): string {
     switch (status) {
       case 'production':
-        return 'Production';
+        return this.i18n.t('status.production');
       case 'completed':
-        return 'Completed';
+        return this.i18n.t('status.completed');
       case 'in-development':
-        return 'In Development';
+        return this.i18n.t('status.in-development');
       default:
-        return 'Project';
+        return this.i18n.t('detail.project');
     }
   }
 }

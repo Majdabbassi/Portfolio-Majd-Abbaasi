@@ -17,11 +17,40 @@
         </div>
 
         <div class="nav-controls">
-            <button class="nav-control-btn" (click)="toggleLanguage()" type="button">
-                {{ i18n.t('nav.lang') }}
-            </button>
-            <button class="nav-control-btn" (click)="toggleTheme()" type="button">
-                {{ i18n.t('nav.theme') }}
+            <div class="lang-switch" role="group" aria-label="Language selector">
+                <button
+                    class="lang-dot"
+                    type="button"
+                    [class.lang-dot--active]="currentLang() === 'en'"
+                    (click)="setLanguage('en')"
+                    aria-label="English"
+                    title="English"
+                >
+                    <span class="lang-dot-flag">🇬🇧</span>
+                </button>
+                <button
+                    class="lang-dot"
+                    type="button"
+                    [class.lang-dot--active]="currentLang() === 'fr'"
+                    (click)="setLanguage('fr')"
+                    aria-label="Français"
+                    title="Français"
+                >
+                    <span class="lang-dot-flag">🇫🇷</span>
+                </button>
+            </div>
+
+            <button
+                class="theme-switch-v2"
+                type="button"
+                (click)="toggleTheme()"
+                [class.theme-switch-v2--dark]="isDarkMode()"
+                [attr.aria-label]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+                [attr.title]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+            >
+                <span class="theme-side">☀️</span>
+                <span class="theme-side">🌙</span>
+                <span class="theme-thumb-v2" aria-hidden="true"></span>
             </button>
         </div>
 
@@ -51,11 +80,37 @@
             </a>
             }
             <div class="nav-mobile-controls">
-                <button class="nav-control-btn" (click)="toggleLanguage()" type="button">
-                    {{ i18n.t('nav.lang') }}
-                </button>
-                <button class="nav-control-btn" (click)="toggleTheme()" type="button">
-                    {{ i18n.t('nav.theme') }}
+                <div class="lang-switch" role="group" aria-label="Language selector">
+                    <button
+                        class="lang-dot"
+                        type="button"
+                        [class.lang-dot--active]="currentLang() === 'en'"
+                        (click)="setLanguage('en')"
+                        aria-label="English"
+                    >
+                        <span class="lang-dot-flag">🇬🇧</span>
+                    </button>
+                    <button
+                        class="lang-dot"
+                        type="button"
+                        [class.lang-dot--active]="currentLang() === 'fr'"
+                        (click)="setLanguage('fr')"
+                        aria-label="Français"
+                    >
+                        <span class="lang-dot-flag">🇫🇷</span>
+                    </button>
+                </div>
+
+                <button
+                    class="theme-switch-v2"
+                    type="button"
+                    (click)="toggleTheme()"
+                    [class.theme-switch-v2--dark]="isDarkMode()"
+                    [attr.aria-label]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+                >
+                    <span class="theme-side">☀️</span>
+                    <span class="theme-side">🌙</span>
+                    <span class="theme-thumb-v2" aria-hidden="true"></span>
                 </button>
             </div>
             <a href="mailto:majdabbassi11@gmail.com" class="nav-cta" id="nav-mobile-hire">

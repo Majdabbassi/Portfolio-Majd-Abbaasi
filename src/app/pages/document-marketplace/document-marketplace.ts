@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { I18nService } from '../../core/i18n.service';
 
 type ProjectStatus = 'production' | 'completed' | 'in-development';
 
@@ -54,7 +55,9 @@ interface ProjectDetail {
   styleUrl: './document-marketplace.css',
 })
 export class DocumentMarketplaceComponent {
-  project: ProjectDetail = {
+  readonly i18n = inject(I18nService);
+
+  private readonly projectEn: ProjectDetail = {
     id: 'document-marketplace',
     title: 'DocMarket — Digital Document Marketplace',
     summary:
@@ -158,16 +161,124 @@ export class DocumentMarketplaceComponent {
     },
   };
 
+  private readonly projectFr: ProjectDetail = {
+    id: 'document-marketplace',
+    title: 'DocMarket — Marketplace de documents numériques',
+    summary:
+      'Marketplace de documents d’entreprise avec messagerie temps réel, logique wallet et paiement carte en ligne sur web et mobile.',
+    status: 'production',
+    role: 'Ingénieur Full Stack',
+    techStack: ['Spring Boot', 'Angular', 'Flutter', 'WebSocket', 'PostgreSQL', 'JWT'],
+    companyNote:
+      'Développé dans un contexte professionnel sous propriété de l’entreprise. Le résumé présenté respecte les limites de confidentialité.',
+    context: {
+      problem:
+        'Acheteurs et vendeurs avaient besoin d’une plateforme sécurisée réunissant transaction, communication et livraison de documents.',
+      constraints: [
+        'Communication acheteur-vendeur en temps réel',
+        'Paiement carte en ligne sécurisé',
+        'Cohérence wallet et traçabilité des transactions',
+        'Support multi-plateforme (web + mobile)',
+      ],
+      goals: [
+        'Construire une marketplace de documents prête pour la production',
+        'Ajouter une messagerie WebSocket instantanée',
+        'Intégrer le paiement carte avec workflow wallet',
+        'Livrer un backend unique pour Angular et Flutter',
+      ],
+    },
+    architecture: {
+      diagramPlaceholder: 'Architecture Document Marketplace',
+      bullets: [
+        'Backend Spring Boot avec contrôle d’accès par rôles',
+        'Client web Angular et client mobile Flutter sur API partagées',
+        'Canal WebSocket pour la messagerie en temps réel',
+        'Orchestration wallet + paiement avec bornes transactionnelles',
+        'Déploiement WAR en production sans Docker',
+      ],
+      highlights: [
+        {
+          title: 'Messagerie Temps Réel',
+          description: 'Chat acheteur-vendeur instantané avec historique persistant.',
+        },
+        {
+          title: 'Wallet & Paiement',
+          description: 'Intégration paiement carte liée à la cohérence crédit/débit du wallet.',
+        },
+        {
+          title: 'Déploiement Production',
+          description: 'Déploiement live sous contraintes de l’infrastructure entreprise.',
+        },
+      ],
+    },
+    decisions: [
+      {
+        title: 'WebSocket plutôt que polling',
+        reasoning: 'La communication marketplace exige des mises à jour bidirectionnelles à faible latence.',
+        tradeoffs: 'Plus de complexité de session/reconnexion, mais meilleure réactivité UX.',
+      },
+      {
+        title: 'Checkout intégré au wallet',
+        reasoning: 'Le couplage wallet + paiement a simplifié les achats récurrents.',
+        tradeoffs: 'Logique financière plus complexe et exigences de réconciliation accrues.',
+      },
+    ],
+    deployment: {
+      isDeployed: true,
+      flow: 'Build → Packaging WAR → Déploiement serveur applicatif → Production',
+      environment: 'Déploiement WAR sur serveur applicatif (stack de production non Docker)',
+      details: [
+        'Backend packagé en WAR selon les standards serveur entreprise',
+        'Clients web et mobile consommant les mêmes API backend',
+        'Base relationnelle hébergée en environnement de production',
+        'Système actuellement actif dans un contexte réel',
+      ],
+    },
+    challenges: [
+      {
+        challenge: 'Maintenir la cohérence wallet/paiement en cas d’échec partiel.',
+        solution: 'Bornes transactionnelles et confirmation de paiement idempotente.',
+        outcome: 'Suppression des cas limites de double crédit et commit partiel.',
+      },
+      {
+        challenge: 'Conserver la parité fonctionnelle web/mobile.',
+        solution: 'Conception API-first et cohérence stricte des DTO.',
+        outcome: 'Comportement prévisible sur les deux clients avec moins de régressions.',
+      },
+    ],
+    impact: {
+      improvements: [
+        'Flux marketplace unifié de la découverte au paiement/livraison',
+        'Communication plus rapide entre acheteurs et vendeurs',
+        'Architecture validée en production dans un contexte business',
+      ],
+      learnings: [
+        'Les workflows financiers exigent un design défensif et une cohérence stricte',
+        'Les systèmes cross-platform gagnent avec une forte discipline API',
+        'Le temps réel impose une gestion robuste du cycle de connexion',
+      ],
+      wouldRefactor: [
+        'Conteneuriser le déploiement pour une meilleure parité d’environnement',
+        'Renforcer les tests d’intégration orientés paiement',
+        'Ajouter recherche/classement avancés pour la découverte marketplace',
+      ],
+    },
+  };
+
+  get project(): ProjectDetail {
+    return this.i18n.lang() === 'fr' ? this.projectFr : this.projectEn;
+  }
+
   getStatusLabel(status: string): string {
     switch (status) {
       case 'production':
-        return 'Production';
+        return this.i18n.t('status.production');
       case 'completed':
-        return 'Completed';
+        return this.i18n.t('status.completed');
       case 'in-development':
-        return 'In Development';
+        return this.i18n.t('status.in-development');
       default:
-        return 'Project';
+        return this.i18n.t('detail.project');
     }
   }
 }

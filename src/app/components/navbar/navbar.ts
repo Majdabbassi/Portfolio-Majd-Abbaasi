@@ -1,7 +1,7 @@
 import { Component, HostListener, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { I18nService } from '../../core/i18n.service';
+import { AppLang, I18nService } from '../../core/i18n.service';
 import { ThemeService } from '../../core/theme.service';
 
 @Component({
@@ -33,6 +33,18 @@ export class NavbarComponent {
 
     toggleTheme(): void {
         this.theme.toggleTheme();
+    }
+
+    setLanguage(lang: AppLang): void {
+        this.i18n.setLang(lang);
+    }
+
+    currentLang(): 'en' | 'fr' {
+        return this.i18n.lang();
+    }
+
+    isDarkMode(): boolean {
+        return this.theme.theme() === 'dark';
     }
 
     @HostListener('window:scroll')

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { I18nService } from '../../core/i18n.service';
 
 type ProjectStatus = 'production' | 'completed' | 'in-development';
 
@@ -54,7 +55,9 @@ interface ProjectDetail {
   styleUrl: './chellysport.css',
 })
 export class ChellysportComponent {
-  project: ProjectDetail = {
+  readonly i18n = inject(I18nService);
+
+  private readonly projectEn: ProjectDetail = {
     id: 'chellysport',
     title: 'ChellySport — Multi-Sport Club Management',
     summary:
@@ -134,16 +137,100 @@ export class ChellysportComponent {
     },
   };
 
+  private readonly projectFr: ProjectDetail = {
+    id: 'chellysport',
+    title: 'ChellySport — Gestion de club multisport',
+    summary:
+      'Projet de stage de fin d’études pour gérer adhésions, planification et réservations d’infrastructures sur plusieurs sports.',
+    status: 'completed',
+    role: 'Développeur Full Stack (Stagiaire)',
+    techStack: ['Spring Boot', 'Angular', 'Flutter', 'MySQL', 'JWT'],
+    context: {
+      problem:
+        'Les clubs sportifs géraient leurs opérations de façon manuelle via des outils dispersés, causant conflits de planning et de réservation.',
+      constraints: [
+        'Supporter plusieurs sports et règles de planification différentes',
+        'Éviter les doubles réservations d’infrastructure',
+        'Fournir un accès web et mobile',
+      ],
+      goals: [
+        'Centraliser les opérations du club dans une seule plateforme',
+        'Améliorer la fiabilité des réservations',
+        'Livrer un produit complet dans le cadre du stage',
+      ],
+    },
+    architecture: {
+      diagramPlaceholder: 'Architecture ChellySport',
+      bullets: [
+        'Backend Spring Boot en couches avec logique métier au niveau service',
+        'Dashboard Angular pour admins et managers',
+        'Application Flutter côté membres',
+        'Modèle MySQL pour adhésions, sessions et infrastructures',
+      ],
+      highlights: [
+        { title: 'Modélisation multisport', description: 'Modèle flexible pour différents workflows sportifs.' },
+        { title: 'Logique de réservation', description: 'Prévention des conflits dans les flux de réservation.' },
+      ],
+    },
+    decisions: [
+      {
+        title: 'Modèle de données relationnel',
+        reasoning: 'Les entités étaient fortement relationnelles et sensibles à la cohérence.',
+        tradeoffs: 'Plus de travail de schéma au départ pour garantir l’intégrité.',
+      },
+      {
+        title: 'UX web/mobile séparées',
+        reasoning: 'Les workflows admin et membre diffèrent fortement selon la plateforme.',
+        tradeoffs: 'Deux codebases client, mais une expérience plus claire par rôle.',
+      },
+    ],
+    deployment: {
+      isDeployed: false,
+      details: [],
+      considerations: [
+        'Scope fonctionnel terminé dans la timeline du stage',
+        'Prêt pour un déploiement Spring Boot standard',
+        'Le déploiement était hors périmètre du stage',
+      ],
+    },
+    challenges: [
+      {
+        challenge: 'Concevoir un modèle réutilisable pour plusieurs types de sport.',
+        solution: 'Entités cœur + stratégie de configuration spécifique par sport.',
+        outcome: 'Support de comportements sportifs variés sans refonte structurelle.',
+      },
+    ],
+    impact: {
+      improvements: [
+        'Opérations unifiées pour inscriptions et réservations',
+        'Moins de dépendance aux processus manuels',
+        'Premier système full-stack multi-plateforme complet livré',
+      ],
+      learnings: [
+        'La qualité du domain modeling impacte fortement la maintenabilité',
+        'L’approche API-first simplifie le développement multi-client',
+      ],
+      wouldRefactor: [
+        'Ajouter une couverture de tests automatisés plus large',
+        'Améliorer les flux notifications/communication',
+      ],
+    },
+  };
+
+  get project(): ProjectDetail {
+    return this.i18n.lang() === 'fr' ? this.projectFr : this.projectEn;
+  }
+
   getStatusLabel(status: string): string {
     switch (status) {
       case 'production':
-        return 'Production';
+        return this.i18n.t('status.production');
       case 'completed':
-        return 'Completed';
+        return this.i18n.t('status.completed');
       case 'in-development':
-        return 'In Development';
+        return this.i18n.t('status.in-development');
       default:
-        return 'Project';
+        return this.i18n.t('detail.project');
     }
   }
 }

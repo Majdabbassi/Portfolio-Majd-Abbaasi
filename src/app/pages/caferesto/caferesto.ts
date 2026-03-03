@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { I18nService } from '../../core/i18n.service';
 
 @Component({
   selector: 'app-caferesto',
@@ -11,6 +12,7 @@ import { FadeInDirective } from '../../directives/fade-in.directive';
 })
 export class CaferestoComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
+  readonly i18n = inject(I18nService);
 
   lightboxImage: string | null = null;
   lightboxAlt = '';
@@ -25,6 +27,10 @@ export class CaferestoComponent implements OnInit {
     if (this.focusMode) {
       sessionStorage.removeItem('portfolioProjectFocus');
     }
+  }
+
+  tr(en: string, fr: string): string {
+    return this.i18n.lang() === 'fr' ? fr : en;
   }
 
   openLightbox(src: string, alt: string): void {

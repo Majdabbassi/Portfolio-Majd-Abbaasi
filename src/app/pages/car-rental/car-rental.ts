@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { I18nService } from '../../core/i18n.service';
 
 type ProjectStatus = 'production' | 'completed' | 'in-development';
 
@@ -54,7 +55,9 @@ interface ProjectDetail {
   styleUrl: './car-rental.css',
 })
 export class CarRentalComponent {
-  project: ProjectDetail = {
+  readonly i18n = inject(I18nService);
+
+  private readonly projectEn: ProjectDetail = {
     id: 'car-rental',
     title: 'AutoRent — Vehicle Rental Management',
     summary:
@@ -127,16 +130,93 @@ export class CarRentalComponent {
     },
   };
 
+  private readonly projectFr: ProjectDetail = {
+    id: 'car-rental',
+    title: 'AutoRent — Gestion de location de véhicules',
+    summary:
+      'Plateforme de location en développement, axée sur le cycle de réservation, la visibilité flotte et la gestion sans conflits de disponibilité.',
+    status: 'in-development',
+    role: 'Ingénieur Full Stack',
+    techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'JWT'],
+    context: {
+      problem:
+        'Les workflows manuels de location provoquent chevauchements de réservation, faible visibilité flotte et délais opérationnels.',
+      constraints: [
+        'Empêcher les réservations qui se chevauchent au niveau données',
+        'Suivre disponibilité flotte et état maintenance',
+        'Conserver une architecture propre malgré l’évolution du scope',
+      ],
+      goals: [
+        'Construire un workflow de réservation robuste de bout en bout',
+        'Garder une architecture modulaire pour l’itération',
+        'Préparer tôt les choix infra orientés production',
+      ],
+    },
+    architecture: {
+      diagramPlaceholder: 'Architecture Car Rental',
+      bullets: [
+        'Orchestration service-layer pour réservation et flotte',
+        'Logique de disponibilité par plage de dates avec cohérence relationnelle',
+        'Flux admin et client dans une SPA cohérente',
+      ],
+      highlights: [
+        { title: 'Intégrité des réservations', description: 'Prévention des conflits au niveau métier et données.' },
+        { title: 'Conception itérative', description: 'Architecture nourrie par les retours de production précédents.' },
+      ],
+    },
+    decisions: [
+      {
+        title: 'PostgreSQL pour contraintes de réservation',
+        reasoning: 'Le relationnel fort simplifie l’application des règles d’intégrité.',
+        tradeoffs: 'Plus de travail explicite de conception de schéma.',
+      },
+    ],
+    deployment: {
+      isDeployed: false,
+      details: [],
+      considerations: [
+        'Projet actuellement en phase active de développement',
+        'Déploiement prévu après finalisation du domaine cœur',
+        'Architecture préparée pour un rollout conteneurisé',
+      ],
+    },
+    challenges: [
+      {
+        challenge: 'Équilibrer logique tarifaire flexible et code maintenable.',
+        solution: 'Conception d’une stratégie tarifaire pilotée par règles et services modulaires.',
+        outcome: 'En cours, avec focus extensibilité et prédictibilité.',
+      },
+    ],
+    impact: {
+      improvements: [
+        'Décisions d’architecture affinées par expérience de production',
+        'Frontières de modules plus claires que les projets antérieurs',
+      ],
+      learnings: [
+        'Les règles métier complexes gagnent à une partition de domaine précoce',
+        'Les contraintes opérationnelles doivent guider l’architecture dès le début',
+      ],
+      wouldRefactor: [
+        'Ajouter reporting avancé et analytics opérationnels',
+        'Introduire des notifications event-driven plus robustes',
+      ],
+    },
+  };
+
+  get project(): ProjectDetail {
+    return this.i18n.lang() === 'fr' ? this.projectFr : this.projectEn;
+  }
+
   getStatusLabel(status: string): string {
     switch (status) {
       case 'production':
-        return 'Production';
+        return this.i18n.t('status.production');
       case 'completed':
-        return 'Completed';
+        return this.i18n.t('status.completed');
       case 'in-development':
-        return 'In Development';
+        return this.i18n.t('status.in-development');
       default:
-        return 'Project';
+        return this.i18n.t('detail.project');
     }
   }
 }

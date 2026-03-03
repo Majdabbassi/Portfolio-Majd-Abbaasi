@@ -8,7 +8,7 @@
 
     <!-- Back link -->
     <a routerLink="/" fragment="projects" class="back-link" appFadeIn>
-      <span class="back-arrow">←</span> Back to Projects
+      <span class="back-arrow">←</span> {{ i18n.t('detail.back') }}
     </a>
 
     <div class="hero-grid" appFadeIn>
@@ -58,20 +58,20 @@
 <section class="detail-section section-alt">
   <div class="detail-container">
     <div class="section-header" appFadeIn>
-      <p class="section-label">Context</p>
-      <h2 class="section-heading">Why this project exists</h2>
+      <p class="section-label">{{ i18n.t('detail.context') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.why') }}</h2>
     </div>
 
     <div class="context-grid" appFadeIn>
       <!-- Problem -->
       <div class="context-block">
-        <h3 class="context-label">Problem</h3>
+        <h3 class="context-label">{{ i18n.t('detail.problem') }}</h3>
         <p class="context-text">{{ project.context.problem }}</p>
       </div>
 
       <!-- Constraints -->
       <div class="context-block">
-        <h3 class="context-label">Constraints</h3>
+        <h3 class="context-label">{{ i18n.t('detail.constraints') }}</h3>
         <ul class="context-list">
           @for (constraint of project.context.constraints; track constraint) {
             <li>{{ constraint }}</li>
@@ -81,7 +81,7 @@
 
       <!-- Goals -->
       <div class="context-block">
-        <h3 class="context-label">Goals</h3>
+        <h3 class="context-label">{{ i18n.t('detail.goals') }}</h3>
         <ul class="context-list">
           @for (goal of project.context.goals; track goal) {
             <li>{{ goal }}</li>
@@ -99,8 +99,8 @@
 <section class="detail-section">
   <div class="detail-container">
     <div class="section-header" appFadeIn>
-      <p class="section-label">Architecture</p>
-      <h2 class="section-heading">System design & structure</h2>
+      <p class="section-label">{{ i18n.t('detail.architecture') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.systemDesign') }}</h2>
     </div>
 
     <div class="architecture-grid" appFadeIn>
@@ -110,7 +110,7 @@
           <div class="diagram-placeholder">
             <span class="diagram-icon">⬡</span>
             <span class="diagram-label">{{ project.architecture.diagramPlaceholder }}</span>
-            <span class="diagram-hint">Architecture Diagram</span>
+            <span class="diagram-hint">{{ i18n.t('detail.architectureDiagram') }}</span>
           </div>
         </div>
       </div>
@@ -144,8 +144,8 @@
 <section class="detail-section section-alt">
   <div class="detail-container">
     <div class="section-header" appFadeIn>
-      <p class="section-label">Decisions</p>
-      <h2 class="section-heading">Key technical decisions</h2>
+      <p class="section-label">{{ i18n.t('detail.decisions') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.keyDecisions') }}</h2>
     </div>
 
     <div class="decisions-stack" appFadeIn>
@@ -154,11 +154,11 @@
           <h3 class="decision-title">{{ decision.title }}</h3>
           <div class="decision-body">
             <div class="decision-section">
-              <span class="decision-label">Why it mattered</span>
+              <span class="decision-label">{{ i18n.t('detail.whyMattered') }}</span>
               <p>{{ decision.reasoning }}</p>
             </div>
             <div class="decision-section">
-              <span class="decision-label">Tradeoffs</span>
+              <span class="decision-label">{{ i18n.t('detail.tradeoffs') }}</span>
               <p>{{ decision.tradeoffs }}</p>
             </div>
           </div>
@@ -175,11 +175,11 @@
 <section class="detail-section">
   <div class="detail-container">
     <div class="section-header" appFadeIn>
-      <p class="section-label">Deployment</p>
+      <p class="section-label">{{ i18n.t('detail.deployment') }}</p>
       @if (project.deployment.isDeployed) {
-        <h2 class="section-heading">Production deployment</h2>
+        <h2 class="section-heading">{{ i18n.t('detail.productionDeployment') }}</h2>
       } @else {
-        <h2 class="section-heading">Production considerations</h2>
+        <h2 class="section-heading">{{ i18n.t('detail.productionConsiderations') }}</h2>
       }
     </div>
 
@@ -188,7 +188,7 @@
         <!-- Deployed -->
         @if (project.deployment.flow) {
           <div class="deployment-flow">
-            <h3 class="deploy-label">Deployment Flow</h3>
+            <h3 class="deploy-label">{{ i18n.t('detail.deploymentFlow') }}</h3>
             <div class="flow-pipeline">
               @for (step of project.deployment.flow!.split(' → '); track step) {
                 <span class="flow-step">{{ step }}</span>
@@ -202,13 +202,13 @@
 
         @if (project.deployment.environment) {
           <div class="deploy-env">
-            <h3 class="deploy-label">Environment</h3>
+            <h3 class="deploy-label">{{ i18n.t('detail.environment') }}</h3>
             <p class="deploy-env-text">{{ project.deployment.environment }}</p>
           </div>
         }
 
         <div class="deploy-details">
-          <h3 class="deploy-label">Infrastructure Details</h3>
+          <h3 class="deploy-label">{{ i18n.t('detail.infrastructureDetails') }}</h3>
           <ul class="deploy-list">
             @for (detail of project.deployment.details; track detail) {
               <li>{{ detail }}</li>
@@ -219,7 +219,7 @@
         <!-- Not Deployed — Production Considerations -->
         <div class="deploy-considerations">
           <p class="considerations-intro">
-            This project was built as a case study. Here's what a production deployment would require:
+            {{ i18n.t('detail.considerationsIntro') }}
           </p>
           <ul class="deploy-list">
             @for (consideration of project.deployment.considerations; track consideration) {
@@ -239,23 +239,23 @@
 <section class="detail-section section-alt">
   <div class="detail-container">
     <div class="section-header" appFadeIn>
-      <p class="section-label">Challenges</p>
-      <h2 class="section-heading">Problems faced & solved</h2>
+      <p class="section-label">{{ i18n.t('detail.challenges') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.problemsSolved') }}</h2>
     </div>
 
     <div class="challenges-stack" appFadeIn>
       @for (item of project.challenges; track item.challenge) {
         <div class="challenge-card">
           <div class="challenge-row">
-            <span class="challenge-marker">Challenge</span>
+            <span class="challenge-marker">{{ i18n.t('detail.challenge') }}</span>
             <p class="challenge-text">{{ item.challenge }}</p>
           </div>
           <div class="challenge-row solution-row">
-            <span class="challenge-marker solution-marker">Solution</span>
+            <span class="challenge-marker solution-marker">{{ i18n.t('detail.solution') }}</span>
             <p class="challenge-text">{{ item.solution }}</p>
           </div>
           <div class="challenge-row outcome-row">
-            <span class="challenge-marker outcome-marker">Outcome</span>
+            <span class="challenge-marker outcome-marker">{{ i18n.t('detail.outcome') }}</span>
             <p class="challenge-text">{{ item.outcome }}</p>
           </div>
         </div>
@@ -271,13 +271,13 @@
 <section class="detail-section">
   <div class="detail-container">
     <div class="section-header" appFadeIn>
-      <p class="section-label">Reflection</p>
-      <h2 class="section-heading">Impact & learnings</h2>
+      <p class="section-label">{{ i18n.t('detail.reflection') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.impactLearn') }}</h2>
     </div>
 
     <div class="impact-grid" appFadeIn>
       <div class="impact-block">
-        <h3 class="impact-label">What improved</h3>
+        <h3 class="impact-label">{{ i18n.t('detail.whatImproved') }}</h3>
         <ul class="impact-list">
           @for (item of project.impact.improvements; track item) {
             <li>{{ item }}</li>
@@ -286,7 +286,7 @@
       </div>
 
       <div class="impact-block">
-        <h3 class="impact-label">What I learned</h3>
+        <h3 class="impact-label">{{ i18n.t('detail.whatLearned') }}</h3>
         <ul class="impact-list">
           @for (item of project.impact.learnings; track item) {
             <li>{{ item }}</li>
@@ -295,7 +295,7 @@
       </div>
 
       <div class="impact-block">
-        <h3 class="impact-label">What I'd refactor</h3>
+        <h3 class="impact-label">{{ i18n.t('detail.whatRefactor') }}</h3>
         <ul class="impact-list">
           @for (item of project.impact.wouldRefactor; track item) {
             <li>{{ item }}</li>
@@ -314,17 +314,17 @@
   <div class="detail-container">
     <div class="nav-closure-inner" appFadeIn>
       <a routerLink="/projects/car-rental" class="nav-link prev-link">
-        <span class="nav-direction">← Previous Project</span>
-        <span class="nav-project-name">AutoRent — Vehicle Rental Management</span>
+        <span class="nav-direction">{{ i18n.t('detail.prevProject') }}</span>
+        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'AutoRent — Gestion de location de véhicules' : 'AutoRent — Vehicle Rental Management' }}</span>
       </a>
 
       <a routerLink="/" fragment="projects" class="nav-link back-link-center">
-        Back to All Projects
+        {{ i18n.t('detail.backAll') }}
       </a>
 
       <a routerLink="/projects/caferesto" class="nav-link next-link">
-        <span class="nav-direction">Next Project →</span>
-        <span class="nav-project-name">CaféResto — Restaurant & Café Management Platform</span>
+        <span class="nav-direction">{{ i18n.t('detail.nextProject') }}</span>
+        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'CaféResto — Plateforme de gestion restaurant & café' : 'CaféResto — Restaurant & Café Management Platform' }}</span>
       </a>
     </div>
   </div>
