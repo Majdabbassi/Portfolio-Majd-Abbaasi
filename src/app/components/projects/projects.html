@@ -2,7 +2,7 @@
     <div class="section-container">
 
         <!-- Header -->
-        <div class="mb-10 projects-header" appFadeIn>
+        <div class="mb-6 projects-header" appFadeIn>
             <p class="section-label">Selected Systems</p>
             <h2 class="section-title">Real projects, real architecture</h2>
             <p class="section-subtitle">
@@ -10,15 +10,16 @@
             </p>
         </div>
 
-        <!-- ── Featured Systems ──────────────────────────── -->
-        <div class="category-section" appFadeIn>
-            <div class="category-header">
-                <span class="category-dot featured"></span>
-                <h3 class="category-title">Featured Systems</h3>
-            </div>
-            <div class="projects-grid featured-grid">
+        <div class="projects-compact" appFadeIn [class.is-routing]="focusedProjectId !== null">
+            <div class="projects-row top-row">
                 @for (project of featuredProjects; track project.id) {
-                <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id">
+                <a
+                    [routerLink]="'/projects/' + project.id"
+                    class="project-card compact-card group"
+                    [id]="project.id"
+                    [class.is-focused]="focusedProjectId === project.id"
+                    [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
+                    (click)="onProjectFocus($event, project.id)">
                     <div class="project-content">
                         <h3 class="project-title">{{ project.title }}</h3>
                         <p class="project-impact">{{ project.impact }}</p>
@@ -46,21 +47,19 @@
                 </a>
                 }
             </div>
-        </div>
 
-        <!-- ── Engineering Projects ──────────────────────── -->
-        <div class="category-section" appFadeIn>
-            <div class="category-header">
-                <span class="category-dot engineering"></span>
-                <h3 class="category-title">Engineering Projects</h3>
-            </div>
-            <div class="projects-grid engineering-grid">
+            <div class="projects-row bottom-row">
                 @for (project of engineeringProjects; track project.id) {
-                <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id">
+                <a
+                    [routerLink]="'/projects/' + project.id"
+                    class="project-card compact-card group"
+                    [id]="project.id"
+                    [class.is-focused]="focusedProjectId === project.id"
+                    [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
+                    (click)="onProjectFocus($event, project.id)">
                     <div class="project-content">
                         <h3 class="project-title">{{ project.title }}</h3>
                         <p class="project-impact">{{ project.impact }}</p>
-
                         <div class="project-tech">
                             @for (tech of project.techStack; track tech) {
                             <span class="tech-tag">{{ tech }}</span>
@@ -79,22 +78,18 @@
                     </div>
                 </a>
                 }
-            </div>
-        </div>
 
-        <!-- ── In Development ────────────────────────────── -->
-        <div class="category-section" appFadeIn>
-            <div class="category-header">
-                <span class="category-dot development"></span>
-                <h3 class="category-title">In Development</h3>
-            </div>
-            <div class="projects-grid development-grid">
                 @for (project of developmentProjects; track project.id) {
-                <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id">
+                <a
+                    [routerLink]="'/projects/' + project.id"
+                    class="project-card compact-card group"
+                    [id]="project.id"
+                    [class.is-focused]="focusedProjectId === project.id"
+                    [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
+                    (click)="onProjectFocus($event, project.id)">
                     <div class="project-content">
                         <h3 class="project-title">{{ project.title }}</h3>
                         <p class="project-impact">{{ project.impact }}</p>
-
                         <div class="project-tech">
                             @for (tech of project.techStack; track tech) {
                             <span class="tech-tag">{{ tech }}</span>

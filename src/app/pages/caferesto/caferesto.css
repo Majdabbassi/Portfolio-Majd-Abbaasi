@@ -131,6 +131,20 @@
   position: relative;
 }
 
+.cr-hero.cr-hero-focus {
+  background:
+    radial-gradient(circle at 15% 8%, rgba(166, 139, 108, 0.16) 0%, rgba(166, 139, 108, 0) 38%),
+    linear-gradient(175deg, #eceff3 0%, #f7f8fa 45%, #ffffff 100%);
+}
+
+.cr-hero.cr-hero-focus::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(166, 139, 108, 0.04) 100%);
+}
+
 .cr-hero-container {
   max-width: 1100px;
   margin: 0 auto;
@@ -293,6 +307,33 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+}
+
+.cr-focus-note {
+  margin-bottom: 1.15rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: 10px;
+  border: 1px solid rgba(166, 139, 108, 0.28);
+  background: linear-gradient(145deg, rgba(166, 139, 108, 0.1), rgba(166, 139, 108, 0.04));
+  max-width: 560px;
+}
+
+.cr-focus-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.35rem;
+}
+
+.cr-focus-note p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-2);
+  line-height: 1.6;
 }
 
 .cr-stack-chip {

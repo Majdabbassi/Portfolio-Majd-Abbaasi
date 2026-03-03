@@ -1,5 +1,5 @@
-import { Component, HostListener } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, HostListener, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 
 @Component({
@@ -9,9 +9,23 @@ import { FadeInDirective } from '../../directives/fade-in.directive';
   templateUrl: './caferesto.html',
   styleUrl: './caferesto.css',
 })
-export class CaferestoComponent {
+export class CaferestoComponent implements OnInit {
+  private readonly route = inject(ActivatedRoute);
+
   lightboxImage: string | null = null;
   lightboxAlt = '';
+  focusMode = false;
+
+  ngOnInit(): void {
+    const fromQuery = this.route.snapshot.queryParamMap.get('focus') === '1';
+    const fromSession = sessionStorage.getItem('portfolioProjectFocus') === '1';
+
+    this.focusMode = fromQuery || fromSession;
+
+    if (this.focusMode) {
+      sessionStorage.removeItem('portfolioProjectFocus');
+    }
+  }
 
   openLightbox(src: string, alt: string): void {
     this.lightboxImage = src;

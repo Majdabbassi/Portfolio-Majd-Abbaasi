@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 
 interface Project {
@@ -20,11 +21,15 @@ interface Project {
     styleUrl: './projects.css',
 })
 export class ProjectsComponent {
+    focusedProjectId: string | null = null;
+
+    constructor(private readonly router: Router) {}
+
     projects: Project[] = [
         // ── Featured Systems ──────────────────────────────
         {
             id: 'caferesto',
-            title: 'CafèResto',
+            title: 'CafeResto',
             impact: 'Full-stack restaurant management platform with Docker-based deployment — menu, orders, reservations, and multi-role operations.',
             techStack: ['Spring Boot', 'Angular', 'Docker', 'PostgreSQL', 'Nginx'],
             status: 'production',
@@ -81,5 +86,32 @@ export class ProjectsComponent {
             case 'in-development': return 'In Development';
             default: return 'Project';
         }
+    }
+
+    onProjectFocus(event: MouseEvent, projectId: string): void {
+        if (
+            event.button !== 0 ||
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            event.altKey
+        ) {
+            return;
+        }
+
+        event.preventDefault();
+
+        if (this.focusedProjectId) {
+            return;
+        }
+
+        this.focusedProjectId = projectId;
+        sessionStorage.setItem('portfolioProjectFocus', '1');
+
+        setTimeout(() => {
+            void this.router.navigate(['/projects', projectId], {
+                queryParams: { focus: '1' },
+            });
+        }, 150);
     }
 }
