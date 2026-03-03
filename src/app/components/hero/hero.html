@@ -22,37 +22,36 @@
                 <!-- Status badge -->
                 <div class="status-badge hero-status-badge fade-in-up" style="animation-delay: 0.1s">
                     <span class="dot"></span>
-                    Available for opportunities
+                    {{ i18n.t('hero.available') }}
                 </div>
 
                 <!-- Name -->
                 <h1 class="hero-title fade-in-up"
                     style="animation-delay: 0.2s">
-                    <span style="color: var(--color-text)">Hi, I'm </span>
+                    <span style="color: var(--color-text)">{{ i18n.t('hero.greeting') }} </span>
                     <span class="gradient-text">Majd</span>
                 </h1>
 
                 <!-- Typewriter Title -->
                 <div class="hero-subtitle fade-in-up" style="animation-delay: 0.3s">
                     <h2 style="font-size: clamp(1.1rem, 3vw, 1.4rem); font-weight: 600; color: var(--color-text); margin-bottom: 0.5rem;">
-                        Production-Oriented Full-Stack Engineer
+                        {{ i18n.t('hero.titleRole') }}
                     </h2>
                     <p class="font-mono" style="font-size: 0.95rem; color: var(--color-accent); letter-spacing: 0.05em; font-weight: 500;">
-                        FULL STACK ARCHITECTURE • DEVOPS • PRODUCTION SYSTEMS
+                        {{ i18n.t('hero.titleTagline') }}
                     </p>
                 </div>
 
                 <!-- Summary -->
                 <div class="hero-description fade-in-up" style="animation-delay: 0.4s">
                     <p>
-                        I design and build <strong style="color: var(--color-text); font-weight: 600">production-ready systems</strong> 
-                        — from backend architecture and security layers to deployment and monitoring infrastructure.
+                        {{ i18n.t('hero.p1') }}
                     </p>
                     <p style="margin-top: 1rem;">
-                        Early in my journey, but deeply committed to engineering systems that are observable, resilient, and built to evolve.
+                        {{ i18n.t('hero.p2') }}
                     </p>
                     <p>
-                        I grow fast in environments where responsibility is real and systems matter.
+                        {{ i18n.t('hero.p3') }}
                     </p>
                 </div>
 
@@ -63,14 +62,14 @@
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                             <polyline points="22 4 12 14.01 9 11.01" />
                         </svg>
-                        <span>Multi-Tenant Architecture Experience</span>
+                        <span>{{ i18n.t('hero.cred1') }}</span>
                     </div>
                     <div class="credibility-item">
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="credibility-icon">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                             <polyline points="22 4 12 14.01 9 11.01" />
                         </svg>
-                        <span>Dockerized Infrastructure Projects</span>
+                        <span>{{ i18n.t('hero.cred2') }}</span>
                     </div>
                 </div>
 
@@ -83,14 +82,14 @@
                             <rect x="3" y="14" width="7" height="7" rx="1" />
                             <rect x="14" y="14" width="7" height="7" rx="1" />
                         </svg>
-                        View Projects
+                        {{ i18n.t('hero.viewProjects') }}
                     </button>
                     <button class="btn-outline" (click)="scrollToContact()" id="hero-contact">
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                             <polyline points="22,6 12,13 2,6" />
                         </svg>
-                        Contact Me
+                        {{ i18n.t('hero.contact') }}
                     </button>
                 </div>
 

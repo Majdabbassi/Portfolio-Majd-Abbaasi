@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { I18nService } from '../../core/i18n.service';
 
 @Component({
     selector: 'app-hero',
@@ -9,6 +10,7 @@ import { CommonModule } from '@angular/common';
     styleUrl: './hero.css',
 })
 export class HeroComponent implements OnDestroy {
+    readonly i18n = inject(I18nService);
     private typingTimer: ReturnType<typeof setTimeout> | null = null;
 
     socialLinks = [

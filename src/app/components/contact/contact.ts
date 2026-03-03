@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { I18nService } from '../../core/i18n.service';
 
 @Component({
     selector: 'app-contact',
@@ -10,6 +11,8 @@ import { FadeInDirective } from '../../directives/fade-in.directive';
     styleUrl: './contact.css',
 })
 export class ContactComponent {
+    readonly i18n = inject(I18nService);
+
     socialLinks = [
         {
             id: 'contact-email',
@@ -33,4 +36,13 @@ export class ContactComponent {
             icon: 'linkedin',
         },
     ];
+
+    getLabel(label: string): string {
+        if (this.i18n.lang() === 'fr') {
+            if (label === 'Email') return 'Email';
+            if (label === 'GitHub') return 'GitHub';
+            if (label === 'LinkedIn') return 'LinkedIn';
+        }
+        return label;
+    }
 }

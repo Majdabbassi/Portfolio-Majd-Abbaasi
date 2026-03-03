@@ -3,12 +3,9 @@
         
         <!-- Header -->
         <div class="infra-header" appFadeIn>
-            <p class="section-label">— Infrastructure & Production Engineering</p>
-            <h2 class="section-title">Lifecycle Ownership</h2>
-            <p class="section-subtitle">
-                From local development to monitored production systems. <br>
-                I treat deployment as part of engineering — not an afterthought.
-            </p>
+            <p class="section-label">{{ i18n.t('infra.label') }}</p>
+            <h2 class="section-title">{{ i18n.t('infra.title') }}</h2>
+            <p class="section-subtitle">{{ i18n.t('infra.subtitle') }}</p>
         </div>
 
         <div class="infra-grid">
@@ -16,75 +13,45 @@
             <div class="infra-card" appFadeIn>
                 <div class="card-header">
                     <span class="card-icon">⚡</span>
-                    <h3 class="infra-title">Deployment Workflow</h3>
+                    <h3 class="infra-title">{{ i18n.t('infra.workflow') }}</h3>
                 </div>
-                Structured flow from development to live environment:
+                {{ i18n.t('infra.workflowLead') }}
                 <div class="workflow-steps">
+                    @for (step of workflowSteps; track step) {
                     <div class="step">
                         <div class="step-dot"></div>
-                        <span class="step-label">Commit</span>
+                        <span class="step-label">{{ step }}</span>
                     </div>
-                    <div class="step">
-                        <div class="step-dot"></div>
-                        <span class="step-label">Build</span>
-                    </div>
-                    <div class="step">
-                        <div class="step-dot"></div>
-                        <span class="step-label">Containerize</span>
-                    </div>
-                    <div class="step">
-                        <div class="step-dot"></div>
-                        <span class="step-label">Configure</span>
-                    </div>
-                    <div class="step">
-                        <div class="step-dot"></div>
-                        <span class="step-label">Deploy</span>
-                    </div>
-                    <div class="step">
-                        <div class="step-dot"></div>
-                        <span class="step-label">Monitor</span>
-                    </div>
-                    <div class="step">
-                        <div class="step-dot"></div>
-                        <span class="step-label">Optimize</span>
-                    </div>
-                    <div class="step">
-                        <div class="step-dot"></div>
-                        <span class="step-label">Iterate</span>
-                    </div>
+                    }
                 </div>
-                Each stage tested repeatedly to ensure predictable releases and recoverability.
+                {{ i18n.t('infra.workflowTail') }}
             </div>
             <!-- 2. Infrastructure Principles -->
             <div class="infra-card" appFadeIn>
                 <div class="card-header">
                     <span class="card-icon">🏗️</span>
-                    <h3 class="infra-title">Infrastructure Principles</h3>
+                    <h3 class="infra-title">{{ i18n.t('infra.principles') }}</h3>
                 </div>
                 <ul class="infra-list">
-                    <li>Environment-based configuration</li>
-                    <li>Service isolation through containerization</li>
-                    <li>Reverse proxy routing & controlled exposure</li>
-                    <li>Monitoring-enabled deployments</li>
-                    <li>Transaction-safe backend design</li>
+                    @for (item of principles; track item) {
+                    <li>{{ item }}</li>
+                    }
                 </ul>
-                Focused on reliability and clarity over complexity.
+                {{ i18n.t('infra.principlesTail') }}
             </div>
             <!-- 3. Observability Stack -->
             <div class="infra-card" appFadeIn>
                 <div class="card-header">
                     <span class="card-icon">👁️</span>
-                    <h3 class="infra-title">Observability Stack</h3>
+                    <h3 class="infra-title">{{ i18n.t('infra.observability') }}</h3>
                 </div>
-                Operational visibility implemented across systems:
+                {{ i18n.t('infra.observabilityLead') }}
                 <div class="tech-grid">
-                    <div class="tech-item">Metrics collection</div>
-                    <div class="tech-item">Health-check endpoints</div>
-                    <div class="tech-item">Log inspection</div>
-                    <div class="tech-item">Alert logic for abnormal behavior</div>
-                    <div class="tech-item">Dashboard-based monitoring</div>
+                    @for (item of observabilityItems; track item) {
+                    <div class="tech-item">{{ item }}</div>
+                    }
                 </div>
-                <p class="card-footer-text">Answering: "What happens after deployment?"</p>
+                <p class="card-footer-text">{{ i18n.t('infra.observabilityTail') }}</p>
             </div>
         </div>
 

@@ -4,22 +4,22 @@
         <div class="footer-inner">
             <div class="footer-brand">
                 <span class="footer-logo">&lt;Mohamed Majd Eddine Abbassi /&gt;</span>
-                <span class="footer-tagline">AI-Augmented System Engineer</span>
+                <span class="footer-tagline">{{ i18n.t('footer.tag') }}</span>
             </div>
 
             <div class="footer-links">
-                <a href="#about">About</a>
+                <a href="#about">{{ i18n.t('nav.about') }}</a>
                 <span class="footer-separator">•</span>
-                <a href="#projects">Projects</a>
+                <a href="#projects">{{ i18n.t('nav.projects') }}</a>
                 <span class="footer-separator">•</span>
-                <a href="#contact">Contact</a>
+                <a href="#contact">{{ i18n.t('nav.contact') }}</a>
             </div>
 
             <div class="footer-meta">
                 <p class="footer-copy">
-                    &copy; {{ currentYear }} Built with Angular &amp; Tailwind CSS.
+                    &copy; {{ currentYear }} {{ i18n.t('footer.built') }}
                 </p>
-                <button (click)="scrollToTop()" id="footer-scroll-top" class="footer-top-button" aria-label="Scroll to top">
+                <button (click)="scrollToTop()" id="footer-scroll-top" class="footer-top-button" [attr.aria-label]="i18n.t('footer.top')">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <polyline points="18 15 12 9 6 15" />
                     </svg>

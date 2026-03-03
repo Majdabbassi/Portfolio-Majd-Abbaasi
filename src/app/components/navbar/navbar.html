@@ -10,20 +10,29 @@
         <div class="nav-links">
             @for (link of navLinks; track link.href) {
             <a [href]="link.href" (click)="navigateTo(link); $event.preventDefault()"
-                class="nav-link" [id]="'nav-' + link.label.toLowerCase()">
-                {{ link.label }}
+                class="nav-link" [id]="'nav-' + link.fragment">
+                {{ i18n.t(link.labelKey) }}
             </a>
             }
         </div>
 
+        <div class="nav-controls">
+            <button class="nav-control-btn" (click)="toggleLanguage()" type="button">
+                {{ i18n.t('nav.lang') }}
+            </button>
+            <button class="nav-control-btn" (click)="toggleTheme()" type="button">
+                {{ i18n.t('nav.theme') }}
+            </button>
+        </div>
+
         <!-- Desktop CTA -->
         <a href="mailto:majdabbassi11@gmail.com" class="nav-cta" id="nav-hire-btn">
-            Work With Me
+            {{ i18n.t('nav.workWithMe') }}
         </a>
 
         <!-- Mobile hamburger -->
         <button class="nav-hamburger" (click)="toggleMobileMenu()"
-            id="nav-mobile-toggle" aria-label="Toggle menu">
+            id="nav-mobile-toggle" [attr.aria-label]="i18n.t('nav.toggleMenu')">
             <span [style.transform]="isMobileMenuOpen() ? 'rotate(45deg) translateY(7px)' : 'none'"></span>
             <span [style.opacity]="isMobileMenuOpen() ? '0' : '1'"></span>
             <span [style.transform]="isMobileMenuOpen() ? 'rotate(-45deg) translateY(-7px)' : 'none'"></span>
@@ -38,11 +47,19 @@
             @for (link of navLinks; track link.href) {
             <a [href]="link.href" (click)="navigateTo(link); $event.preventDefault()"
                 class="nav-mobile-link">
-                {{ link.label }}
+                {{ i18n.t(link.labelKey) }}
             </a>
             }
+            <div class="nav-mobile-controls">
+                <button class="nav-control-btn" (click)="toggleLanguage()" type="button">
+                    {{ i18n.t('nav.lang') }}
+                </button>
+                <button class="nav-control-btn" (click)="toggleTheme()" type="button">
+                    {{ i18n.t('nav.theme') }}
+                </button>
+            </div>
             <a href="mailto:majdabbassi11@gmail.com" class="nav-cta" id="nav-mobile-hire">
-                Work With Me
+                {{ i18n.t('nav.workWithMe') }}
             </a>
         </div>
     </div>

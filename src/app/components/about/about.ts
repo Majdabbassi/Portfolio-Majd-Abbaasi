@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FadeInDirective } from '../../directives/fade-in.directive';
+import { I18nService } from '../../core/i18n.service';
 
 @Component({
     selector: 'app-about',
@@ -9,6 +10,7 @@ import { FadeInDirective } from '../../directives/fade-in.directive';
     styleUrl: './about.css',
 })
 export class AboutComponent {
+    readonly i18n = inject(I18nService);
     timeline = [
         {
             year: '2022',

@@ -1,6 +1,8 @@
 import { Component, HostListener, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { I18nService } from '../../core/i18n.service';
+import { ThemeService } from '../../core/theme.service';
 
 @Component({
     selector: 'app-navbar',
@@ -11,17 +13,27 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
     private router = inject(Router);
+    readonly i18n = inject(I18nService);
+    readonly theme = inject(ThemeService);
 
     isScrolled = signal(false);
     isMobileMenuOpen = signal(false);
 
     navLinks = [
-        { label: 'Projects', href: '#projects', fragment: 'projects' },
-        { label: 'Infrastructure', href: '#infrastructure', fragment: 'infrastructure' },
-        { label: 'Philosophy', href: '#philosophy', fragment: 'philosophy' },
-        { label: 'About', href: '#about', fragment: 'about' },
-        { label: 'Contact', href: '#contact', fragment: 'contact' },
+        { labelKey: 'nav.projects', href: '#projects', fragment: 'projects' },
+        { labelKey: 'nav.infrastructure', href: '#infrastructure', fragment: 'infrastructure' },
+        { labelKey: 'nav.philosophy', href: '#philosophy', fragment: 'philosophy' },
+        { labelKey: 'nav.about', href: '#about', fragment: 'about' },
+        { labelKey: 'nav.contact', href: '#contact', fragment: 'contact' },
     ];
+
+    toggleLanguage(): void {
+        this.i18n.toggleLang();
+    }
+
+    toggleTheme(): void {
+        this.theme.toggleTheme();
+    }
 
     @HostListener('window:scroll')
     onScroll(): void {

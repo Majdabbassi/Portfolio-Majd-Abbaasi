@@ -4,33 +4,29 @@
 
             <!-- Left: Bio & Philosophy -->
             <div class="about-content" appFadeIn>
-                <p class="section-label">ABOUT ME</p>
-                <h2 class="section-title">Engineer. Architect.<br><span class="gradient-text">System Builder.</span></h2>
+                <p class="section-label">{{ i18n.t('about.label') }}</p>
+                <h2 class="section-title">{{ i18n.t('about.title1') }}<br><span class="gradient-text">{{ i18n.t('about.title2') }}</span></h2>
 
                 <!-- 1. Opening Identity -->
                 <div class="about-intro">
                     <p>
-                        I’m a systems-oriented engineer focused on building <strong style="color: var(--color-text)">reliable, production-grade software</strong>.
-                        My work combines backend architecture, DevOps automation, and observability to create systems that scale and remain maintainable over time.
+                        {{ i18n.t('about.intro') }}
                     </p>
                 </div>
 
                 <!-- 2. Engineering Philosophy -->
                 <div class="about-philosophy">
-                    <h3 class="subsection-title">How I Think</h3>
+                    <h3 class="subsection-title">{{ i18n.t('about.howThink') }}</h3>
                     <p>
-                        I treat every system as a <strong style="color: var(--color-text)">living organism</strong>.
-                        This means prioritizing observability before optimization, automation over manual toil, and security as a foundation rather than a patch.
-                        I don't just write code; I design for failure, scale, and long-term evolution.
+                        {{ i18n.t('about.think') }}
                     </p>
                 </div>
 
                 <!-- 3. Growth Mindset -->
                 <div class="about-growth">
-                    <h3 class="subsection-title">Continuous Evolution</h3>
+                    <h3 class="subsection-title">{{ i18n.t('about.evolution') }}</h3>
                     <p>
-                        Deployment is just the beginning. I constantly analyze bottlenecks, refine pipelines, and iterate based on real-world metrics.
-                        I’m driven by building things that outlive trends — systems designed to endure change.
+                        {{ i18n.t('about.growth') }}
                     </p>
                 </div>
             </div>
@@ -41,13 +37,13 @@
                 <div class="about-card">
                     <div class="card-header">
                         <span class="card-number">01</span>
-                        <h4 class="card-title">Engineering Mindset</h4>
+                        <h4 class="card-title">{{ i18n.t('about.card1') }}</h4>
                     </div>
                     <ul class="card-list">
-                        <li>Systems > Features</li>
-                        <li>Observability First</li>
-                        <li>Automation by Default</li>
-                        <li>Security Foundations</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Systèmes > Fonctionnalités' : 'Systems > Features' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Observabilité d’abord' : 'Observability First' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Automatisation par défaut' : 'Automation by Default' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Fondations sécurité' : 'Security Foundations' }}</li>
                     </ul>
                 </div>
 
@@ -55,13 +51,13 @@
                 <div class="about-card">
                     <div class="card-header">
                         <span class="card-number">02</span>
-                        <h4 class="card-title">Technical Expertise</h4>
+                        <h4 class="card-title">{{ i18n.t('about.card2') }}</h4>
                     </div>
                     <ul class="card-list">
-                        <li>Backend APIs (Spring Boot)</li>
-                        <li>Frontend (Angular)</li>
-                        <li>Containerization (Docker)</li>
-                        <li>CI/CD Pipelines</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'APIs Backend (Spring Boot)' : 'Backend APIs (Spring Boot)' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Frontend (Angular)' : 'Frontend (Angular)' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Conteneurisation (Docker)' : 'Containerization (Docker)' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Pipelines CI/CD' : 'CI/CD Pipelines' }}</li>
                     </ul>
                 </div>
 
@@ -69,13 +65,13 @@
                 <div class="about-card">
                     <div class="card-header">
                         <span class="card-number">03</span>
-                        <h4 class="card-title">How I Build</h4>
+                        <h4 class="card-title">{{ i18n.t('about.card3') }}</h4>
                     </div>
                     <ul class="card-list">
-                        <li>Clean Architecture</li>
-                        <li>JWT & RBAC Security</li>
-                        <li>Performance Tuning</li>
-                        <li>Scalable Design</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Architecture propre' : 'Clean Architecture' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Sécurité JWT & RBAC' : 'JWT & RBAC Security' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Optimisation des performances' : 'Performance Tuning' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Design scalable' : 'Scalable Design' }}</li>
                     </ul>
                 </div>
 
@@ -83,13 +79,13 @@
                 <div class="about-card">
                     <div class="card-header">
                         <span class="card-number">04</span>
-                        <h4 class="card-title">Monitoring & Ops</h4>
+                        <h4 class="card-title">{{ i18n.t('about.card4') }}</h4>
                     </div>
                     <ul class="card-list">
-                        <li>Prometheus & Grafana</li>
-                        <li>Log Management</li>
-                        <li>Alerting Strategies</li>
-                        <li>Production Support</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Prometheus & Grafana' : 'Prometheus & Grafana' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Gestion des logs' : 'Log Management' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Stratégies d’alerte' : 'Alerting Strategies' }}</li>
+                        <li>{{ i18n.lang() === 'fr' ? 'Support production' : 'Production Support' }}</li>
                     </ul>
                 </div>
             </div>

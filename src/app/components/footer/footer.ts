@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { I18nService } from '../../core/i18n.service';
 
 @Component({
     selector: 'app-footer',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
     styleUrl: './footer.css',
 })
 export class FooterComponent {
+    readonly i18n = inject(I18nService);
     currentYear = new Date().getFullYear();
 
     scrollToTop(): void {

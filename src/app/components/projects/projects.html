@@ -3,11 +3,9 @@
 
         <!-- Header -->
         <div class="mb-6 projects-header" appFadeIn>
-            <p class="section-label">Selected Systems</p>
-            <h2 class="section-title">Production-grade builds and evolving architectures</h2>
-            <p class="section-subtitle">
-                Designed with ownership and long-term scalability in mind.
-            </p>
+            <p class="section-label">{{ i18n.t('projects.label') }}</p>
+            <h2 class="section-title">{{ i18n.t('projects.title') }}</h2>
+            <p class="section-subtitle">{{ i18n.t('projects.subtitle') }}</p>
         </div>
 
         <div class="projects-compact" appFadeIn [class.is-routing]="focusedProjectId !== null">
@@ -21,11 +19,11 @@
                     [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
                     (click)="onProjectFocus($event, project.id)">
                     <div class="project-content">
-                        <h3 class="project-title">{{ project.title }}</h3>
-                        <p class="project-impact">{{ project.impact }}</p>
+                        <h3 class="project-title">{{ text(project.title) }}</h3>
+                        <p class="project-impact">{{ text(project.impact) }}</p>
 
                         @if (project.companyNote) {
-                            <p class="company-note">{{ project.companyNote }}</p>
+                            <p class="company-note">{{ text(project.companyNote) }}</p>
                         }
 
                         <div class="project-tech">
@@ -37,7 +35,7 @@
 
                     <div class="card-footer">
                         <div class="project-action">
-                            View Case Study <span class="arrow">→</span>
+                            {{ i18n.t('projects.viewCase') }} <span class="arrow">→</span>
                         </div>
                         <div class="project-status">
                             <span class="status-dot" [class]="project.status"></span>
@@ -58,8 +56,8 @@
                     [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
                     (click)="onProjectFocus($event, project.id)">
                     <div class="project-content">
-                        <h3 class="project-title">{{ project.title }}</h3>
-                        <p class="project-impact">{{ project.impact }}</p>
+                        <h3 class="project-title">{{ text(project.title) }}</h3>
+                        <p class="project-impact">{{ text(project.impact) }}</p>
                         <div class="project-tech">
                             @for (tech of project.techStack; track tech) {
                             <span class="tech-tag">{{ tech }}</span>
@@ -69,7 +67,7 @@
 
                     <div class="card-footer">
                         <div class="project-action">
-                            View Case Study <span class="arrow">→</span>
+                            {{ i18n.t('projects.viewCase') }} <span class="arrow">→</span>
                         </div>
                         <div class="project-status">
                             <span class="status-dot" [class]="project.status"></span>
@@ -88,8 +86,8 @@
                     [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
                     (click)="onProjectFocus($event, project.id)">
                     <div class="project-content">
-                        <h3 class="project-title">{{ project.title }}</h3>
-                        <p class="project-impact">{{ project.impact }}</p>
+                        <h3 class="project-title">{{ text(project.title) }}</h3>
+                        <p class="project-impact">{{ text(project.impact) }}</p>
                         <div class="project-tech">
                             @for (tech of project.techStack; track tech) {
                             <span class="tech-tag">{{ tech }}</span>
@@ -99,7 +97,7 @@
 
                     <div class="card-footer">
                         <div class="project-action">
-                            View Architecture <span class="arrow">→</span>
+                            {{ i18n.t('projects.viewArch') }} <span class="arrow">→</span>
                         </div>
                         <div class="project-status">
                             <span class="status-dot" [class]="project.status"></span>
@@ -117,43 +115,41 @@
                 <div class="lab-header">
                     <span class="lab-icon">🧪</span>
                     <div>
-                        <h3 class="lab-title">Deployment Lab</h3>
-                        <p class="lab-subtitle">Self-driven infrastructure training initiative.</p>
+                        <h3 class="lab-title">{{ i18n.t('projects.lab.title') }}</h3>
+                        <p class="lab-subtitle">{{ i18n.t('projects.lab.subtitle') }}</p>
                     </div>
                 </div>
                 <p class="lab-description">
-                    To deeply understand production behavior,
-                    I repeatedly deployed a simplified application using multiple strategies
-                    — refining server setup, configuration logic, and release flows.
+                    {{ i18n.t('projects.lab.desc') }}
                 </p>
-                Hands-on experimentation included: <br>
+                {{ i18n.t('projects.lab.handsOn') }} <br>
                 <div class="lab-strategies">
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>Nginx reverse proxy (direct deployment)</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Proxy inverse Nginx (déploiement direct)' : 'Nginx reverse proxy (direct deployment)' }}</span>
                     </div>
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>Apache HTTP Server configuration</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Configuration Apache HTTP Server' : 'Apache HTTP Server configuration' }}</span>
                     </div>
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>Docker containerization</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Conteneurisation Docker' : 'Docker containerization' }}</span>
                     </div>
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>Docker Compose multi-service orchestration</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Orchestration multi-services Docker Compose' : 'Docker Compose multi-service orchestration' }}</span>
                     </div>
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>Environment variable management</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Gestion des variables d\'environnement' : 'Environment variable management' }}</span>
                     </div>
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>Service restart & failure recovery testing</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Tests de redémarrage des services et récupération après panne' : 'Service restart & failure recovery testing' }}</span>
                     </div>
                 </div>
-                <p class="lab-footer">Not a product — an engineering lab for mastering deployment from the ground up.</p>
+                <p class="lab-footer">{{ i18n.t('projects.lab.footer') }}</p>
             </div>
         </div>
 

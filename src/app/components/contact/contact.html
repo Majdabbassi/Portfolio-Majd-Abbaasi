@@ -3,15 +3,15 @@
 
         <!-- Header -->
         <div class="mb-12 text-center" appFadeIn>
-            <p class="section-label" style="justify-content: center">06 — Work With Me</p>
-            <h2 class="section-title" style="text-align: center">Let's <span class="gradient-text">Engineer Your Next System</span></h2>
+            <p class="section-label" style="justify-content: center">{{ i18n.t('contact.label') }}</p>
+            <h2 class="section-title" style="text-align: center">{{ i18n.t('contact.title') }}</h2>
             
             <div class="contact-intro mx-auto text-center mt-6 max-w-2xl">
                 <p class="text-base leading-relaxed mb-4" style="color: var(--color-text-2)">
-                    I’m currently open to <strong style="color: var(--color-text)">backend, full-stack, and systems engineering</strong> opportunities.
+                    {{ i18n.t('contact.p1') }}
                 </p>
                 <p class="text-base leading-relaxed" style="color: var(--color-text-2)">
-                    If you're building something that needs to scale, automate, or operate reliably in production — let’s talk.
+                    {{ i18n.t('contact.p2') }}
                 </p>
             </div>
         </div>
@@ -40,7 +40,7 @@
                     }
                 </div>
                 <div class="contact-content">
-                    <p class="contact-label">{{ link.label }}</p>
+                    <p class="contact-label">{{ getLabel(link.label) }}</p>
                     <p class="contact-value">{{ link.value }}</p>
                 </div>
             </a>
@@ -51,7 +51,7 @@
         <!-- Closing Note -->
         <div class="text-center contact-footer" appFadeIn>
             <p style="color: var(--color-muted)">
-                I usually respond within 24 hours. For time-sensitive matters, <strong style="color: var(--color-text)">email</strong> is the fastest way to reach me.
+                {{ i18n.t('contact.footer') }}
             </p>
         </div>
         

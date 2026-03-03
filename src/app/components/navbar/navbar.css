@@ -10,7 +10,7 @@
 }
 
 .navbar--scrolled {
-    background: rgba(255, 255, 255, 0.9); /* Light background for scrolled state */
+    background: color-mix(in srgb, var(--color-surface) 86%, transparent);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom-color: var(--color-border);
@@ -76,6 +76,33 @@
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+.nav-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-left: auto;
+    margin-right: 0.8rem;
+}
+
+.nav-control-btn {
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text-2);
+    border-radius: 999px;
+    padding: 0.34rem 0.62rem;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-control-btn:hover {
+    color: var(--color-text);
+    border-color: var(--color-accent);
 }
 
 /* Right CTA */
@@ -156,12 +183,19 @@
 }
 .nav-mobile-link:hover { color: var(--color-text); }
 
+.nav-mobile-controls {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.65rem 0 0.25rem;
+}
+
 /* Mobile breakpoint */
 @media (max-width: 767px) {
     .nav-inner {
         grid-template-columns: 1fr auto;
     }
     .nav-links { display: none; }
+    .nav-controls { display: none; }
     .nav-cta#nav-hire-btn { display: none; }
     .nav-hamburger { display: flex; }
     .nav-mobile-panel { display: block; }

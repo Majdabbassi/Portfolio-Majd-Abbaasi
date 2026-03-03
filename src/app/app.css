@@ -27,6 +27,26 @@
     --radius-xl: 1.5rem;
 }
 
+:root[data-theme='dark'] {
+    --color-bg: #0f1115;
+    --color-surface: #151922;
+    --color-surface-2: #1d2430;
+    --color-border: #2a3240;
+    --color-border-2: #3a4557;
+
+    --color-accent: #c5a57f;
+    --color-accent-light: #d7b894;
+    --color-accent-2: #b1906e;
+    --color-accent-glow: rgba(197, 165, 127, 0.16);
+
+    --color-text: #f3f5f8;
+    --color-text-2: #c5ceda;
+    --color-muted: #97a4b7;
+
+    --color-success: #34d399;
+    --color-warning: #f59e0b;
+}
+
 *,
 *::before,
 *::after {
@@ -46,6 +66,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    transition: background-color 220ms ease, color 220ms ease;
 }
 
 @keyframes vt-fade-out {
