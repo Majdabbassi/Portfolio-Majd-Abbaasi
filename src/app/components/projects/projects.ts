@@ -10,7 +10,6 @@ interface Project {
     impact: { en: string; fr: string };
     techStack: string[];
     status: 'production' | 'completed' | 'in-development';
-    companyNote?: { en: string; fr: string };
     backgroundImage?: string;
 }
 
@@ -48,10 +47,6 @@ export class ProjectsComponent {
             techStack: ['Spring Boot', 'Angular', 'Flutter', 'WebSocket', 'PostgreSQL'],
             status: 'production',
             backgroundImage: '/favicon.ico',
-            companyNote: {
-                en: 'Developed as part of professional role',
-                fr: 'Développé dans un contexte professionnel',
-            },
         },
         // ── Engineering Projects ──────────────────────────
         {

@@ -12,7 +12,6 @@ interface ProjectDetail {
   status: ProjectStatus;
   role: string;
   techStack: string[];
-  companyNote?: string;
   context: {
     problem: string;
     constraints: string[];
@@ -65,8 +64,6 @@ export class DocumentMarketplaceComponent {
     status: 'production',
     role: 'Full Stack Engineer',
     techStack: ['Spring Boot', 'Angular', 'Flutter', 'WebSocket', 'PostgreSQL', 'JWT'],
-    companyNote:
-      'Developed as part of professional role under company ownership. Contribution and architecture summary shown with confidentiality boundaries.',
     context: {
       problem:
         'Buyers and sellers needed a secure platform for digital document transactions with communication, payment, and delivery in one system.',
@@ -169,8 +166,6 @@ export class DocumentMarketplaceComponent {
     status: 'production',
     role: 'Ingénieur Full Stack',
     techStack: ['Spring Boot', 'Angular', 'Flutter', 'WebSocket', 'PostgreSQL', 'JWT'],
-    companyNote:
-      'Développé dans un contexte professionnel sous propriété de l’entreprise. Le résumé présenté respecte les limites de confidentialité.',
     context: {
       problem:
         'Acheteurs et vendeurs avaient besoin d’une plateforme sécurisée réunissant transaction, communication et livraison de documents.',

@@ -25,10 +25,6 @@
         <h1 class="hero-title">{{ project.title }}</h1>
         <p class="hero-summary">{{ project.summary }}</p>
 
-        @if (project.companyNote) {
-          <p class="company-note">{{ project.companyNote }}</p>
-        }
-
         <div class="hero-tech-stack">
           @for (tech of project.techStack; track tech) {
             <span class="hero-tech-tag">{{ tech }}</span>

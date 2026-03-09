@@ -23,12 +23,15 @@
         </div>
 
         <h1 class="cr-hero-title">CaféResto</h1>
-        <p class="cr-hero-subtitle">{{ tr('Multi-Tenant Restaurant Ecosystem', 'Écosystème restaurant multi-tenant') }}</p>
+        <p class="cr-hero-subtitle">{{ tr('Multi-Tenant Operational Restaurant Platform', 'Écosystème restaurant
+          multi-tenant') }}</p>
 
         <p class="cr-hero-statement">
-          {{ tr('A modular, multi-tenant restaurant platform — from', 'Une plateforme restaurant modulaire et multi-tenant — de la') }} <strong>{{ tr('QR ordering', 'commande QR') }}</strong> {{ tr('and', 'et des') }}
-          <strong>{{ tr('real-time updates', 'mises à jour temps réel') }}</strong> {{ tr('to', 'à') }} <strong>{{ tr('stock automation', 'l\'automatisation du stock') }}</strong>,
-          <strong>{{ tr('role-based workflows', 'workflows basés rôles') }}</strong> {{ tr('and', 'et au') }} <strong>{{ tr('production-grade monitoring', 'monitoring de niveau production') }}</strong>.
+          {{ tr('A production-deployed multi-tenant restaurant SaaS — serving multiple restaurants from a single backend
+          with real-time WebSocket operations, automated inventory, biometric staff management, AI-powered menu OCR, and
+          a 14-service Docker monitoring infrastructure.', 'Un SaaS restaurant multi-tenant déployé en production —
+          backend unique servant plusieurs restaurants avec opérations WebSocket temps réel, inventaire automatisé,
+          gestion biométrique du staff, OCR IA de menus, et une infrastructure Docker de monitoring à 14 services.') }}
         </p>
 
         <div class="cr-hero-meta">
@@ -60,29 +63,82 @@
         <div class="cr-arch-diagram">
           <div class="cr-arch-title">{{ tr('System Overview', 'Vue d\'ensemble système') }}</div>
           <div class="cr-arch-flow">
-            <div class="cr-arch-node client">
-              <span class="cr-arch-icon">📱</span>
-              <span>{{ tr('Client', 'Client') }}</span>
-            </div>
-            <div class="cr-arch-connector"></div>
-            <div class="cr-arch-node proxy">
-              <span class="cr-arch-icon">🔀</span>
-              <span>Nginx</span>
-            </div>
-            <div class="cr-arch-connector"></div>
-            <div class="cr-arch-node backend">
-              <span class="cr-arch-icon">⚙</span>
-              <span>Spring Boot</span>
-            </div>
-            <div class="cr-arch-connector"></div>
-            <div class="cr-arch-node database">
-              <span class="cr-arch-icon">🗄</span>
-              <span>PostgreSQL</span>
-            </div>
-            <div class="cr-arch-connector-branch"></div>
-            <div class="cr-arch-node monitor">
-              <span class="cr-arch-icon">📊</span>
-              <span>{{ tr('Monitoring', 'Supervision') }}</span>
+
+            <!-- Animated Architecture Diagram -->
+            <div class="cr-sys-diagram">
+
+              <!-- Users Row -->
+              <div class="cr-sys-row users-row">
+                <div class="cr-sys-node client">
+                  <span class="cr-sys-icon">📱</span>
+                  <span>{{ tr('Client', 'Client') }}</span>
+                </div>
+                <div class="cr-sys-node admin">
+                  <span class="cr-sys-icon">🖥</span>
+                  <span>{{ tr('Admin', 'Admin') }}</span>
+                </div>
+                <div class="cr-sys-node mobile">
+                  <span class="cr-sys-icon">📊</span>
+                  <span>{{ tr('Mobile', 'Mobile') }}</span>
+                </div>
+              </div>
+
+              <div class="cr-sys-arrow-down">↓</div>
+
+              <!-- Nginx -->
+              <div class="cr-sys-row">
+                <div class="cr-sys-node nginx wide">
+                  <span class="cr-sys-icon">🔄</span>
+                  <span>Nginx {{ tr('Reverse Proxy', 'Reverse Proxy') }}</span>
+                </div>
+              </div>
+
+              <div class="cr-sys-arrow-down">↓</div>
+
+              <!-- Services Row -->
+              <div class="cr-sys-row">
+                <div class="cr-sys-node backend">
+                  <span class="cr-sys-icon">☕</span>
+                  <span>Spring Boot</span>
+                </div>
+                <div class="cr-sys-node frontend">
+                  <span class="cr-sys-icon">⚛️</span>
+                  <span>React</span>
+                </div>
+                <div class="cr-sys-node ai">
+                  <span class="cr-sys-icon">🤖</span>
+                  <span>AI OCR</span>
+                </div>
+              </div>
+
+              <div class="cr-sys-arrow-down">↓</div>
+
+              <!-- Data Layer -->
+              <div class="cr-sys-row">
+                <div class="cr-sys-node data wide">
+                  <span class="cr-sys-icon">🗄</span>
+                  <span>PostgreSQL · Flyway · WebSocket · Firebase</span>
+                </div>
+              </div>
+
+              <div class="cr-sys-arrow-down">↓</div>
+
+              <!-- Monitoring Layer -->
+              <div class="cr-sys-row">
+                <div class="cr-sys-node monitor">
+                  <span class="cr-sys-icon">📊</span>
+                  <span>Prometheus</span>
+                </div>
+                <div class="cr-sys-node monitor">
+                  <span class="cr-sys-icon">📰</span>
+                  <span>Grafana</span>
+                </div>
+                <div class="cr-sys-node monitor">
+                  <span class="cr-sys-icon">🔔</span>
+                  <span>Telegram</span>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -99,32 +155,75 @@
     <h2 class="cr-heading">{{ tr('Not a simple ordering app', 'Pas une simple app de commande') }}</h2>
 
     <p class="cr-body">
-      {{ tr('CaféResto models a', 'CaféResto modélise un') }} <strong>{{ tr('complete restaurant environment', 'environnement restaurant complet') }}</strong> {{ tr('where clients order via', 'où les clients commandent via') }}
-      QR code, {{ tr('staff manage orders and table flow, owners configure operational rules, and stock updates automatically based on recipes. The goal was to design a', 'le staff gère commandes et flux des tables, les propriétaires configurent les règles opérationnelles, et le stock se met à jour automatiquement selon les recettes. L’objectif était de concevoir une') }} <strong>{{ tr('configurable, scalable domain architecture', 'architecture de domaine configurable et scalable') }}</strong> {{ tr('capable of adapting to different restaurant behaviors.', 'capable de s’adapter à différents comportements métier.') }}
+      {{ tr('CaféResto models a', 'CaféResto modélise un') }} <strong>{{ tr('complete restaurant environment',
+        'environnement restaurant complet') }}</strong> {{ tr('where clients order via', 'où les clients commandent
+      via') }}
+      QR code, {{ tr('staff manage orders and table flow, owners configure operational rules, and stock updates
+      automatically based on recipes. The goal was to design a', 'le staff gère commandes et flux des tables, les
+      propriétaires configurent les règles opérationnelles, et le stock se met à jour automatiquement selon les
+      recettes. L’objectif était de concevoir une') }} <strong>{{ tr('configurable, scalable domain architecture',
+        'architecture de domaine configurable et scalable') }}</strong> {{ tr('capable of adapting to different
+      restaurant behaviors.', 'capable de s’adapter à différents comportements métier.') }}
     </p>
 
     <div class="cr-vision-grid">
       <div class="cr-vision-card" appFadeIn>
         <span class="cr-vision-icon">🏢</span>
         <h4>{{ tr('Multi-Tenant', 'Multi-tenant') }}</h4>
-        <p>{{ tr('Single database, strict ownership isolation per restaurant entity.', 'Base unique avec isolation stricte de propriété par entité restaurant.') }}</p>
+        <p>{{ tr('Single database, strict ownership isolation per restaurant entity.', 'Base unique avec isolation
+          stricte de propriété par entité restaurant.') }}</p>
       </div>
       <div class="cr-vision-card" appFadeIn>
         <span class="cr-vision-icon">⚡</span>
         <h4>{{ tr('Real-Time', 'Temps réel') }}</h4>
-        <p>{{ tr('WebSocket-driven live updates for orders, status, and waiter calls.', 'Mises à jour live via WebSocket pour commandes, statuts et appels serveur.') }}</p>
+        <p>{{ tr('WebSocket-driven live updates for orders, status, and waiter calls.', 'Mises à jour live via WebSocket
+          pour commandes, statuts et appels serveur.') }}</p>
       </div>
       <div class="cr-vision-card" appFadeIn>
         <span class="cr-vision-icon">🧩</span>
         <h4>{{ tr('Modular Domain', 'Domaine modulaire') }}</h4>
-        <p>{{ tr('Feature-gated subsystems — enable or disable without breaking core flow.', 'Sous-systèmes activables — activer/désactiver sans casser le flux cœur.') }}</p>
+        <p>{{ tr('Feature-gated subsystems — enable or disable without breaking core flow.', 'Sous-systèmes activables —
+          activer/désactiver sans casser le flux cœur.') }}</p>
       </div>
       <div class="cr-vision-card" appFadeIn>
         <span class="cr-vision-icon">🐳</span>
         <h4>{{ tr('Production Infra', 'Infra production') }}</h4>
-        <p>{{ tr('Dockerized stack with monitoring, alerting, and automated backups.', 'Stack Dockerisée avec monitoring, alerting et sauvegardes automatisées.') }}</p>
+        <p>{{ tr('Dockerized stack with monitoring, alerting, and automated backups.', 'Stack Dockerisée avec
+          monitoring, alerting et sauvegardes automatisées.') }}</p>
       </div>
     </div>
+
+    <!-- By the Numbers -->
+    <div class="cr-numbers-panel" appFadeIn>
+      <p class="cr-numbers-label">{{ tr('By the Numbers', 'En chiffres') }}</p>
+      <div class="cr-numbers-grid">
+        <div class="cr-number-item">
+          <span class="cr-number-value">44</span>
+          <span class="cr-number-desc">{{ tr('REST Controllers', 'Contrôleurs REST') }}</span>
+        </div>
+        <div class="cr-number-item">
+          <span class="cr-number-value">55</span>
+          <span class="cr-number-desc">{{ tr('Service Classes', 'Classes de service') }}</span>
+        </div>
+        <div class="cr-number-item">
+          <span class="cr-number-value">59</span>
+          <span class="cr-number-desc">{{ tr('Domain Entities', 'Entités de domaine') }}</span>
+        </div>
+        <div class="cr-number-item">
+          <span class="cr-number-value">128</span>
+          <span class="cr-number-desc">{{ tr('DTOs', 'DTOs') }}</span>
+        </div>
+        <div class="cr-number-item">
+          <span class="cr-number-value">14</span>
+          <span class="cr-number-desc">{{ tr('Docker Services', 'Services Docker') }}</span>
+        </div>
+        <div class="cr-number-item">
+          <span class="cr-number-value">12</span>
+          <span class="cr-number-desc">{{ tr('Notification Services', 'Services de notification') }}</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -150,28 +249,33 @@
             <span class="cr-detail-marker"></span>
             <div>
               <strong>{{ tr('Single PostgreSQL DB', 'Base PostgreSQL unique') }}</strong>
-              <p>{{ tr('Shared database with tenant isolation by foreign key ownership chains.', 'Base partagée avec isolation tenant via chaînes de clés étrangères de propriété.') }}</p>
+              <p>{{ tr('Shared database with tenant isolation by foreign key ownership chains.', 'Base partagée avec
+                isolation tenant via chaînes de clés étrangères de propriété.') }}</p>
             </div>
           </div>
           <div class="cr-detail-item">
             <span class="cr-detail-marker"></span>
             <div>
               <strong>{{ tr('Ownership Validation', 'Validation de propriété') }}</strong>
-              <p>{{ tr('Authorization beyond roles — every resource verified against restaurant ownership.', 'Autorisation au-delà des rôles — chaque ressource est vérifiée contre la propriété restaurant.') }}</p>
+              <p>{{ tr('Authorization beyond roles — every resource verified against restaurant ownership.',
+                'Autorisation au-delà des rôles — chaque ressource est vérifiée contre la propriété restaurant.') }}</p>
             </div>
           </div>
           <div class="cr-detail-item">
             <span class="cr-detail-marker"></span>
             <div>
               <strong>{{ tr('Flyway Migrations', 'Migrations Flyway') }}</strong>
-              <p>{{ tr('Controlled forward/rollback migrations. Hibernate validates only — no auto schema generation.', 'Migrations contrôlées aller/retour. Hibernate valide uniquement — pas de génération auto du schéma.') }}</p>
+              <p>{{ tr('Controlled forward/rollback migrations. Hibernate validates only — no auto schema generation.',
+                'Migrations contrôlées aller/retour. Hibernate valide uniquement — pas de génération auto du schéma.')
+                }}</p>
             </div>
           </div>
           <div class="cr-detail-item">
             <span class="cr-detail-marker"></span>
             <div>
               <strong>{{ tr('Production Discipline', 'Discipline production') }}</strong>
-              <p><code>ddl-auto=validate</code> {{ tr('enforcing schema discipline in production environments.', 'imposant la discipline schéma en environnement production.') }}</p>
+              <p><code>ddl-auto=validate</code> {{ tr('enforcing schema discipline in production environments.',
+                'imposant la discipline schéma en environnement production.') }}</p>
             </div>
           </div>
         </div>
@@ -219,9 +323,13 @@
     <h2 class="cr-heading">{{ tr('Feature-Driven Domain Architecture', 'Architecture orientée fonctionnalités') }}</h2>
 
     <p class="cr-body">
-      {{ tr('Enabling optional subsystems without breaking order consistency.', 'Activer des sous-systèmes optionnels sans casser la cohérence des commandes.') }}
-      {{ tr('Each module can be', 'Chaque module peut être') }} <strong>{{ tr('enabled or disabled via configuration', 'activé ou désactivé via configuration') }}</strong>
-      — {{ tr('all branching logic remains', 'toute la logique conditionnelle reste') }} <strong>{{ tr('transaction-safe', 'transaction-safe') }}</strong> {{ tr('and centralized within the service layer.', 'et centralisée dans la couche service.') }}
+      {{ tr('Enabling optional subsystems without breaking order consistency.', 'Activer des sous-systèmes optionnels
+      sans casser la cohérence des commandes.') }}
+      {{ tr('Each module can be', 'Chaque module peut être') }} <strong>{{ tr('enabled or disabled via configuration',
+        'activé ou désactivé via configuration') }}</strong>
+      — {{ tr('all branching logic remains', 'toute la logique conditionnelle reste') }} <strong>{{
+        tr('transaction-safe', 'transaction-safe') }}</strong> {{ tr('and centralized within the service layer.', 'et
+      centralisée dans la couche service.') }}
     </p>
 
     <div class="cr-domain-flow">
@@ -243,7 +351,8 @@
             <span>{{ tr('Stock Management', 'Gestion de stock') }}</span>
           </div>
           <p class="cr-branch-desc">
-            {{ tr('Auto-deducts ingredients via recipes.', 'Déduction auto des ingrédients via recettes.') }}<br>{{ tr('Block or allow negative stock.', 'Blocage ou autorisation de stock négatif.') }}
+            {{ tr('Auto-deducts ingredients via recipes.', 'Déduction auto des ingrédients via recettes.') }}<br>{{
+            tr('Block or allow negative stock.', 'Blocage ou autorisation de stock négatif.') }}
           </p>
         </div>
         <div class="cr-branch">
@@ -254,7 +363,8 @@
             <span>{{ tr('Shift Management', 'Gestion des shifts') }}</span>
           </div>
           <p class="cr-branch-desc">
-            {{ tr('Staff scheduling and shift-based operations.', 'Planification du staff et opérations basées sur les shifts.') }}
+            {{ tr('Staff scheduling and shift-based operations.', 'Planification du staff et opérations basées sur les
+            shifts.') }}
           </p>
         </div>
         <div class="cr-branch">
@@ -265,7 +375,8 @@
             <span>{{ tr('Reservation System', 'Système de réservation') }}</span>
           </div>
           <p class="cr-branch-desc">
-            {{ tr('Table booking with real-time availability.', 'Réservation de table avec disponibilité temps réel.') }}
+            {{ tr('Table booking with real-time availability.', 'Réservation de table avec disponibilité temps réel.')
+            }}
           </p>
         </div>
         <div class="cr-branch">
@@ -288,8 +399,12 @@
       <div>
         <strong>{{ tr('Transactional Integrity', 'Intégrité transactionnelle') }}</strong>
         <p>
-          {{ tr('Order creation touches multiple aggregates — Orders, Items, Recipes, Ingredients, Stock Records.', 'La création de commande touche plusieurs agrégats — commandes, items, recettes, ingrédients, enregistrements de stock.') }}
-          {{ tr('All wrapped in', 'Le tout encapsulé dans des méthodes service') }} <code>&#64;Transactional</code>. {{ tr('If any validation fails, the entire transaction rolls back.', 'Si une validation échoue, toute la transaction est rollback.') }}
+          {{ tr('Order creation touches multiple aggregates — Orders, Items, Recipes, Ingredients, Stock Records.', 'La
+          création de commande touche plusieurs agrégats — commandes, items, recettes, ingrédients, enregistrements de
+          stock.') }}
+          {{ tr('All wrapped in', 'Le tout encapsulé dans des méthodes service') }} <code>&#64;Transactional</code>. {{
+          tr('If any validation fails, the entire transaction rolls back.', 'Si une validation échoue, toute la
+          transaction est rollback.') }}
         </p>
       </div>
     </div>
@@ -310,23 +425,30 @@
         <ul class="cr-check-list">
           <li>
             <span class="cr-check">✓</span>
-            <div><strong>{{ tr('JWT Access & Refresh Tokens', 'Tokens JWT Access & Refresh') }}</strong> — {{ tr('Stateless authentication with secure rotation', 'Authentification stateless avec rotation sécurisée') }}</div>
+            <div><strong>{{ tr('JWT Access & Refresh Tokens', 'Tokens JWT Access & Refresh') }}</strong> — {{
+              tr('Stateless authentication with secure rotation', 'Authentification stateless avec rotation sécurisée')
+              }}</div>
           </li>
           <li>
             <span class="cr-check">✓</span>
-            <div><strong>{{ tr('Custom JWT Filter', 'Filtre JWT personnalisé') }}</strong> — {{ tr('Interception et validation fines des requêtes', 'Interception et validation fines des requêtes') }}</div>
+            <div><strong>{{ tr('Custom JWT Filter', 'Filtre JWT personnalisé') }}</strong> — {{ tr('Interception et
+              validation fines des requêtes', 'Interception et validation fines des requêtes') }}</div>
           </li>
           <li>
             <span class="cr-check">✓</span>
-            <div><strong>{{ tr('Role + Ownership Validation', 'Validation rôle + propriété') }}</strong> — {{ tr('Actions verified against restaurant ownership', 'Actions vérifiées contre la propriété restaurant') }}</div>
+            <div><strong>{{ tr('Role + Ownership Validation', 'Validation rôle + propriété') }}</strong> — {{
+              tr('Actions verified against restaurant ownership', 'Actions vérifiées contre la propriété restaurant') }}
+            </div>
           </li>
           <li>
             <span class="cr-check">✓</span>
-            <div><strong>{{ tr('Rate Limiting', 'Rate limiting') }}</strong> — {{ tr('Throttling par bucket pour prévenir les abus', 'Throttling par bucket pour prévenir les abus') }}</div>
+            <div><strong>{{ tr('Rate Limiting', 'Rate limiting') }}</strong> — {{ tr('Throttling par bucket pour
+              prévenir les abus', 'Throttling par bucket pour prévenir les abus') }}</div>
           </li>
           <li>
             <span class="cr-check">✓</span>
-            <div><strong>{{ tr('Transactional Safety', 'Sécurité transactionnelle') }}</strong> — {{ tr('All mutations wrapped in atomic transactions', 'Toutes les mutations encapsulées en transactions atomiques') }}</div>
+            <div><strong>{{ tr('Transactional Safety', 'Sécurité transactionnelle') }}</strong> — {{ tr('All mutations
+              wrapped in atomic transactions', 'Toutes les mutations encapsulées en transactions atomiques') }}</div>
           </li>
         </ul>
       </div>
@@ -362,7 +484,8 @@
             </div>
           </div>
           <p class="cr-security-note">
-            {{ tr('Ownership validation prevents cross-tenant data leaks — even if the role permits the action.', 'La validation de propriété empêche les fuites inter-tenant — même si le rôle autorise l’action.') }}
+            {{ tr('Ownership validation prevents cross-tenant data leaks — even if the role permits the action.', 'La
+            validation de propriété empêche les fuites inter-tenant — même si le rôle autorise l’action.') }}
           </p>
         </div>
       </div>
@@ -378,21 +501,25 @@
     <h2 class="cr-heading light">{{ tr('Event-Driven Experience', 'Expérience pilotée par événements') }}</h2>
 
     <p class="cr-body light">
-      {{ tr('Separation between', 'Séparation entre') }} <strong>REST API</strong> {{ tr('for core operations and', 'pour les opérations cœur et') }} <strong>{{ tr('WebSocket layer', 'couche WebSocket') }}</strong>
-      {{ tr('for live synchronization — maintaining clarity while enabling responsive user experience.', 'pour la synchronisation live — clarté architecturale et UX réactive.') }}
+      {{ tr('Separation between', 'Séparation entre') }} <strong>REST API</strong> {{ tr('for core operations and',
+      'pour les opérations cœur et') }} <strong>{{ tr('WebSocket layer', 'couche WebSocket') }}</strong>
+      {{ tr('for live synchronization — maintaining clarity while enabling responsive user experience.', 'pour la
+      synchronisation live — clarté architecturale et UX réactive.') }}
     </p>
 
     <div class="cr-realtime-grid">
       <div class="cr-rt-card" appFadeIn>
         <div class="cr-rt-layer">REST API</div>
-        <p>{{ tr('Core CRUD operations, business logic, validation, persistence.', 'CRUD cœur, logique métier, validation, persistance.') }}</p>
+        <p>{{ tr('Core CRUD operations, business logic, validation, persistence.', 'CRUD cœur, logique métier,
+          validation, persistance.') }}</p>
       </div>
       <div class="cr-rt-bridge">
         <div class="cr-rt-pulse"></div>
       </div>
       <div class="cr-rt-card" appFadeIn>
         <div class="cr-rt-layer">{{ tr('WebSocket Events', 'Événements WebSocket') }}</div>
-        <p>{{ tr('Live synchronization, broadcast, real-time user experience.', 'Synchronisation live, broadcast, expérience temps réel.') }}</p>
+        <p>{{ tr('Live synchronization, broadcast, real-time user experience.', 'Synchronisation live, broadcast,
+          expérience temps réel.') }}</p>
       </div>
     </div>
 
@@ -422,11 +549,216 @@
 </section>
 
 
-<!-- ─── 7. OBSERVABILITY & MONITORING ─────────────────────── -->
+<!-- ─── 7. SOCIAL DISCOVERY LAYER ─────────────────────────── -->
+<section class="cr-section cr-section-light">
+  <div class="cr-container">
+    <div class="cr-two-col">
+
+      <!-- Left: Description -->
+      <div class="cr-col-text" appFadeIn>
+        <p class="cr-label">{{ tr('Social Architecture', 'Architecture Sociale') }}</p>
+        <h2 class="cr-heading">{{ tr('B2B2C Social Discovery Layer', 'Couche de découverte sociale B2B2C') }}</h2>
+
+        <p class="cr-body">
+          {{ tr('A localized social network embedded within the restaurant ecosystem, allowing diners to filter, swipe,
+          and match based on shared interests.', 'Un réseau social localisé intégré dans l\'écosystème du restaurant,
+          permettant aux clients de filtrer, swiper et matcher selon leurs intérêts communs.') }}
+        </p>
+
+        <ul class="cr-check-list">
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Algorithmic Matching', 'Matching Algorithmique') }}</strong> — {{ tr('Dynamic filters
+              for age ranges, location (city/country), and specific interests.', 'Filtres dynamiques par tranche d\'âge,
+              lieu (ville/pays) et intérêts spécifiques.') }}</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Real-Time Interaction', 'Interaction Temps Réel') }}</strong> — {{ tr('Immediate swipe
+              processing triggering real-time WebSocket match notifications.', 'Traitement immédiat des swipes
+              déclenchant des notifications de match en temps réel via WebSocket.') }}</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Encrypted Messaging', 'Messagerie Chiffrée') }}</strong> — {{ tr('Seamless transition
+              from matching to private end-to-end chat.', 'Transition fluide du matching vers un chat privé de bout en
+              bout.') }}</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Visual -->
+      <div class="cr-col-diagram" appFadeIn>
+        <div class="cr-social-visual">
+          <div class="cr-social-stack">
+            <div class="cr-social-card back"></div>
+            <div class="cr-social-card mid"></div>
+            <div class="cr-social-card front">
+              <div class="cr-sc-header">
+                <div class="cr-sc-avatar"></div>
+                <div>
+                  <div class="cr-sc-name">Sarah, 24</div>
+                  <div class="cr-sc-loc">{{ tr('Match', 'Match') }} 98%</div>
+                </div>
+              </div>
+              <div class="cr-sc-tags">
+                <span class="cr-sc-tag">Coffee</span>
+                <span class="cr-sc-tag">Jazz</span>
+                <span class="cr-sc-tag">Design</span>
+              </div>
+              <div class="cr-sc-actions">
+                <div class="cr-sc-btn nope">✗</div>
+                <div class="cr-sc-btn like">❤</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 8. EVENT ROUTING ENGINE ───────────────────────────── -->
+<section class="cr-section cr-section-alt">
+  <div class="cr-container">
+    <div class="cr-two-col">
+
+      <!-- Right: Visual (Reversed layout) -->
+      <div class="cr-col-diagram" appFadeIn style="order: 2;">
+        <div class="cr-route-visual">
+          <div class="cr-route-hub">
+            <span class="cr-route-icon">⚡</span>
+            <span class="cr-route-label">Event Bus</span>
+          </div>
+          <div class="cr-route-spokes">
+            <div class="cr-route-spoke"><span class="cr-rs-badge">Order</span></div>
+            <div class="cr-route-spoke"><span class="cr-rs-badge">Stock</span></div>
+            <div class="cr-route-spoke"><span class="cr-rs-badge">Staff</span></div>
+            <div class="cr-route-spoke"><span class="cr-rs-badge">Promo</span></div>
+            <div class="cr-route-spoke"><span class="cr-rs-badge">Loyalty</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left: Description (Reversed layout) -->
+      <div class="cr-col-text" appFadeIn style="order: 1;">
+        <p class="cr-label">{{ tr('Messaging Infrastructure', 'Infrastructure de Messagerie') }}</p>
+        <h2 class="cr-heading">{{ tr('12-Channel Event Routing Engine', 'Moteur de routage d\'événements à 12 canaux')
+          }}</h2>
+
+        <p class="cr-body">
+          {{ tr('Applying Domain-Driven Design (DDD) to notifications. Events are strictly isolated into 12 dedicated
+          routing services, ensuring critical alerts are never blocked.', 'Application du Domain-Driven Design (DDD) aux
+          notifications. Les événements sont strictement isolés dans 12 services de routage dédiés, garantissant que les
+          alertes critiques ne soient jamais bloquées.') }}
+        </p>
+
+        <ul class="cr-check-list">
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Domain Isolation', 'Isolation de Domaine') }}</strong> — {{ tr('Stock alerts, Waiter
+              calls, and Order broadcasts run on independent logic paths.', 'Les alertes de stock, appels serveur et
+              diffusions de commandes fonctionnent sur des chemins logiques indépendants.') }}</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Multi-Transport Delivery', 'Livraison Multi-Transport') }}</strong> — {{ tr('Dynamic
+              fallback between WebSocket, Firebase FCM Push, and direct Email.', 'Fallback dynamique entre WebSocket,
+              FCM Push (Firebase) et Email direct.') }}</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Idempotent Processing', 'Traitement Idempotent') }}</strong> — {{ tr('Ensures duplicate
+              events are swallowed and users never receive duplicate spam.', 'Garantit l\'absorption des événements
+              dupliqués pour éviter le spam aux utilisateurs.') }}</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 7. AI OCR INTEGRATION ─────────────────────────────── -->
+<section class="cr-section cr-section-alt">
+  <div class="cr-container">
+    <div class="cr-two-col">
+
+      <!-- Left: Description -->
+      <div class="cr-col-text" appFadeIn>
+        <p class="cr-label">{{ tr('AI Service', 'Service IA') }}</p>
+        <h2 class="cr-heading">{{ tr('LLM-Powered Menu Extraction', 'Extraction de menu propulsée par LLM') }}</h2>
+
+        <p class="cr-body">
+          {{ tr('A dedicated Python microservice leveraging the Groq LLM API to extract structured menu data from
+          unstructured images.', 'Un microservice Python dédié utilisant l\'API Groq LLM pour extraire des données
+          structurées de menus depuis des images.') }}
+        </p>
+
+        <ul class="cr-check-list">
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Isolated Architecture', 'Architecture isolée') }}</strong> — {{ tr('Runs in its own
+              Docker container, completely decoupled from the core Java backend.', 'Tourne dans son propre conteneur
+              Docker, totalement découplé du backend Java.') }}</div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Automated Onboarding', 'Onboarding automatisé') }}</strong> — {{ tr('Restaurants upload
+              a photo of their paper menu, and the AI categorizes items and prices instantly.', 'Les restaurants
+              uploident une photo de leur menu papier, et l\'IA catégorise les articles et les prix instantanément.') }}
+            </div>
+          </li>
+          <li>
+            <span class="cr-check">✓</span>
+            <div><strong>{{ tr('Groq Inference', 'Inférence Groq') }}</strong> — {{ tr('Utilizes ultra-fast LPU
+              inference for real-time text extraction and JSON structuring.', 'Utilise l\'inférence LPU ultra-rapide
+              pour l\'extraction de texte en temps réel et la structuration JSON.') }}</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Visual -->
+      <div class="cr-ai-visual" appFadeIn>
+        <div class="cr-ai-flow">
+          <div class="cr-ai-node input">
+            <span class="cr-ai-icon">📸</span>
+            <span class="cr-ai-label">{{ tr('Menu Image', 'Image Menu') }}</span>
+          </div>
+          <div class="cr-ai-arrow">→</div>
+          <div class="cr-ai-node service">
+            <span class="cr-ai-badge">Python</span>
+            <span class="cr-ai-icon">🤖</span>
+            <span class="cr-ai-label">OCR Microservice</span>
+          </div>
+          <div class="cr-ai-arrow">→</div>
+          <div class="cr-ai-node groq">
+            <span class="cr-ai-badge">LLM</span>
+            <span class="cr-ai-icon">⚡</span>
+            <span class="cr-ai-label">Groq API</span>
+          </div>
+          <div class="cr-ai-arrow">↓</div>
+          <div class="cr-ai-node output">
+            <span class="cr-ai-icon">📋</span>
+            <span class="cr-ai-label">{{ tr('Structured JSON Catalog', 'Catalogue JSON Structuré') }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 8. OBSERVABILITY & MONITORING ─────────────────────── -->
 <section class="cr-section cr-section-light">
   <div class="cr-container" appFadeIn>
     <p class="cr-label">{{ tr('Observability', 'Observabilité') }}</p>
-    <h2 class="cr-heading">{{ tr('Production-Grade Observability Stack', 'Stack d\'observabilité de niveau production') }}</h2>
+    <h2 class="cr-heading">{{ tr('Production-Grade Observability Stack', 'Stack d\'observabilité de niveau production')
+      }}</h2>
 
     <div class="cr-obs-layout">
       <!-- Layered diagram -->
@@ -462,7 +794,8 @@
           </div>
           <div class="cr-obs-source">
             <span class="cr-obs-src-dot"></span>
-            <span><strong>PostgreSQL Exporter</strong> — {{ tr('Database metrics', 'Métriques base de données') }}</span>
+            <span><strong>PostgreSQL Exporter</strong> — {{ tr('Database metrics', 'Métriques base de données')
+              }}</span>
           </div>
           <div class="cr-obs-source">
             <span class="cr-obs-src-dot"></span>
@@ -470,7 +803,8 @@
           </div>
           <div class="cr-obs-source">
             <span class="cr-obs-src-dot"></span>
-            <span><strong>cAdvisor</strong> — {{ tr('Docker container metrics', 'Métriques des conteneurs Docker') }}</span>
+            <span><strong>cAdvisor</strong> — {{ tr('Docker container metrics', 'Métriques des conteneurs Docker')
+              }}</span>
           </div>
           <div class="cr-obs-source">
             <span class="cr-obs-src-dot"></span>
@@ -493,17 +827,28 @@
         <h2 class="cr-heading">{{ tr('Dockerized Production Stack', 'Stack production Dockerisée') }}</h2>
 
         <ul class="cr-deploy-list">
-          <li><strong>Docker Compose</strong> — {{ tr('Full system orchestration', 'Orchestration complète du système') }}</li>
-          <li><strong>{{ tr('Bridge Network', 'Réseau bridge') }}</strong> — {{ tr('Service-level isolation', 'Isolation au niveau service') }}</li>
-          <li><strong>{{ tr('Health Checks', 'Health checks') }}</strong> — {{ tr('Container readiness verification', 'Vérification de disponibilité conteneur') }}</li>
-          <li><strong>{{ tr('Persistent Volumes', 'Volumes persistants') }}</strong> — {{ tr('Data & log durability', 'Durabilité des données et logs') }}</li>
-          <li><strong>{{ tr('Automated Backups', 'Sauvegardes automatisées') }}</strong> — {{ tr('Scheduled database snapshots', 'Snapshots planifiés de base') }}</li>
-          <li><strong>{{ tr('Local-Bound Ports', 'Ports liés en local') }}</strong> — 127.0.0.1 {{ tr('with reverse proxy exposure', 'avec exposition via reverse proxy') }}</li>
+          <li><strong>Docker Compose</strong> — {{ tr('Full system orchestration', 'Orchestration complète du système')
+            }}</li>
+          <li><strong>{{ tr('Bridge Network', 'Réseau bridge') }}</strong> — {{ tr('Service-level isolation', 'Isolation
+            au niveau service') }}</li>
+          <li><strong>{{ tr('Health Checks', 'Health checks') }}</strong> — {{ tr('Container readiness verification',
+            'Vérification de disponibilité conteneur') }}</li>
+          <li><strong>{{ tr('Persistent Volumes', 'Volumes persistants') }}</strong> — {{ tr('Data & log durability',
+            'Durabilité des données et logs') }}</li>
+          <li><strong>{{ tr('Automated Backups', 'Sauvegardes automatisées') }}</strong> — {{ tr('Scheduled database
+            snapshots', 'Snapshots planifiés de base') }}</li>
+          <li><strong>{{ tr('Local-Bound Ports', 'Ports liés en local') }}</strong> — 127.0.0.1 {{ tr('with reverse
+            proxy exposure', 'avec exposition via reverse proxy') }}</li>
         </ul>
 
         <div class="cr-deploy-note">
           <span class="cr-deploy-note-icon">ℹ</span>
-          {{ tr('Previously deployed on VPS with full Dockerized infrastructure. Currently offline due to hosting constraints.', 'Précédemment déployé sur VPS avec infrastructure Docker complète. Actuellement hors ligne pour contraintes d\'hébergement.') }}
+          {{ tr('Production-validated: this system was deployed and served live traffic on a VPS. Currently offline for
+          hosting cost reasons, but the full infrastructure (Docker Compose, Nginx, Prometheus, Grafana, Alertmanager)
+          is preserved and fully reproducible.', 'Validé en production : ce système a été déployé et a servi du trafic
+          réel sur un VPS. Actuellement hors ligne pour des raisons de coût d’hébergement, mais l’infrastructure
+          complète (Docker Compose, Nginx, Prometheus, Grafana, Alertmanager) est préservée et intégralement
+          reproductible.') }}
         </div>
       </div>
 
@@ -546,30 +891,40 @@
     <h2 class="cr-heading">{{ tr('What Was Hard', 'Ce qui était difficile') }}</h2>
 
     <p class="cr-body">
-      {{ tr('The most complex problem was not feature implementation — it was', 'Le problème le plus complexe n’était pas l’implémentation de fonctionnalités — c’était la') }}
-      <strong>{{ tr('architectural modularization', 'modularisation architecturale') }}</strong>. {{ tr('Designing a domain capable of toggling entire subsystems while preserving transactional integrity and code clarity.', 'Concevoir un domaine capable d’activer/désactiver des sous-systèmes entiers tout en préservant l’intégrité transactionnelle et la clarté du code.') }}
+      {{ tr('The most complex problem was not feature implementation — it was', 'Le problème le plus complexe n’était
+      pas l’implémentation de fonctionnalités — c’était la') }}
+      <strong>{{ tr('architectural modularization', 'modularisation architecturale') }}</strong>. {{ tr('Designing a
+      domain capable of toggling entire subsystems while preserving transactional integrity and code clarity.',
+      'Concevoir un domaine capable d’activer/désactiver des sous-systèmes entiers tout en préservant l’intégrité
+      transactionnelle et la clarté du code.') }}
     </p>
 
     <div class="cr-challenges-grid">
       <div class="cr-challenge" appFadeIn>
         <span class="cr-challenge-num">01</span>
         <h4>{{ tr('Modular Subsystems', 'Sous-systèmes modulaires') }}</h4>
-        <p>{{ tr('Enabling and disabling features (stock, shifts, reservations) without breaking core order flow.', 'Activer/désactiver des fonctionnalités (stock, shifts, réservations) sans casser le flux cœur.') }}</p>
+        <p>{{ tr('Enabling and disabling features (stock, shifts, reservations) without breaking core order flow.',
+          'Activer/désactiver des fonctionnalités (stock, shifts, réservations) sans casser le flux cœur.') }}</p>
       </div>
       <div class="cr-challenge" appFadeIn>
         <span class="cr-challenge-num">02</span>
         <h4>{{ tr('No Spaghetti Branching', 'Pas de branching spaghetti') }}</h4>
-        <p>{{ tr('Keeping conditional logic clean and centralized within the service layer, avoiding scattered if-else chains.', 'Garder une logique conditionnelle propre et centralisée dans la couche service, sans if/else dispersés.') }}</p>
+        <p>{{ tr('Keeping conditional logic clean and centralized within the service layer, avoiding scattered if-else
+          chains.', 'Garder une logique conditionnelle propre et centralisée dans la couche service, sans if/else
+          dispersés.') }}</p>
       </div>
       <div class="cr-challenge" appFadeIn>
         <span class="cr-challenge-num">03</span>
         <h4>{{ tr('Transaction Safety', 'Sécurité transactionnelle') }}</h4>
-        <p>{{ tr('Ensuring rollback consistency across multi-aggregate operations when any validation fails.', 'Garantir la cohérence du rollback sur des opérations multi-agrégats quand une validation échoue.') }}</p>
+        <p>{{ tr('Ensuring rollback consistency across multi-aggregate operations when any validation fails.', 'Garantir
+          la cohérence du rollback sur des opérations multi-agrégats quand une validation échoue.') }}</p>
       </div>
       <div class="cr-challenge" appFadeIn>
         <span class="cr-challenge-num">04</span>
         <h4>{{ tr('Feature Flag Clarity', 'Clarté des feature flags') }}</h4>
-        <p>{{ tr('Maintaining readable, maintainable code while supporting dynamic behavior changes per restaurant.', 'Maintenir un code lisible et maintenable tout en supportant des comportements dynamiques par restaurant.') }}</p>
+        <p>{{ tr('Maintaining readable, maintainable code while supporting dynamic behavior changes per restaurant.',
+          'Maintenir un code lisible et maintenable tout en supportant des comportements dynamiques par restaurant.') }}
+        </p>
       </div>
     </div>
   </div>
@@ -586,21 +941,32 @@
       <div class="cr-lesson-card" appFadeIn>
         <h4>{{ tr("What I'd improve", 'Ce que j\'améliorerais') }}</h4>
         <ul>
-          <li>{{ tr('Implement', 'Implémenter') }} <strong>{{ tr('ingredient reservation', 'la réservation d\'ingrédients') }}</strong> {{ tr('for concurrency safety', 'pour la sécurité de concurrence') }}</li>
-          <li>{{ tr('Introduce', 'Introduire des') }} <strong>{{ tr('domain events', 'événements de domaine') }}</strong> {{ tr('for cleaner module decoupling', 'pour un découplage plus propre') }}</li>
-          <li>{{ tr('Add', 'Ajouter un pipeline') }} <strong>CI/CD</strong> {{ tr('automation pipeline', 'd\'automatisation') }}</li>
-          <li>{{ tr('Improve', 'Améliorer') }} <strong>{{ tr('structured logging', 'le logging structuré') }}</strong> & {{ tr('tracing', 'le tracing') }}</li>
-          <li>{{ tr('Consider splitting heavy subsystems into', 'Envisager de découper les sous-systèmes lourds en') }} <strong>microservices</strong> {{ tr('if scale demands', 'si l\'échelle l\'exige') }}</li>
+          <li>{{ tr('Implement', 'Implémenter') }} <strong>{{ tr('ingredient reservation', 'la réservation
+              d\'ingrédients') }}</strong> {{ tr('for concurrency safety', 'pour la sécurité de concurrence') }}</li>
+          <li>{{ tr('Introduce', 'Introduire des') }} <strong>{{ tr('domain events', 'événements de domaine')
+              }}</strong> {{ tr('for cleaner module decoupling', 'pour un découplage plus propre') }}</li>
+          <li>{{ tr('Add', 'Ajouter un pipeline') }} <strong>CI/CD</strong> {{ tr('automation pipeline',
+            'd\'automatisation') }}</li>
+          <li>{{ tr('Improve', 'Améliorer') }} <strong>{{ tr('structured logging', 'le logging structuré') }}</strong> &
+            {{ tr('tracing', 'le tracing') }}</li>
+          <li>{{ tr('Consider splitting heavy subsystems into', 'Envisager de découper les sous-systèmes lourds en') }}
+            <strong>microservices</strong> {{ tr('if scale demands', 'si l\'échelle l\'exige') }}
+          </li>
         </ul>
       </div>
       <div class="cr-lesson-card" appFadeIn>
         <h4>{{ tr('What I learned', 'Ce que j\'ai appris') }}</h4>
         <ul>
-          <li><strong>{{ tr('Multi-tenant isolation', 'Isolation multi-tenant') }}</strong> {{ tr('requires discipline at every query level', 'exige de la discipline à chaque niveau de requête') }}</li>
-          <li><strong>{{ tr('Feature-gated architecture', 'Architecture feature-gated') }}</strong> {{ tr('demands clean service boundaries', 'demande des frontières de service propres') }}</li>
-          <li><strong>{{ tr('Production monitoring', 'Monitoring production') }}</strong> {{ tr('is not optional — it\'s foundational', 'n\'est pas optionnel — c\'est fondamental') }}</li>
-          <li><strong>Docker Compose</strong> {{ tr('can power real production single-server deployments', 'peut supporter de vrais déploiements single-server en production') }}</li>
-          <li><strong>{{ tr('Schema control', 'Contrôle du schéma') }}</strong> (Flyway) {{ tr('prevents silent production breakage', 'évite les casses silencieuses en production') }}</li>
+          <li><strong>{{ tr('Multi-tenant isolation', 'Isolation multi-tenant') }}</strong> {{ tr('requires discipline
+            at every query level', 'exige de la discipline à chaque niveau de requête') }}</li>
+          <li><strong>{{ tr('Feature-gated architecture', 'Architecture feature-gated') }}</strong> {{ tr('demands clean
+            service boundaries', 'demande des frontières de service propres') }}</li>
+          <li><strong>{{ tr('Production monitoring', 'Monitoring production') }}</strong> {{ tr('is not optional — it\'s
+            foundational', 'n\'est pas optionnel — c\'est fondamental') }}</li>
+          <li><strong>Docker Compose</strong> {{ tr('can power real production single-server deployments', 'peut
+            supporter de vrais déploiements single-server en production') }}</li>
+          <li><strong>{{ tr('Schema control', 'Contrôle du schéma') }}</strong> (Flyway) {{ tr('prevents silent
+            production breakage', 'évite les casses silencieuses en production') }}</li>
         </ul>
       </div>
     </div>
@@ -615,28 +981,32 @@
     <h2 class="cr-heading">{{ tr('Screenshots & Evidence', 'Captures et preuves') }}</h2>
 
     <div class="cr-gallery">
-      <div class="cr-gallery-item" (click)="openLightbox('assets/projects/caferesto-admin.png', tr('Admin Dashboard', 'Dashboard Admin'))">
+      <div class="cr-gallery-item"
+        (click)="openLightbox('assets/projects/caferesto-admin.png', tr('Admin Dashboard', 'Dashboard Admin'))">
         <div class="cr-gallery-placeholder">
           <span class="cr-gallery-icon">🖥</span>
           <span class="cr-gallery-label">{{ tr('Admin Dashboard', 'Dashboard Admin') }}</span>
         </div>
         <div class="cr-gallery-overlay">{{ tr('Click to expand', 'Cliquer pour agrandir') }}</div>
       </div>
-      <div class="cr-gallery-item" (click)="openLightbox('assets/projects/caferesto-client.png', tr('Client Ordering', 'Commande client'))">
+      <div class="cr-gallery-item"
+        (click)="openLightbox('assets/projects/caferesto-client.png', tr('Client Ordering', 'Commande client'))">
         <div class="cr-gallery-placeholder">
           <span class="cr-gallery-icon">📱</span>
           <span class="cr-gallery-label">{{ tr('Client Ordering', 'Commande client') }}</span>
         </div>
         <div class="cr-gallery-overlay">{{ tr('Click to expand', 'Cliquer pour agrandir') }}</div>
       </div>
-      <div class="cr-gallery-item" (click)="openLightbox('assets/projects/caferesto-grafana.png', tr('Grafana Dashboard', 'Dashboard Grafana'))">
+      <div class="cr-gallery-item"
+        (click)="openLightbox('assets/projects/caferesto-grafana.png', tr('Grafana Dashboard', 'Dashboard Grafana'))">
         <div class="cr-gallery-placeholder">
           <span class="cr-gallery-icon">📊</span>
           <span class="cr-gallery-label">{{ tr('Grafana Dashboard', 'Dashboard Grafana') }}</span>
         </div>
         <div class="cr-gallery-overlay">{{ tr('Click to expand', 'Cliquer pour agrandir') }}</div>
       </div>
-      <div class="cr-gallery-item" (click)="openLightbox('assets/projects/caferesto-schema.png', tr('Database Schema', 'Schéma base de données'))">
+      <div class="cr-gallery-item"
+        (click)="openLightbox('assets/projects/caferesto-schema.png', tr('Database Schema', 'Schéma base de données'))">
         <div class="cr-gallery-placeholder">
           <span class="cr-gallery-icon">🗄</span>
           <span class="cr-gallery-label">{{ tr('Database Schema', 'Schéma base de données') }}</span>
@@ -646,7 +1016,8 @@
     </div>
 
     <p class="cr-gallery-note">
-      {{ tr('Screenshots will be added as the project visual assets are prepared.', 'Les captures seront ajoutées au fur et à mesure de la préparation des assets visuels.') }}
+      {{ tr('Screenshots will be added as the project visual assets are prepared.', 'Les captures seront ajoutées au fur
+      et à mesure de la préparation des assets visuels.') }}
     </p>
   </div>
 </section>
@@ -658,7 +1029,8 @@
     <div class="cr-nav-closure-inner" appFadeIn>
       <a routerLink="/projects/delivery-tracking" class="cr-nav-link cr-prev-link">
         <span class="cr-nav-direction">{{ i18n.t('detail.prevProject') }}</span>
-        <span class="cr-nav-project-name">{{ i18n.lang() === 'fr' ? 'SwiftDeliver — Gestion & suivi des livraisons' : 'SwiftDeliver — Delivery Management & Tracking' }}</span>
+        <span class="cr-nav-project-name">{{ i18n.lang() === 'fr' ? 'SwiftDeliver — Gestion & suivi des livraisons' :
+          'SwiftDeliver — Delivery Management & Tracking' }}</span>
       </a>
 
       <a routerLink="/" fragment="projects" class="cr-nav-link cr-back-link-center">
@@ -667,7 +1039,8 @@
 
       <a routerLink="/projects/document-marketplace" class="cr-nav-link cr-next-link">
         <span class="cr-nav-direction">{{ i18n.t('detail.nextProject') }}</span>
-        <span class="cr-nav-project-name">{{ i18n.lang() === 'fr' ? 'DocMarket — Marketplace de documents numériques' : 'DocMarket — Digital Document Marketplace' }}</span>
+        <span class="cr-nav-project-name">{{ i18n.lang() === 'fr' ? 'DocMarket — Marketplace de documents numériques' :
+          'DocMarket — Digital Document Marketplace' }}</span>
       </a>
     </div>
   </div>
@@ -676,11 +1049,11 @@
 
 <!-- ─── LIGHTBOX ──────────────────────────────────────────── -->
 @if (lightboxImage) {
-  <div class="cr-lightbox" (click)="closeLightbox()">
-    <div class="cr-lightbox-content" (click)="$event.stopPropagation()">
-      <button class="cr-lightbox-close" (click)="closeLightbox()" aria-label="Close lightbox">✕</button>
-      <img [src]="lightboxImage" [alt]="lightboxAlt" class="cr-lightbox-img" />
-      <p class="cr-lightbox-caption">{{ lightboxAlt }}</p>
-    </div>
+<div class="cr-lightbox" (click)="closeLightbox()">
+  <div class="cr-lightbox-content" (click)="$event.stopPropagation()">
+    <button class="cr-lightbox-close" (click)="closeLightbox()" aria-label="Close lightbox">✕</button>
+    <img [src]="lightboxImage" [alt]="lightboxAlt" class="cr-lightbox-img" />
+    <p class="cr-lightbox-caption">{{ lightboxAlt }}</p>
   </div>
+</div>
 }

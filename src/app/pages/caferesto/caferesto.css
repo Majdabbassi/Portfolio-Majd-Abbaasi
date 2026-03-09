@@ -14,6 +14,7 @@
     opacity: 0;
     transform: translateY(24px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -245,8 +246,15 @@
 }
 
 @keyframes cr-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .cr-role-badge {
@@ -441,6 +449,110 @@
   opacity: 0.8;
 }
 
+/* ─── Hero Architecture Diagram (CSS Flow) ─────────────── */
+.cr-sys-diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.cr-sys-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.cr-sys-node {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.cr-sys-node:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+.cr-sys-node.wide {
+  width: 100%;
+  max-width: 280px;
+}
+
+.cr-sys-icon {
+  font-size: 1rem;
+}
+
+.cr-sys-arrow-down {
+  color: var(--color-border-2);
+  font-size: 1.2rem;
+  line-height: 1;
+  animation: floatDown 2s ease-in-out infinite;
+}
+
+@keyframes floatDown {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+}
+
+/* Node Specifics */
+.cr-sys-row.users-row .cr-sys-node {
+  background: transparent;
+  border-style: dashed;
+  box-shadow: none;
+}
+
+.cr-sys-node.nginx {
+  background: rgba(5, 150, 105, 0.05);
+  border-color: rgba(5, 150, 105, 0.2);
+}
+
+.cr-sys-node.backend {
+  background: rgba(166, 139, 108, 0.1);
+  border-color: rgba(166, 139, 108, 0.3);
+}
+
+.cr-sys-node.ai {
+  background: rgba(99, 102, 241, 0.08);
+  /* Indigo for Python/AI */
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.cr-sys-node.data {
+  background: rgba(59, 130, 246, 0.05);
+  /* Blue for Data */
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.cr-sys-node.monitor {
+  background: transparent;
+  border-color: var(--color-border-2);
+}
+
 /* ═══════════════════════════════════════════════════════════
    2. VISION CARDS
    ═══════════════════════════════════════════════════════════ */
@@ -494,6 +606,73 @@
   line-height: 1.5;
   color: var(--color-text-2);
   margin: 0;
+}
+
+/* ─── By the Numbers Panel ───────────────────────────────── */
+.cr-numbers-panel {
+  margin-top: 3.5rem;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(166, 139, 108, 0.08), rgba(166, 139, 108, 0.02));
+  border: 1px solid rgba(166, 139, 108, 0.15);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.cr-numbers-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.cr-numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .cr-numbers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cr-numbers-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.cr-number-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cr-number-value {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 900;
+  color: var(--color-text);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-text-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cr-number-desc {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-2);
+  line-height: 1.3;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -738,6 +917,368 @@
 }
 
 /* ─── Callout ────────────────────────────────────────────── */
+.cr-deploy-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(166, 139, 108, 0.06);
+  border: 1px solid rgba(166, 139, 108, 0.15);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-2);
+}
+
+.cr-deploy-note-icon {
+  color: var(--color-accent);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   9. SOCIAL DISCOVERY VISUAL
+   ═══════════════════════════════════════════════════════════ */
+.cr-social-visual {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 350px;
+}
+
+.cr-social-stack {
+  position: relative;
+  width: 260px;
+  height: 320px;
+}
+
+.cr-social-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cr-social-card.back {
+  transform: translateY(20px) scale(0.9);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.cr-social-card.mid {
+  transform: translateY(10px) scale(0.95);
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.cr-social-card.front {
+  z-index: 3;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(145deg, var(--color-surface), var(--color-bg));
+  border: 1px solid rgba(166, 139, 108, 0.3);
+}
+
+.cr-sc-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cr-sc-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(166, 139, 108, 0.4), rgba(166, 139, 108, 0.1));
+  flex-shrink: 0;
+}
+
+.cr-sc-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 0.2rem;
+}
+
+.cr-sc-loc {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-success);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cr-sc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: auto;
+}
+
+.cr-sc-tag {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-text-2);
+  background: rgba(166, 139, 108, 0.08);
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  border: 1px solid rgba(166, 139, 108, 0.15);
+}
+
+.cr-sc-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.cr-sc-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.cr-sc-btn.nope {
+  color: #ef4444;
+  /* red */
+}
+
+.cr-sc-btn.like {
+  color: #10b981;
+  /* emerald */
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   10. EVENT ROUTING VISUAL
+   ═══════════════════════════════════════════════════════════ */
+.cr-route-visual {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.cr-route-hub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(166, 139, 108, 0.1);
+  border: 2px solid rgba(166, 139, 108, 0.4);
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(166, 139, 108, 0.15);
+}
+
+.cr-route-icon {
+  font-size: 1.75rem;
+  color: var(--color-accent);
+  margin-bottom: 0.2rem;
+}
+
+.cr-route-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+}
+
+.cr-route-spokes {
+  position: relative;
+  width: 180px;
+  height: 250px;
+  margin-left: -50px;
+}
+
+.cr-route-spoke {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(166, 139, 108, 0.5), rgba(166, 139, 108, 0));
+  transform-origin: left center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cr-route-spoke:nth-child(1) {
+  transform: translateY(125px) rotate(-45deg);
+  width: 140px;
+}
+
+.cr-route-spoke:nth-child(2) {
+  transform: translateY(125px) rotate(-15deg);
+  width: 170px;
+}
+
+.cr-route-spoke:nth-child(3) {
+  transform: translateY(125px) rotate(15deg);
+  width: 170px;
+}
+
+.cr-route-spoke:nth-child(4) {
+  transform: translateY(125px) rotate(45deg);
+  width: 140px;
+}
+
+.cr-route-spoke:nth-child(5) {
+  transform: translateY(125px) rotate(75deg);
+  width: 120px;
+}
+
+.cr-rs-badge {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--color-text-2);
+  transform: translateX(50%) rotate(calc(-1 * var(--rot)));
+  /* Negate rotation to keep text flat */
+}
+
+/* Fix text rotation visually using CSS vars isn't strictly necessary if it's minimal, but we'll apply it manually here */
+.cr-route-spoke:nth-child(1) .cr-rs-badge {
+  transform: rotate(45deg) translateX(10px);
+}
+
+.cr-route-spoke:nth-child(2) .cr-rs-badge {
+  transform: rotate(15deg) translateX(10px);
+}
+
+.cr-route-spoke:nth-child(3) .cr-rs-badge {
+  transform: rotate(-15deg) translateX(10px);
+}
+
+.cr-route-spoke:nth-child(4) .cr-rs-badge {
+  transform: rotate(-45deg) translateX(10px);
+}
+
+.cr-route-spoke:nth-child(5) .cr-rs-badge {
+  transform: rotate(-75deg) translateX(10px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   11. AI OCR VISUAL
+   ═══════════════════════════════════════════════════════════ */
+
+.cr-ai-visual {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cr-ai-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.cr-ai-node {
+  width: 100%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.cr-ai-node:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+.cr-ai-node.service {
+  background: rgba(99, 102, 241, 0.04);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.cr-ai-node.groq {
+  background: rgba(16, 185, 129, 0.04);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.cr-ai-node.output {
+  background: rgba(166, 139, 108, 0.06);
+  border-color: rgba(166, 139, 108, 0.3);
+}
+
+.cr-ai-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.cr-ai-icon {
+  font-size: 1.5rem;
+}
+
+.cr-ai-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.cr-ai-arrow {
+  font-size: 1.5rem;
+  color: var(--color-border-2);
+  line-height: 1;
+  animation: cr-pulse 2s infinite;
+}
+
 .cr-callout {
   display: flex;
   gap: 1rem;
@@ -952,8 +1493,17 @@
 }
 
 @keyframes cr-rt-glow {
-  0%, 100% { box-shadow: 0 0 8px rgba(166, 139, 108, 0.3); transform: scale(1); }
-  50% { box-shadow: 0 0 24px rgba(166, 139, 108, 0.7); transform: scale(1.2); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(166, 139, 108, 0.3);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(166, 139, 108, 0.7);
+    transform: scale(1.2);
+  }
 }
 
 .cr-rt-events {
@@ -1509,8 +2059,13 @@
 }
 
 @keyframes cr-lb-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .cr-lightbox-content {
@@ -1522,8 +2077,15 @@
 }
 
 @keyframes cr-lb-scale-in {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .cr-lightbox-close {

@@ -47,12 +47,6 @@
                     <p>
                         {{ i18n.t('hero.p1') }}
                     </p>
-                    <p style="margin-top: 1rem;">
-                        {{ i18n.t('hero.p2') }}
-                    </p>
-                    <p>
-                        {{ i18n.t('hero.p3') }}
-                    </p>
                 </div>
 
                 <!-- Credibility Strip -->
@@ -71,6 +65,13 @@
                         </svg>
                         <span>{{ i18n.t('hero.cred2') }}</span>
                     </div>
+                    <div class="credibility-item">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="credibility-icon">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                        <span>{{ i18n.t('hero.cred3') }}</span>
+                    </div>
                 </div>
 
                 <!-- CTA Buttons -->
@@ -84,7 +85,15 @@
                         </svg>
                         {{ i18n.t('hero.viewProjects') }}
                     </button>
-                    <button class="btn-outline" (click)="scrollToContact()" id="hero-contact">
+                    <a class="btn-outline" href="assets/cv-majd-abbassi.pdf" download id="hero-download-cv">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        {{ i18n.t('hero.downloadCv') }}
+                    </a>
+                    <button class="btn-ghost" (click)="scrollToContact()" id="hero-contact">
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                             <polyline points="22,6 12,13 2,6" />

@@ -78,6 +78,27 @@
     box-shadow: 0 4px 16px rgba(166, 139, 108, 0.2);
 }
 
+.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    color: var(--color-text-2);
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-ghost:hover {
+    color: var(--color-accent);
+    transform: translateY(-1px);
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;

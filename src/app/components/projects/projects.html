@@ -10,43 +10,37 @@
 
         <div class="projects-showcase" appFadeIn [class.is-routing]="focusedProjectId !== null">
             @if (masterProject; as project) {
-                <a
-                    [routerLink]="'/projects/' + project.id"
-                    class="project-card master-card group"
-                    [id]="project.id"
-                    [class.is-focused]="focusedProjectId === project.id"
-                    [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
-                    [style.--project-bg]="'url(' + project.backgroundImage + ')'"
-                    (click)="onProjectFocus($event, project.id)">
-                    <div class="project-content">
+            <a [routerLink]="'/projects/' + project.id" class="project-card master-card group" [id]="project.id"
+                [class.is-focused]="focusedProjectId === project.id"
+                [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
+                [style.--project-bg]="'url(' + project.backgroundImage + ')'"
+                (click)="onProjectFocus($event, project.id)">
+                <div class="project-content">
                         <span class="master-badge">{{ i18n.lang() === 'fr' ? 'Projet phare' : 'Featured Masterpiece' }}</span>
-                        <h3 class="project-title">{{ text(project.title) }}</h3>
-                        <p class="project-impact">{{ text(project.impact) }}</p>
-                        <div class="project-tech">
-                            @for (tech of project.techStack; track tech) {
-                            <span class="tech-tag">{{ tech }}</span>
-                            }
-                        </div>
+                    <h3 class="project-title">{{ text(project.title) }}</h3>
+                    <p class="project-impact">{{ text(project.impact) }}</p>
+                    <div class="project-tech">
+                        @for (tech of project.techStack; track tech) {
+                        <span class="tech-tag">{{ tech }}</span>
+                        }
                     </div>
+                </div>
 
-                    <div class="card-footer">
-                        <div class="project-action">
-                            {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
-                        </div>
-                        <div class="project-status">
-                            <span class="status-dot" [class]="project.status"></span>
-                            {{ getStatusLabel(project.status) }}
-                        </div>
+                <div class="card-footer">
+                    <div class="project-action">
+                        {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
                     </div>
-                </a>
+                    <div class="project-status">
+                        <span class="status-dot" [class]="project.status"></span>
+                        {{ getStatusLabel(project.status) }}
+                    </div>
+                </div>
+            </a>
             }
 
             <div class="projects-grid-secondary">
                 @for (project of secondaryProjects; track project.id) {
-                <a
-                    [routerLink]="'/projects/' + project.id"
-                    class="project-card compact-card group"
-                    [id]="project.id"
+                <a [routerLink]="'/projects/' + project.id" class="project-card compact-card group" [id]="project.id"
                     [class.is-focused]="focusedProjectId === project.id"
                     [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
                     [style.--project-bg]="'url(' + project.backgroundImage + ')'"
@@ -54,9 +48,6 @@
                     <div class="project-content">
                         <h3 class="project-title">{{ text(project.title) }}</h3>
                         <p class="project-impact">{{ text(project.impact) }}</p>
-                        @if (project.companyNote) {
-                            <p class="company-note">{{ text(project.companyNote) }}</p>
-                        }
                         <div class="project-tech">
                             @for (tech of project.techStack; track tech) {
                             <span class="tech-tag">{{ tech }}</span>
@@ -95,11 +86,8 @@
                 <div class="lab-strategies">
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>{{ i18n.lang() === 'fr' ? 'Proxy inverse Nginx (déploiement direct)' : 'Nginx reverse proxy (direct deployment)' }}</span>
-                    </div>
-                    <div class="strategy-item">
-                        <span class="strategy-icon">▸</span>
-                        <span>{{ i18n.lang() === 'fr' ? 'Configuration Apache HTTP Server' : 'Apache HTTP Server configuration' }}</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Proxy inverse Nginx (déploiement direct)' : 'Nginx reverse
+                            proxy (direct deployment)' }}</span>
                     </div>
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
@@ -107,18 +95,18 @@
                     </div>
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>{{ i18n.lang() === 'fr' ? 'Orchestration multi-services Docker Compose' : 'Docker Compose multi-service orchestration' }}</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Orchestration multi-services Docker Compose' : 'Docker Compose
+                            multi-service orchestration' }}</span>
                     </div>
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
-                        <span>{{ i18n.lang() === 'fr' ? 'Gestion des variables d\'environnement' : 'Environment variable management' }}</span>
-                    </div>
-                    <div class="strategy-item">
-                        <span class="strategy-icon">▸</span>
-                        <span>{{ i18n.lang() === 'fr' ? 'Tests de redémarrage des services et récupération après panne' : 'Service restart & failure recovery testing' }}</span>
+                        <span>{{ i18n.lang() === 'fr' ? 'Tests de redémarrage des services et récupération après panne'
+                            : 'Service restart & failure recovery testing' }}</span>
                     </div>
                 </div>
-                <p class="lab-footer">{{ i18n.t('projects.lab.footer') }}</p>
+                <p class="lab-footer">{{ i18n.lang() === 'fr' ? 'Conçu pour comprendre ce qui casse en production —
+                    avant que ce soit les utilisateurs qui le découvrent.' : 'Built to understand what breaks in
+                    production — before users find it.' }}</p>
             </div>
         </div>
 

@@ -172,3 +172,18 @@
     font-size: 0.8rem;
     line-height: 1.7;
 }
+
+/* ─── Location Badge ─────────────────────────────────────── */
+.contact-location-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.25rem;
+    padding: 0.35rem 0.9rem;
+    background: rgba(166, 139, 108, 0.07);
+    border: 1px solid rgba(166, 139, 108, 0.2);
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--color-text-2);
+}

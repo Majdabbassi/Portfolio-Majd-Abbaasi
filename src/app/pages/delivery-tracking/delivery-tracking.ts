@@ -12,7 +12,6 @@ interface ProjectDetail {
   status: ProjectStatus;
   role: string;
   techStack: string[];
-  companyNote?: string;
   context: {
     problem: string;
     constraints: string[];
