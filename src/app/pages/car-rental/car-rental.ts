@@ -58,146 +58,156 @@ export class CarRentalComponent {
 
   private readonly projectEn: ProjectDetail = {
     id: 'car-rental',
-    title: 'AutoRent — Vehicle Rental Management',
+    title: 'AutoRent — High-Visibility Fleet Management & Telemetry System',
     summary:
-      'In-development vehicle rental platform focused on booking lifecycle, fleet visibility, and conflict-free availability handling.',
+      'Advanced vehicle rental and fleet monitoring platform featuring real-time telemetry, automated booking lifecycles, and push-based operational visibility.',
     status: 'in-development',
     role: 'Full Stack Engineer',
-    techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'JWT'],
+    techStack: ['Java 17', 'Spring Boot 3.5', 'MySQL', 'Angular 18', 'WebPush (VAPID)', 'STOMP/WebSockets', 'JWT'],
     context: {
       problem:
-        'Manual rental workflows cause booking overlaps, weak fleet visibility, and operational delays.',
+        'Manual rental workflows and lack of real-time fleet visibility lead to booking overlaps and operational inefficiencies.',
       constraints: [
-        'Prevent overlapping bookings at data level',
-        'Track fleet availability and maintenance states',
-        'Maintain clean architecture while scope evolves',
+        'Enforce strict transactional integrity for conflict-free bookings',
+        'Handle high-frequency telemetry ingestion with low latency',
+        'Maintain a modular architecture for real-time notification scaling',
       ],
       goals: [
-        'Build robust booking workflow end-to-end',
-        'Keep architecture modular for iterative expansion',
-        'Prepare for deployment-ready infrastructure choices early',
+        'Construct a robust end-to-end booking and contract lifecycle',
+        'Implement live vehicle tracking and status broadcasting via WebSockets',
+        'Deliver actionable insights through an integrated telemetry dashboard',
       ],
     },
     architecture: {
-      diagramPlaceholder: 'Car Rental Architecture',
+      diagramPlaceholder: 'AutoRent System Architecture',
       bullets: [
-        'Service-layer orchestration for booking and fleet operations',
-        'Date-range availability logic with relational consistency',
-        'Admin and customer flows in one cohesive SPA',
+        'Real-time telemetry ingestion & broadcasting via WebSockets (STOMP) for live vehicle tracking.',
+        'VAPID Web Push notification system for instant booking and maintenance alerts.',
+        'Dynamic fleet orchestration dashboard with real-time analytics on revenue and asset health.',
+        'FullCalendar integration for visual booking lifecycle management (Rental → Contract → Billing).',
       ],
       highlights: [
-        { title: 'Booking Integrity', description: 'Conflict prevention at business and data layers.' },
-        { title: 'Iterative Design', description: 'Architecture evolving from production lessons learned.' },
+        { title: 'Real-Time Sync', description: 'Instant state propagation across the fleet monitoring dashboard.' },
+        { title: 'Reliable Booking', description: 'Date-range availability engine with hard relational constraints.' },
       ],
     },
     decisions: [
       {
-        title: 'PostgreSQL for Booking Constraints',
-        reasoning: 'Strong relational control simplifies integrity enforcement.',
-        tradeoffs: 'More explicit schema design work for robust consistency.',
+        title: 'STOMP over WebSocket for Live Data',
+        reasoning: 'Provides a structured sub-protocol for efficient telemetry broadcasting to management clients.',
+        tradeoffs: 'Higher initial connection overhead than plain REST polling.',
+      },
+      {
+        title: 'VAPID Web Push for Low-Latency Alerts',
+        reasoning: 'Ensures operational awareness even when the dashboard is not actively open.',
+        tradeoffs: 'Requires careful handling of push subscription persistence.',
       },
     ],
     deployment: {
       isDeployed: false,
       details: [],
       considerations: [
-        'Project currently in active development phase',
-        'Deployment planned after core domain completion',
-        'Architecture is being prepared for containerized rollout',
+        'Active development phase with focus on core domain telemetry',
+        'Deployment strategy targeting containerized environments for scaling WebSocket channels',
       ],
     },
     challenges: [
       {
-        challenge: 'Balancing flexible pricing logic with maintainable code paths.',
-        solution: 'Rule-driven pricing strategy design under modular service boundaries.',
-        outcome: 'In progress with focus on extensibility and predictability.',
+        challenge: 'Scaling real-time telemetry ingestion while maintaining transactional integrity in the booking engine.',
+        solution: 'Decoupled telemetry ingestion from core booking logic using event-driven patterns.',
+        outcome: 'Achieved reliable asset tracking without impacting booking performance.',
       },
     ],
     impact: {
       improvements: [
-        'Sharper architecture decisions from prior production experience',
-        'Cleaner module boundaries compared to earlier projects',
+        'Transitioned from basic CRUD to a real-time stateful operational system',
+        'Enhanced architectural robustness through service-layer orchestration',
       ],
       learnings: [
-        'Complex business rules benefit from early domain partitioning',
-        'Operational concerns should influence architecture from day one',
+        'Real-time data requires proactive observability and monitoring from day one',
+        'Domain-driven design is critical when balancing diverse telemetry and financial rules',
       ],
       wouldRefactor: [
-        'Add advanced reporting and operational analytics',
-        'Introduce stronger event-driven notifications',
+        'Integrate predictive maintenance models based on historical telemetry data',
+        'Expand to a multi-cloud deployment strategy for edge telemetry processing',
       ],
     },
   };
 
   private readonly projectFr: ProjectDetail = {
     id: 'car-rental',
-    title: 'AutoRent — Gestion de location de véhicules',
+    title: 'AutoRent — Système de Gestion de Flotte & Télémétrie Haute Visibilité',
     summary:
-      'Plateforme de location en développement, axée sur le cycle de réservation, la visibilité flotte et la gestion sans conflits de disponibilité.',
+      'Plateforme avancée de location et de monitoring de flotte intégrant télémétrie en temps réel, cycles de réservation automatisés et visibilité opérationnelle via notifications push.',
     status: 'in-development',
     role: 'Ingénieur Full Stack',
-    techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'JWT'],
+    techStack: ['Java 17', 'Spring Boot 3.5', 'MySQL', 'Angular 18', 'WebPush (VAPID)', 'STOMP/WebSockets', 'JWT'],
     context: {
       problem:
-        'Les workflows manuels de location provoquent chevauchements de réservation, faible visibilité flotte et délais opérationnels.',
+        'Les workflows manuels et le manque de visibilité en temps réel sur la flotte entraînent des chevauchements de réservation et des inefficacités opérationnelles.',
       constraints: [
-        'Empêcher les réservations qui se chevauchent au niveau données',
-        'Suivre disponibilité flotte et état maintenance',
-        'Conserver une architecture propre malgré l’évolution du scope',
+        'Garantir l’intégrité transactionnelle pour des réservations sans conflit',
+        'Gérer l’ingestion de télémétrie haute fréquence avec une faible latence',
+        'Maintenir une architecture modulaire pour la montée en charge des notifications',
       ],
       goals: [
-        'Construire un workflow de réservation robuste de bout en bout',
-        'Garder une architecture modulaire pour l’itération',
-        'Préparer tôt les choix infra orientés production',
+        'Construire un cycle complet de réservation et de contrat robuste',
+        'Implémenter le suivi en direct et la diffusion d’état via WebSockets',
+        'Offrir des insights actionnables via un dashboard de télémétrie intégré',
       ],
     },
     architecture: {
-      diagramPlaceholder: 'Architecture Car Rental',
+      diagramPlaceholder: 'Architecture Système AutoRent',
       bullets: [
-        'Orchestration service-layer pour réservation et flotte',
-        'Logique de disponibilité par plage de dates avec cohérence relationnelle',
-        'Flux admin et client dans une SPA cohérente',
+        'Ingestion et diffusion de télémétrie en temps réel via WebSockets (STOMP) pour le suivi des véhicules.',
+        'Système de notifications Web Push (VAPID) pour des alertes instantanées de réservation et maintenance.',
+        'Dashboard d’orchestration dynamique avec analytics en temps réel sur les revenus et la santé des actifs.',
+        'Intégration FullCalendar pour la gestion visuelle du cycle de vie des réservations.',
       ],
       highlights: [
-        { title: 'Intégrité des réservations', description: 'Prévention des conflits au niveau métier et données.' },
-        { title: 'Conception itérative', description: 'Architecture nourrie par les retours de production précédents.' },
+        { title: 'Synchro Temps Réel', description: 'Propagation d’état instantanée sur le tableau de bord de monitoring.' },
+        { title: 'Réservation Fiable', description: 'Moteur de disponibilité avec contraintes relationnelles fortes.' },
       ],
     },
     decisions: [
       {
-        title: 'PostgreSQL pour contraintes de réservation',
-        reasoning: 'Le relationnel fort simplifie l’application des règles d’intégrité.',
-        tradeoffs: 'Plus de travail explicite de conception de schéma.',
+        title: 'STOMP sur WebSocket pour données Live',
+        reasoning: 'Offre un sous-protocole structuré pour une diffusion efficace de la télémétrie.',
+        tradeoffs: 'Surcoût initial de connexion supérieur au polling REST classique.',
+      },
+      {
+        title: 'Web Push VAPID pour alertes basse latence',
+        reasoning: 'Garantit la réactivité opérationnelle même si le dashboard est fermé.',
+        tradeoffs: 'Nécessite une gestion rigoureuse de la persistance des abonnements push.',
       },
     ],
     deployment: {
       isDeployed: false,
       details: [],
       considerations: [
-        'Projet actuellement en phase active de développement',
-        'Déploiement prévu après finalisation du domaine cœur',
-        'Architecture préparée pour un rollout conteneurisé',
+        'Phase de développement active axée sur la télémétrie du domaine cœur',
+        'Stratégie de déploiement orientée conteneurisation pour scaler les canaux WebSocket',
       ],
     },
     challenges: [
       {
-        challenge: 'Équilibrer logique tarifaire flexible et code maintenable.',
-        solution: 'Conception d’une stratégie tarifaire pilotée par règles et services modulaires.',
-        outcome: 'En cours, avec focus extensibilité et prédictibilité.',
+        challenge: 'Passage à l’échelle de l’ingestion de télémétrie tout en préservant l’intégrité transactionnelle.',
+        solution: 'Découplage de l’ingestion de télémétrie de la logique de réservation via des patterns event-driven.',
+        outcome: 'Suivi fiable des actifs sans impact sur les performances de réservation.',
       },
     ],
     impact: {
       improvements: [
-        'Décisions d’architecture affinées par expérience de production',
-        'Frontières de modules plus claires que les projets antérieurs',
+        'Transition d’un CRUD basique vers un système opérationnel à état en temps réel',
+        'Renforcement de la robustesse architecturale par orchestration de services',
       ],
       learnings: [
-        'Les règles métier complexes gagnent à une partition de domaine précoce',
-        'Les contraintes opérationnelles doivent guider l’architecture dès le début',
+        'Les données temps réel exigent une observabilité proactive dès le début',
+        'Le Domain-Driven Design est crucial pour équilibrer télémétrie et règles financières',
       ],
       wouldRefactor: [
-        'Ajouter reporting avancé et analytics opérationnels',
-        'Introduire des notifications event-driven plus robustes',
+        'Intégrer des modèles de maintenance prédictive basés sur l’historique télémétrique',
+        'Étendre vers une stratégie de déploiement multi-cloud',
       ],
     },
   };
