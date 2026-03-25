@@ -36,10 +36,45 @@
       <div class="hero-visual">
         <div class="visual-container">
           <div class="visual-frame">
-            <div class="visual-placeholder">
-              <span class="visual-icon">◈</span>
-              <span class="visual-label">{{ project.architecture.diagramPlaceholder }}</span>
-            </div>
+            <svg class="hero-architecture-svg" width="100%" viewBox="0 0 540 260" aria-label="AutoRent system architecture" role="img" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <marker id="ar-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8a6a0"></path>
+                </marker>
+              </defs>
+              
+              <!-- Tier 1: Clients -->
+              <rect x="20" y="15" width="140" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+              <text x="90" y="35" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Angular 18</text>
+              <text x="90" y="50" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">Fleet UI · FullCalendar</text>
+              
+              <rect x="380" y="15" width="140" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+              <text x="450" y="35" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">VAPID Push</text>
+              <text x="450" y="50" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">Booking alerts · Maintenance</text>
+              
+              <!-- Tier 2: Backend (core) -->
+              <rect x="110" y="95" width="320" height="60" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.7" stroke-width="1.2"></rect>
+              <text x="270" y="117" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Spring Boot 3.5</text>
+              <text x="270" y="132" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">Booking engine · Telemetry · JWT · Conflict resolution</text>
+              
+              <!-- Tier 3: Data -->
+              <rect x="25" y="185" width="130" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+              <text x="90" y="205" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">MySQL</text>
+              <text x="90" y="220" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">Bookings · Contracts</text>
+              
+              <rect x="385" y="185" width="130" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+              <text x="450" y="205" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">STOMP WebSocket</text>
+              <text x="450" y="220" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">Live telemetry · 1000+ evt/sec</text>
+              
+              <!-- Arrows -->
+              <line x1="90" y1="65" x2="180" y2="95" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#ar-arrow)"></line>
+              <line x1="450" y1="65" x2="360" y2="95" stroke="#a8a6a0" stroke-width="0.5" stroke-dasharray="3 3" marker-end="url(#ar-arrow)"></line>
+              <text x="365" y="78" font-family="inherit" font-size="9" fill="var(--color-text-2)">async</text>
+              
+              <!-- Bidirectional arrows to data -->
+              <line x1="200" y1="155" x2="90" y2="185" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#ar-arrow)"></line>
+              <line x1="340" y1="155" x2="450" y2="185" stroke="#a8a6a0" stroke-width="0.8" marker-end="url(#ar-arrow)"></line>
+            </svg>
           </div>
         </div>
       </div>
@@ -127,11 +162,62 @@
       <!-- Left: Diagram Placeholder -->
       <div class="architecture-diagram">
         <div class="diagram-frame">
-          <div class="diagram-placeholder">
-            <span class="diagram-icon">⬡</span>
-            <span class="diagram-label">{{ project.architecture.diagramPlaceholder }}</span>
-            <span class="diagram-hint">{{ i18n.t('detail.architectureDiagram') }}</span>
-          </div>
+          <svg class="focus-architecture-svg" width="100%" viewBox="0 0 400 310" aria-label="AutoRent booking and telemetry flows" role="img" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <marker id="ar-arrow-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8a6a0"></path>
+              </marker>
+            </defs>
+            
+            <!-- Column headers -->
+            <text x="75" y="15" font-family="inherit" font-size="10" fill="var(--color-text-2)">Booking engine</text>
+            <text x="270" y="15" font-family="inherit" font-size="10" fill="var(--color-text-2)">Telemetry pipeline</text>
+            
+            <!-- Divider -->
+            <line x1="200" y1="30" x2="200" y2="300" stroke="#a8a6a0" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.2"></line>
+            
+            <!-- LEFT: Booking flow -->
+            <rect x="30" y="35" width="130" height="38" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+            <text x="95" y="57" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Client request</text>
+            
+            <rect x="30" y="95" width="130" height="45" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+            <text x="95" y="118" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Availability check</text>
+            <text x="95" y="132" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">date-range lock</text>
+            
+            <rect x="30" y="160" width="130" height="38" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+            <text x="95" y="182" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Booking confirmed</text>
+            
+            <rect x="30" y="218" width="130" height="38" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+            <text x="95" y="240" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Contract generated</text>
+            
+            <!-- LEFT: Arrows -->
+            <line x1="95" y1="73" x2="95" y2="95" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#ar-arrow-2)"></line>
+            <line x1="95" y1="140" x2="95" y2="160" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#ar-arrow-2)"></line>
+            <line x1="95" y1="198" x2="95" y2="218" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#ar-arrow-2)"></line>
+            
+            <!-- RIGHT: Telemetry flow -->
+            <rect x="240" y="35" width="130" height="38" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+            <text x="305" y="57" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Vehicle event</text>
+            
+            <rect x="240" y="95" width="130" height="45" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+            <text x="305" y="118" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">STOMP ingestion</text>
+            <text x="305" y="132" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">1000+ events/sec</text>
+            
+            <rect x="240" y="160" width="130" height="38" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+            <text x="305" y="182" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">State broadcast</text>
+            
+            <rect x="240" y="218" width="130" height="45" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.45" stroke-width="1"></rect>
+            <text x="305" y="241" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Dashboard updated</text>
+            <text x="305" y="255" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">&lt;200ms latency</text>
+            
+            <!-- RIGHT: Arrows -->
+            <line x1="305" y1="73" x2="305" y2="95" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#ar-arrow-2)"></line>
+            <line x1="305" y1="140" x2="305" y2="160" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#ar-arrow-2)"></line>
+            <line x1="305" y1="198" x2="305" y2="218" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#ar-arrow-2)"></line>
+            
+            <!-- Bottom note -->
+            <text x="200" y="295" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)" font-style="italic">flows are decoupled — telemetry never blocks bookings</text>
+          </svg>
         </div>
       </div>
 
