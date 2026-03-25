@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { I18nService } from '../../core/i18n.service';
@@ -59,8 +59,11 @@ interface ProjectDetail {
   templateUrl: './car-rental.html',
   styleUrl: './car-rental.css',
 })
-export class CarRentalComponent {
+export class CarRentalComponent implements OnInit {
   readonly i18n = inject(I18nService);
+  ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
 
   private readonly projectEn: ProjectDetail = {
     id: 'car-rental',

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { I18nService } from '../../core/i18n.service';
@@ -59,9 +59,11 @@ interface ProjectDetail {
   templateUrl: './delivery-tracking.html',
   styleUrl: './delivery-tracking.css',
 })
-export class DeliveryTrackingComponent {
+export class DeliveryTrackingComponent implements OnInit {
   readonly i18n = inject(I18nService);
-
+  ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
   private readonly projectEn: ProjectDetail = {
     id: 'delivery-tracking',
     title: 'SwiftDeliver — Enterprise B2B Logistics Orchestration Platform',

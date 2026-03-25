@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { I18nService } from '../../core/i18n.service';
+import { OnInit } from '@angular/core';
 
 type ProjectStatus = 'production' | 'completed' | 'in-development';
 
@@ -59,8 +60,12 @@ interface ProjectDetail {
   templateUrl: './caferesto.html',
   styleUrl: './caferesto.css',
 })
-export class CaferestoComponent {
+
+export class CaferestoComponent implements OnInit {
   readonly i18n = inject(I18nService);
+  ngOnInit(): void {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
 
   private readonly projectEn: ProjectDetail = {
     id: 'caferesto',
