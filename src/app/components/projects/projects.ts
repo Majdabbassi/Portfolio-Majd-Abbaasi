@@ -151,9 +151,7 @@ export class ProjectsComponent {
         sessionStorage.setItem('portfolioProjectFocus', '1');
 
         setTimeout(() => {
-            void this.router.navigate(['/projects', projectId], {
-                queryParams: { focus: '1' },
-            });
+            void this.router.navigate(['/projects', projectId]);
         }, 150);
     }
 }
