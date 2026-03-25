@@ -73,12 +73,14 @@
     @if (isMobileMenuOpen()) {
     <div class="nav-mobile-panel">
         <div class="nav-mobile-inner">
-            @for (link of navLinks; track link.href) {
-            <a [href]="link.href" (click)="navigateTo(link); $event.preventDefault()"
-                class="nav-mobile-link">
-                {{ i18n.t(link.labelKey) }}
-            </a>
-            }
+            <div class="nav-mobile-links">
+                @for (link of navLinks; track link.href) {
+                <a [href]="link.href" (click)="navigateTo(link); $event.preventDefault()"
+                    class="nav-mobile-link">
+                    {{ i18n.t(link.labelKey) }}
+                </a>
+                }
+            </div>
             <div class="nav-mobile-controls">
                 <div class="lang-switch" role="group" aria-label="Language selector">
                     <button
@@ -88,7 +90,7 @@
                         (click)="setLanguage('en')"
                         aria-label="English"
                     >
-                        <span class="lang-dot-flag">🇬🇧</span>
+                        <span class="lang-dot-flag" style="font-size: 0.55em;">EN</span>
                     </button>
                     <button
                         class="lang-dot"
@@ -97,9 +99,13 @@
                         (click)="setLanguage('fr')"
                         aria-label="Français"
                     >
-                        <span class="lang-dot-flag">🇫🇷</span>
+                        <span class="lang-dot-flag" style="font-size: 0.55em;">FR</span>
                     </button>
                 </div>
+
+                <a href="mailto:majdabbassi11@gmail.com" class="nav-cta" id="nav-mobile-hire">
+                    {{ i18n.t('nav.workWithMe') }}
+                </a>
 
                 <button
                     class="theme-switch-v2"
@@ -113,9 +119,6 @@
                     <span class="theme-thumb-v2" aria-hidden="true"></span>
                 </button>
             </div>
-            <a href="mailto:majdabbassi11@gmail.com" class="nav-cta" id="nav-mobile-hire">
-                {{ i18n.t('nav.workWithMe') }}
-            </a>
         </div>
     </div>
     }

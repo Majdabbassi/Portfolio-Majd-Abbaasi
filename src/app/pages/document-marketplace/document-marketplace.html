@@ -23,19 +23,12 @@
           @if (project.deployment.liveUrl) {
             <a [href]="project.deployment.liveUrl" target="_blank" rel="noopener noreferrer" class="live-badge">
               <span class="live-dot"></span>
-              massarat-plus.com
+              https://massarat-plus.com
             </a>
           }
         </div>
 
         <h1 class="hero-title">{{ project.title }}</h1>
-        
-        @if (project.deployment.liveUrl) {
-          <a [href]="project.deployment.liveUrl" target="_blank" rel="noopener noreferrer" class="live-cta-button">
-            <span class="live-indicator">●</span> Massarat-plus.com
-            <span class="live-indicator">●</span> (Visit Live Site)
-          </a>
-        }
 
         <p class="hero-summary">{{ project.summary }}</p>
 

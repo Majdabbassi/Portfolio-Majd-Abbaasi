@@ -185,7 +185,7 @@
     color: #fff;
     background: var(--color-accent); /* Accent color base */
     border-radius: 20px; /* Fully rounded */
-    padding: 0.75rem 1.75rem; /* Larger padding */
+    padding: 0.75rem 0.75rem; /* Larger padding */
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
@@ -231,7 +231,7 @@
 /* Mobile panel — hidden on desktop */
 .nav-mobile-panel {
     display: none;
-    background: rgba(8, 8, 15, 0.98);
+    background: color-mix(in srgb, var(--color-surface) 96%, transparent);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid var(--color-border);
@@ -239,28 +239,49 @@
 .nav-mobile-inner {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 1.25rem 2.5rem 1.75rem;
+    padding: 1.75rem 1.75rem 2.25rem;
     display: flex;
     flex-direction: column;
-    gap: 0.125rem;
+    gap: 0.75rem;
 }
+
+.nav-mobile-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0 25px;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+}
+
 .nav-mobile-link {
-    display: block;
-    font-size: 1rem;
+    display: inline-flex;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--color-text-2);
     text-decoration: none;
-    padding: 0.65rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.25rem 0;
     transition: color 0.2s ease;
 }
 .nav-mobile-link:hover { color: var(--color-text); }
 
 .nav-mobile-controls {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 0 0.25rem;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-surface-2) 92%, transparent);
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.nav-mobile-controls .nav-cta#nav-mobile-hire {
+    margin-top: 0;
+    text-align: center;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 /* Mobile breakpoint */
@@ -273,4 +294,14 @@
     .nav-cta#nav-hire-btn { display: none; }
     .nav-hamburger { display: flex; }
     .nav-mobile-panel { display: block; }
+
+    .nav-mobile-controls {
+        gap: 0.5rem;
+        padding: 0.75rem 0.75rem;
+    }
+
+    .nav-mobile-controls .nav-cta#nav-mobile-hire {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.5rem;
+    }
 }
