@@ -12,8 +12,7 @@ export class ThemeService {
     if (stored === 'light' || stored === 'dark') {
       this.theme.set(stored);
     } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      this.theme.set(prefersDark ? 'dark' : 'light');
+      this.theme.set('light');
     }
 
     this.applyTheme();
