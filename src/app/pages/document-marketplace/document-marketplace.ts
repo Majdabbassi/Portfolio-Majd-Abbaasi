@@ -50,7 +50,6 @@ interface ProjectDetail {
   impact: {
     improvements: string[];
     learnings: string[];
-    wouldRefactor: string[];
   };
 }
 
@@ -170,11 +169,6 @@ export class DocumentMarketplaceComponent {
         'Payment integration is more about edge-case handling than happy-path design',
         'API-first principles are crucial for maintainable multi-client ecosystems',
       ],
-      wouldRefactor: [
-        'Migrate to Microservices for payment and messaging isolation',
-        'Implement deeper automated E2E testing for the encryption pipeline',
-        'Introduce Redis for session and real-time socket optimization',
-      ],
     },
   };
 
@@ -283,11 +277,6 @@ export class DocumentMarketplaceComponent {
         'Le chiffrement à grande échelle nécessite une gestion rigoureuse des ressources',
         'L’intégration de paiement concerne plus la gestion des cas limites que le parcours idéal',
         'Les principes API-first sont cruciaux pour les écosystèmes multi-clients maintenables',
-      ],
-      wouldRefactor: [
-        'Migrer vers des microservices pour l’isolation des paiements et de la messagerie',
-        'Mettre en œuvre des tests E2E automatisés plus profonds pour le pipeline de chiffrement',
-        'Introduire Redis pour l’optimisation des sessions et des sockets en temps réel',
       ],
     },
   };

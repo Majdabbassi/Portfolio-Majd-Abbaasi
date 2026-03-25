@@ -73,13 +73,13 @@ export class I18nService {
       'philo.title': 'Engineering Philosophy',
       'philo.subtitle': 'The standards that guide how I design and operate systems.',
 
-      'contact.label': ' Work With Me',
+      'contact.label': 'Work With Me',
       'contact.title': "Let's Engineer Your Next System",
       'contact.p1': 'I’m currently open to backend, full-stack, and systems engineering opportunities.',
       'contact.p2': 'If you are building something that needs to scale, automate, or operate reliably in production — let’s talk.',
       'contact.footer': 'I usually respond within 24 hours. For time-sensitive matters, email is the fastest way to reach me.',
 
-      'footer.tag': 'AI-Augmented System Engineer',
+      'footer.tag': 'Production Systems Engineer',
       'footer.built': 'Built with Angular.',
       'footer.top': 'Scroll to top',
 
@@ -116,7 +116,6 @@ export class I18nService {
       'detail.impactLearn': 'Impact & learnings',
       'detail.whatImproved': 'What improved',
       'detail.whatLearned': 'What I learned',
-      'detail.whatRefactor': "What I'd refactor",
       'detail.prevProject': '← Previous Project',
       'detail.nextProject': 'Next Project →',
       'detail.backAll': 'Back to All Projects',
@@ -196,7 +195,7 @@ export class I18nService {
       'contact.p2': 'Si vous construisez quelque chose qui doit scaler, s’automatiser ou être fiable en production — parlons-en.',
       'contact.footer': 'Je réponds généralement sous 24h. Pour les demandes urgentes, l’email est le plus rapide.',
 
-      'footer.tag': 'Ingénieur système augmenté par l’IA',
+      'footer.tag': 'Ingénieur systèmes de production',
       'footer.built': 'Construit avec Angular.',
       'footer.top': 'Revenir en haut',
 
@@ -233,7 +232,6 @@ export class I18nService {
       'detail.impactLearn': 'Impact et apprentissages',
       'detail.whatImproved': 'Ce qui a été amélioré',
       'detail.whatLearned': "Ce que j'ai appris",
-      'detail.whatRefactor': 'Ce que je refactoriserais',
       'detail.prevProject': '← Projet précédent',
       'detail.nextProject': 'Projet suivant →',
       'detail.backAll': 'Retour à tous les projets',

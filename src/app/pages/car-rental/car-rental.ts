@@ -49,7 +49,6 @@ interface ProjectDetail {
   impact: {
     improvements: string[];
     learnings: string[];
-    wouldRefactor: string[];
   };
 }
 
@@ -67,7 +66,7 @@ export class CarRentalComponent {
     id: 'car-rental',
     title: 'AutoRent — High-Visibility Fleet Management & Telemetry System',
     summary:
-      'Advanced vehicle rental platform handling 500+ concurrent users with real-time telemetry, automated booking lifecycles, and push-based operational visibility.',
+      'Vehicle rental platform with real-time telemetry, automated booking lifecycles, and push-based operational visibility.',
     status: 'in-development',
     role: 'Full Stack Engineer',
     roleContext: 'Full Stack Engineer (Real-time Systems)',
@@ -75,11 +74,11 @@ export class CarRentalComponent {
     metrics: {
       team: 'Solo Full Stack Engineer',
       duration: '4 months (ongoing)',
-      scale: '500+ concurrent vehicle tracking sessions',
+      scale: 'Designed for high-throughput vehicle tracking',
       keyOutcomes: [
-        'Reduced booking conflict resolution latency from 5s → 500ms (10x improvement)',
-        'WebSocket infrastructure handles 1000+ telemetry events/sec',
-        'Real-time dashboard reflects state changes <200ms',
+        'Transactional booking flow with conflict-safe reservation handling',
+        'Real-time telemetry ingestion and broadcast pipeline',
+        'Operational dashboard with live fleet state visibility',
       ],
     },
     context: {
@@ -145,10 +144,6 @@ export class CarRentalComponent {
         'Real-time data requires proactive observability and monitoring from day one',
         'Domain-driven design is critical when balancing diverse telemetry and financial rules',
       ],
-      wouldRefactor: [
-        'Integrate predictive maintenance models based on historical telemetry data',
-        'Expand to a multi-cloud deployment strategy for edge telemetry processing',
-      ],
     },
   };
 
@@ -156,7 +151,7 @@ export class CarRentalComponent {
     id: 'car-rental',
     title: 'AutoRent — Système de Gestion de Flotte & Télémétrie Haute Visibilité',
     summary:
-      'Plateforme de location avancée gérant 500+ utilisateurs simultanés avec télémétrie temps réel, cycles de réservation automatisés et visibilité opérationnelle par notifications push.',
+      'Plateforme de location avec télémétrie temps réel, cycles de réservation automatisés et visibilité opérationnelle par notifications push.',
     status: 'in-development',
     role: 'Ingénieur Full Stack',
     roleContext: 'Ingénieur Full Stack (Systèmes Temps Réel)',
@@ -164,11 +159,11 @@ export class CarRentalComponent {
     metrics: {
       team: 'Ingénieur Full Stack en solo',
       duration: '4 mois (en cours)',
-      scale: '500+ sessions concurrentes de suivi de véhicules',
+      scale: 'Conçue pour le suivi de véhicules à haut débit',
       keyOutcomes: [
-        'Réduit la latence de résolution des conflits de réservation de 5s → 500ms (10x)',
-        'Infrastructure WebSocket traitant 1000+ événements de télémétrie/sec',
-        'Dashboard temps réel reflétant les changements d\'état <200ms',
+        'Flux de réservation transactionnel avec gestion robuste des conflits',
+        'Pipeline de télémétrie en temps réel pour ingestion et diffusion',
+        'Tableau de bord opérationnel avec visibilité instantanée de la flotte',
       ],
     },
     context: {
@@ -233,10 +228,6 @@ export class CarRentalComponent {
       learnings: [
         'Les données temps réel exigent une observabilité proactive dès le début',
         'Le Domain-Driven Design est crucial pour équilibrer télémétrie et règles financières',
-      ],
-      wouldRefactor: [
-        'Intégrer des modèles de maintenance prédictive basés sur l’historique télémétrique',
-        'Étendre vers une stratégie de déploiement multi-cloud',
       ],
     },
   };

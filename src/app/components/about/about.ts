@@ -45,7 +45,7 @@ export class AboutComponent {
             points: [
                 'Contributed to architectural decisions and improved internal code structure.',
                 'Built in a more secure and performance-conscious environment.',
-                'First production deployment exposure through WAR + Apache Tomcat workflow.',
+                'Production deployment using WAR + Apache Tomcat.',
             ],
         },
         {

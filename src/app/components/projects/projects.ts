@@ -46,7 +46,7 @@ export class ProjectsComponent {
                 en: 'Digital marketplace system with transactional wallet logic, real-time messaging, and online payment integration.',
                 fr: 'Marketplace numérique avec logique wallet transactionnelle, messagerie temps réel et intégration de paiement en ligne.',
             },
-            techStack: ['Spring Boot', 'Angular', 'Flutter', 'WebSocket', 'PostgreSQL'],
+            techStack: ['Spring Boot', 'Angular', 'Expo (React Native)', 'WebSocket', 'PostgreSQL'],
             status: 'production',
             icon: '/assets/icon-docmarket.png',
             accentColor: '#3b82f6',

@@ -49,7 +49,6 @@ interface ProjectDetail {
   impact: {
     improvements: string[];
     learnings: string[];
-    wouldRefactor: string[];
   };
 }
 
@@ -148,10 +147,6 @@ export class ChellysportComponent {
         'Managing complex relational states across multiple client types',
         'Implementing real-time service architectures in Spring Boot',
       ],
-      wouldRefactor: [
-        'Migrate to a Mikroservices architecture for scale',
-        'Expand automated integration testing for payment flows',
-      ],
     },
   };
 
@@ -239,10 +234,6 @@ export class ChellysportComponent {
       learnings: [
         'Gestion d’états relationnels complexes sur plusieurs types de clients',
         'Implémentation d’architectures de services temps réel avec Spring Boot',
-      ],
-      wouldRefactor: [
-        'Migrer vers une architecture Microservices pour le passage à l’échelle',
-        'Étendre les tests d’intégration automatisés pour les paiements',
       ],
     },
   };

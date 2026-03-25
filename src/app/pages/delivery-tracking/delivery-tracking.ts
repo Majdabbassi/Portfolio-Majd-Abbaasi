@@ -49,7 +49,6 @@ interface ProjectDetail {
   impact: {
     improvements: string[];
     learnings: string[];
-    wouldRefactor: string[];
   };
 }
 
@@ -67,7 +66,7 @@ export class DeliveryTrackingComponent {
     id: 'delivery-tracking',
     title: 'SwiftDeliver — Enterprise B2B Logistics Orchestration Platform',
     summary:
-      'B2B logistics platform managing 500+ daily deliveries across 2000+ service zones with hierarchical multi-tenancy, state-machine order orchestration, and geospatial optimization.',
+      'B2B logistics platform with hierarchical multi-tenancy, state-machine order orchestration, and geospatial optimization.',
     status: 'in-development',
     role: 'Full Stack Engineer',
     roleContext: 'Full Stack Engineer (Backend Architecture Lead)',
@@ -75,11 +74,11 @@ export class DeliveryTrackingComponent {
     metrics: {
       team: 'Full Stack Engineer (backend architecture focus)',
       duration: '5 months (ongoing)',
-      scale: '500+ daily deliveries, 2000+ service zones',
+      scale: 'Architecture supports scalable delivery operations',
       keyOutcomes: [
-        'Order assignment latency reduced from 30s → 2s (15x improvement)',
-        'Multi-tenant architecture supports unlimited partners',
-        'PostGIS service area validation <100ms',
+        'State-machine driven order lifecycle orchestration',
+        'Hierarchical multi-tenant isolation for partner operations',
+        'Geospatial service-area validation integrated with PostGIS',
       ],
     },
     context: {
@@ -145,10 +144,6 @@ export class DeliveryTrackingComponent {
         'Stakeholder management in logistics is as much a technical challenge as it is a business one',
         'Spatial data performance is heavily dependent on early index optimization and query planning',
       ],
-      wouldRefactor: [
-        'Integrate AI-driven route optimization and dynamic ETA prediction engines',
-        'Expose a public GraphQL API for partner system integrations',
-      ],
     },
   };
 
@@ -156,7 +151,7 @@ export class DeliveryTrackingComponent {
     id: 'delivery-tracking',
     title: 'SwiftDeliver — Plateforme d\'Orchestration Logistique B2B Enterprise',
     summary:
-      'Plateforme logistique B2B gérant 500+ livraisons quotidiennes sur 2000+ zones de service avec multi-tenancy hiérarchique, orchestration de commandes par machine à états et optimisation géospatiale.',
+      'Plateforme logistique B2B avec multi-tenancy hiérarchique, orchestration de commandes par machine à états et optimisation géospatiale.',
     status: 'in-development',
     role: 'Ingénieur Full Stack',
     roleContext: 'Ingénieur Full Stack (Chef d\'Architecture Backend)',
@@ -164,11 +159,11 @@ export class DeliveryTrackingComponent {
     metrics: {
       team: 'Ingénieur Full Stack (focus architecture backend)',
       duration: '5 mois (en cours)',
-      scale: '500+ livraisons quotidiennes, 2000+ zones de service',
+      scale: 'Architecture conçue pour des opérations de livraison scalables',
       keyOutcomes: [
-        'Latence d\'assignation des commandes réduite de 30s → 2s (15x)',
-        'Architecture multi-tenant supportant un nombre illimité de partenaires',
-        'Validation des zones de service PostGIS <100ms',
+        'Orchestration du cycle de vie des commandes via machine à états',
+        'Isolation multi-tenant hiérarchique pour les partenaires',
+        'Validation géospatiale des zones de service avec PostGIS',
       ],
     },
     context: {
@@ -233,10 +228,6 @@ export class DeliveryTrackingComponent {
       learnings: [
         'La gestion des parties prenantes en logistique est un défi technique et métier majeur',
         'La performance des données spatiales dépend de l’optimisation précoce des index',
-      ],
-      wouldRefactor: [
-        'Intégrer des moteurs d’optimisation de route et de prédiction d’ETA basés sur l’IA',
-        'Exposer une API GraphQL publique pour l’intégration des systèmes partenaires',
       ],
     },
   };

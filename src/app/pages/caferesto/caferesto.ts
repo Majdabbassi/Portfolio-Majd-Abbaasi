@@ -49,7 +49,6 @@ interface ProjectDetail {
   impact: {
     improvements: string[];
     learnings: string[];
-    wouldRefactor: string[];
   };
 }
 
@@ -65,7 +64,7 @@ export class CaferestoComponent {
 
   private readonly projectEn: ProjectDetail = {
     id: 'caferesto',
-    title: 'CafeResto - Multi-Tenant Restaurant Operations Platform',
+    title: 'CafeResto — Multi-Tenant Restaurant Operations Platform',
     summary:
       'Production restaurant ecosystem serving 14+ restaurants and 500+ daily transactions with real-time inventory sync under 1 second and 99.5% uptime.',
     status: 'production',
@@ -161,30 +160,25 @@ export class CaferestoComponent {
         'Production incidents become manageable only when telemetry is designed from the start',
         'Backend architecture and DevOps choices are tightly coupled in live operational products',
       ],
-      wouldRefactor: [
-        'Isolate reporting and analytics into dedicated services for independent scaling',
-        'Add broader automated resilience testing around peak-hour order bursts',
-        'Introduce finer-grained policy auditing for tenant-bound authorization paths',
-      ],
     },
   };
 
   private readonly projectFr: ProjectDetail = {
     id: 'caferesto',
-    title: 'CafeResto - Plateforme Multi-Tenant d\'Operations Restaurant',
+    title: 'CafeResto — Plateforme Multi-Tenant d\'Operations Restaurant',
     summary:
-      'Ecosysteme restaurant en production servant 14+ restaurants et 500+ transactions quotidiennes avec synchronisation inventaire temps reel sous 1 seconde et 99.5% de disponibilite.',
+      'Ecosysteme restaurant en production servant 14+ restaurants et 500+ transactions quotidiennes avec synchronisation inventaire temps réel sous 1 seconde et 99.5% de disponibilite.',
     status: 'production',
     role: 'Architecte Backend',
     roleContext: 'Architecte Backend (Fondations & DevOps)',
     techStack: ['Java 17', 'Spring Boot', 'PostgreSQL', 'WebSocket', 'Docker', 'Prometheus', 'Grafana', 'Nginx'],
     metrics: {
-      team: 'Architecte Backend (principal), 3 ingenieurs',
+      team: 'Architecte Backend (principal), 3 ingénieurs',
       duration: '8 mois',
       scale: '14+ restaurants, 500+ transactions quotidiennes',
       keyOutcomes: [
         'Infrastructure Docker de 14 services monitorant 100+ metriques',
-        'Synchronisation inventaire temps reel entre terminaux POS <1s',
+        'Synchronisation inventaire temps réel entre terminaux POS <1s',
         'Isolation multi-tenant avec zero incident de fuite de donnees',
       ],
     },
@@ -198,7 +192,7 @@ export class CaferestoComponent {
       ],
       goals: [
         'Construire une fondation backend multi-tenant scalable pour les operations restaurant',
-        'Fournir des evenements temps reel commandes et inventaire via WebSocket',
+        'Fournir des evenements temps réel commandes et inventaire via WebSocket',
         'Etablir une stack Docker en production avec monitoring et deploiement clair',
       ],
     },
@@ -206,7 +200,7 @@ export class CaferestoComponent {
       diagramPlaceholder: 'Architecture Systeme CafeResto',
       bullets: [
         'Modele multi-tenant base sur la propriete avec segregation stricte des donnees par restaurant.',
-        'Operations temps reel event-driven pour commandes, flux des tables et synchronisation inventaire.',
+        'Operations temps réel event-driven pour commandes, flux des tables et synchronisation inventaire.',
         'Infrastructure de production orchestree par Docker avec routage Nginx.',
         'Stack d\'observabilite Prometheus et Grafana pour le monitoring des services.',
       ],
@@ -216,7 +210,7 @@ export class CaferestoComponent {
           description: 'Chaque ressource est validee via des chaines de propriete pour eviter les fuites inter-tenants.',
         },
         {
-          title: 'Noyau Operationnel Temps Reel',
+          title: 'Noyau opérationnel Temps Réel',
           description: 'Les etats cuisine et salle sont propages instantanement pour reduire les delais de coordination.',
         },
       ],
@@ -224,7 +218,7 @@ export class CaferestoComponent {
     decisions: [
       {
         title: 'Strategie Multi-Tenant Base Unique',
-        reasoning: 'Permet une visibilite operationnelle centrale tout en preservant les frontieres de propriete par restaurant.',
+        reasoning: 'Permet une visibilite opérationnelle centrale tout en preservant les frontieres de propriete par restaurant.',
         tradeoffs: 'Necessite un filtrage strict des requetes et une discipline d\'autorisation dans toute la couche service.',
       },
       {
@@ -241,17 +235,17 @@ export class CaferestoComponent {
         'Deployee comme ecosysteme de production supportant des operations restaurant actives',
         'Composition Docker de 14 services pour les services coeur, le reseau et le monitoring',
         'Telemetrie de services integree aux dashboards et alertes Prometheus',
-        'Operations temps reel validees sous charge transactionnelle quotidienne',
+        'Operations temps réel validees sous charge transactionnelle quotidienne',
       ],
     },
     challenges: [
       {
         challenge: 'Maintenir la coherence des etats commandes et stock entre POS et equipe cuisine.',
         solution: 'Mise en place de workflows synchronises par evenements avec gardes transactionnelles.',
-        outcome: 'Convergence rapide des mises a jour operationnelles avec synchronisation inventaire sous 1 seconde.',
+        outcome: 'Convergence rapide des mises a jour opérationnelles avec synchronisation inventaire sous 1 seconde.',
       },
       {
-        challenge: 'Equilibrer isolation tenant et visibilite operationnelle globale pour les administrateurs.',
+        challenge: 'Equilibrer isolation tenant et visibilite opérationnelle globale pour les administrateurs.',
         solution: 'Implementation de limites de requetes basees sur la propriete et endpoints scopes par role.',
         outcome: 'Separation stricte des tenants sans perte de capacite de supervision centralisee.',
       },
@@ -259,18 +253,13 @@ export class CaferestoComponent {
     impact: {
       improvements: [
         'Livraison d\'une plateforme backend production utilisee par plusieurs restaurants tenants',
-        'Fiabilite operationnelle renforcee via synchronisation temps reel et observabilite',
+        'Fiabilite opérationnelle renforcee via synchronisation temps réel et observabilite',
         'Pratiques de deploiement et monitoring repetables pour la maintenabilite long terme',
       ],
       learnings: [
         'La qualite multi-tenant depend fortement de la modelisation rigoureuse de la propriete des donnees',
         'Les incidents production deviennent gerables uniquement si la telemetrie est pensee des le depart',
         'Les choix d\'architecture backend et DevOps sont fortement couples en environnement live',
-      ],
-      wouldRefactor: [
-        'Isoler reporting et analytics dans des services dedies pour scaler independamment',
-        'Ajouter des tests de resilience automatises autour des pics de commandes',
-        'Introduire un audit plus fin des politiques d\'autorisation tenant-bound',
       ],
     },
   };
