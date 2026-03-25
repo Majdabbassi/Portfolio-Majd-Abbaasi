@@ -35,6 +35,13 @@ export class ContactComponent {
             href: 'https://www.linkedin.com/in/majd-abbassi',
             icon: 'linkedin',
         },
+        {
+            id: 'contact-whatsapp',
+            label: 'WhatsApp',
+            value: '+216 28 819 394',
+            href: 'https://wa.me/21628819394',
+            icon: 'whatsapp',
+        },
     ];
 
     getLabel(label: string): string {
@@ -42,6 +49,7 @@ export class ContactComponent {
             if (label === 'Email') return 'Email';
             if (label === 'GitHub') return 'GitHub';
             if (label === 'LinkedIn') return 'LinkedIn';
+            if (label === 'WhatsApp') return 'WhatsApp';
         }
         return label;
     }

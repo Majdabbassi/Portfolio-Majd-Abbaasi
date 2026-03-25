@@ -10,7 +10,8 @@ interface Project {
     impact: { en: string; fr: string };
     techStack: string[];
     status: 'production' | 'completed' | 'in-development';
-    backgroundImage?: string;
+    icon: string;
+    accentColor: string;
 }
 
 @Component({
@@ -35,7 +36,8 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'React', 'Docker', 'PostgreSQL', 'Nginx'],
             status: 'production',
-            backgroundImage: '/assets/pentiyo.png',
+            icon: '/assets/icon-caferesto.png',
+            accentColor: '#a68b6c',
         },
         {
             id: 'document-marketplace',
@@ -46,7 +48,8 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'Angular', 'Flutter', 'WebSocket', 'PostgreSQL'],
             status: 'production',
-            backgroundImage: '/favicon.ico',
+            icon: '/assets/icon-docmarket.png',
+            accentColor: '#3b82f6',
         },
         // ── Engineering Projects ──────────────────────────
         {
@@ -58,7 +61,8 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'Angular', 'Flutter', 'MySQL', 'JWT'],
             status: 'completed',
-            backgroundImage: '/favicon.ico',
+            icon: '/assets/icon-chellysport.png',
+            accentColor: '#10b981',
         },
         // ── In Development ────────────────────────────────
         {
@@ -70,7 +74,8 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'JWT'],
             status: 'in-development',
-            backgroundImage: '/favicon.ico',
+            icon: '/assets/icon-autorent.png',
+            accentColor: '#8b5cf6',
         },
         {
             id: 'delivery-tracking',
@@ -81,7 +86,8 @@ export class ProjectsComponent {
             },
             techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'PostGIS'],
             status: 'in-development',
-            backgroundImage: '/favicon.ico',
+            icon: '/assets/icon-swiftdeliver.png',
+            accentColor: '#0ea5e9',
         },
     ];
 

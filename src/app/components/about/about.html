@@ -32,35 +32,44 @@
                 }
             </div>
 
-            <!-- Skills / Tech Stack Grid -->
+            <!-- Skills / Tech Stack -->
             <div class="skills-grid-section">
                 <p class="skills-grid-label">{{ i18n.lang() === 'fr' ? 'Stack technique' : 'Tech Stack' }}</p>
-                <div class="skills-grid">
-                    <div class="skill-group">
-                        <span class="skill-group-name">{{ i18n.lang() === 'fr' ? 'Backend' : 'Backend' }}</span>
+                <p class="skills-grid-intro">
+                    {{ i18n.lang() === 'fr'
+                    ? 'Organisation par domaines pour une lecture rapide de mes outils quotidiens.'
+                    : 'Organized by domain for a quick scan of the tools I use every day.' }}
+                </p>
+                <div class="skills-primary-row">
+                    <div class="skills-inline-line">
+                        <p class="skill-category-label">{{ i18n.lang() === 'fr' ? 'Backend' : 'Backend' }}</p>
                         <div class="skill-tags">
-                            <span class="skill-tag">Spring Boot</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag skill-tag-core">Spring Boot</span>
+                            <span class="skill-tag skill-tag-core">Java</span>
+                            <span class="skill-tag skill-tag-core">PostgreSQL</span>
                             <span class="skill-tag">MySQL</span>
                             <span class="skill-tag">JWT</span>
                             <span class="skill-tag">WebSocket</span>
                             <span class="skill-tag">Flyway</span>
                         </div>
                     </div>
-                    <div class="skill-group">
-                        <span class="skill-group-name">DevOps</span>
+
+                    <div class="skills-inline-line">
+                        <p class="skill-category-label">DevOps</p>
                         <div class="skill-tags">
-                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag skill-tag-core">Docker</span>
                             <span class="skill-tag">Docker Compose</span>
-                            <span class="skill-tag">Nginx</span>
-                            <span class="skill-tag">Prometheus</span>
+                            <span class="skill-tag skill-tag-core">Nginx</span>
+                            <span class="skill-tag skill-tag-core">Prometheus</span>
                             <span class="skill-tag">Grafana</span>
                             <span class="skill-tag">Alertmanager</span>
                         </div>
                     </div>
-                    <div class="skill-group">
-                        <span class="skill-group-name">{{ i18n.lang() === 'fr' ? 'Frontend' : 'Frontend' }}</span>
+                </div>
+
+                <div class="skills-secondary-row">
+                    <div class="skills-inline-line">
+                        <p class="skill-category-label">{{ i18n.lang() === 'fr' ? 'Frontend' : 'Frontend' }}</p>
                         <div class="skill-tags">
                             <span class="skill-tag">Angular</span>
                             <span class="skill-tag">React</span>
@@ -68,8 +77,9 @@
                             <span class="skill-tag">HTML/CSS</span>
                         </div>
                     </div>
-                    <div class="skill-group">
-                        <span class="skill-group-name">AI / Tools</span>
+
+                    <div class="skills-inline-line">
+                        <p class="skill-category-label">{{ i18n.lang() === 'fr' ? 'IA / Outils' : 'AI / Tools' }}</p>
                         <div class="skill-tags">
                             <span class="skill-tag">Python</span>
                             <span class="skill-tag">Groq LLM</span>
@@ -79,16 +89,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="today-note">
-                <p>
-                    {{ i18n.lang() === 'fr'
-                    ? 'Aujourd’hui, je construis des systèmes de bout en bout — architecture, déploiement et
-                    exploitation — avec une logique de responsabilité long terme.'
-                    : 'Today, I focus on building systems end-to-end — architecture, deployment, and operations — with
-                    long-term ownership in mind.' }}
-                </p>
+                <blockquote class="today-note">
+                    <p>
+                        {{ i18n.lang() === 'fr'
+                        ? 'Aujourd’hui, je construis des systèmes de bout en bout — architecture, déploiement et exploitation — avec une logique de responsabilité long terme.'
+                        : 'Today, I focus on building systems end-to-end — architecture, deployment, and operations — with long-term ownership in mind.' }}
+                    </p>
+                </blockquote>
             </div>
         </div>
     </div>

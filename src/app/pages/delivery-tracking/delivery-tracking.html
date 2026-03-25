@@ -19,7 +19,7 @@
             <span class="status-indicator"></span>
             {{ getStatusLabel(project.status) }}
           </span>
-          <span class="role-badge">{{ project.role }}</span>
+          <span class="role-badge">{{ project.roleContext }}</span>
         </div>
 
         <h1 class="hero-title">{{ project.title }}</h1>
@@ -42,6 +42,30 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     NEW — METRICS AT A GLANCE
+     Key project statistics for quick understanding
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="detail-container">
+    <div class="metrics-grid" appFadeIn>
+      <div class="metric-item">
+        <span class="metric-label">{{ i18n.t('metrics.duration') }}</span>
+        <span class="metric-value">{{ project.metrics.duration }}</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">{{ i18n.t('metrics.team') }}</span>
+        <span class="metric-value">{{ project.metrics.team }}</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">{{ i18n.t('metrics.scale') }}</span>
+        <span class="metric-value">{{ project.metrics.scale }}</span>
       </div>
     </div>
   </div>
@@ -222,6 +246,28 @@
               <li>{{ consideration }}</li>
             }
           </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     NEW — KEY OUTCOMES & METRICS
+     Quantified impact and achievements
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section section-alt">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">{{ i18n.t('metrics.label') }}</p>
+      <h2 class="section-heading">{{ i18n.t('metrics.outcomes') }}</h2>
+    </div>
+
+    <div class="outcomes-grid" appFadeIn>
+      @for (outcome of project.metrics.keyOutcomes; track outcome) {
+        <div class="outcome-card">
+          <p class="outcome-text">{{ outcome }}</p>
         </div>
       }
     </div>

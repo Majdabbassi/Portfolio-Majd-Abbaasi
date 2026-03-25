@@ -9,59 +9,81 @@
         </div>
 
         <div class="projects-showcase" appFadeIn [class.is-routing]="focusedProjectId !== null">
-            @if (masterProject; as project) {
-            <a [routerLink]="'/projects/' + project.id" class="project-card master-card group" [id]="project.id"
-                [class.is-focused]="focusedProjectId === project.id"
-                [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
-                [style.--project-bg]="'url(' + project.backgroundImage + ')'"
-                (click)="onProjectFocus($event, project.id)">
-                <div class="project-content">
-                        <span class="master-badge">{{ i18n.lang() === 'fr' ? 'Projet phare' : 'Featured Masterpiece' }}</span>
-                    <h3 class="project-title">{{ text(project.title) }}</h3>
-                    <p class="project-impact">{{ text(project.impact) }}</p>
-                    <div class="project-tech">
-                        @for (tech of project.techStack; track tech) {
-                        <span class="tech-tag">{{ tech }}</span>
-                        }
+
+            <!-- ── Featured / Hero Project ──────────────────── -->
+            @if (masterProject; as master) {
+            <a [routerLink]="'/projects/' + master.id" class="project-card project-card--hero group" [id]="master.id"
+                [class.is-focused]="focusedProjectId === master.id"
+                [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== master.id"
+                [style.--card-accent]="master.accentColor"
+                (click)="onProjectFocus($event, master.id)">
+
+                <div class="card-accent-bar"></div>
+
+                <div class="project-card__body">
+                    <div class="project-card__icon-wrap project-card__icon-wrap--lg">
+                        <img [src]="master.icon" [alt]="text(master.title) + ' icon'" class="project-card__icon" loading="lazy">
+                    </div>
+                    <div class="project-card__info">
+                        <div class="project-card__meta-row">
+                            <h3 class="project-title project-title--hero">{{ text(master.title) }}</h3>
+                            <div class="project-status">
+                                <span class="status-dot" [class]="master.status"></span>
+                                {{ getStatusLabel(master.status) }}
+                            </div>
+                        </div>
+                        <p class="project-impact">{{ text(master.impact) }}</p>
+                        <div class="project-tech">
+                            @for (tech of master.techStack; track tech) {
+                            <span class="tech-tag">{{ tech }}</span>
+                            }
+                        </div>
                     </div>
                 </div>
 
                 <div class="card-footer">
                     <div class="project-action">
-                        {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
-                    </div>
-                    <div class="project-status">
-                        <span class="status-dot" [class]="project.status"></span>
-                        {{ getStatusLabel(project.status) }}
+                        {{ getProjectActionLabel(master) }} <span class="arrow">→</span>
                     </div>
                 </div>
             </a>
             }
 
-            <div class="projects-grid-secondary">
+            <!-- ── Project Grid ─────────────────────────────── -->
+            <div class="projects-grid">
                 @for (project of secondaryProjects; track project.id) {
-                <a [routerLink]="'/projects/' + project.id" class="project-card compact-card group" [id]="project.id"
+                <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id"
                     [class.is-focused]="focusedProjectId === project.id"
                     [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
-                    [style.--project-bg]="'url(' + project.backgroundImage + ')'"
+                    [style.--card-accent]="project.accentColor"
                     (click)="onProjectFocus($event, project.id)">
-                    <div class="project-content">
-                        <h3 class="project-title">{{ text(project.title) }}</h3>
-                        <p class="project-impact">{{ text(project.impact) }}</p>
-                        <div class="project-tech">
-                            @for (tech of project.techStack; track tech) {
-                            <span class="tech-tag">{{ tech }}</span>
-                            }
+
+                    <div class="card-accent-bar"></div>
+
+                    <div class="project-card__body">
+                        <div class="project-card__icon-wrap">
+                            <img [src]="project.icon" [alt]="text(project.title) + ' icon'" class="project-card__icon" loading="lazy">
+                        </div>
+                        <div class="project-card__info">
+                            <div class="project-card__meta-row">
+                                <h3 class="project-title">{{ text(project.title) }}</h3>
+                                <div class="project-status">
+                                    <span class="status-dot" [class]="project.status"></span>
+                                    {{ getStatusLabel(project.status) }}
+                                </div>
+                            </div>
+                            <p class="project-impact">{{ text(project.impact) }}</p>
+                            <div class="project-tech">
+                                @for (tech of project.techStack; track tech) {
+                                <span class="tech-tag">{{ tech }}</span>
+                                }
+                            </div>
                         </div>
                     </div>
 
                     <div class="card-footer">
                         <div class="project-action">
                             {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
-                        </div>
-                        <div class="project-status">
-                            <span class="status-dot" [class]="project.status"></span>
-                            {{ getStatusLabel(project.status) }}
                         </div>
                     </div>
                 </a>
@@ -101,7 +123,7 @@
                     <div class="strategy-item">
                         <span class="strategy-icon">▸</span>
                         <span>{{ i18n.lang() === 'fr' ? 'Tests de redémarrage des services et récupération après panne'
-                            : 'Service restart & failure recovery testing' }}</span>
+                            : 'Service restart &amp; failure recovery testing' }}</span>
                     </div>
                 </div>
                 <p class="lab-footer">{{ i18n.lang() === 'fr' ? 'Conçu pour comprendre ce qui casse en production —

@@ -11,7 +11,14 @@ interface ProjectDetail {
   summary: string;
   status: ProjectStatus;
   role: string;
+  roleContext: string;
   techStack: string[];
+  metrics: {
+    team: string;
+    duration: string;
+    scale: string;
+    keyOutcomes: string[];
+  };
   context: {
     problem: string;
     constraints: string[];
@@ -60,10 +67,21 @@ export class ChellysportComponent {
     id: 'chellysport',
     title: 'ChellySport — Multi-Sport Club Management',
     summary:
-      'Comprehensive sports club ecosystem managing memberships, multi-role scheduling, e-commerce, and real-time athlete tracking.',
+      'Comprehensive sports club ecosystem managing 500+ members with multi-role scheduling, e-commerce integration, and real-time athlete tracking across web and mobile platforms.',
     status: 'completed',
     role: 'Full Stack Developer',
+    roleContext: 'Full Stack Developer (Multi-platform Coordination)',
     techStack: ['Spring Boot 3', 'Angular 16', 'React Native (Expo)', 'MySQL', 'WebSockets', 'Firebase'],
+    metrics: {
+      team: 'Full Stack Developer (primary), 2 backend engineers',
+      duration: '6 months',
+      scale: '50+ sport sessions/week, 500+ active members',
+      keyOutcomes: [
+        'Centralized operations eliminating 3 previous disconnected systems',
+        'Mobile app adoption among parents: 85%+',
+        'Payment integration: 95% success rate on transactions',
+      ],
+    },
     context: {
       problem:
         'Managing a multi-sport club involves chaotic coordination between admins, coaches, parents, and players, especially when tracking performance, injuries, and equipment sales across disconnected tools.',
@@ -141,10 +159,21 @@ export class ChellysportComponent {
     id: 'chellysport',
     title: 'ChellySport — Gestion de club multisport',
     summary:
-      'Écosystème complet pour clubs sportifs gérant adhésions, planning multi-rôles, e-commerce et suivi des athlètes en temps réel.',
+      'Écosystème complet pour clubs sportifs gérant 500+ adhérents avec planning multi-rôles, intégration e-commerce et suivi des athlètes en temps réel sur web et mobile.',
     status: 'completed',
     role: 'Développeur Full Stack',
+    roleContext: 'Développeur Full Stack (Coordination multi-plateforme)',
     techStack: ['Spring Boot 3', 'Angular 16', 'React Native (Expo)', 'MySQL', 'WebSockets', 'Firebase'],
+    metrics: {
+      team: 'Développeur Full Stack (principal), 2 ingénieurs backend',
+      duration: '6 mois',
+      scale: '50+ sessions sportives/semaine, 500+ adhérents actifs',
+      keyOutcomes: [
+        'Opérations centralisées, éliminant 3 systèmes déconnectés antérieurs',
+        'Adoption de l\'app mobile par les parents: 85%+',
+        'Intégration paiement: 95% de taux de succès des transactions',
+      ],
+    },
     context: {
       problem:
         'La gestion d’un club multisport implique une coordination chaotique entre admins, coachs, parents et joueurs, surtout pour le suivi des perfs, des blessures et des ventes.',

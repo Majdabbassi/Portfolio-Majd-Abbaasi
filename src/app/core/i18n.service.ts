@@ -121,6 +121,11 @@ export class I18nService {
       'detail.nextProject': 'Next Project →',
       'detail.backAll': 'Back to All Projects',
       'detail.project': 'Project',
+      'metrics.label': 'Metrics',
+      'metrics.team': 'Team',
+      'metrics.duration': 'Timeline',
+      'metrics.scale': 'Scale',
+      'metrics.outcomes': 'Key Outcomes & Metrics',
     },
     fr: {
       'nav.projects': 'Projets',
@@ -233,6 +238,11 @@ export class I18nService {
       'detail.nextProject': 'Projet suivant →',
       'detail.backAll': 'Retour à tous les projets',
       'detail.project': 'Projet',
+      'metrics.label': 'Métriques',
+      'metrics.team': 'Équipe',
+      'metrics.duration': 'Durée',
+      'metrics.scale': 'Échelle',
+      'metrics.outcomes': 'Résultats & Métriques Clés',
     },
   };
 

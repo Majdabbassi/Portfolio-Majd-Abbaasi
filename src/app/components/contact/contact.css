@@ -6,7 +6,15 @@
 }
 
 .section-padding {
-    padding: 2rem 0;
+    padding: 4rem 0 2rem;
+}
+
+.contact-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 2.5rem;
 }
 
 .section-label {
@@ -52,12 +60,13 @@
 /* ─── Intro + Copy ───────────────────────────────────────── */
 .contact-intro {
     max-width: 640px;
-    margin: 1.75rem auto 0;
+    margin: 1.25rem auto 0;
 }
 
 .contact-intro p {
     font-size: 1rem;
     line-height: 1.8;
+    color: var(--color-text-2);
     margin-bottom: 0.75rem;
 }
 
@@ -66,14 +75,14 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
-    max-width: 880px;
+    max-width: 760px;
     margin: 3rem auto 0;
 }
 
 @media (min-width: 768px) {
     .contact-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.75rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
 }
 
@@ -165,12 +174,16 @@
 
 /* ─── Footer Note ───────────────────────────────────────── */
 #contact .contact-footer {
-    margin-top: 2.75rem;
+    margin-top: 3.5rem;
+    display: flex;
+    justify-content: center;
 }
 
 #contact .contact-footer p {
     font-size: 0.8rem;
     line-height: 1.7;
+    color: var(--color-muted);
+    text-align: center;
 }
 
 /* ─── Location Badge ─────────────────────────────────────── */
