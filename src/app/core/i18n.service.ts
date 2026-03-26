@@ -32,6 +32,8 @@ export class I18nService {
       'hero.viewProjects': 'Projects',
       'hero.downloadCv': 'CV',
       'hero.contact': 'Contact Me',
+      'hero.cvToast.message': 'Also available in French.',
+      'hero.cvToast.ctaOther': 'Download French CV',
 
       'about.label': 'ABOUT ME',
       'about.title1': 'Engineer. Architect.',
@@ -148,6 +150,8 @@ export class I18nService {
       'hero.viewProjects': 'les projets',
       'hero.downloadCv': 'CV',
       'hero.contact': 'Me contacter',
+      'hero.cvToast.message': 'Également disponible en anglais.',
+      'hero.cvToast.ctaOther': 'Télécharger le CV en anglais',
 
       'about.label': 'À PROPOS',
       'about.title1': 'Ingénieur. Architecte.',

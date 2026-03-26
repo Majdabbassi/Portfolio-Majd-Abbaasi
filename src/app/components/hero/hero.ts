@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { I18nService } from '../../core/i18n.service';
 
@@ -12,6 +12,9 @@ import { I18nService } from '../../core/i18n.service';
 export class HeroComponent implements OnDestroy {
     readonly i18n = inject(I18nService);
     private typingTimer: ReturnType<typeof setTimeout> | null = null;
+    private cvToastTimer: ReturnType<typeof setTimeout> | null = null;
+
+    cvToastVisible = signal(false);
 
     socialLinks = [
         { label: 'GitHub', icon: 'github', href: 'https://github.com/Majdabbassi', id: 'hero-github' },
@@ -21,6 +24,7 @@ export class HeroComponent implements OnDestroy {
 
     ngOnDestroy(): void {
         if (this.typingTimer) clearTimeout(this.typingTimer);
+        if (this.cvToastTimer) clearTimeout(this.cvToastTimer);
     }
 
     scrollToProjects(): void {
@@ -35,5 +39,25 @@ export class HeroComponent implements OnDestroy {
         return this.i18n.lang() === 'fr'
             ? 'assets/cv-majd-abbassi-fr.pdf'
             : 'assets/cv-majd-abbassi-en.pdf';
+    }
+
+    cvHrefOther(): string {
+        return this.i18n.lang() === 'fr'
+            ? 'assets/cv-majd-abbassi-en.pdf'
+            : 'assets/cv-majd-abbassi-fr.pdf';
+    }
+
+    onDownloadCv(): void {
+        this.cvToastVisible.set(true);
+        if (this.cvToastTimer) clearTimeout(this.cvToastTimer);
+        this.cvToastTimer = setTimeout(() => this.cvToastVisible.set(false), 6000);
+    }
+
+    closeCvToast(): void {
+        this.cvToastVisible.set(false);
+        if (this.cvToastTimer) {
+            clearTimeout(this.cvToastTimer);
+            this.cvToastTimer = null;
+        }
     }
 }
