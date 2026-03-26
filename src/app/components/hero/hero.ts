@@ -30,4 +30,10 @@ export class HeroComponent implements OnDestroy {
     scrollToContact(): void {
         document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
     }
+
+    cvHref(): string {
+        return this.i18n.lang() === 'fr'
+            ? 'assets/cv-majd-abbassi-fr.pdf'
+            : 'assets/cv-majd-abbassi-en.pdf';
+    }
 }

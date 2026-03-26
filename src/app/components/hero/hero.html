@@ -1,4 +1,4 @@
-﻿<section id="hero" class="hero-section" style="background: var(--color-bg)">
+<section id="hero" class="hero-section" style="background: var(--color-bg)">
     <!-- Background Grid -->
     <div class="hero-bg-grid bg-grid"></div>
 
@@ -85,7 +85,7 @@
                         </svg>
                         {{ i18n.t('hero.viewProjects') }}
                     </button>
-                    <a class="btn-outline" href="assets/cv-majd-abbassi.pdf" download id="hero-download-cv">
+                    <a class="btn-outline" [href]="cvHref()" download id="hero-download-cv">
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                             <polyline points="7 10 12 15 17 10" />
