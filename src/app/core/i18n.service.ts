@@ -29,8 +29,8 @@ export class I18nService {
       'hero.cred1': '44-controller multi-tenant SaaS backend',
       'hero.cred2': '14-service Dockerized monitoring stack',
       'hero.cred3': 'AI-integrated OCR microservice',
-      'hero.viewProjects': 'View Projects',
-      'hero.downloadCv': 'Download CV',
+      'hero.viewProjects': 'Projects',
+      'hero.downloadCv': 'CV',
       'hero.contact': 'Contact Me',
 
       'about.label': 'ABOUT ME',
@@ -145,8 +145,8 @@ export class I18nService {
       'hero.cred1': 'Backend SaaS multi-tenant — 44 contrôleurs',
       'hero.cred2': 'Stack Docker 14 services + monitoring',
       'hero.cred3': 'Microservice OCR intégré par IA',
-      'hero.viewProjects': 'Voir les projets',
-      'hero.downloadCv': 'Télécharger CV',
+      'hero.viewProjects': 'les projets',
+      'hero.downloadCv': 'CV',
       'hero.contact': 'Me contacter',
 
       'about.label': 'À PROPOS',
