@@ -155,6 +155,67 @@
     line-clamp: unset;
 }
 
+/* ─── Showcase Groups ──────────────────────────────────── */
+.showcase-group {
+    margin-top: 0.25rem;
+}
+
+.showcase-group + .showcase-group {
+    margin-top: 1.5rem;
+}
+
+.showcase-group-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.showcase-group-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-border), transparent);
+    opacity: 0.7;
+}
+
+.showcase-group-label--dim {
+    color: var(--color-muted);
+}
+
+.projects-showcase > .showcase-group:first-of-type {
+    margin-top: 0;
+}
+
+/* ─── Showcase Highlight Tags ──────────────────────────── */
+.showcase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.7rem;
+}
+
+.showcase-tag {
+    font-size: 0.56rem;
+    font-weight: 600;
+    color: var(--color-text-2);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+.project-card:hover .showcase-tag {
+    border-color: color-mix(in srgb, var(--card-accent) 40%, transparent);
+    color: var(--card-accent);
+}
+
 /* ─── Card Body (icon + info layout) ────────────────────── */
 .project-card__body {
     display: flex;
@@ -277,6 +338,11 @@
 
 .status-dot.in-development {
     background: var(--color-muted, #888);
+}
+
+.status-dot.flagship {
+    background: #e11d48;
+    box-shadow: 0 0 6px rgba(225, 29, 72, 0.45);
 }
 
 /* ─── Tech Stack ─────────────────────────────────────────── */

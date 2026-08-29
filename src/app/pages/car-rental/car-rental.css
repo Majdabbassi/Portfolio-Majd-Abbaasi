@@ -201,7 +201,7 @@
    SHARED SECTION STYLES
    ═══════════════════════════════════════════════════════════ */
 .detail-section {
-  padding: 3.5rem 0;
+  padding: 1.5rem 0;
 }
 
 .detail-section.section-alt {
@@ -874,7 +874,7 @@
    ═══════════════════════════════════════════════════════════ */
 @media (max-width: 767px) {
   .detail-section {
-    padding: 2.5rem 0;
+    padding: 1.5rem 0;
   }
 
   .project-hero {

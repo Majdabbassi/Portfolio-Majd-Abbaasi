@@ -5,13 +5,25 @@ import { DocumentMarketplaceComponent } from './pages/document-marketplace/docum
 import { ChellysportComponent } from './pages/chellysport/chellysport';
 import { CarRentalComponent } from './pages/car-rental/car-rental';
 import { DeliveryTrackingComponent } from './pages/delivery-tracking/delivery-tracking';
+import { AlbumyComponent } from './pages/albumy/albumy';
+import { DataAnalyticsComponent } from './pages/data-analytics/data-analytics';
+import { MallosComponent } from './pages/mallos/mallos';
+import { N8nComponent } from './pages/n8n/n8n';
+import { BookproComponent } from './pages/bookpro/bookpro';
+import { MediplusComponent } from './pages/mediplus/mediplus';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'projects/caferesto', component: CaferestoComponent },
   { path: 'projects/document-marketplace', component: DocumentMarketplaceComponent },
+  { path: 'projects/mediplus', component: MediplusComponent },
   { path: 'projects/chellysport', component: ChellysportComponent },
   { path: 'projects/car-rental', component: CarRentalComponent },
   { path: 'projects/delivery-tracking', component: DeliveryTrackingComponent },
+  { path: 'projects/albumy', component: AlbumyComponent },
+  { path: 'projects/data-analytics', component: DataAnalyticsComponent },
+  { path: 'projects/mallos', component: MallosComponent },
+  { path: 'projects/n8n', component: N8nComponent },
+  { path: 'projects/bookpro', component: BookproComponent },
   { path: '**', redirectTo: '' },
 ];

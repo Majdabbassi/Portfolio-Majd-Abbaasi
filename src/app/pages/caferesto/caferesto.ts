@@ -4,7 +4,7 @@ import { FadeInDirective } from '../../directives/fade-in.directive';
 import { I18nService } from '../../core/i18n.service';
 import { OnInit } from '@angular/core';
 
-type ProjectStatus = 'production' | 'completed' | 'in-development';
+type ProjectStatus = 'production' | 'completed' | 'in-development' | 'flagship';
 
 interface ProjectDetail {
   id: string;
@@ -71,17 +71,17 @@ export class CaferestoComponent implements OnInit {
     id: 'caferesto',
     title: 'CafeResto — Multi-Tenant Restaurant Operations Platform',
     summary:
-      'Production restaurant ecosystem serving 14+ restaurants and 500+ daily transactions with real-time inventory sync under 1 second and 99.5% uptime.',
-    status: 'production',
+      'Designed, developed, deployed, and operated a multi-tenant restaurant management platform. Built the backend architecture, production infrastructure, monitoring stack, alerting system, and deployment pipeline while maintaining real-time inventory synchronization across restaurant operations.',
+    status: 'flagship',
     role: 'Backend Architect',
-    roleContext: 'Backend Architect (Foundation & DevOps)',
-    techStack: ['Java 17', 'Spring Boot', 'PostgreSQL', 'WebSocket', 'Docker', 'Prometheus', 'Grafana', 'Nginx'],
+    roleContext: 'Full-Stack & Infrastructure Engineer',
+    techStack: ['Java 21', 'Spring Boot', 'PostgreSQL', 'WebSocket', 'Docker', 'Prometheus', 'Grafana', 'Nginx'],
     metrics: {
       team: 'Backend Architect (primary), 3 engineers',
       duration: '8 months',
-      scale: '14+ restaurants, 500+ daily transactions',
+      scale: 'Validated under high-load stress testing across multiple tenants',
       keyOutcomes: [
-        '14-service Docker infrastructure monitoring 100+ metrics',
+        '13-service Docker infrastructure monitoring 100+ metrics',
         'Real-time inventory sync across POS terminals <1s',
         'Multi-tenant isolation with zero data breach incidents',
       ],
@@ -136,10 +136,10 @@ export class CaferestoComponent implements OnInit {
       flow: 'Build -> Docker Images -> Nginx Routing -> Production Cluster',
       environment: 'Dockerized Linux servers with centralized monitoring and persistent PostgreSQL storage',
       details: [
-        'Deployed as a live production ecosystem supporting active restaurant operations',
-        '14-service Docker composition for core services, networking, and monitoring',
+        'Served live restaurant operations in production before being retired from active running',
+        '13-service Docker composition for core services, networking, and monitoring',
         'Service-level telemetry integrated into Prometheus dashboards and alerts',
-        'Real-time operations validated under daily transactional load',
+        'Validated under high-load stress testing — real-time sync held below 1s under sustained concurrent load',
       ],
     },
     challenges: [
@@ -172,17 +172,17 @@ export class CaferestoComponent implements OnInit {
     id: 'caferesto',
     title: 'CafeResto — Plateforme Multi-Tenant d\'Operations Restaurant',
     summary:
-      'Ecosysteme restaurant en production servant 14+ restaurants et 500+ transactions quotidiennes avec synchronisation inventaire temps réel sous 1 seconde et 99.5% de disponibilite.',
-    status: 'production',
+      'Conçu, développé, déployé et exploité une plateforme de gestion restaurant multi-tenant. Construit l\'architecture backend, l\'infrastructure de production, la stack de monitoring, le système d\'alertes et le pipeline de déploiement tout en maintenant la synchronisation inventaire temps réel des opérations restaurant.',
+    status: 'flagship',
     role: 'Architecte Backend',
-    roleContext: 'Architecte Backend (Fondations & DevOps)',
-    techStack: ['Java 17', 'Spring Boot', 'PostgreSQL', 'WebSocket', 'Docker', 'Prometheus', 'Grafana', 'Nginx'],
+    roleContext: 'Ingénieur Full-Stack & Infrastructure',
+    techStack: ['Java 21', 'Spring Boot', 'PostgreSQL', 'WebSocket', 'Docker', 'Prometheus', 'Grafana', 'Nginx'],
     metrics: {
       team: 'Architecte Backend (principal), 3 ingénieurs',
       duration: '8 mois',
-      scale: '14+ restaurants, 500+ transactions quotidiennes',
+      scale: 'Validé par un test de charge intensif multi-tenants',
       keyOutcomes: [
-        'Infrastructure Docker de 14 services monitorant 100+ metriques',
+        'Infrastructure Docker de 13 services monitorant 100+ metriques',
         'Synchronisation inventaire temps réel entre terminaux POS <1s',
         'Isolation multi-tenant avec zero incident de fuite de donnees',
       ],
@@ -237,10 +237,10 @@ export class CaferestoComponent implements OnInit {
       flow: 'Build -> Images Docker -> Routage Nginx -> Cluster Production',
       environment: 'Serveurs Linux Dockerises avec monitoring centralise et stockage PostgreSQL persistant',
       details: [
-        'Deployee comme ecosysteme de production supportant des operations restaurant actives',
-        'Composition Docker de 14 services pour les services coeur, le reseau et le monitoring',
+        'A servi des operations restaurant reelles en production avant d\'etre retire du fonctionnement actif',
+        'Composition Docker de 13 services pour les services coeur, le reseau et le monitoring',
         'Telemetrie de services integree aux dashboards et alertes Prometheus',
-        'Operations temps réel validees sous charge transactionnelle quotidienne',
+        'Valide sous test de charge intensif — sync temps réel maintenue sous 1s en charge concurrente soutenue',
       ],
     },
     challenges: [
@@ -281,6 +281,8 @@ export class CaferestoComponent implements OnInit {
         return this.i18n.t('status.completed');
       case 'in-development':
         return this.i18n.t('status.in-development');
+      case 'flagship':
+        return this.i18n.t('status.flagship');
       default:
         return this.i18n.t('detail.project');
     }

@@ -33,6 +33,11 @@
                             </div>
                         </div>
                         <p class="project-impact">{{ text(master.impact) }}</p>
+                        <div class="showcase-tags">
+                            @for (h of master.highlights; track h.en) {
+                            <span class="showcase-tag">{{ text(h) }}</span>
+                            }
+                        </div>
                         <div class="project-tech">
                             @for (tech of master.techStack; track tech) {
                             <span class="tech-tag">{{ tech }}</span>
@@ -49,46 +54,149 @@
             </a>
             }
 
-            <!-- ── Project Grid ─────────────────────────────── -->
-            <div class="projects-grid">
-                @for (project of secondaryProjects; track project.id) {
-                <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id"
-                    [class.is-focused]="focusedProjectId === project.id"
-                    [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
-                    [style.--card-accent]="project.accentColor"
-                    (click)="onProjectFocus($event, project.id)">
-
-                    <div class="card-accent-bar"></div>
-
-                    <div class="project-card__body">
-                        <div class="project-card__icon-wrap">
-                            <img [src]="project.icon" [alt]="text(project.title) + ' icon'" class="project-card__icon" loading="lazy">
-                        </div>
-                        <div class="project-card__info">
-                            <div class="project-card__meta-row">
-                                <h3 class="project-title">{{ text(project.title) }}</h3>
-                                <div class="project-status">
-                                    <span class="status-dot" [class]="project.status"></span>
-                                    {{ getStatusLabel(project.status) }}
+            <!-- ── Production Systems ───────────────────────── -->
+            @if (secondaryProjects.length > 0) {
+            <div class="showcase-group">
+                <p class="showcase-group-label">{{ i18n.t('projects.group.fullstack') }}</p>
+                <div class="projects-grid">
+                    @for (project of secondaryProjects; track project.id) {
+                    <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id"
+                        [class.is-focused]="focusedProjectId === project.id"
+                        [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
+                        [style.--card-accent]="project.accentColor"
+                        (click)="onProjectFocus($event, project.id)">
+                        <div class="card-accent-bar"></div>
+                        <div class="project-card__body">
+                            <div class="project-card__icon-wrap">
+                                <img [src]="project.icon" [alt]="text(project.title) + ' icon'" class="project-card__icon" loading="lazy">
+                            </div>
+                            <div class="project-card__info">
+                                <div class="project-card__meta-row">
+                                    <h3 class="project-title">{{ text(project.title) }}</h3>
+                                    <div class="project-status">
+                                        <span class="status-dot" [class]="project.status"></span>
+                                        {{ getStatusLabel(project.status) }}
+                                    </div>
+                                </div>
+                                <p class="project-impact">{{ text(project.impact) }}</p>
+                                <div class="showcase-tags">
+                                    @for (h of project.highlights; track h.en) {
+                                    <span class="showcase-tag">{{ text(h) }}</span>
+                                    }
+                                </div>
+                                <div class="project-tech">
+                                    @for (tech of project.techStack; track tech) {
+                                    <span class="tech-tag">{{ tech }}</span>
+                                    }
                                 </div>
                             </div>
-                            <p class="project-impact">{{ text(project.impact) }}</p>
-                            <div class="project-tech">
-                                @for (tech of project.techStack; track tech) {
-                                <span class="tech-tag">{{ tech }}</span>
-                                }
+                        </div>
+                        <div class="card-footer">
+                            <div class="project-action">
+                                {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="project-action">
-                            {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
-                        </div>
-                    </div>
-                </a>
-                }
+                    </a>
+                    }
+                </div>
             </div>
+            }
+
+            <!-- ── Completed Systems ────────────────────────── -->
+            @if (completedProjects.length > 0) {
+            <div class="showcase-group">
+                <p class="showcase-group-label">{{ i18n.t('projects.group.completed') }}</p>
+                <div class="projects-grid">
+                    @for (project of completedProjects; track project.id) {
+                    <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id"
+                        [class.is-focused]="focusedProjectId === project.id"
+                        [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
+                        [style.--card-accent]="project.accentColor"
+                        (click)="onProjectFocus($event, project.id)">
+                        <div class="card-accent-bar"></div>
+                        <div class="project-card__body">
+                            <div class="project-card__icon-wrap">
+                                <img [src]="project.icon" [alt]="text(project.title) + ' icon'" class="project-card__icon" loading="lazy">
+                            </div>
+                            <div class="project-card__info">
+                                <div class="project-card__meta-row">
+                                    <h3 class="project-title">{{ text(project.title) }}</h3>
+                                    <div class="project-status">
+                                        <span class="status-dot" [class]="project.status"></span>
+                                        {{ getStatusLabel(project.status) }}
+                                    </div>
+                                </div>
+                                <p class="project-impact">{{ text(project.impact) }}</p>
+                                <div class="showcase-tags">
+                                    @for (h of project.highlights; track h.en) {
+                                    <span class="showcase-tag">{{ text(h) }}</span>
+                                    }
+                                </div>
+                                <div class="project-tech">
+                                    @for (tech of project.techStack; track tech) {
+                                    <span class="tech-tag">{{ tech }}</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="project-action">
+                                {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
+                            </div>
+                        </div>
+                    </a>
+                    }
+                </div>
+            </div>
+            }
+
+            <!-- ── In Development ───────────────────────────── -->
+            @if (developmentProjects.length > 0) {
+            <div class="showcase-group">
+                <p class="showcase-group-label showcase-group-label--dim">{{ i18n.t('projects.group.development') }}</p>
+                <div class="projects-grid">
+                    @for (project of developmentProjects; track project.id) {
+                    <a [routerLink]="'/projects/' + project.id" class="project-card group" [id]="project.id"
+                        [class.is-focused]="focusedProjectId === project.id"
+                        [class.is-dimmed]="focusedProjectId !== null && focusedProjectId !== project.id"
+                        [style.--card-accent]="project.accentColor"
+                        (click)="onProjectFocus($event, project.id)">
+                        <div class="card-accent-bar"></div>
+                        <div class="project-card__body">
+                            <div class="project-card__icon-wrap">
+                                <img [src]="project.icon" [alt]="text(project.title) + ' icon'" class="project-card__icon" loading="lazy">
+                            </div>
+                            <div class="project-card__info">
+                                <div class="project-card__meta-row">
+                                    <h3 class="project-title">{{ text(project.title) }}</h3>
+                                    <div class="project-status">
+                                        <span class="status-dot" [class]="project.status"></span>
+                                        {{ getStatusLabel(project.status) }}
+                                    </div>
+                                </div>
+                                <p class="project-impact">{{ text(project.impact) }}</p>
+                                <div class="showcase-tags">
+                                    @for (h of project.highlights; track h.en) {
+                                    <span class="showcase-tag">{{ text(h) }}</span>
+                                    }
+                                </div>
+                                <div class="project-tech">
+                                    @for (tech of project.techStack; track tech) {
+                                    <span class="tech-tag">{{ tech }}</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="project-action">
+                                {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
+                            </div>
+                        </div>
+                    </a>
+                    }
+                </div>
+            </div>
+            }
         </div>
 
         <!-- Deployment Lab -->

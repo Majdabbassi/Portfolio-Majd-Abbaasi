@@ -58,6 +58,10 @@ export class I18nService {
       'projects.lab.desc': 'To deeply understand production behavior, I repeatedly deployed a simplified application using multiple strategies — refining server setup, configuration logic, and release flows.',
       'projects.lab.handsOn': 'Hands-on experimentation included:',
       'projects.lab.footer': 'Not a product — an engineering lab for mastering deployment from the ground up.',
+      'projects.group.devops': 'Backend & DevOps Systems',
+      'projects.group.fullstack': 'Production Systems',
+      'projects.group.completed': 'Completed Systems',
+      'projects.group.development': 'In Development',
 
       'infra.label': '— Infrastructure & Production Engineering',
       'infra.title': 'Lifecycle Ownership',
@@ -88,6 +92,7 @@ export class I18nService {
       'status.production': 'Production',
       'status.completed': 'Completed',
       'status.in-development': 'In Development',
+      'status.flagship': 'My Favorite Project',
 
       'detail.back': 'Back to Projects',
       'detail.context': 'Context',
@@ -176,6 +181,10 @@ export class I18nService {
       'projects.lab.desc': 'Pour comprendre en profondeur le comportement en production, j’ai redéployé une application simplifiée via plusieurs stratégies — en affinant la configuration serveur, la logique de configuration et les flux de release.',
       'projects.lab.handsOn': 'Expérimentations pratiques :',
       'projects.lab.footer': 'Ce n’est pas un produit — c’est un laboratoire d’ingénierie pour maîtriser le déploiement de bout en bout.',
+      'projects.group.devops': 'Systèmes Backend & DevOps',
+      'projects.group.fullstack': 'Systèmes en production',
+      'projects.group.completed': 'Systèmes terminés',
+      'projects.group.development': 'En développement',
 
       'infra.label': '— Infrastructure & ingénierie de production',
       'infra.title': 'Responsabilité du cycle de vie',
@@ -206,6 +215,7 @@ export class I18nService {
       'status.production': 'Production',
       'status.completed': 'Terminé',
       'status.in-development': 'En développement',
+      'status.flagship': 'Mon projet favori',
 
       'detail.back': 'Retour aux projets',
       'detail.context': 'Contexte',
