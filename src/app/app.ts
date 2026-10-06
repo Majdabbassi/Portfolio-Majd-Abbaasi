@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SiteNav } from './shared/site-nav';
 import { Mascot } from './mascot/mascot';
+import { Analytics } from './shared/analytics';
+import { I18n } from './i18n/i18n';
+import { ThemeService } from './shared/theme';
 
 @Component({
   selector: 'app-root',
@@ -17,4 +20,11 @@ import { Mascot } from './mascot/mascot';
     .skip:focus { left: 8px; }
   `,
 })
-export class App {}
+export class App {
+  constructor() {
+    const analytics = inject(Analytics);
+    analytics.start();
+    analytics.tag('lang', inject(I18n).lang());
+    analytics.tag('theme', inject(ThemeService).theme());
+  }
+}
