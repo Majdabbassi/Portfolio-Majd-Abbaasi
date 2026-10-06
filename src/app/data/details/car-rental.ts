@@ -123,7 +123,7 @@ export const CAR_RENTAL: { en: ProjectDetail; fr: ProjectDetail } = {
         { role: 'Manager', user: 'manager', password: 'Rental@2026!' },
         { role: 'Receptionist (limited)', user: 'reception', password: 'Rental@2026!' },
       ],
-      note: 'Free hosting: the API sleeps when idle, so the first request can take about a minute. Demo data only.',
+      note: 'Free hosting: the API sleeps when idle, so the first request can take a few minutes. Demo data only.',
       screens: shots([
         'Dashboard with the daily alerts',
         'A contract priced by season and length of stay',
@@ -247,7 +247,7 @@ export const CAR_RENTAL: { en: ProjectDetail; fr: ProjectDetail } = {
         { role: 'Manager', user: 'manager', password: 'Rental@2026!' },
         { role: 'Réceptionniste (limité)', user: 'reception', password: 'Rental@2026!' },
       ],
-      note: 'Hébergement gratuit : l’API s’endort quand elle est inactive, la première requête peut prendre environ une minute. Données de démonstration uniquement.',
+      note: 'Hébergement gratuit : l’API s’endort quand elle est inactive, la première requête peut prendre quelques minutes. Données de démonstration uniquement.',
       screens: shots([
         'Tableau de bord avec les alertes quotidiennes',
         'Un contrat valorisé selon la saison et la durée',

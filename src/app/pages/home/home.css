@@ -14,6 +14,8 @@ h1 { margin: 0; font-size: clamp(42px, 6vw, 76px); line-height: 1.02; font-weigh
 .term-bar i { width: 12px; height: 12px; border-radius: 50%; }
 .term-bar span { margin-left: 10px; font-size: 13px; color: var(--text-4); }
 .term-body { padding: 24px; font-size: 15px; line-height: 1.9; color: var(--text-2); white-space: pre; overflow-x: auto; }
+/* Phones: shrink the text so the longest line (~40 chars) fits instead of being cut off */
+@media (max-width: 520px) { .term-body { padding: 18px 16px; font-size: min(15px, 3.3vw); } }
 .term-body b { color: var(--lamp-text); font-weight: 400; }
 .term-body em { color: var(--ok-text); font-style: normal; }
 .typed { overflow: hidden; max-width: 0; animation: type .9s steps(30) forwards; }

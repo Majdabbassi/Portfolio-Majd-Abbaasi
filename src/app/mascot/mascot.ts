@@ -50,6 +50,8 @@ export class Mascot {
   private timers: ReturnType<typeof setTimeout>[] = [];
   private lineTimer?: ReturnType<typeof setInterval>;
   private reduced = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // On a phone any bubble covers the text being read, so mini-Majd only talks when tapped.
+  private quiet = () => typeof matchMedia !== 'undefined' && matchMedia('(max-width: 640px)').matches;
 
   constructor() {
     const sub = this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => this.onPage((e as NavigationEnd).urlAfterRedirects));
@@ -61,7 +63,7 @@ export class Mascot {
   private onPage(url: string) {
     this.url = url.split('#')[0].split('?')[0];
     this.endTour(false);
-    if (this.hidden()) return;
+    if (this.hidden() || this.quiet()) return;
     const key = this.url;
     if (this.greeted.has(key)) return;
     this.greeted.add(key);
@@ -104,7 +106,7 @@ export class Mascot {
   }
 
   private randomLine() {
-    if (this.hidden() || this.mode() !== 'idle' || this.linesSaid >= MAX_LINES || document.hidden) return;
+    if (this.hidden() || this.quiet() || this.mode() !== 'idle' || this.linesSaid >= MAX_LINES || document.hidden) return;
     this.linesSaid++;
     this.sayRandom();
   }

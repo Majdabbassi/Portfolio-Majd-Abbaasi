@@ -18,7 +18,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
     status: 'completed',
     role: 'Full Stack Engineer',
     roleContext: 'Audit, complete and ship',
-    techStack: ['Java 21', 'Spring Boot 3', 'MySQL', 'JWT', 'Angular 18', 'PrimeNG', 'Konva', 'Docker'],
+    techStack: ['Java 21', 'Spring Boot 4', 'MySQL', 'JWT', 'Angular 18', 'PrimeNG', 'Konva', 'Docker'],
     metrics: {
       team: 'Solo',
       duration: 'Audited, completed and shipped in 2026',
@@ -58,7 +58,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
       tiers: [
         { label: 'Web', nodes: [{ name: 'Angular 18 + PrimeNG', sub: 'manager workspace · admin console' }, { name: 'Konva floor map', sub: 'trace editor · lease colouring' }] },
         { label: 'API', nodes: [
-          { name: 'Spring Boot 3', sub: 'JWT · per-mall permissions' },
+          { name: 'Spring Boot 4', sub: 'JWT · per-mall permissions' },
           { name: 'Finance', sub: 'invoices · late fees · debtors' },
           { name: 'Audit + analytics', sub: 'history · occupancy · lease expiry' },
         ] },
@@ -123,7 +123,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
         { role: 'Mall manager', user: 'manager', password: 'Manager@123' },
         { role: 'Assistant (stores and reports)', user: 'assistant', password: 'Manager@123' },
       ],
-      note: 'Press “Show leases” on the Interactive Map. Free hosting: the first request after a pause can take about a minute.',
+      note: 'Press “Show leases” on the Interactive Map. Free hosting: the first request after a pause can take a few minutes.',
       screens: shots([
         'Floor plan coloured by lease state',
         'Rent invoices and who owes what',
@@ -142,7 +142,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
     status: 'completed',
     role: 'Ingénieur Full Stack',
     roleContext: 'Audit, achèvement et mise en production',
-    techStack: ['Java 21', 'Spring Boot 3', 'MySQL', 'JWT', 'Angular 18', 'PrimeNG', 'Konva', 'Docker'],
+    techStack: ['Java 21', 'Spring Boot 4', 'MySQL', 'JWT', 'Angular 18', 'PrimeNG', 'Konva', 'Docker'],
     metrics: {
       team: 'En solo',
       duration: 'Audité, complété et livré en 2026',
@@ -182,7 +182,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
       tiers: [
         { label: 'Web', nodes: [{ name: 'Angular 18 + PrimeNG', sub: 'espace manager · console admin' }, { name: 'Plan Konva', sub: 'éditeur de tracé · couleurs de baux' }] },
         { label: 'API', nodes: [
-          { name: 'Spring Boot 3', sub: 'JWT · permissions par centre' },
+          { name: 'Spring Boot 4', sub: 'JWT · permissions par centre' },
           { name: 'Finance', sub: 'factures · pénalités · débiteurs' },
           { name: 'Audit + analyses', sub: 'historique · occupation · fins de bail' },
         ] },
@@ -247,7 +247,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
         { role: 'Manager du centre', user: 'manager', password: 'Manager@123' },
         { role: 'Assistant (magasins et rapports)', user: 'assistant', password: 'Manager@123' },
       ],
-      note: 'Cliquez « Show leases » sur la carte interactive. Hébergement gratuit : la première requête après une pause peut prendre environ une minute.',
+      note: 'Cliquez « Show leases » sur la carte interactive. Hébergement gratuit : la première requête après une pause peut prendre quelques minutes.',
       screens: shots([
         'Plan d’étage colorié selon l’état des baux',
         'Factures de loyer et impayés',
