@@ -157,8 +157,8 @@ export const MORE_PROJECTS: Project[] = [
     slug: 'caferesto', name: 'CafeResto', icon: '/assets/icon-caferesto.png', toy: false,
     eyebrow: { en: 'Multi-tenant · Real-time', fr: 'Multi-tenant · Temps réel' },
     cardLine: {
-      en: 'Multi-tenant restaurant platform engineered for real-time operations, automated stock logic, and production-grade infrastructure.',
-      fr: 'Plateforme restaurant multi-tenant conçue pour les opérations en temps réel, la gestion automatisée du stock et une infrastructure de production.',
+      en: 'Restaurant platform: live orders, automatic stock, monitored in production.',
+      fr: 'Plateforme restaurant : commandes en direct, stock automatique, supervisée en production.',
     },
     cardStack: 'Spring Boot · React · PostgreSQL · Grafana',
     detail: CAFERESTO,
@@ -169,8 +169,8 @@ export const MORE_PROJECTS: Project[] = [
     slug: 'massarat', name: 'Massarat+', icon: '/assets/icon-docmarket.png', toy: false,
     eyebrow: { en: 'Marketplace · In production', fr: 'Marketplace · En production' },
     cardLine: {
-      en: 'Educational content marketplace with AES-128 file encryption, transactional wallet, real-time messaging, and multi-gateway payments.',
-      fr: 'Marketplace de contenu éducatif avec chiffrement AES-128, wallet transactionnel, messagerie temps réel et paiements multi-passerelles.',
+      en: 'Education marketplace: encrypted files, a wallet and real-time messaging.',
+      fr: 'Marketplace éducative : fichiers chiffrés, wallet et messagerie en temps réel.',
     },
     cardStack: 'Spring Boot · Angular · Expo · AES-128',
     detail: MASSARAT,
@@ -181,8 +181,8 @@ export const MORE_PROJECTS: Project[] = [
     slug: 'mediplus', name: 'MediPlus', icon: '/assets/icon-mediplus.png', toy: false,
     eyebrow: { en: 'Health · Web + mobile', fr: 'Santé · Web + mobile' },
     cardLine: {
-      en: 'Medication-reminder platform (Dhakerni): role-based backoffice, reminder engine and adherence tracking, plus mobile apps for patients, doctors and helpers.',
-      fr: 'Plateforme de rappels de médicaments (Dhakerni) : backoffice par rôles, moteur de rappels et suivi d’adhérence, plus des apps mobiles patients, médecins et tuteurs.',
+      en: 'Medication reminders by push, SMS and voice, with apps for patients and doctors.',
+      fr: 'Rappels de médicaments par push, SMS et voix, avec des apps patients et médecins.',
     },
     cardStack: 'Spring Boot · Angular · Expo · Quartz',
     detail: MEDIPLUS,

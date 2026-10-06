@@ -113,7 +113,7 @@ export const SPORTCLUB: { en: ProjectDetail; fr: ProjectDetail } = {
         { role: 'Parent app', user: 'leila.parent@sportclub.demo', password: 'Parent@2026!' },
       ],
       extra: [{ label: 'Parent app', href: 'https://sportclub-platform-mobile.vercel.app' }],
-      note: 'The parent app is a separate link above. Free hosting: the first request can take about a minute. The demo club is fictional.',
+      note: 'The parent app is a separate link above. Free hosting: the first request can take a few minutes. The demo club is fictional.',
       screens: shots([
         'Coach dashboard',
         'Session calendar',
@@ -227,7 +227,7 @@ export const SPORTCLUB: { en: ProjectDetail; fr: ProjectDetail } = {
         { role: 'App parents', user: 'leila.parent@sportclub.demo', password: 'Parent@2026!' },
       ],
       extra: [{ label: 'App parents', href: 'https://sportclub-platform-mobile.vercel.app' }],
-      note: 'L’app parents est un lien séparé ci-dessus. Hébergement gratuit : la première requête peut prendre environ une minute. Le club de démonstration est fictif.',
+      note: 'L’app parents est un lien séparé ci-dessus. Hébergement gratuit : la première requête peut prendre quelques minutes. Le club de démonstration est fictif.',
       screens: shots([
         'Tableau de bord du coach',
         'Calendrier des séances',

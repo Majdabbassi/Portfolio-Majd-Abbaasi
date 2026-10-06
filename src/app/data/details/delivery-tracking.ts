@@ -115,7 +115,7 @@ export const DELIVERY_TRACKING: { en: ProjectDetail; fr: ProjectDetail } = {
         { role: 'Customer', user: 'customer.karim', password: 'SwiftDeliver@2026!' },
         { role: 'Vendor', user: 'vendor.sofia', password: 'SwiftDeliver@2026!' },
       ],
-      note: 'Free hosting: the API sleeps when idle, so the first request can take up to a minute.',
+      note: 'Free hosting: the API sleeps when idle, so the first request can take a few minutes.',
       screens: shots([
         'Super admin dashboard',
         'Customer: own orders',
@@ -231,7 +231,7 @@ export const DELIVERY_TRACKING: { en: ProjectDetail; fr: ProjectDetail } = {
         { role: 'Client', user: 'customer.karim', password: 'SwiftDeliver@2026!' },
         { role: 'Vendeur', user: 'vendor.sofia', password: 'SwiftDeliver@2026!' },
       ],
-      note: 'Hébergement gratuit : l’API s’endort quand elle est inactive, la première requête peut prendre jusqu’à une minute.',
+      note: 'Hébergement gratuit : l’API s’endort quand elle est inactive, la première requête peut prendre quelques minutes.',
       screens: shots([
         'Tableau de bord du super admin',
         'Client : ses commandes',

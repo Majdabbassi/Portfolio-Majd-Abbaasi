@@ -149,10 +149,10 @@ export const SITE = {
     title: { en: 'Tech Stack', fr: 'Stack technique' } as L,
     text: { en: 'Organized by domain for a quick scan of the tools I use every day.', fr: 'Organisation par domaines pour une lecture rapide de mes outils quotidiens.' } as L,
     groups: [
-      { name: { en: 'Backend', fr: 'Backend' }, core: ['Spring Boot', 'Java', 'PostgreSQL'], more: ['MySQL', 'JWT', 'WebSocket', 'Flyway'] },
-      { name: { en: 'DevOps', fr: 'DevOps' }, core: ['Docker', 'Nginx', 'Prometheus'], more: ['Docker Compose', 'Grafana', 'Alertmanager', 'Linux'] },
-      { name: { en: 'Frontend', fr: 'Frontend' }, core: ['Angular'], more: ['React', 'TypeScript', 'HTML/CSS'] },
-      { name: { en: 'AI / Tools', fr: 'IA / Outils' }, core: [], more: ['Python', 'Groq LLM', 'Firebase', 'Maven', 'Git'] },
+      { name: { en: 'Backend', fr: 'Backend' }, core: ['Spring Boot', 'Java', 'PostgreSQL'], more: ['MySQL', 'Redis', 'NestJS', 'JWT', 'WebSocket', 'Flyway'] },
+      { name: { en: 'DevOps', fr: 'DevOps' }, core: ['Docker', 'Nginx', 'Prometheus'], more: ['Docker Compose', 'Grafana', 'Alertmanager', 'GitHub Actions', 'Linux'] },
+      { name: { en: 'Frontend', fr: 'Frontend' }, core: ['Angular'], more: ['TypeScript', 'React', 'Vue', 'React Native', 'HTML/CSS'] },
+      { name: { en: 'AI / Tools', fr: 'IA / Outils' }, core: [], more: ['Python', 'FastAPI', 'Groq LLM', 'n8n', 'Firebase', 'Maven', 'Git'] },
     ] as { name: L; core: string[]; more: string[] }[],
     today: {
       en: 'Today, I focus on building systems end-to-end — architecture, deployment, and operations — with long-term ownership in mind.',
