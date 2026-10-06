@@ -1,0 +1,84 @@
+<div class="container">
+  <nav class="nav">
+    <a routerLink="/" class="mono logo">{{ site.handle }}<span>_</span></a>
+    <div class="nav-links">
+      <a href="#shelf">Work</a>
+      <a href="#about">About</a>
+      <a [href]="site.contact.cv" target="_blank" rel="noopener">CV</a>
+      <span class="mono status"><i class="blink"></i>{{ site.status }}</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-copy">
+      <div class="eyebrow">{{ site.hero.eyebrow }}</div>
+      <h1>{{ site.hero.title }} <span class="lamp">{{ site.hero.titleAccent }}</span></h1>
+      <p>{{ site.hero.text }}</p>
+      <div class="actions">
+        <a href="#shelf" class="btn btn-primary">Play with my projects</a>
+        <a [href]="site.contact.cv" target="_blank" rel="noopener" class="btn">Download CV</a>
+      </div>
+    </div>
+
+    <div class="terminal" aria-label="Terminal animation">
+      <div class="term-bar">
+        <i style="background:#E2685B"></i><i style="background:#E9B44C"></i><i style="background:#6BD49A"></i>
+        <span class="mono">~/portfolio — zsh</span>
+      </div>
+      <div class="term-body mono">
+        <div class="typed"><b>$</b> docker compose up majd</div>
+        @for (line of site.terminal; track line.key; let i = $index) {
+          <div class="ok" [style.animation-delay]="1 + i * 0.4 + 's'">
+            <em>✓</em> {{ line.key.padEnd(12, ' ') }} {{ line.value }}
+          </div>
+        }
+        <div class="ok" [style.animation-delay]="1 + site.terminal.length * 0.4 + 's'"><b>$</b> scroll down <span class="blink lamp">▋</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHELF -->
+  <section class="shelf" id="shelf">
+    <div class="shelf-head" appReveal>
+      <div>
+        <div class="eyebrow">{{ site.shelf.eyebrow }}</div>
+        <h2>{{ site.shelf.title }}</h2>
+      </div>
+      <p>{{ site.shelf.text }}</p>
+    </div>
+
+    <div class="cards">
+      @for (p of projects; track p.slug; let i = $index) {
+        <a class="card" appReveal [routerLink]="['/projects', p.slug]" [style.--accent]="p.theme.accent"
+           [style.transition-delay]="(i % 3) * 80 + 'ms'">
+          <app-card-motif [slug]="p.slug" [accent]="p.theme.accent" />
+          <div class="card-body">
+            <div class="card-title"><h3>{{ p.name }}</h3><span class="mono">Play →</span></div>
+            <p>{{ p.cardLine }}</p>
+            <div class="mono stack">{{ p.cardStack }}</div>
+          </div>
+        </a>
+      }
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about" appReveal>
+    <h2>{{ site.about.title }} <span class="lamp">{{ site.about.titleAccent }}</span> {{ site.about.titleEnd }}</h2>
+    <div class="about-text">
+      @for (para of site.about.paragraphs; track $index) { <p>{{ para }}</p> }
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer class="contact" id="contact" appReveal>
+    <div class="eyebrow">{{ site.contact.eyebrow }}</div>
+    <h2>{{ site.contact.title }}</h2>
+    <div class="actions">
+      <a [href]="'mailto:' + site.contact.email" class="btn btn-primary">{{ site.contact.email }}</a>
+      <a [href]="site.contact.github" target="_blank" rel="noopener" class="btn">GitHub</a>
+      <a [href]="site.contact.linkedin" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+    </div>
+  </footer>
+</div>
