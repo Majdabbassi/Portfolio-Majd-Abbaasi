@@ -1,6 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { I18n } from '../i18n/i18n';
+import { Component, signal, computed, inject } from '@angular/core';
 
 interface Photo { id: number; by: string; color: string; }
+
+const TXT = {
+  en: { live: 'live', guest: "You're a guest — drop a photo from a phone", event: 'Demo Wedding',
+    hint: 'In the real app the photo uploads in 5 MB chunks and shows up on every screen at once.',
+    phones: { Sara: "Sara's phone", Karim: "Karim's phone", you: 'Your phone' } as Record<string, string> },
+  fr: { live: 'en direct', guest: 'Vous êtes invité — envoyez une photo depuis un téléphone', event: 'Mariage démo',
+    hint: 'Dans la vraie app, la photo part en morceaux de 5 Mo et apparaît sur tous les écrans en même temps.',
+    phones: { Sara: 'Tél. de Sara', Karim: 'Tél. de Karim', you: 'Votre tél.' } as Record<string, string> },
+};
 
 @Component({
   selector: 'app-albumy-toy',
@@ -9,9 +19,9 @@ interface Photo { id: number; by: string; color: string; }
       <div class="panel-head">
         <div class="event">
           <div class="qr" aria-hidden="true"></div>
-          <div><div class="panel-title">Demo Wedding</div><div class="mono sub">/e/DEMO01</div></div>
+          <div><div class="panel-title">{{ t().event }}</div><div class="mono sub">/e/DEMO01</div></div>
         </div>
-        <span class="mono live"><i class="blink"></i>live · {{ photos().length }} photos</span>
+        <span class="mono live"><i class="blink"></i>{{ t().live }} · {{ photos().length }} photos</span>
       </div>
       <div class="gallery">
         @for (p of photos(); track p.id) {
@@ -21,13 +31,13 @@ interface Photo { id: number; by: string; color: string; }
         }
       </div>
       <div class="panel-foot">
-        <div class="label">You're a guest — drop a photo from a phone</div>
+        <div class="label">{{ t().guest }}</div>
         <div class="guests">
           @for (g of guests; track g.who) {
-            <button type="button" class="toy-btn" (click)="drop(g.who)">{{ g.label }}</button>
+            <button type="button" class="toy-btn" (click)="drop(g.who)">{{ t().phones[g.who] }}</button>
           }
         </div>
-        <p class="hint">In the real app the photo uploads in 5 MB chunks and shows up on every screen at once.</p>
+        <p class="hint">{{ t().hint }}</p>
       </div>
     </div>
   `,
@@ -49,6 +59,8 @@ interface Photo { id: number; by: string; color: string; }
   `,
 })
 export class AlbumyToy {
+  private i18n = inject(I18n);
+  t = computed(() => TXT[this.i18n.lang()]);
   private palette = ['#E8618C', '#B8456B', '#F29BB5', '#D9487A', '#8E3355', '#F6C1D1'];
   private nextId = 4;
   guests = [

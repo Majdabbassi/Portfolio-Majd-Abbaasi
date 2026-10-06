@@ -1,0 +1,59 @@
+@if (hidden()) {
+  <button type="button" class="comeback" (click)="show()" [attr.aria-label]="ui().back" [title]="ui().back">
+    <img [src]="photo" alt="" width="40" height="40" />
+  </button>
+} @else {
+  <div class="mascot" [style.left]="style().left" [style.top]="style().top"
+       [class.walking]="walking()" [class.waving]="waving()" [class.flip]="flip()">
+
+    @if (mode() !== 'idle') {
+      <div class="bubble" role="status" aria-live="polite">
+        @switch (mode()) {
+          @case ('menu') {
+            <div class="actions col">
+              <button type="button" (click)="startTour()">{{ ui().tour }}</button>
+              <button type="button" (click)="mode.set('idle'); sayRandom(true)">{{ ui().say }}</button>
+              <button type="button" class="ghost" (click)="hide()">{{ ui().hide }}</button>
+            </div>
+          }
+          @case ('ask') {
+            <p>{{ text() }}</p>
+            <div class="actions">
+              <button type="button" class="primary" (click)="startTour()">{{ ui().yes }}</button>
+              <button type="button" class="ghost" (click)="mode.set('idle')">{{ ui().later }}</button>
+            </div>
+          }
+          @case ('tour') {
+            <p>{{ text() }}</p>
+            <div class="actions">
+              <span class="mono count">{{ tourIndex() + 1 }}/{{ tourSteps().length }}</span>
+              <button type="button" class="ghost" (click)="endTour()">{{ ui().skip }}</button>
+              <button type="button" class="primary" (click)="nextStep()">{{ isLastStep() ? ui().done : ui().next }}</button>
+            </div>
+          }
+          @default {
+            <p>{{ text() }}</p>
+          }
+        }
+        <button type="button" class="x" (click)="closeBubble()" aria-label="Close">✕</button>
+      </div>
+    }
+
+    <button type="button" class="body-btn" (click)="toggleMenu()" [attr.aria-label]="ui().open" [attr.aria-expanded]="mode() === 'menu'">
+      <span class="head"><img [src]="photo" alt="" width="64" height="64" /></span>
+      <svg class="body" viewBox="0 0 76 64" aria-hidden="true">
+        <!-- left arm (waves) -->
+        <g class="arm-l"><rect x="10" y="6" width="9" height="26" rx="4.5" fill="#D9C2AE" /><circle cx="14.5" cy="33" r="4.5" fill="#B98E6E" /></g>
+        <!-- right arm -->
+        <g class="arm-r"><rect x="57" y="6" width="9" height="26" rx="4.5" fill="#D9C2AE" /><circle cx="61.5" cy="33" r="4.5" fill="#B98E6E" /></g>
+        <!-- legs -->
+        <g class="leg-l"><rect x="27" y="36" width="9" height="22" rx="4" fill="#3A322A" /><rect x="24" y="55" width="14" height="7" rx="3.5" fill="#F3EADB" /></g>
+        <g class="leg-r"><rect x="40" y="36" width="9" height="22" rx="4" fill="#3A322A" /><rect x="38" y="55" width="14" height="7" rx="3.5" fill="#F3EADB" /></g>
+        <!-- torso: beige jacket with a zip, like the photo -->
+        <rect x="18" y="2" width="40" height="38" rx="12" fill="#E4D0BE" />
+        <path d="M30 2 L38 12 L46 2" fill="none" stroke="#C9B29C" stroke-width="2" />
+        <line x1="38" y1="12" x2="38" y2="38" stroke="#9C8572" stroke-width="1.5" stroke-dasharray="2 2" />
+      </svg>
+    </button>
+  </div>
+}

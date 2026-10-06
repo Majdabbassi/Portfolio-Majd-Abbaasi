@@ -1,4 +1,5 @@
-import { Component, computed, signal } from '@angular/core';
+import { I18n } from '../i18n/i18n';
+import { Component, computed, signal, inject } from '@angular/core';
 
 type Lease = 'leased' | 'ending' | 'ended' | 'vacant';
 
@@ -9,13 +10,24 @@ const LEASE: Record<Lease, { label: string; color: string }> = {
   vacant: { label: 'Vacant', color: '#C8372D' },
 };
 
+const TXT = {
+  en: { floor: 'Ground floor · {n} units', colour: 'Colour by lease',
+    lease: { leased: 'Leased', ending: 'Lease ends within 90 days', ended: 'Lease ended', vacant: 'Vacant' } as Record<string, string>,
+    legend: { leased: 'leased', ending: 'ends in 90 days', ended: 'ended', vacant: 'vacant' } as Record<string, string>,
+    cat: { Fashion: 'Fashion', 'Café': 'Café', Electronics: 'Electronics', Pharmacy: 'Pharmacy', 'Empty unit': 'Empty unit', Shoes: 'Shoes', Supermarket: 'Supermarket', Kids: 'Kids' } as Record<string, string> },
+  fr: { floor: 'Rez-de-chaussée · {n} boutiques', colour: 'Couleur par bail',
+    lease: { leased: 'Louée', ending: 'Bail se termine sous 90 jours', ended: 'Bail terminé', vacant: 'Vacante' } as Record<string, string>,
+    legend: { leased: 'louée', ending: 'fin sous 90 j', ended: 'terminé', vacant: 'vacante' } as Record<string, string>,
+    cat: { Fashion: 'Mode', 'Café': 'Café', Electronics: 'Électronique', Pharmacy: 'Pharmacie', 'Empty unit': 'Local vide', Shoes: 'Chaussures', Supermarket: 'Supermarché', Kids: 'Enfants' } as Record<string, string> },
+};
+
 @Component({
   selector: 'app-mall-os-toy',
   template: `
     <div class="panel">
       <div class="panel-head">
-        <span class="mono sub">Ground floor · {{ units.length }} units</span>
-        <button type="button" class="toy-btn small" [class.is-on]="byLease()" [attr.aria-pressed]="byLease()" (click)="byLease.set(!byLease())">Colour by lease</button>
+        <span class="mono sub">{{ t().floor.replace('{n}', '' + units.length) }}</span>
+        <button type="button" class="toy-btn small" [class.is-on]="byLease()" [attr.aria-pressed]="byLease()" (click)="byLease.set(!byLease())">{{ t().colour }}</button>
       </div>
       <div class="plan">
         @for (u of units; track u.code) {
@@ -28,11 +40,11 @@ const LEASE: Record<Lease, { label: string; color: string }> = {
       </div>
       <div class="panel-foot">
         <div class="sel">
-          <span class="panel-title">{{ selected().code }} · {{ selected().category }}</span>
-          <span class="mono chip-s" [style.background]="lease[selected().status].color">{{ lease[selected().status].label }}</span>
+          <span class="panel-title">{{ selected().code }} · {{ t().cat[selected().category] }}</span>
+          <span class="mono chip-s" [style.background]="lease[selected().status].color">{{ t().lease[selected().status] }}</span>
         </div>
         <div class="mono legend">
-          @for (k of legend; track k) { <span><i [style.background]="lease[k].color"></i>{{ k === 'ending' ? 'ends in 90 days' : k }}</span> }
+          @for (k of legend; track k) { <span><i [style.background]="lease[k].color"></i>{{ t().legend[k] }}</span> }
         </div>
       </div>
     </div>
@@ -56,6 +68,8 @@ const LEASE: Record<Lease, { label: string; color: string }> = {
   `,
 })
 export class MallOsToy {
+  private i18n = inject(I18n);
+  t = computed(() => TXT[this.i18n.lang()]);
   lease = LEASE;
   legend: Lease[] = ['leased', 'ending', 'ended', 'vacant'];
   byLease = signal(true);

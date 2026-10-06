@@ -1,6 +1,16 @@
-import { Component, computed, signal } from '@angular/core';
+import { I18n } from '../i18n/i18n';
+import { Component, computed, signal, inject } from '@angular/core';
 
 const KIDS = ['Adam', 'Yasmine', 'Rayen', 'Lina', 'Iyed', 'Malek'];
+
+const TXT = {
+  en: { coach: 'Coach · web console', session: 'U12 Football · Tuesday session', present: 'present', absent: 'absent', presentN: 'present',
+    save: 'Save attendance', parent: 'Parent · mobile app', empty: 'Mark a kid absent, then save — their parent hears about it here.',
+    absentNote: "{n} was marked absent from today's U12 session.", allHere: 'Everyone made it to training today.' },
+  fr: { coach: 'Coach · console web', session: 'Football U12 · séance du mardi', present: 'présent', absent: 'absent', presentN: 'présents',
+    save: 'Enregistrer', parent: 'Parent · app mobile', empty: 'Marquez un enfant absent puis enregistrez — son parent est prévenu ici.',
+    absentNote: '{n} a été marqué absent à la séance U12 d’aujourd’hui.', allHere: 'Tout le monde était à l’entraînement aujourd’hui.' },
+};
 
 @Component({
   selector: 'app-sportclub-toy',
@@ -8,27 +18,27 @@ const KIDS = ['Adam', 'Yasmine', 'Rayen', 'Lina', 'Iyed', 'Malek'];
     <div class="duo">
       <div class="panel coach">
         <div class="panel-head">
-          <div><div class="label">Coach · web console</div><div class="panel-title">U12 Football · Tuesday session</div></div>
+          <div><div class="label">{{ t().coach }}</div><div class="panel-title">{{ t().session }}</div></div>
         </div>
         <div class="list">
           @for (k of kids; track k; let i = $index) {
             <button type="button" class="kid" [attr.aria-pressed]="here()[i]" (click)="toggle(i)">
               <span class="box" [class.on]="here()[i]">{{ here()[i] ? '✓' : '' }}</span>
               <span class="kname">{{ k }}</span>
-              <span class="mono state" [class.absent]="!here()[i]">{{ here()[i] ? 'present' : 'absent' }}</span>
+              <span class="mono state" [class.absent]="!here()[i]">{{ here()[i] ? t().present : t().absent }}</span>
             </button>
           }
         </div>
         <div class="panel-foot row">
-          <span class="mono count">{{ present() }} / {{ kids.length }} present</span>
-          <button type="button" class="toy-btn solid" (click)="save()">Save attendance</button>
+          <span class="mono count">{{ present() }} / {{ kids.length }} {{ t().presentN }}</span>
+          <button type="button" class="toy-btn solid" (click)="save()">{{ t().save }}</button>
         </div>
       </div>
 
       <div class="phone">
-        <span class="label center">Parent · mobile app</span>
+        <span class="label center">{{ t().parent }}</span>
         @if (notes().length === 0) {
-          <p class="empty">Mark a kid absent, then save — their parent hears about it here.</p>
+          <p class="empty">{{ t().empty }}</p>
         }
         @for (n of notes(); track n.id) {
           <div class="note"><b>SportClub</b><span>{{ n.text }}</span></div>
@@ -57,6 +67,8 @@ const KIDS = ['Adam', 'Yasmine', 'Rayen', 'Lina', 'Iyed', 'Malek'];
   `,
 })
 export class SportclubToy {
+  private i18n = inject(I18n);
+  t = computed(() => TXT[this.i18n.lang()]);
   kids = KIDS;
   here = signal(KIDS.map(() => true));
   notes = signal<{ id: number; text: string }[]>([]);
@@ -67,7 +79,7 @@ export class SportclubToy {
 
   save() {
     const absent = KIDS.filter((_, i) => !this.here()[i]);
-    const texts = absent.length ? absent.map((n) => `${n} was marked absent from today's U12 session.`) : ['Everyone made it to training today.'];
+    const texts = absent.length ? absent.map((n) => this.t().absentNote.replace('{n}', n)) : [this.t().allHere];
     this.notes.set(texts.map((text) => ({ id: this.id++, text })));
   }
 }

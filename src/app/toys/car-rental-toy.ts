@@ -1,4 +1,5 @@
-import { Component, computed, signal } from '@angular/core';
+import { I18n } from '../i18n/i18n';
+import { Component, computed, signal, inject } from '@angular/core';
 
 interface Booking { from: number; to: number; id: string; }
 const WANT = { from: 4, to: 6 };
@@ -9,13 +10,22 @@ const FLEET: { name: string; busy: Booking[] }[] = [
   { name: '208', busy: [{ from: 2, to: 4, id: 'C-09' }, { from: 7, to: 8, id: 'C-16' }] },
 ];
 
+const TXT = {
+  en: { title: 'New contract · days 4 → 6', pick: 'pick a car to book', book: 'Book',
+    refused: 'Refused — {car} clashes with contract {c}', booked: 'Booked {car}, days 4 → 6 ✓', question: 'Which car is free from day 4 to day 6?',
+    hint: "The real API locks the car while it checks, so even 8 people booking at the same second can't double-book it." },
+  fr: { title: 'Nouveau contrat · jours 4 → 6', pick: 'choisissez une voiture', book: 'Louer',
+    refused: 'Refusé — {car} est déjà prise (contrat {c})', booked: '{car} réservée, jours 4 → 6 ✓', question: 'Quelle voiture est libre du jour 4 au jour 6 ?',
+    hint: 'La vraie API verrouille la voiture pendant la vérification : même 8 réservations à la même seconde ne peuvent pas la louer deux fois.' },
+};
+
 @Component({
   selector: 'app-car-rental-toy',
   template: `
     <div class="panel">
       <div class="panel-head">
-        <span class="panel-title">New contract · days 4 → 6</span>
-        <span class="mono sub">pick a car to book</span>
+        <span class="panel-title">{{ t().title }}</span>
+        <span class="mono sub">{{ t().pick }}</span>
       </div>
       <div class="body">
         <div class="mono days">
@@ -38,13 +48,13 @@ const FLEET: { name: string; busy: Booking[] }[] = [
         }
         <div class="buttons">
           @for (car of fleet; track car.name) {
-            <button type="button" class="toy-btn" (click)="book(car)">Book {{ car.name }}</button>
+            <button type="button" class="toy-btn" (click)="book(car)">{{ t().book }} {{ car.name }}</button>
           }
         </div>
       </div>
       <div class="panel-foot">
         <span class="panel-title" [style.color]="msg().color">{{ msg().text }}</span>
-        <p class="hint">The real API locks the car while it checks, so even 8 people booking at the same second can't double-book it.</p>
+        <p class="hint">{{ t().hint }}</p>
       </div>
     </div>
   `,
@@ -68,6 +78,8 @@ const FLEET: { name: string; busy: Booking[] }[] = [
   `,
 })
 export class CarRentalToy {
+  private i18n = inject(I18n);
+  t = computed(() => TXT[this.i18n.lang()]);
   fleet = FLEET;
   want = { ...WANT, id: 'NEW' };
   days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -91,8 +103,8 @@ export class CarRentalToy {
   }
 
   msg = computed(() => {
-    if (this.refused()) return { text: `Refused — ${this.refused()} clashes with contract ${this.clash()}`, color: '#F28B82' };
-    if (this.booked()) return { text: `Booked ${this.booked()}, days 4 → 6 ✓`, color: '#9EE0A8' };
-    return { text: 'Which car is free from day 4 to day 6?', color: 'var(--accent-soft)' };
+    if (this.refused()) return { text: this.t().refused.replace('{car}', this.refused()!).replace('{c}', this.clash() ?? ''), color: '#F28B82' };
+    if (this.booked()) return { text: this.t().booked.replace('{car}', this.booked()!), color: '#9EE0A8' };
+    return { text: this.t().question, color: 'var(--accent-soft)' };
   });
 }

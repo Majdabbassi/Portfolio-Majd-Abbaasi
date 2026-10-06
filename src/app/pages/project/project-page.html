@@ -1,69 +1,181 @@
 @if (project(); as p) {
-  <div class="container">
-    <nav class="nav">
-      <a routerLink="/" fragment="shelf" class="mono back">← back to the shelf</a>
-      <div class="nav-actions">
-        @if (p.demoUrl) {
-          <a [href]="p.demoUrl" target="_blank" rel="noopener" class="btn btn-primary small">{{ p.demoLabel ?? 'Live demo' }}</a>
-        }
-        <a [href]="p.githubUrl" target="_blank" rel="noopener" class="btn small">GitHub</a>
-      </div>
-    </nav>
-
-    <section class="hero" id="play">
-      <div class="hero-copy">
-        <div class="eyebrow">Project {{ number() }} · {{ p.eyebrow }}</div>
-        <h1>{{ p.name }}</h1>
-        <p>{{ p.intro }}</p>
-        <div class="chips">
-          @for (s of p.stack; track s) { <span class="chip">{{ s }}</span> }
+  @if (d(); as d) {
+    <div class="container">
+      <div class="top-row">
+        <a routerLink="/" fragment="shelf" class="mono back">{{ i18n.t('back') }}</a>
+        <div class="links">
+          @if (liveUrl(); as live) { <a [href]="live" target="_blank" rel="noopener" class="btn btn-primary small">{{ i18n.t('liveDemo') }}</a> }
+          @if (apkUrl(); as apk) { <a [href]="apk" class="btn small">{{ i18n.t('apk') }}</a> }
+          @for (x of d.showcase?.extra ?? []; track x.href) { <a [href]="x.href" target="_blank" rel="noopener" class="btn small">{{ x.label }}</a> }
+          @if (d.showcase?.repo; as repo) { <a [href]="repo" target="_blank" rel="noopener" class="btn small">{{ i18n.t('github') }}</a> }
+          @else if (d.showcase?.repoPrivate) { <span class="btn small muted">{{ i18n.t('privateRepo') }}</span> }
         </div>
       </div>
-      <div class="toy">
-        <app-toy-host [slug]="p.slug" />
-      </div>
-    </section>
 
-    <section class="split" appReveal>
-      <div class="split-head">
-        <div class="eyebrow">01 · The problem</div>
-        <h2>{{ p.problem.title }}</h2>
-      </div>
-      <p class="body">{{ p.problem.text }}</p>
-    </section>
-
-    <section class="steps" appReveal>
-      <div class="eyebrow">02 · How it works</div>
-      <div class="step-grid">
-        @for (s of p.steps; track s.title; let i = $index) {
-          <div class="step">
-            <span class="mono num">{{ i + 1 }}</span>
-            <h3>{{ s.title }}</h3>
-            <p>{{ s.text }}</p>
+      <!-- HERO + TOY -->
+      <section class="hero" id="play">
+        <div class="hero-copy">
+          <div class="eyebrow-row">
+            <span class="eyebrow">{{ number() }} · {{ i18n.tr(p.eyebrow) }}</span>
+            <span class="status-badge" [class.flagship]="d.status === 'flagship'"><i></i>{{ i18n.t(statusKey(d.status)) }}</span>
           </div>
-        }
-      </div>
-    </section>
+          <h1><img [src]="p.icon" alt="" width="56" height="56" />{{ p.name }}</h1>
+          @if (subtitle()) { <p class="subtitle">{{ subtitle() }}</p> }
+          <p class="intro">{{ d.summary }}</p>
+          <div class="chips">
+            @for (s of d.techStack; track s) { <span class="chip">{{ s }}</span> }
+          </div>
+        </div>
+        <div class="toy">
+          @if (p.toy) {
+            <app-toy-host [slug]="p.slug" />
+          } @else {
+            <div class="panel no-toy">
+              <div class="panel-head"><span class="panel-title">{{ i18n.t('noToy') }}</span><img [src]="p.icon" alt="" width="36" height="36" /></div>
+              <div class="panel-foot">
+                <p class="hint">{{ i18n.t('noToyText') }}</p>
+                <ul>@for (o of d.metrics.keyOutcomes; track $index) { <li>{{ o }}</li> }</ul>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
 
-    <section class="split" appReveal>
-      <div class="split-head">
-        <div class="eyebrow">03 · The hard part</div>
-        <h2>{{ p.hard.title }}</h2>
-      </div>
-      <div class="hard">{{ p.hard.text }}</div>
-    </section>
+      <!-- FACTS -->
+      <section class="facts" appReveal>
+        <div><span class="label">{{ i18n.t('role') }}</span><strong>{{ d.role }}</strong><em>{{ d.roleContext }}</em></div>
+        <div><span class="label">{{ i18n.t('team') }}</span><strong>{{ d.metrics.team }}</strong></div>
+        <div><span class="label">{{ i18n.t('timeline') }}</span><strong>{{ d.metrics.duration }}</strong></div>
+        <div><span class="label">{{ i18n.t('scale') }}</span><strong>{{ d.metrics.scale }}</strong></div>
+      </section>
 
-    @if (next(); as n) {
-      <a class="next" appReveal [routerLink]="['/projects', n.slug]"
-         [style.--n]="n.theme.accent" [style.--n-bg]="n.theme.panel" [style.--n-line]="n.theme.line">
-        <div><span class="mono">Next on the shelf</span><strong>{{ n.name }}</strong></div>
-        <span class="arrow">→</span>
-      </a>
-    } @else {
-      <a class="next" appReveal routerLink="/" fragment="contact" style="--n: var(--lamp); --n-bg: #2A2012; --n-line: #55401E">
-        <div><span class="mono">That's the whole shelf</span><strong>Let's build the next one together</strong></div>
-        <span class="arrow">→</span>
-      </a>
-    }
-  </div>
+      <!-- SCREENS + LOGINS -->
+      @if (d.showcase?.screens?.length || d.showcase?.logins?.length) {
+        <section class="block" id="screens" appReveal>
+          @if (d.showcase?.screens?.length) {
+            <div class="eyebrow">{{ i18n.t('screens') }}</div>
+            <app-screen-gallery [screens]="d.showcase!.screens" />
+          }
+          @if (d.showcase?.logins?.length) {
+            <div class="logins" id="logins">
+              <div class="logins-head">
+                <h3>{{ i18n.t('tryIt') }}</h3>
+                @if (liveUrl(); as live) { <a [href]="live" target="_blank" rel="noopener" class="btn btn-primary small">{{ i18n.t('liveDemo') }} ↗</a> }
+              </div>
+              <div class="login-grid">
+                @for (l of d.showcase!.logins!; track l.user; let i = $index) {
+                  <div class="login">
+                    <span class="label">{{ l.role }}</span>
+                    <button type="button" class="mono cred" (click)="copy(l.user, 'u' + i)" [attr.aria-label]="i18n.t('copy') + ' ' + l.user">
+                      <span>{{ l.user }}</span><em>{{ copied() === 'u' + i ? i18n.t('copied') : i18n.t('copy') }}</em>
+                    </button>
+                    <button type="button" class="mono cred" (click)="copy(l.password, 'p' + i)" [attr.aria-label]="i18n.t('copy') + ' ' + i18n.t('password')">
+                      <span>{{ l.password }}</span><em>{{ copied() === 'p' + i ? i18n.t('copied') : i18n.t('copy') }}</em>
+                    </button>
+                  </div>
+                }
+              </div>
+              @if (d.showcase?.note) { <p class="hint">{{ d.showcase!.note }}</p> }
+            </div>
+          }
+        </section>
+      }
+
+      <!-- 01 PROBLEM -->
+      <section class="split" appReveal>
+        <div class="split-head">
+          <div class="eyebrow">01 · {{ i18n.t('problem') }}</div>
+          <p class="body">{{ d.context.problem }}</p>
+        </div>
+        <div class="card-box">
+          <span class="label">{{ i18n.t('goals') }}</span>
+          <ul class="ticks">@for (g of d.context.goals; track $index) { <li>{{ g }}</li> }</ul>
+        </div>
+      </section>
+
+      <!-- 02 ARCHITECTURE -->
+      <section class="block" appReveal>
+        <div class="eyebrow">02 · {{ i18n.t('built') }}</div>
+        <div class="arch">
+          <ul class="bullets">@for (b of d.architecture.bullets; track $index) { <li>{{ b }}</li> }</ul>
+          @if (d.architecture.tiers?.length) {
+            <div class="tiers" aria-label="Architecture diagram">
+              @for (t of d.architecture.tiers!; track $index; let last = $last) {
+                <div class="tier">
+                  @if (t.label) { <span class="mono tier-label">{{ t.label }}</span> }
+                  <div class="nodes">
+                    @for (n of t.nodes; track n.name) { <div class="node"><strong>{{ n.name }}</strong>@if (n.sub) {<span>{{ n.sub }}</span>}</div> }
+                  </div>
+                </div>
+                @if (!last) { <div class="arrow-down" aria-hidden="true">↓</div> }
+              }
+              @if (d.architecture.note) { <p class="mono note">{{ d.architecture.note }}</p> }
+            </div>
+          } @else if (d.architecture.highlights.length) {
+            <div class="tiers">
+              @for (h of d.architecture.highlights; track h.title) { <div class="node wide"><strong>{{ h.title }}</strong><span>{{ h.description }}</span></div> }
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- 03 DECISIONS -->
+      @if (d.decisions.length) {
+        <section class="block" appReveal>
+          <div class="eyebrow">03 · {{ i18n.t('decisions') }}</div>
+          <div class="grid3">
+            @for (x of d.decisions; track x.title; let i = $index) {
+              <div class="step">
+                <span class="mono num">{{ i + 1 }}</span>
+                <h3>{{ x.title }}</h3>
+                <p>{{ x.reasoning }}</p>
+                <p class="trade"><span class="mono">{{ i18n.t('tradeoff') }}</span> {{ x.tradeoffs }}</p>
+              </div>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- 04 CHALLENGES -->
+      @if (d.challenges.length) {
+        <section class="block" appReveal>
+          <div class="eyebrow">04 · {{ i18n.t('hard') }}</div>
+          <div class="challenges">
+            @for (c of d.challenges; track $index) {
+              <div class="challenge">
+                <div><span class="label">{{ i18n.t('challenge') }}</span><p>{{ c.challenge }}</p></div>
+                <div><span class="label">{{ i18n.t('solution') }}</span><p>{{ c.solution }}</p></div>
+                <div class="good"><span class="label">{{ i18n.t('outcome') }}</span><p>{{ c.outcome }}</p></div>
+              </div>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- 05 IMPACT -->
+      <section class="split" appReveal>
+        <div class="card-box">
+          <span class="label">05 · {{ i18n.t('result') }}</span>
+          <ul class="ticks">@for (x of d.impact.improvements; track $index) { <li>{{ x }}</li> }</ul>
+        </div>
+        <div class="card-box">
+          <span class="label">{{ i18n.t('learned') }}</span>
+          <ul class="ticks">@for (x of d.impact.learnings; track $index) { <li>{{ x }}</li> }</ul>
+        </div>
+      </section>
+
+      @if (next(); as n) {
+        <a class="next" [routerLink]="['/projects', n.slug]"
+           [style.--n]="n.theme.accent" [style.--n-bg]="n.theme.panel" [style.--n-line]="n.theme.line">
+          <div><span class="mono">{{ i18n.t('next') }}</span><strong>{{ n.name }}</strong></div>
+          <span class="arrow">→</span>
+        </a>
+      } @else {
+        <a class="next" routerLink="/" fragment="contact" style="--n: var(--lamp); --n-bg: #2A2012; --n-line: #55401E">
+          <div><span class="mono">{{ i18n.t('endTitle') }}</span><strong>{{ i18n.t('endCta') }}</strong></div>
+          <span class="arrow">→</span>
+        </a>
+      }
+    </div>
+  }
 }

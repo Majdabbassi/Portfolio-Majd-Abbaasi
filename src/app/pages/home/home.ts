@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PROJECTS } from '../../data/projects.data';
+import { MORE_PROJECTS, PROJECTS } from '../../data/projects.data';
 import { SITE } from '../../data/site.data';
+import { I18n } from '../../i18n/i18n';
 import { CardMotif } from '../../shared/card-motif';
 import { RevealDirective } from '../../shared/reveal.directive';
 
@@ -12,6 +13,10 @@ import { RevealDirective } from '../../shared/reveal.directive';
   styleUrl: './home.css',
 })
 export class Home {
+  i18n = inject(I18n);
   site = SITE;
   projects = PROJECTS;
+  more = MORE_PROJECTS;
+
+  statusKey(s: string) { return ('status_' + s) as 'status_production'; }
 }

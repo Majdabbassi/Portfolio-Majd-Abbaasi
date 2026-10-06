@@ -1,29 +1,37 @@
-import { Component, OnDestroy, computed, signal } from '@angular/core';
+import { I18n } from '../i18n/i18n';
+import { Component, OnDestroy, computed, signal, inject } from '@angular/core';
 
 const LEADS = ['Autohaus Weber', 'Bäckerei Krüger', 'Elektro Schmitt', 'Hotel Lindenhof', 'Zahnarztpraxis Vogel', 'Tischlerei Brandt'];
+
+const TXT = {
+  en: { campaign: 'Campaign · Ausbildung 2027', sentN: 'sent', sent: 'sent', waiting: 'waiting', reset: 'Reset', all: 'All sent ✓', stop: 'Stop', launch: 'Launch outreach', resume: 'Resume outreach',
+    hint: 'Hit Stop half-way, then launch again: it picks up where it stopped and nobody gets two emails.' },
+  fr: { campaign: 'Campagne · Ausbildung 2027', sentN: 'envoyés', sent: 'envoyé', waiting: 'en attente', reset: 'Réinitialiser', all: 'Tout est envoyé ✓', stop: 'Stop', launch: 'Lancer la campagne', resume: 'Reprendre',
+    hint: 'Appuyez sur Stop à mi-chemin puis relancez : la campagne reprend où elle s’est arrêtée et personne ne reçoit deux e-mails.' },
+};
 
 @Component({
   selector: 'app-reachflow-toy',
   template: `
     <div class="panel">
       <div class="panel-head col">
-        <div class="top"><span class="panel-title">Campaign · Ausbildung 2027</span><span class="mono count">{{ sent() }} / {{ leads.length }} sent</span></div>
+        <div class="top"><span class="panel-title">{{ t().campaign }}</span><span class="mono count">{{ sent() }} / {{ leads.length }} {{ t().sentN }}</span></div>
         <div class="progress"><div [style.width]="pct()"></div></div>
       </div>
       <div class="list">
         @for (l of leads; track l; let i = $index) {
           <div class="lead" [class.done]="i < sent()">
             <span>{{ l }}</span>
-            @if (i < sent()) { <span class="mono sent">✉ sent · CV.pdf</span> } @else { <span class="mono wait">waiting</span> }
+            @if (i < sent()) { <span class="mono sent">✉ {{ t().sent }} · CV.pdf</span> } @else { <span class="mono wait">{{ t().waiting }}</span> }
           </div>
         }
       </div>
       <div class="panel-foot">
         <div class="row">
           <button type="button" class="toy-btn solid grow" (click)="primary()">{{ label() }}</button>
-          <button type="button" class="toy-btn" (click)="reset()">Reset</button>
+          <button type="button" class="toy-btn" (click)="reset()">{{ t().reset }}</button>
         </div>
-        <p class="hint">Hit Stop half-way, then launch again: it picks up where it stopped and nobody gets two emails.</p>
+        <p class="hint">{{ t().hint }}</p>
       </div>
     </div>
   `,
@@ -44,6 +52,8 @@ const LEADS = ['Autohaus Weber', 'Bäckerei Krüger', 'Elektro Schmitt', 'Hotel 
   `,
 })
 export class ReachflowToy implements OnDestroy {
+  private i18n = inject(I18n);
+  t = computed(() => TXT[this.i18n.lang()]);
   leads = LEADS;
   sent = signal(0);
   running = signal(false);
@@ -51,9 +61,9 @@ export class ReachflowToy implements OnDestroy {
 
   pct = computed(() => Math.round((this.sent() / LEADS.length) * 100) + '%');
   label = computed(() => {
-    if (this.sent() >= LEADS.length) return 'All sent ✓';
-    if (this.running()) return 'Stop';
-    return this.sent() === 0 ? 'Launch outreach' : 'Resume outreach';
+    if (this.sent() >= LEADS.length) return this.t().all;
+    if (this.running()) return this.t().stop;
+    return this.sent() === 0 ? this.t().launch : this.t().resume;
   });
 
   primary() {

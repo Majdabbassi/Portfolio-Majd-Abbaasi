@@ -1,6 +1,16 @@
-import { Component, computed, signal } from '@angular/core';
+import { I18n } from '../i18n/i18n';
+import { Component, computed, signal, inject } from '@angular/core';
 
 type Mode = 'ghost' | 'everyone' | 'selected' | 'except';
+
+const TXT = {
+  en: { who: 'Who can see you? — try it', you: 'you', ghost: 'Ghost mode — nobody sees you', count: '{n} of 5 friends can see you',
+    hint: 'These four modes are the same rules the server enforces on every location update.',
+    modes: { ghost: 'Ghost', everyone: 'Everyone', selected: 'Selected', except: 'Except' } as Record<string, string> },
+  fr: { who: 'Qui peut vous voir ? — essayez', you: 'vous', ghost: 'Mode fantôme — personne ne vous voit', count: '{n} amis sur 5 vous voient',
+    hint: 'Ces quatre modes sont les mêmes règles que le serveur applique à chaque mise à jour de position.',
+    modes: { ghost: 'Fantôme', everyone: 'Tous', selected: 'Choisis', except: 'Sauf' } as Record<string, string> },
+};
 
 @Component({
   selector: 'app-friendmap-toy',
@@ -13,17 +23,17 @@ type Mode = 'ghost' | 'everyone' | 'selected' | 'except';
             <span class="mono">{{ f.name }}</span>
           </div>
         }
-        <div class="me"><div class="me-dot"></div><span class="mono">you</span></div>
+        <div class="me"><div class="me-dot"></div><span class="mono">{{ t().you }}</span></div>
         <div class="mono status">{{ status() }}</div>
       </div>
       <div class="panel-foot">
-        <div class="label">Who can see you? — try it</div>
+        <div class="label">{{ t().who }}</div>
         <div class="modes">
           @for (m of modes; track m.id) {
-            <button type="button" class="toy-btn" [class.is-on]="mode() === m.id" [attr.aria-pressed]="mode() === m.id" (click)="mode.set(m.id)">{{ m.label }}</button>
+            <button type="button" class="toy-btn" [class.is-on]="mode() === m.id" [attr.aria-pressed]="mode() === m.id" (click)="mode.set(m.id)">{{ t().modes[m.id] }}</button>
           }
         </div>
-        <p class="hint">These four modes are the same rules the server enforces on every location update.</p>
+        <p class="hint">{{ t().hint }}</p>
       </div>
     </div>
   `,
@@ -45,6 +55,8 @@ type Mode = 'ghost' | 'everyone' | 'selected' | 'except';
   `,
 })
 export class FriendmapToy {
+  private i18n = inject(I18n);
+  t = computed(() => TXT[this.i18n.lang()]);
   mode = signal<Mode>('everyone');
   modes: { id: Mode; label: string }[] = [
     { id: 'ghost', label: 'Ghost' }, { id: 'everyone', label: 'Everyone' },
@@ -65,7 +77,7 @@ export class FriendmapToy {
     }));
   });
   status = computed(() => {
-    if (this.mode() === 'ghost') return 'Ghost mode — nobody sees you';
-    return `${this.friends().filter((f) => f.visible).length} of 5 friends can see you`;
+    if (this.mode() === 'ghost') return this.t().ghost;
+    return this.t().count.replace('{n}', String(this.friends().filter((f) => f.visible).length));
   });
 }
