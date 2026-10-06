@@ -5,6 +5,7 @@ import { I18n, L } from '../i18n/i18n';
 import { SITE } from '../data/site.data';
 import { findProject } from '../data/projects.data';
 import { MASCOT } from './mascot.data';
+import { Analytics } from '../shared/analytics';
 
 type Mode = 'idle' | 'say' | 'menu' | 'ask' | 'tour';
 interface Step { sel: string; text: L }
@@ -28,6 +29,7 @@ const MAX_LINES = 6;
 export class Mascot {
   i18n = inject(I18n);
   private router = inject(Router);
+  private analytics = inject(Analytics);
   photo = SITE.photo;
 
   hidden = signal(this.readHidden());
@@ -130,6 +132,7 @@ export class Mascot {
 
   // ---------- hide / show ----------
   hide() {
+    this.analytics.track('mascot_hidden');
     this.endTour();
     this.mode.set('idle');
     this.hidden.set(true);
@@ -151,6 +154,7 @@ export class Mascot {
     const all = this.currentProject() ? MASCOT.tourProject : MASCOT.tourHome;
     const steps = all.filter((s) => document.querySelector(s.sel));
     if (!steps.length) return;
+    this.analytics.track('mascot_tour');
     this.tourSteps.set(steps);
     this.tourIndex.set(0);
     this.mode.set('tour');

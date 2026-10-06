@@ -168,6 +168,7 @@ export const SITE = {
       fr: 'Ouvert aux postes backend, full-stack et ingénierie systèmes — et aux missions freelance. Je réponds généralement sous 24h.',
     } as L,
     footer: { en: 'Production Systems Engineer · Built with Angular.', fr: 'Ingénieur systèmes de production · Construit avec Angular.' } as L,
+    stats: { en: 'Anonymous visit stats by Microsoft Clarity.', fr: 'Statistiques de visite anonymes par Microsoft Clarity.' } as L,
     email: 'majdabbassi11@gmail.com',
     github: 'https://github.com/Majdabbassi',
     linkedin: 'https://www.linkedin.com/in/majd-abbassi',
