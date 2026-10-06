@@ -7,7 +7,7 @@ import { L } from '../i18n/i18n';
 export const SITE = {
   name: 'Majd Abbassi',
   handle: 'majd.abbassi',
-  photo: '/assets/majd-round.png',
+  photo: '/assets/majdface.png',
   status: { en: 'Open to opportunities', fr: 'Ouvert aux opportunités' } as L,
 
   hero: {
