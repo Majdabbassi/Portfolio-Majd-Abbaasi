@@ -14,6 +14,8 @@ interface Project {
     icon: string;
     accentColor: string;
     highlights: { en: string; fr: string }[];
+    liveUrl?: string;
+    apkUrl?: string;
 }
 
 @Component({
@@ -28,7 +30,6 @@ export class ProjectsComponent {
     constructor(private readonly router: Router, readonly i18n: I18nService) {}
 
     projects: Project[] = [
-        // ── Production / DevOps-heavy Systems ────────────
         {
             id: 'caferesto',
             title: { en: 'CafeResto', fr: 'CafeResto' },
@@ -50,34 +51,29 @@ export class ProjectsComponent {
             id: 'bookpro',
             title: { en: 'BookPro', fr: 'BookPro' },
             impact: {
-                en: 'Production salon & professional booking platform with gig-worker dispatch, waitlists, analytics dashboards, and full observability.',
-                fr: 'Plateforme de réservation salon & professionnels en production avec dispatch d’aides, files d’attente, dashboards analytics et observabilité complète.',
+                en: 'Production salon & professional booking platform — web + Android APK — with bookings, waitlists, real-time updates, and full observability.',
+                fr: 'Plateforme de réservation salon & professionnels en production — web + APK Android — avec réservations, files d’attente, temps réel et observabilité complète.',
             },
-            techStack: ['Spring Boot', 'Angular', 'MySQL', 'Docker', 'Prometheus', 'Grafana', 'cAdvisor', 'GitHub Actions'],
+            techStack: [
+                'Spring Boot',
+                'Angular',
+                'Angular Material',
+                'MySQL',
+                'WebSocket',
+                'Firebase',
+                'Docker',
+                'Nginx',
+                'Capacitor',
+            ],
             status: 'production',
             category: 'devops',
             icon: '/assets/icon-bookpro.png',
             accentColor: '#10b981',
+            liveUrl: 'https://bookpro.educanet.pro',
+            apkUrl: '#apk-placeholder',
             highlights: [
                 { en: 'Live deployment with scheduled backups & CI pipeline', fr: 'Déploiement live avec backups planifiés et pipeline CI' },
-                { en: 'Multi-role: client, professional, aide, wholesale, admin', fr: 'Multi-rôles : client, professionnel, aide, grossiste, admin' },
-            ],
-        },
-        {
-            id: 'data-analytics',
-            title: { en: 'InsightHub', fr: 'InsightHub' },
-            impact: {
-                en: 'AI-powered analytics platform combining Spring Boot, FastAPI data science, DuckDB queries, and an Ollama LLM assistant for natural-language data exploration.',
-                fr: 'Plateforme d’analytics propulsée par l’IA combinant Spring Boot, data science FastAPI, requêtes DuckDB et assistant LLM Ollama pour l’exploration des données en langage naturel.',
-            },
-            techStack: ['Spring Boot', 'Angular', 'FastAPI', 'DuckDB', 'MySQL', 'Ollama', 'Docker Compose'],
-            status: 'completed',
-            category: 'ai',
-            icon: '/assets/icon-insighthub.png',
-            accentColor: '#d97706',
-            highlights: [
-                { en: 'Data cleaning, anomaly detection & trend insights service', fr: 'Service de nettoyage, détection d’anomalies et insights de tendances' },
-                { en: 'Natural-language LLM assistant grounded on datasets', fr: 'Assistant LLM en langage naturel basé sur les jeux de données' },
+                { en: '5 user roles: client to wholesale', fr: '5 rôles utilisateurs : du client au grossiste' },
             ],
         },
         {
@@ -87,137 +83,180 @@ export class ProjectsComponent {
                 en: 'Educational content marketplace with AES-128 file encryption, transactional wallet, real-time messaging, and multi-gateway payments.',
                 fr: 'Marketplace de contenu éducatif avec chiffrement AES-128, wallet transactionnel, messagerie temps réel et paiements multi-passerelles.',
             },
-            techStack: ['Spring Boot', 'Angular', 'Expo (React Native)', 'WebSocket', 'AES-128', 'Firebase'],
+            techStack: ['Spring Boot', 'Angular', 'Expo (React Native)', 'WebSocket', 'AES-128'],
             status: 'production',
             category: 'fullstack',
             icon: '/assets/icon-docmarket.png',
             accentColor: '#3b82f6',
+            liveUrl: 'https://massarat-plus.com',
+            apkUrl: '#apk-placeholder',
             highlights: [
                 { en: 'AES-128 encrypted content delivery', fr: 'Livraison de contenu chiffrée AES-128' },
                 { en: 'Wallet orchestration across regional gateways', fr: 'Orchestration wallet multi-passerelles régionales' },
             ],
         },
         {
-            id: 'n8n',
-            title: { en: 'n8n Automation Core', fr: 'n8n Automation Core' },
-            impact: {
-                en: 'Workflow automation platform pairing n8n with a Spring Boot backend and Angular frontend — email collection, campaign orchestration, and lead pipelines in one stack.',
-                fr: 'Plateforme d’automatisation de workflows associant n8n à un backend Spring Boot et un frontend Angular — collecte d’emails, orchestration de campagnes et pipelines de leads.',
-            },
-            techStack: ['n8n', 'Spring Boot', 'Angular', 'MySQL', 'Docker Compose', 'phpMyAdmin'],
-            status: 'completed',
-            category: 'devops',
-            icon: '/assets/icon-n8n.png',
-            accentColor: '#ea580c',
-            highlights: [
-                { en: 'n8n workflow engine + custom Spring Boot services', fr: 'Moteur de workflow n8n + services Spring Boot custom' },
-                { en: 'Campaign, lead, and client orchestration', fr: 'Orchestration de campagnes, leads et clients' },
-            ],
-        },
-        // ── Full-stack / Completed ───────────────────────
-        {
-            id: 'chellysport',
-            title: { en: 'ChellySport', fr: 'ChellySport' },
-            impact: {
-                en: 'Multi-sport club management system covering registration workflows, scheduling logic, and facility coordination.',
-                fr: 'Système de gestion de club multisport couvrant inscriptions, planification et coordination des installations.',
-            },
-            techStack: ['Spring Boot', 'Angular', 'React Native', 'MySQL', 'WebSocket', 'Konnect'],
-            status: 'completed',
-            category: 'fullstack',
-            icon: '/assets/icon-chellysport.png',
-            accentColor: '#10b981',
-            highlights: [
-                { en: 'Club boutique with Konnect payment flow', fr: 'Boutique du club avec flux de paiement Konnect' },
-                { en: 'Real-time coach-to-member messaging', fr: 'Messagerie temps réel coach-membre' },
-            ],
-        },
-        {
-            id: 'albumy',
-            title: { en: 'Albumy', fr: 'Albumy' },
-            impact: {
-                en: 'Event photo-sharing platform where organizers create events, guests upload with unique names, and galleries export as ZIP — invite-gated with QR access.',
-                fr: 'Plateforme de partage de photos d’événements : les organisateurs créent des événements, les invités uploadent avec des noms uniques et les galeries s’exportent en ZIP — accès par invitation et QR code.',
-            },
-            techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'JWT', 'QR Code', 'ZIP streaming'],
-            status: 'completed',
-            category: 'fullstack',
-            icon: '/assets/icon-albumy.png',
-            accentColor: '#3b82f6',
-            highlights: [
-                { en: 'No-account guest upload with per-event unique names', fr: 'Upload invité sans compte, noms uniques par événement' },
-                { en: 'Admin invite gating & server-side ZIP export', fr: 'Contrôle d’accès par invitation admin et export ZIP côté serveur' },
-            ],
-        },
-        {
             id: 'mediplus',
             title: { en: 'MediPlus', fr: 'MediPlus' },
             impact: {
-                en: 'Healthcare platform — a role-based backoffice for user management, doctor verification, medicine catalog, billing, and support, paired with a patient mobile app.',
-                fr: 'Plateforme santé — backoffice basé sur les rôles pour la gestion des utilisateurs, la vérification des médecins, le catalogue de médicaments, la facturation et le support, associé à une application mobile patient.',
+                en: 'Medication-reminder platform (Dhakerni) — role-based Angular backoffice for users, doctor verification, medicine catalog, billing and support, with Spring Boot driving reminders and adherence, plus React Native (Expo) apps for patients, doctors and helpers.',
+                fr: 'Plateforme de rappels de médicaments (Dhakerni) — backoffice Angular basé sur les rôles pour utilisateurs, vérification des médecins, catalogue de médicaments, facturation et support, avec un backend Spring Boot pilotant rappels et adhérence, plus des apps React Native (Expo) pour patients, médecins et tuteurs.',
             },
-            techStack: ['Spring Boot', 'Angular', 'Angular Material', 'React Native (Expo)', 'MySQL', 'Firebase', 'JWT'],
-            status: 'completed',
+            techStack: ['Spring Boot', 'Angular', 'Angular Material', 'React Native (Expo)', 'MySQL', 'Firebase FCM', 'JWT', 'Quartz'],
+            status: 'production',
             category: 'fullstack',
             icon: '/assets/icon-mediplus.png',
             accentColor: '#06b6d4',
+            apkUrl: '#apk-placeholder',
             highlights: [
                 { en: 'Role-based backoffice: SUPER_ADMIN, ADMIN, AGENT_SUPPORT', fr: 'Backoffice basé sur les rôles : SUPER_ADMIN, ADMIN, AGENT_SUPPORT' },
-                { en: 'Doctor verification, medicine catalog & billing + patient mobile app', fr: 'Vérification des médecins, catalogue médicaments & facturation + app mobile patient' },
+                { en: 'Quartz reminder engine, adherence tracking & vocal messages + mobile apps for patient, doctor and helper', fr: 'Moteur de rappels Quartz, suivi d’adhérence & messages vocaux + apps mobiles patient, médecin et tuteur' },
+                { en: 'Offline-first sync, exact alarms & FCM push', fr: 'Synchronisation hors ligne, alarmes exactes & push FCM' },
             ],
         },
-        // ── In Development ───────────────────────────────
         {
             id: 'car-rental',
-            title: { en: 'AutoRent', fr: 'AutoRent' },
+            title: { en: 'Car Rental Manager', fr: 'Car Rental Manager' },
             impact: {
-                en: 'Vehicle rental system with booking lifecycle orchestration, telemetry, and conflict-free reservation engine.',
-                fr: 'Système de location de véhicules avec orchestration du cycle de réservation, télémétrie et moteur sans conflits.',
+                en: 'Back office for a rental agency: access rights per employee, bookings that can never overlap (even under concurrent requests), seasonal pricing, printable contracts and daily alerts.',
+                fr: 'Back-office d’agence de location : droits par employé, réservations qui ne se chevauchent jamais (même en concurrence), tarification saisonnière, contrats imprimables et alertes quotidiennes.',
             },
-            techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'JWT', 'WebSocket', 'Push'],
-            status: 'in-development',
+            techStack: ['Spring Boot', 'Angular', 'MySQL', 'JWT', 'OpenPDF', 'Docker'],
+            status: 'completed',
             category: 'fullstack',
             icon: '/assets/icon-autorent.png',
             accentColor: '#8b5cf6',
+            liveUrl: 'https://carrental-platform.vercel.app',
             highlights: [
-                { en: 'Booking lifecycle & contract orchestration', fr: 'Cycle de réservation et orchestration des contrats' },
-                { en: 'Telemetry with push notifications', fr: 'Télémétrie avec notifications push' },
-            ],
-        },
-        {
-            id: 'delivery-tracking',
-            title: { en: 'SwiftDeliver', fr: 'SwiftDeliver' },
-            impact: {
-                en: 'Delivery coordination platform with real-time personnel tracking and route-aware fleet management.',
-                fr: 'Plateforme de coordination de livraison avec suivi du personnel en temps réel et gestion de flotte orientée itinéraire.',
-            },
-            techStack: ['Spring Boot', 'Angular', 'PostgreSQL', 'PostGIS', 'JWT'],
-            status: 'in-development',
-            category: 'devops',
-            icon: '/assets/icon-swiftdeliver.png',
-            accentColor: '#0ea5e9',
-            highlights: [
-                { en: 'Hierarchical multi-tenancy & state-machine orders', fr: 'Multi-tenant hiérarchique et commandes en machine à états' },
-                { en: 'Geospatial fleet optimization', fr: 'Optimisation géospatiale de la flotte' },
+                { en: 'Double-booking proof: 8 simultaneous requests, one wins', fr: 'Zéro double réservation : 8 requêtes simultanées, une seule passe' },
+                { en: '22 mutation-checked tests, live demo', fr: '22 tests validés par mutation, démo en ligne' },
             ],
         },
         {
             id: 'mallos',
             title: { en: 'Mall OS', fr: 'Mall OS' },
             impact: {
-                en: 'B2B mall management MVP — role-based operations for super admins and mall managers, floor-map editing, and store/assistant management across tenants.',
-                fr: 'MVP de gestion de centres commerciaux B2B — opérations basées sur les rôles pour super admins et managers, édition de plans d’étage, gestion des boutiques et assistants.',
+                en: 'Multi-tenant mall management: floor-plan editor, tenants and leases, monthly rent invoicing with late fees, occupancy analytics and an audit trail.',
+                fr: 'Gestion de centres commerciaux multi-tenant : éditeur de plan, locataires et baux, facturation mensuelle avec pénalités, analyses d’occupation et journal d’audit.',
             },
-            techStack: ['Spring Boot', 'Angular', 'PrimeNG', 'MySQL', 'OpenAPI', 'Actuator'],
-            status: 'in-development',
+            techStack: ['Spring Boot', 'Angular', 'PrimeNG', 'MySQL', 'Konva', 'Docker'],
+            status: 'completed',
             category: 'fullstack',
             icon: '/assets/icon-mallos.png',
             accentColor: '#8b5cf6',
+            liveUrl: 'https://mall-os-self.vercel.app',
             highlights: [
-                { en: 'Role-based super admin & mall manager dashboards', fr: 'Dashboards basés sur les rôles : super admin & manager' },
-                { en: 'Floor-map trace editor for store layout', fr: 'Éditeur de tracé de plan d’étage pour l’agencement des boutiques' },
+                { en: 'Floor plan coloured by lease state', fr: 'Plan colorié selon l’état des baux' },
+                { en: 'Isolation between malls, 38 tests, live demo', fr: 'Isolation entre centres, 38 tests, démo en ligne' },
             ],
         },
+        {
+            id: 'delivery-tracking',
+            title: { en: 'SwiftDeliver', fr: 'SwiftDeliver' },
+            impact: {
+                en: 'Delivery marketplace for vendors, delivery companies, drivers and customers, with live GPS tracking over WebSocket, an order state machine and Grafana monitoring.',
+                fr: 'Marketplace de livraison pour vendeurs, sociétés de livraison, chauffeurs et clients, avec suivi GPS en direct par WebSocket, machine à états des commandes et supervision Grafana.',
+            },
+            techStack: ['Spring Boot', 'Angular', 'MySQL', 'WebSocket', 'Prometheus', 'Grafana'],
+            status: 'completed',
+            category: 'devops',
+            icon: '/assets/icon-swiftdeliver.png',
+            accentColor: '#0ea5e9',
+            liveUrl: 'https://majdabbassi.github.io/delivery-platform/',
+            highlights: [
+                { en: 'Live driver position visible only to the people on the order', fr: 'Position du chauffeur visible seulement par les personnes de la commande' },
+                { en: 'Five roles, 73 tests, live demo', fr: 'Cinq rôles, 73 tests, démo en ligne' },
+            ],
+        },
+        {
+            id: 'sportclub',
+            title: { en: 'SportClub Platform', fr: 'SportClub Platform' },
+            impact: {
+                en: 'Sports club management for admins, coaches and parents: sessions and attendance, injuries, payments, shop and chat, with a web console and a mobile parent app on one API.',
+                fr: 'Gestion de club sportif pour admins, coachs et parents : séances et présences, blessures, paiements, boutique et chat, avec console web et application mobile pour parents sur une seule API.',
+            },
+            techStack: ['Spring Boot', 'Angular', 'React Native (Expo)', 'MySQL', 'WebSocket', 'Docker'],
+            status: 'completed',
+            category: 'fullstack',
+            icon: '/assets/icon-chellysport.png',
+            accentColor: '#10b981',
+            liveUrl: 'https://sportclub-platform-f6ry.vercel.app',
+            highlights: [
+                { en: 'Per-family access control enforced by the API', fr: 'Contrôle d’accès par famille appliqué par l’API' },
+                { en: 'Web console and mobile app, live demo', fr: 'Console web et application mobile, démo en ligne' },
+            ],
+        },
+        {
+            id: 'friendmap',
+            title: { en: 'FriendMap', fr: 'FriendMap' },
+            impact: {
+                en: 'Real-time location sharing with four privacy modes and immediate revocation, plus private chat with photos, presence and meetup planning with a live trip map.',
+                fr: 'Partage de position en temps réel avec quatre modes de confidentialité et révocation immédiate, plus chat privé avec photos, présence et organisation de rendez-vous avec carte en direct.',
+            },
+            techStack: ['NestJS', 'Vue 3', 'PostgreSQL', 'Redis', 'Socket.IO', 'Kubernetes'],
+            status: 'completed',
+            category: 'devops',
+            icon: '/assets/icon-friendmap.svg',
+            accentColor: '#ef4444',
+            liveUrl: 'https://majdabbassi.github.io/FriendMap/',
+            highlights: [
+                { en: 'Visibility checked on every broadcast', fr: 'Visibilité vérifiée à chaque diffusion' },
+                { en: '109 + 21 + 36 tests, live demo', fr: '109 + 21 + 36 tests, démo en ligne' },
+            ],
+        },
+        {
+            id: 'data-analytics',
+            title: { en: 'InsightHub', fr: 'InsightHub' },
+            impact: {
+                en: 'Data analytics with an AI assistant: semantic column roles, quality score, outliers and trends, cleaning, relationship detection, and plain-language questions answered by sandboxed read-only SQL.',
+                fr: 'Analyse de données avec assistant IA : rôles sémantiques de colonnes, score de qualité, valeurs aberrantes et tendances, nettoyage, détection de relations, et questions en langage naturel répondues par du SQL lecture seule en bac à sable.',
+            },
+            techStack: ['Spring Boot', 'Angular', 'FastAPI', 'DuckDB', 'Ollama', 'Docker'],
+            status: 'completed',
+            category: 'ai',
+            icon: '/assets/icon-insighthub.png',
+            accentColor: '#d97706',
+            highlights: [
+                { en: 'SQL engine locked against file access', fr: 'Moteur SQL verrouillé contre l’accès aux fichiers' },
+                { en: 'Local LLM: no data leaves the machine', fr: 'LLM local : aucune donnée ne quitte la machine' },
+            ],
+        },
+        {
+            id: 'albumy',
+            title: { en: 'Albumy', fr: 'Albumy' },
+            impact: {
+                en: 'Event photo sharing: one QR code, no guest accounts, resumable chunked uploads, a background media worker and live galleries over WebSocket.',
+                fr: 'Partage de photos d’événement : un QR code, aucun compte invité, envois reprenables en morceaux, worker média en arrière-plan et galeries en direct par WebSocket.',
+            },
+            techStack: ['Spring Boot', 'Angular', 'MySQL', 'Redis', 'WebSocket', 'Capacitor'],
+            status: 'completed',
+            category: 'fullstack',
+            icon: '/assets/icon-albumy.png',
+            accentColor: '#3b82f6',
+            liveUrl: 'https://majdabbassi.github.io/Albumy/',
+            highlights: [
+                { en: 'Uploads resume after a reload or lost network', fr: 'Les envois reprennent après un rechargement ou une coupure' },
+                { en: 'Live gallery, Android wrapper, live demo', fr: 'Galerie en direct, enveloppe Android, démo en ligne' },
+            ],
+        },
+        {
+            id: 'n8n',
+            title: { en: 'ReachFlow', fr: 'ReachFlow' },
+            impact: {
+                en: 'Lead discovery and outreach: an n8n and Apify workflow finds businesses and emails, then resumable Gmail campaigns with reply and bounce tracking. Demo mode runs fully offline.',
+                fr: 'Découverte de prospects et prospection : un workflow n8n et Apify trouve entreprises et e-mails, puis des campagnes Gmail reprenables avec suivi des réponses et rebonds. Le mode démo fonctionne hors ligne.',
+            },
+            techStack: ['n8n', 'Apify', 'Spring Boot', 'Angular', 'MySQL', 'Docker Compose'],
+            status: 'completed',
+            category: 'devops',
+            icon: '/assets/icon-n8n.png',
+            accentColor: '#ea580c',
+            highlights: [
+                { en: 'Never emails the same person twice', fr: 'N’écrit jamais deux fois à la même personne' },
+                { en: 'Demo mode: no accounts needed', fr: 'Mode démo : aucun compte requis' },
+            ],
+        },
+
     ];
 
     text(project: { en: string; fr: string }): string {
@@ -270,8 +309,21 @@ export class ProjectsComponent {
             : this.i18n.t('projects.viewCase');
     }
 
-    onProjectFocus(event: MouseEvent, projectId: string): void {
-        if (
+    openExternal(event: MouseEvent, url: string): void {
+        event.stopPropagation();
+        event.preventDefault();
+        window.open(url, '_blank', 'noopener');
+    }
+
+    openExternalKey(event: KeyboardEvent, url: string): void {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            event.stopPropagation();
+            window.open(url, '_blank', 'noopener');
+        }
+    }
+
+    onProjectFocus(event: MouseEvent, projectId: string): void {        if (
             event.button !== 0 ||
             event.ctrlKey ||
             event.metaKey ||

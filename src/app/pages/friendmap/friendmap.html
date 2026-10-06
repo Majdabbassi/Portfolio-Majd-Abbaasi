@@ -1,0 +1,347 @@
+@if (project) {
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 2 — PROJECT HERO SECTION
+     Technical document header — NOT a homepage hero
+     ═══════════════════════════════════════════════════════════ -->
+<section class="project-hero">
+  <div class="project-hero-container">
+
+    <!-- Back link -->
+    <a routerLink="/" fragment="projects" class="back-link" appFadeIn>
+      <span class="back-arrow">←</span> {{ i18n.t('detail.back') }}
+    </a>
+
+    <div class="hero-grid" appFadeIn>
+      <!-- Left: Meta -->
+      <div class="hero-meta">
+        <div class="hero-badges">
+          <span class="status-badge" [class]="project.status">
+            <span class="status-indicator"></span>
+            {{ getStatusLabel(project.status) }}
+          </span>
+          <span class="role-badge">{{ project.roleContext }}</span>
+        </div>
+
+        <h1 class="hero-title">{{ project.title }}</h1>
+        <p class="hero-summary">{{ project.summary }}</p>
+
+        <div class="hero-tech-stack">
+          @for (tech of project.techStack; track tech) {
+            <span class="hero-tech-tag">{{ tech }}</span>
+          }
+        </div>
+      </div>
+
+      <!-- Right: Visual Anchor -->
+      <div class="hero-visual">
+        <div class="visual-container">
+          <div class="visual-frame">
+            @if (project.showcase) {
+              <img class="hero-shot" [src]="project.showcase!.screens[0].src" [alt]="project.showcase!.screens[0].caption" />
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     NEW — METRICS AT A GLANCE
+     Key project statistics for quick understanding
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="detail-container">
+    <div class="metrics-grid" appFadeIn>
+      <div class="metric-item">
+        <span class="metric-label">{{ i18n.t('metrics.duration') }}</span>
+        <span class="metric-value">{{ project.metrics.duration }}</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">{{ i18n.t('metrics.team') }}</span>
+        <span class="metric-value">{{ project.metrics.team }}</span>
+      </div>
+      <div class="metric-item">
+        <span class="metric-label">{{ i18n.t('metrics.scale') }}</span>
+        <span class="metric-value">{{ project.metrics.scale }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<app-showcase [data]="project.showcase" />
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 3 — CONTEXT & PROBLEM
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section section-alt">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">{{ i18n.t('detail.context') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.why') }}</h2>
+    </div>
+
+    <div class="context-grid" appFadeIn>
+      <!-- Problem -->
+      <div class="context-block">
+        <h3 class="context-label">{{ i18n.t('detail.problem') }}</h3>
+        <p class="context-text">{{ project.context.problem }}</p>
+      </div>
+
+      <!-- Constraints -->
+      <div class="context-block">
+        <h3 class="context-label">{{ i18n.t('detail.constraints') }}</h3>
+        <ul class="context-list">
+          @for (constraint of project.context.constraints; track constraint) {
+            <li>{{ constraint }}</li>
+          }
+        </ul>
+      </div>
+
+      <!-- Goals -->
+      <div class="context-block">
+        <h3 class="context-label">{{ i18n.t('detail.goals') }}</h3>
+        <ul class="context-list">
+          @for (goal of project.context.goals; track goal) {
+            <li>{{ goal }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 4 — ARCHITECTURE & SYSTEM DESIGN
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">{{ i18n.t('detail.architecture') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.systemDesign') }}</h2>
+    </div>
+
+    <div class="architecture-grid" appFadeIn>
+      <!-- Left: Diagram Placeholder -->
+      <div class="architecture-diagram">
+        <div class="diagram-frame">
+          @if (project.architecture.tiers) {
+            <app-arch-diagram [tiers]="project.architecture.tiers" [note]="project.architecture.note" [label]="project.architecture.diagramPlaceholder" />
+          }
+        </div>
+      </div>
+
+      <!-- Right: Explanation -->
+      <div class="architecture-details">
+        <ul class="arch-bullets">
+          @for (bullet of project.architecture.bullets; track bullet) {
+            <li>{{ bullet }}</li>
+          }
+        </ul>
+
+        <!-- Highlight Callout Cards -->
+        <div class="arch-highlights">
+          @for (highlight of project.architecture.highlights; track highlight.title) {
+            <div class="highlight-card">
+              <span class="highlight-title">{{ highlight.title }}</span>
+              <span class="highlight-desc">{{ highlight.description }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 5 — KEY TECHNICAL DECISIONS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section section-alt">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">{{ i18n.t('detail.decisions') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.keyDecisions') }}</h2>
+    </div>
+
+    <div class="decisions-stack" appFadeIn>
+      @for (decision of project.decisions; track decision.title) {
+        <div class="decision-card">
+          <h3 class="decision-title">{{ decision.title }}</h3>
+          <div class="decision-body">
+            <div class="decision-section">
+              <span class="decision-label">{{ i18n.t('detail.whyMattered') }}</span>
+              <p>{{ decision.reasoning }}</p>
+            </div>
+            <div class="decision-section">
+              <span class="decision-label">{{ i18n.t('detail.tradeoffs') }}</span>
+              <p>{{ decision.tradeoffs }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 6 — DEPLOYMENT & PRODUCTION
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">{{ i18n.t('detail.deployment') }}</p>
+      @if (project.deployment.isDeployed) {
+        <h2 class="section-heading">{{ i18n.t('detail.productionDeployment') }}</h2>
+      } @else {
+        <h2 class="section-heading">{{ i18n.t('detail.productionConsiderations') }}</h2>
+      }
+    </div>
+
+    <div class="deployment-content" appFadeIn>
+      @if (project.deployment.isDeployed) {
+        <!-- Deployed -->
+        @if (project.deployment.flow) {
+          <div class="deployment-flow">
+            <h3 class="deploy-label">{{ i18n.t('detail.deploymentFlow') }}</h3>
+            <div class="flow-pipeline">
+              @for (step of project.deployment.flow!.split(' → '); track step) {
+                <span class="flow-step">{{ step }}</span>
+                @if (!$last) {
+                  <span class="flow-arrow">→</span>
+                }
+              }
+            </div>
+          </div>
+        }
+
+        @if (project.deployment.environment) {
+          <div class="deploy-env">
+            <h3 class="deploy-label">{{ i18n.t('detail.environment') }}</h3>
+            <p class="deploy-env-text">{{ project.deployment.environment }}</p>
+          </div>
+        }
+
+        <div class="deploy-details">
+          <h3 class="deploy-label">{{ i18n.t('detail.infrastructureDetails') }}</h3>
+          <ul class="deploy-list">
+            @for (detail of project.deployment.details; track detail) {
+              <li>{{ detail }}</li>
+            }
+          </ul>
+        </div>
+      } @else {
+        <!-- Not Deployed — Production Considerations -->
+        <div class="deploy-considerations">
+          <p class="considerations-intro">
+            {{ i18n.t('detail.considerationsIntro') }}
+          </p>
+          <ul class="deploy-list">
+            @for (consideration of project.deployment.considerations; track consideration) {
+              <li>{{ consideration }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     NEW — KEY OUTCOMES & METRICS
+     Quantified impact and achievements
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section section-alt">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">{{ i18n.t('metrics.label') }}</p>
+      <h2 class="section-heading">{{ i18n.t('metrics.outcomes') }}</h2>
+    </div>
+
+    <div class="outcomes-grid" appFadeIn>
+      @for (outcome of project.metrics.keyOutcomes; track outcome) {
+        <div class="outcome-card">
+          <p class="outcome-text">{{ outcome }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 7 — CHALLENGES & SOLUTIONS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section section-alt">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">{{ i18n.t('detail.challenges') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.problemsSolved') }}</h2>
+    </div>
+
+    <div class="challenges-stack" appFadeIn>
+      @for (item of project.challenges; track item.challenge) {
+        <div class="challenge-card">
+          <div class="challenge-row">
+            <span class="challenge-marker">{{ i18n.t('detail.challenge') }}</span>
+            <p class="challenge-text">{{ item.challenge }}</p>
+          </div>
+          <div class="challenge-row solution-row">
+            <span class="challenge-marker solution-marker">{{ i18n.t('detail.solution') }}</span>
+            <p class="challenge-text">{{ item.solution }}</p>
+          </div>
+          <div class="challenge-row outcome-row">
+            <span class="challenge-marker outcome-marker">{{ i18n.t('detail.outcome') }}</span>
+            <p class="challenge-text">{{ item.outcome }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     STEP 8 — IMPACT & LEARNINGS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="detail-container">
+    <div class="section-header" appFadeIn>
+      <p class="section-label">{{ i18n.t('detail.reflection') }}</p>
+      <h2 class="section-heading">{{ i18n.t('detail.impactLearn') }}</h2>
+    </div>
+
+    <div class="impact-grid" appFadeIn>
+      <div class="impact-block">
+        <h3 class="impact-label">{{ i18n.t('detail.whatImproved') }}</h3>
+        <ul class="impact-list">
+          @for (item of project.impact.improvements; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="impact-block">
+        <h3 class="impact-label">{{ i18n.t('detail.whatLearned') }}</h3>
+        <ul class="impact-list">
+          @for (item of project.impact.learnings; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     FINAL — NAVIGATION CLOSURE
+     ═══════════════════════════════════════════════════════════ -->
+<app-project-nav currentId="friendmap" />
+}

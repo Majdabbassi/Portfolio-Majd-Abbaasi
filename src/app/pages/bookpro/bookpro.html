@@ -26,6 +26,12 @@
               {{ project.deployment.liveUrl }}
             </a>
           }
+          @if (project.deployment.apkUrl) {
+            <a [href]="project.deployment.apkUrl" rel="noopener noreferrer" class="apk-badge" aria-label="Download Android APK">
+              <span class="apk-badge-icon">⬇</span>
+              {{ i18n.lang() === 'fr' ? 'APK Android' : 'Android APK' }}
+            </a>
+          }
         </div>
 
         <h1 class="hero-title">{{ project.title }}</h1>
@@ -345,13 +351,19 @@
             }
           </ul>
         </div>
-        @if (project.deployment.liveUrl) {
-          <div class="deployment-live-link">
-            <a [href]="project.deployment.liveUrl" target="_blank" rel="noopener noreferrer">
+        <div class="deploy-actions">
+          @if (project.deployment.liveUrl) {
+            <a [href]="project.deployment.liveUrl" target="_blank" rel="noopener noreferrer" class="deploy-live-btn">
               {{ i18n.lang() === 'fr' ? 'Voir le live' : 'View live' }} → {{ project.deployment.liveUrl }}
             </a>
-          </div>
-        }
+          }
+          @if (project.deployment.apkUrl) {
+            <a [href]="project.deployment.apkUrl" rel="noopener noreferrer" class="apk-button">
+              <span class="apk-icon">⬇</span>
+              {{ i18n.lang() === 'fr' ? 'Télécharger l’APK Android' : 'Download Android APK' }}
+            </a>
+          }
+        </div>
       } @else {
         <!-- Not Deployed — Production Considerations -->
         <div class="deploy-considerations">
@@ -461,23 +473,5 @@
 <!-- ═══════════════════════════════════════════════════════════
      FINAL — NAVIGATION CLOSURE
      ═══════════════════════════════════════════════════════════ -->
-<section class="detail-section nav-closure">
-  <div class="detail-container">
-    <div class="nav-closure-inner" appFadeIn>
-      <a routerLink="/projects/caferesto" class="nav-link prev-link">
-        <span class="nav-direction">{{ i18n.t('detail.prevProject') }}</span>
-        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'CafeResto — Plateforme Restaurant Multi-Tenant' : 'CafeResto — Multi-Tenant Restaurant Operations Platform' }}</span>
-      </a>
-
-      <a routerLink="/" fragment="projects" class="nav-link back-link-center">
-        {{ i18n.t('detail.backAll') }}
-      </a>
-
-      <a routerLink="/projects/data-analytics" class="nav-link next-link">
-        <span class="nav-direction">{{ i18n.t('detail.nextProject') }}</span>
-        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'InsightHub — Plateforme d\'Analytics IA' : 'InsightHub — AI-Powered Analytics Platform' }}</span>
-      </a>
-    </div>
-  </div>
-</section>
+<app-project-nav currentId="bookpro" />
 }

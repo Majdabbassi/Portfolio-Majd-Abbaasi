@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home';
 import { CaferestoComponent } from './pages/caferesto/caferesto';
 import { DocumentMarketplaceComponent } from './pages/document-marketplace/document-marketplace';
-import { ChellysportComponent } from './pages/chellysport/chellysport';
+import { SportclubComponent } from './pages/sportclub/sportclub';
+import { FriendmapComponent } from './pages/friendmap/friendmap';
 import { CarRentalComponent } from './pages/car-rental/car-rental';
 import { DeliveryTrackingComponent } from './pages/delivery-tracking/delivery-tracking';
 import { AlbumyComponent } from './pages/albumy/albumy';
@@ -17,7 +18,9 @@ export const routes: Routes = [
   { path: 'projects/caferesto', component: CaferestoComponent },
   { path: 'projects/document-marketplace', component: DocumentMarketplaceComponent },
   { path: 'projects/mediplus', component: MediplusComponent },
-  { path: 'projects/chellysport', component: ChellysportComponent },
+  { path: 'projects/sportclub', component: SportclubComponent },
+  { path: 'projects/chellysport', redirectTo: 'projects/sportclub' },
+  { path: 'projects/friendmap', component: FriendmapComponent },
   { path: 'projects/car-rental', component: CarRentalComponent },
   { path: 'projects/delivery-tracking', component: DeliveryTrackingComponent },
   { path: 'projects/albumy', component: AlbumyComponent },

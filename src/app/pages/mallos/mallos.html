@@ -37,54 +37,9 @@
       <div class="hero-visual">
         <div class="visual-container">
           <div class="visual-frame">
-            <svg class="hero-architecture-svg" width="100%" viewBox="0 0 520 300" aria-label="Mall OS MVP architecture" role="img" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <marker id="mo-hero-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8a6a0"></path>
-                </marker>
-              </defs>
-
-              <!-- Angular client -->
-              <rect x="25" y="20" width="210" height="60" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-              <text x="130" y="42" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Angular Client</text>
-              <text x="130" y="60" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">PrimeNG · PrimeFlex · RxJS state</text>
-
-              <!-- Role areas inside client -->
-              <rect x="35" y="92" width="92" height="46" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.4" stroke-width="0.8"></rect>
-              <text x="81" y="111" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text)">Admin area</text>
-              <text x="81" y="124" text-anchor="middle" font-family="inherit" font-size="9" fill="var(--color-text-2)">malls · users</text>
-
-              <rect x="137" y="92" width="92" height="46" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.4" stroke-width="0.8"></rect>
-              <text x="183" y="111" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text)">Manager area</text>
-              <text x="183" y="124" text-anchor="middle" font-family="inherit" font-size="9" fill="var(--color-text-2)">stores · floor</text>
-
-              <!-- Spring Boot backend -->
-              <rect x="260" y="55" width="230" height="60" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.7" stroke-width="1"></rect>
-              <text x="375" y="80" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Spring Boot Backend</text>
-              <text x="375" y="97" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">JWT / role guards · REST APIs</text>
-
-              <!-- OpenAPI side card -->
-              <rect x="375" y="150" width="120" height="46" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-              <text x="435" y="169" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">OpenAPI</text>
-              <text x="435" y="184" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">Swagger UI</text>
-
-              <!-- MySQL -->
-              <rect x="185" y="235" width="150" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-              <text x="260" y="258" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">MySQL</text>
-              <text x="260" y="273" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">JPA + Hibernate</text>
-
-              <!-- Client to backend -->
-              <line x1="235" y1="80" x2="260" y2="80" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#mo-hero-arrow)"></line>
-              <line x1="81" y1="92" x2="240" y2="66" stroke="#a8a6a0" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#mo-hero-arrow)"></line>
-              <line x1="183" y1="92" x2="300" y2="110" stroke="#a8a6a0" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#mo-hero-arrow)"></line>
-              <text x="128" y="72" font-family="inherit" font-size="9" fill="var(--color-text-2)">role guards</text>
-
-              <!-- Backend to MySQL -->
-              <line x1="330" y1="115" x2="260" y2="235" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#mo-hero-arrow)"></line>
-
-              <!-- Backend to OpenAPI -->
-              <line x1="405" y1="115" x2="435" y2="150" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#mo-hero-arrow)"></line>
-            </svg>
+            @if (project.showcase) {
+              <img class="hero-shot" [src]="project.showcase!.screens[0].src" [alt]="project.showcase!.screens[0].caption" />
+            }
           </div>
         </div>
       </div>
@@ -116,6 +71,8 @@
   </div>
 </section>
 
+
+<app-showcase [data]="project.showcase" />
 
 <!-- ═══════════════════════════════════════════════════════════
      STEP 3 — CONTEXT & PROBLEM
@@ -172,46 +129,9 @@
       <!-- Left: Diagram -->
       <div class="architecture-diagram">
         <div class="diagram-frame">
-          <svg class="focus-architecture-svg" width="100%" viewBox="0 0 360 300" aria-label="Mall OS role and data flow" role="img" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <marker id="mo-focus-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8a6a0"></path>
-              </marker>
-            </defs>
-
-            <rect x="100" y="20" width="160" height="34" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-            <text x="180" y="41" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Angular UI (roles)</text>
-
-            <rect x="110" y="72" width="60" height="34" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.4" stroke-width="1"></rect>
-            <text x="140" y="93" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text)">Admin</text>
-
-            <rect x="190" y="72" width="60" height="34" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.4" stroke-width="1"></rect>
-            <text x="220" y="93" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text)">Manager</text>
-
-            <rect x="110" y="122" width="140" height="34" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.7" stroke-width="1"></rect>
-            <text x="180" y="143" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Spring Boot API</text>
-
-            <rect x="120" y="176" width="120" height="34" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-            <text x="180" y="197" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">MySQL</text>
-
-            <line x1="180" y1="54" x2="140" y2="72" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#mo-focus-arrow)"></line>
-            <line x1="180" y1="54" x2="220" y2="72" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#mo-focus-arrow)"></line>
-
-            <line x1="140" y1="106" x2="155" y2="122" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#mo-focus-arrow)"></line>
-            <line x1="220" y1="106" x2="205" y2="122" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#mo-focus-arrow)"></line>
-            <text x="232" y="116" font-family="inherit" font-size="9" fill="var(--color-text-2)">guards</text>
-
-            <line x1="180" y1="156" x2="180" y2="176" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#mo-focus-arrow)"></line>
-
-            <line x1="20" y1="272" x2="48" y2="272" stroke="#a8a6a0" stroke-width="0.7"></line>
-            <text x="54" y="275" font-family="inherit" font-size="10" fill="var(--color-text-2)">request flow</text>
-
-            <line x1="150" y1="272" x2="178" y2="272" stroke="#a8a6a0" stroke-width="0.7" stroke-dasharray="4 3"></line>
-            <text x="184" y="275" font-family="inherit" font-size="10" fill="var(--color-text-2)">JWT</text>
-
-            <line x1="282" y1="272" x2="310" y2="272" stroke="#a8a6a0" stroke-width="0.7"></line>
-            <text x="266" y="275" font-family="inherit" font-size="10" fill="var(--color-text-2)">OpenAPI</text>
-          </svg>
+          @if (project.architecture.tiers) {
+            <app-arch-diagram [tiers]="project.architecture.tiers" [note]="project.architecture.note" [label]="project.architecture.diagramPlaceholder" />
+          }
         </div>
       </div>
 
@@ -424,23 +344,5 @@
 <!-- ═══════════════════════════════════════════════════════════
      FINAL — NAVIGATION CLOSURE
      ═══════════════════════════════════════════════════════════ -->
-<section class="detail-section nav-closure">
-  <div class="detail-container">
-    <div class="nav-closure-inner" appFadeIn>
-      <a routerLink="/projects/delivery-tracking" class="nav-link prev-link">
-        <span class="nav-direction">{{ i18n.t('detail.prevProject') }}</span>
-        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'SwiftDeliver — Plateforme d’Orchestration Logistique B2B' : 'SwiftDeliver — B2B Logistics Orchestration Platform' }}</span>
-      </a>
-
-      <a routerLink="/" fragment="projects" class="nav-link back-link-center">
-        {{ i18n.t('detail.backAll') }}
-      </a>
-
-      <a routerLink="/projects/caferesto" class="nav-link next-link">
-        <span class="nav-direction">{{ i18n.t('detail.nextProject') }}</span>
-        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'CafeResto — Plateforme Restaurant Multi-Tenant' : 'CafeResto — Multi-Tenant Restaurant Operations Platform' }}</span>
-      </a>
-    </div>
-  </div>
-</section>
+<app-project-nav currentId="mallos" />
 }

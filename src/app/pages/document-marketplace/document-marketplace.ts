@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ProjectNavComponent } from '../../shared/project-nav.component';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { I18nService } from '../../core/i18n.service';
 
@@ -37,6 +38,7 @@ interface ProjectDetail {
   deployment: {
     isDeployed: boolean;
     liveUrl?: string;
+    apkUrl?: string;
     flow?: string;
     environment?: string;
     details: string[];
@@ -56,7 +58,7 @@ interface ProjectDetail {
 @Component({
   selector: 'app-document-marketplace',
   standalone: true,
-  imports: [FadeInDirective, RouterLink],
+  imports: [FadeInDirective, RouterLink, ProjectNavComponent],
   templateUrl: './document-marketplace.html',
   styleUrl: './document-marketplace.css',
 })
@@ -73,7 +75,7 @@ export class DocumentMarketplaceComponent implements OnInit {
     status: 'production',
     role: 'Full Stack Engineer',
     roleContext: 'Full Stack Engineer (Encryption & Payment Systems)',
-    techStack: ['Spring Boot 3', 'Angular 19', 'Expo (SDK 54)', 'WebSocket', 'AES-128', 'Firebase'],
+    techStack: ['Spring Boot 3', 'Angular 19/20', 'Expo (SDK 54)', 'WebSocket', 'AES-128'],
     metrics: {
       team: 'Full Stack Engineer (primary), 1 DevOps engineer',
       duration: '7 months',
@@ -104,10 +106,12 @@ export class DocumentMarketplaceComponent implements OnInit {
       diagramPlaceholder: 'Massarat+ Ecosystem Architecture',
       bullets: [
         'Spring Boot 3 backend with role-based JWT security',
-        'Cloud-native file storage with AES-128 encryption/decryption layers',
-        'Angular 19 administration and parent dashboards',
-        'Cross-platform mobile app built with Expo and NativeWind',
+        'AES-128 encrypted enterprise file storage on Linux with encrypt/decrypt layers',
+        'Angular admin (19) and parent (20) dashboards',
+        'Expo (React Native) mobile app with wallet top-up, cart, and teacher analytics',
         'WebSocket-based real-time notification and chat system',
+        'Sponsorship system with admin review and wallet-based sponsorship payments',
+        'Teacher earnings with withdrawals/virements managed by admins',
       ],
       highlights: [
         {
@@ -116,11 +120,11 @@ export class DocumentMarketplaceComponent implements OnInit {
         },
         {
           title: 'Financial Orchestration',
-          description: 'Unified wallet system handling diverse regional payment webhooks and recharge flows.',
+          description: 'Unified wallet system unifying automated card (GPG/Konnect) and manual (D17) recharge flows with idempotent webhook processing.',
         },
         {
           title: 'Stomp-Powered Real-Time',
-          description: 'Bidirectional messaging with persistent chat history and instant Firebase push notifications.',
+          description: 'Bidirectional web messaging with persistent chat history and instant push notifications for teacher-parent communication.',
         },
       ],
     },
@@ -139,6 +143,7 @@ export class DocumentMarketplaceComponent implements OnInit {
     deployment: {
       isDeployed: true,
       liveUrl: 'https://massarat-plus.com',
+      apkUrl: '#apk-placeholder',
       flow: 'Build → Maven Artifact (WAR) → Application Server → Production Infrastructure',
       environment: 'Enterprise Linux environment with centralized MySQL and File Storage',
       details: [
@@ -155,16 +160,17 @@ export class DocumentMarketplaceComponent implements OnInit {
         outcome: 'Reduced transaction failures and wallet balance discrepancies to near zero.',
       },
       {
-        challenge: 'Synchronizing real-time state across web and mobile concurrently.',
-        solution: 'Centralized state management via Stomp sessions and standardized DTOs.',
-        outcome: 'Seamless user transitions between devices without message loss.',
+        challenge: 'Keeping real-time state consistent across the web admin, parent, and mobile clients.',
+        solution: 'Centralized state and messaging via Stomp sessions with standardized DTOs.',
+        outcome: 'Consistent notifications and messaging across devices without message loss.',
       },
     ],
     impact: {
       improvements: [
         'Secure monetization platform for educational content',
         'Instant communication channel between educators and parents',
-        'Unified financial tracking for all platform transactions',
+        'Unified financial tracking for all platform transactions and teacher payouts',
+        'Sponsorship program expanding educator visibility and content promotion',
       ],
       learnings: [
         'Encryption at scale requires careful resource management',
@@ -182,7 +188,7 @@ export class DocumentMarketplaceComponent implements OnInit {
     status: 'production',
     role: 'Ingénieur Full Stack',
     roleContext: 'Ingénieur Full Stack (Chiffrement & Systèmes de Paiement)',
-    techStack: ['Spring Boot 3', 'Angular 19', 'Expo (SDK 54)', 'WebSocket', 'AES-128', 'Firebase'],
+    techStack: ['Spring Boot 3', 'Angular 19/20', 'Expo (SDK 54)', 'WebSocket', 'AES-128'],
     metrics: {
       team: 'Ingénieur Full Stack (principal), 1 ingénieur DevOps',
       duration: '7 mois',
@@ -213,10 +219,12 @@ export class DocumentMarketplaceComponent implements OnInit {
       diagramPlaceholder: 'Architecture de l’Écosystème Massarat+',
       bullets: [
         'Backend Spring Boot 3 avec sécurité JWT basée sur les rôles',
-        'Stockage de fichiers cloud avec couches de chiffrement/déchiffrement AES-128',
-        'Tableaux de bord administration et parents sous Angular 19',
-        'Application mobile multiplateforme avec Expo et NativeWind',
+        'Stockage de fichiers chiffré AES-128 sur Linux avec couches de chiffrement/déchiffrement',
+        'Tableaux de bord administration (19) et parents (20) sous Angular',
+        'Application mobile Expo (React Native) avec recharge wallet, panier et analytics enseignants',
         'Système de notification et de chat en temps réel basé sur WebSocket',
+        'Système de sponsoring avec validation admin et paiement de sponsoring via wallet',
+        'Gains enseignants avec retraits/virements gérés par les admins',
       ],
       highlights: [
         {
@@ -225,11 +233,11 @@ export class DocumentMarketplaceComponent implements OnInit {
         },
         {
           title: 'Orchestration Financière',
-          description: 'Système de wallet unifié gérant divers webhooks de paiement régionaux et flux de recharge.',
+          description: 'Système de wallet unifié unifiant les flux de recharge par carte (GPG/Konnect) et manuels (D17) avec traitement idempotent des webhooks.',
         },
         {
           title: 'Temps Réel via Stomp',
-          description: 'Messagerie bidirectionnelle avec historique persistant et notifications push Firebase instantanées.',
+          description: 'Messagerie web bidirectionnelle avec historique persistant et notifications push instantanées pour la communication enseignant-parent.',
         },
       ],
     },
@@ -247,7 +255,8 @@ export class DocumentMarketplaceComponent implements OnInit {
     ],
     deployment: {
       isDeployed: true,
-      liveUrl: 'https://massarat-plus.com',      
+      liveUrl: 'https://massarat-plus.com',
+      apkUrl: '#apk-placeholder',
       flow: 'Build → Artefact Maven (WAR) → Serveur d’Application → Infrastructure de Production',
       environment: 'Environnement Enterprise Linux avec MySQL centralisé et stockage de fichiers',
       details: [
@@ -264,16 +273,17 @@ export class DocumentMarketplaceComponent implements OnInit {
         outcome: 'Réduction des échecs de transaction et des écarts de solde wallet à près de zéro.',
       },
       {
-        challenge: 'Synchronisation de l’état en temps réel sur web et mobile simultanément.',
-        solution: 'Gestion centralisée de l’état via des sessions Stomp et des DTO standardisés.',
-        outcome: 'Transitions utilisateur fluides entre les appareils sans perte de message.',
+        challenge: 'Maintenir un état temps réel cohérent entre les clients web admin, parent et mobile.',
+        solution: 'État et messagerie centralisés via des sessions Stomp et des DTO standardisés.',
+        outcome: 'Notifications et messagerie cohérentes entre les appareils sans perte de message.',
       },
     ],
     impact: {
       improvements: [
         'Plateforme de monétisation sécurisée pour le contenu éducatif',
         'Canal de communication instantané entre éducateurs et parents',
-        'Suivi financier unifié pour toutes les transactions de la plateforme',
+        'Suivi financier unifié pour toutes les transactions et paiements des enseignants',
+        'Programme de sponsoring élargissant la visibilité des éducateurs et la promotion du contenu',
       ],
       learnings: [
         'Le chiffrement à grande échelle nécessite une gestion rigoureuse des ressources',

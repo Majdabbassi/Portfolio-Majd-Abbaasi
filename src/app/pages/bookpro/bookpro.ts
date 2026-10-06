@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ProjectNavComponent } from '../../shared/project-nav.component';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { I18nService } from '../../core/i18n.service';
 import { OnInit } from '@angular/core';
@@ -38,10 +39,17 @@ interface ProjectDetail {
   deployment: {
     isDeployed: boolean;
     liveUrl?: string;
+    apkUrl?: string;
     flow?: string;
     environment?: string;
     details: string[];
     considerations?: string[];
+  };
+  mobile: {
+    platform: string;
+    storeStatus: string;
+    build: string;
+    details: string[];
   };
   challenges: {
     challenge: string;
@@ -57,7 +65,7 @@ interface ProjectDetail {
 @Component({
   selector: 'app-bookpro',
   standalone: true,
-  imports: [FadeInDirective, RouterLink],
+  imports: [FadeInDirective, RouterLink, ProjectNavComponent],
   templateUrl: './bookpro.html',
   styleUrl: './bookpro.css',
 })
@@ -70,17 +78,33 @@ export class BookproComponent implements OnInit {
 
   private readonly projectEn: ProjectDetail = {
     id: 'bookpro',
-    title: 'BookPro — Salon & Professional Booking Platform',
+    title: 'BookPro — Booking Platform',
     summary:
-      'Designed, built, containerized, deployed, and operated a production booking platform that connects clients with salon and beauty professionals. The scope spans a Spring Boot backend API surface, an Angular client with role-scoped modules, booking and waitlist flows, a point-of-sale (caisse) module, wholesale ordering for professionals, and a full Dockerized production stack with monitoring, scheduled backups, and a GitHub Actions CI pipeline.',
+      'Production booking platform connecting clients with salon and beauty professionals — as a web app and a Capacitor Android APK. Spring Boot API, Angular client, real-time WebSocket, booking & waitlist, POS (caisse), wholesale, Firebase push, map discovery, and a Dockerized stack with monitoring, backups, and a CI pipeline producing an installable APK.',
     status: 'production',
     role: 'Full-Stack Engineer',
-    roleContext: 'Full-Stack Engineer (Deployment & Operations focused)',
-    techStack: ['Spring Boot', 'Angular', 'MySQL', 'Docker', 'Nginx', 'Prometheus', 'Grafana', 'GitHub Actions'],
+    roleContext: 'Full-Stack Engineer (Deployment & Ops)',
+    techStack: [
+      'Spring Boot',
+      'Angular',
+      'Angular Material',
+      'MySQL',
+      'WebSocket',
+      'Firebase',
+      'Docker',
+      'Nginx',
+      'Prometheus',
+      'Grafana',
+      'cAdvisor',
+      'Capacitor',
+      'Leaflet',
+      'Chart.js',
+      'GitHub Actions',
+    ],
     metrics: {
       team: 'Full-Stack Engineer (end-to-end, product to ops)',
       duration: 'Full lifecycle — from design to live production',
-      scale: '22 role-specific feature areas · 17 REST controllers · multi-role platform',
+      scale: '17 REST controllers · 24 domain entities · multi-role web + Android app',
       keyOutcomes: [
         'Live production deployment served at bookpro.educanet.pro',
         'Containerized multi-service stack with scheduled database backups (7-day retention, configurable)',
@@ -105,10 +129,12 @@ export class BookproComponent implements OnInit {
     architecture: {
       diagramPlaceholder: 'BookPro Production Architecture',
       bullets: [
-        'Angular client consuming the Spring Boot REST APIs, split into role-scoped areas for clients, professionals, assistants (aide), and admins.',
-        'Spring Boot backend exposing 17 controllers covering auth, availability, reservations, waitlist, caisse, wholesale, favorites, gallery, and notifications.',
-        'MySQL 8.4 as the persistent data store (bookpro_db) with a scheduled Docker backup container and configurable 7-day retention.',
-        'Observability through Prometheus, Grafana, and cAdvisor, plus a dedicated monitoring service health-checking the live front URL and backend health endpoint.',
+        'Angular + Angular Material client split into role-scoped areas: client, professional, aide, and admin.',
+        'Spring Boot backend with 17 controllers (auth, reservations, waitlist, caisse, wholesale, favorites, and more) with real-time updates over WebSocket.',
+        'Firebase Cloud Messaging push notifications, Leaflet map-based discovery, and Chart.js analytics dashboards.',
+        'Capacitor wraps the Angular app into a native Android APK via the GitHub Actions CI pipeline.',
+        'MySQL 8.4 (bookpro_db) with scheduled Docker backups and configurable 7-day retention.',
+        'Observability via Prometheus, Grafana, and cAdvisor, with live-URL and backend health checks.',
       ],
       highlights: [
         {
@@ -118,6 +144,10 @@ export class BookproComponent implements OnInit {
         {
           title: 'Production Resilience',
           description: 'Scheduled database backups, live-URL health checks, and a Prometheus/Grafana/cAdvisor telemetry stack keep the live platform observable and recoverable.',
+        },
+        {
+          title: 'Web + Mobile from One Codebase',
+          description: 'The same Angular application ships as a production web app and as a Capacitor-packed Android APK, reusing one backend and one CI pipeline for both surfaces.',
         },
       ],
     },
@@ -141,13 +171,24 @@ export class BookproComponent implements OnInit {
     deployment: {
       isDeployed: true,
       liveUrl: 'https://bookpro.educanet.pro',
+      apkUrl: '#apk-placeholder',
       flow: 'GitHub Actions CI -> Docker Images -> Docker Compose -> Production (bookpro.educanet.pro)',
       environment: 'Docker Compose production stack with MySQL 8.4 storage, scheduled backups, nginx routing, and an authenticated phpMyAdmin entry point',
       details: [
-        'Live production system served at bookpro.educanet.pro with a monitoring service health-checking the front URL and the backend actuator endpoint',
-        'Multi-service Dockerized stack: MySQL 8.4, Spring Boot backend (built WAR/JAR image with Dockerfile), Angular frontend, phpMyAdmin behind an nginx auth proxy, scheduled backup, monitoring, Prometheus, Grafana, and cAdvisor',
+        'Live production system served at bookpro.educanet.pro with a monitoring service health-checking the front URL and the backend actuator endpoint (api-bookpro.educanet.pro)',
+        'Multi-service Dockerized stack: MySQL 8.4, Spring Boot backend (built JAR image with Dockerfile), Angular frontend served by nginx, phpMyAdmin behind an nginx auth proxy, scheduled backup, monitoring, Prometheus, Grafana, and cAdvisor',
         'Scheduled backup container against the database with configurable retention (7 days), mounting persistent uploads and backup volumes',
-        'GitHub Actions CI pipeline producing the Angular production build and a debug APK artifact',
+        'GitHub Actions CI pipeline producing the Angular production build and a debug APK artifact on every push and pull request',
+      ],
+    },
+    mobile: {
+      platform: 'Android (Capacitor)',
+      storeStatus: 'Not yet on the Play Store — distributed as an installable APK',
+      build: 'debug APK artifact produced by the CI pipeline (assembleDebug)',
+      details: [
+        'The same Angular frontend is wrapped with Capacitor into a native Android app (com.coiffure.app)',
+        'Push notifications via Firebase Cloud Messaging, geolocation/maps via Leaflet, and offline-friendly mobile UI built with Angular Material',
+        'APK is downloadable for direct installation; a public store listing is planned',
       ],
     },
     challenges: [
@@ -178,17 +219,33 @@ export class BookproComponent implements OnInit {
 
   private readonly projectFr: ProjectDetail = {
     id: 'bookpro',
-    title: 'BookPro — Plateforme de Réservation Salon & Professionnels',
+    title: 'BookPro — Plateforme de Réservation Salon',
     summary:
-      'Conçu, construit, conteneurisé, déployé et exploité une plateforme de réservation en production reliant clients et professionnels de salon. Le scope couvre les APIs Spring Boot, le client Angular avec modules par role, les flux de réservation et liste d\'attente, le module caisse (point de vente), la commande grossiste pour professionnels, et une stack Docker complète avec monitoring, sauvegardes planifiees et pipeline CI GitHub Actions.',
+      'Plateforme de réservation en production reliant clients et professionnels de salon — en web et en APK Android Capacitor. API Spring Boot, client Angular, temps réel WebSocket, réservation & liste d\'attente, caisse, grossiste, push Firebase, découverte sur carte, et une stack Docker avec monitoring, sauvegardes et pipeline CI produisant un APK installable.',
     status: 'production',
     role: 'Ingénieur Full-Stack',
-    roleContext: 'Ingénieur Full-Stack (axé Déploiement & Opérations)',
-    techStack: ['Spring Boot', 'Angular', 'MySQL', 'Docker', 'Nginx', 'Prometheus', 'Grafana', 'GitHub Actions'],
+    roleContext: 'Ingénieur Full-Stack (Déploiement & Ops)',
+    techStack: [
+      'Spring Boot',
+      'Angular',
+      'Angular Material',
+      'MySQL',
+      'WebSocket',
+      'Firebase',
+      'Docker',
+      'Nginx',
+      'Prometheus',
+      'Grafana',
+      'cAdvisor',
+      'Capacitor',
+      'Leaflet',
+      'Chart.js',
+      'GitHub Actions',
+    ],
     metrics: {
       team: 'Ingénieur Full-Stack (de bout en bout, produit vers ops)',
       duration: 'Cycle complet — de la conception a la production live',
-      scale: '22 zones fonctionnelles · 17 controleurs REST · plateforme multi-roles',
+      scale: '17 controleurs REST · 24 entites de domaine · plateforme multi-roles web + Android',
       keyOutcomes: [
         'Systeme de production live servi sur bookpro.educanet.pro',
         'Stack conteneurisee multi-services avec sauvegardes base planifiees (retention 7 jours, configurable)',
@@ -213,10 +270,12 @@ export class BookproComponent implements OnInit {
     architecture: {
       diagramPlaceholder: 'Architecture de Production BookPro',
       bullets: [
-        'Client Angular consommant les APIs REST Spring Boot, decoupe en zones par role : clients, professionnels, aides et administrateurs.',
-        'Backend Spring Boot exposant 17 controleurs : auth, disponibilites, reservations, liste d\'attente, caisse, grossiste, favoris, galerie et notifications.',
-        'MySQL 8.4 comme magasin de donnees persistant (bookpro_db) avec conteneur de sauvegarde planifiee et retention configurable de 7 jours.',
-        'Observabilite via Prometheus, Grafana et cAdvisor, plus un service de monitoring verifiant l\'URL front live et l\'endpoint health backend.',
+        'Client Angular + Angular Material decoupe en zones par role : client, professionnel, aide et admin.',
+        'Backend Spring Boot avec 17 controleurs (auth, reservations, liste d\'attente, caisse, grossiste, favoris, etc.) avec temps reel via WebSocket.',
+        'Notifications push Firebase Cloud Messaging, decouverte sur carte Leaflet et dashboards analytics Chart.js.',
+        'Capacitor empaquette l\'app Angular en APK Android natif via le pipeline CI GitHub Actions.',
+        'MySQL 8.4 (bookpro_db) avec sauvegardes Docker planifiees et retention configurable de 7 jours.',
+        'Observabilite via Prometheus, Grafana et cAdvisor, avec health checks URL live et backend.',
       ],
       highlights: [
         {
@@ -226,6 +285,10 @@ export class BookproComponent implements OnInit {
         {
           title: 'Resilience de Production',
           description: 'Sauvegardes base planifiees, health checks sur l\'URL live et une stack de telemetrie Prometheus/Grafana/cAdvisor rendent la plateforme live observable et recuperable.',
+        },
+        {
+          title: 'Web + Mobile sur un Seul Codebase',
+          description: 'La meme application Angular est livree en web de production et en APK Android empaquete avec Capacitor, reutilisant un seul backend et un seul pipeline CI pour les deux surfaces.',
         },
       ],
     },
@@ -249,13 +312,24 @@ export class BookproComponent implements OnInit {
     deployment: {
       isDeployed: true,
       liveUrl: 'https://bookpro.educanet.pro',
+      apkUrl: '#apk-placeholder',
       flow: 'CI GitHub Actions -> Images Docker -> Docker Compose -> Production (bookpro.educanet.pro)',
       environment: 'Stack de production Docker Compose avec stockage MySQL 8.4, sauvegardes planifiees, routage nginx et entrepoint phpMyAdmin authentifie',
       details: [
-        'Systeme de production live servi sur bookpro.educanet.pro avec un service de monitoring verifiant l\'URL front et l\'endpoint actuator backend',
-        'Stack Dockerisee multi-services : MySQL 8.4, backend Spring Boot (image WAR/JAR construite avec Dockerfile), frontend Angular, phpMyAdmin derriere un proxy nginx auth, sauvegarde planifiee, monitoring, Prometheus, Grafana et cAdvisor',
+        'Systeme de production live servi sur bookpro.educanet.pro avec un service de monitoring verifiant l\'URL front et l\'endpoint actuator backend (api-bookpro.educanet.pro)',
+        'Stack Dockerisee multi-services : MySQL 8.4, backend Spring Boot (image JAR construite avec Dockerfile), frontend Angular servi par nginx, phpMyAdmin derriere un proxy nginx auth, sauvegarde planifiee, monitoring, Prometheus, Grafana et cAdvisor',
         'Conteneur de sauvegarde planifie contre la base avec retention configurable (7 jours), montant les volumes persistants uploads et backups',
-        'Pipeline CI GitHub Actions produisant le build Angular de production et un artefact APK debug',
+        'Pipeline CI GitHub Actions produisant le build Angular de production et un artefact APK debug a chaque push et PR',
+      ],
+    },
+    mobile: {
+      platform: 'Android (Capacitor)',
+      storeStatus: 'Pas encore sur le Play Store — distribue en APK installable',
+      build: 'artefact APK debug produit par le pipeline CI (assembleDebug)',
+      details: [
+        'Le meme frontend Angular est empaquete avec Capacitor en application Android native (com.coiffure.app)',
+        'Notifications push via Firebase Cloud Messaging, geolocalisation/cartes via Leaflet et UI mobile Angular Material',
+        'L\'APK est telechargeable pour installation directe ; une publication sur le store est prevue',
       ],
     },
     challenges: [

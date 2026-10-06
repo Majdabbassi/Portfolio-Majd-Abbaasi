@@ -47,6 +47,22 @@
                 </div>
 
                 <div class="card-footer">
+                    <div class="project-links">
+                        @if (master.liveUrl) {
+                            <span role="link" tabindex="0" class="project-link project-link--live"
+                                (click)="openExternal($event, master.liveUrl)"
+                                (keydown)="openExternalKey($event, master.liveUrl)">
+                                <span class="link-dot"></span>{{ master.liveUrl }}
+                            </span>
+                        }
+                        @if (master.apkUrl) {
+                            <span role="link" tabindex="0" class="project-link project-link--apk"
+                                (click)="openExternal($event, master.apkUrl)"
+                                (keydown)="openExternalKey($event, master.apkUrl)">
+                                <span class="link-icon">⬇</span>{{ i18n.lang() === 'fr' ? 'APK Android' : 'Android APK' }}
+                            </span>
+                        }
+                    </div>
                     <div class="project-action">
                         {{ getProjectActionLabel(master) }} <span class="arrow">→</span>
                     </div>
@@ -92,6 +108,22 @@
                             </div>
                         </div>
                         <div class="card-footer">
+                            <div class="project-links">
+                                @if (project.liveUrl) {
+                                    <span role="link" tabindex="0" class="project-link project-link--live"
+                                        (click)="openExternal($event, project.liveUrl)"
+                                        (keydown)="openExternalKey($event, project.liveUrl)">
+                                        <span class="link-dot"></span>{{ project.liveUrl }}
+                                    </span>
+                                }
+                                @if (project.apkUrl) {
+                                    <span role="link" tabindex="0" class="project-link project-link--apk"
+                                        (click)="openExternal($event, project.apkUrl)"
+                                        (keydown)="openExternalKey($event, project.apkUrl)">
+                                        <span class="link-icon">⬇</span>{{ i18n.lang() === 'fr' ? 'APK Android' : 'Android APK' }}
+                                    </span>
+                                }
+                            </div>
                             <div class="project-action">
                                 {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
                             </div>
@@ -140,6 +172,22 @@
                             </div>
                         </div>
                         <div class="card-footer">
+                            <div class="project-links">
+                                @if (project.liveUrl) {
+                                    <span role="link" tabindex="0" class="project-link project-link--live"
+                                        (click)="openExternal($event, project.liveUrl)"
+                                        (keydown)="openExternalKey($event, project.liveUrl)">
+                                        <span class="link-dot"></span>{{ project.liveUrl }}
+                                    </span>
+                                }
+                                @if (project.apkUrl) {
+                                    <span role="link" tabindex="0" class="project-link project-link--apk"
+                                        (click)="openExternal($event, project.apkUrl)"
+                                        (keydown)="openExternalKey($event, project.apkUrl)">
+                                        <span class="link-icon">⬇</span>{{ i18n.lang() === 'fr' ? 'APK Android' : 'Android APK' }}
+                                    </span>
+                                }
+                            </div>
                             <div class="project-action">
                                 {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
                             </div>
@@ -188,6 +236,22 @@
                             </div>
                         </div>
                         <div class="card-footer">
+                            <div class="project-links">
+                                @if (project.liveUrl) {
+                                    <span role="link" tabindex="0" class="project-link project-link--live"
+                                        (click)="openExternal($event, project.liveUrl)"
+                                        (keydown)="openExternalKey($event, project.liveUrl)">
+                                        <span class="link-dot"></span>{{ project.liveUrl }}
+                                    </span>
+                                }
+                                @if (project.apkUrl) {
+                                    <span role="link" tabindex="0" class="project-link project-link--apk"
+                                        (click)="openExternal($event, project.apkUrl)"
+                                        (keydown)="openExternalKey($event, project.apkUrl)">
+                                        <span class="link-icon">⬇</span>{{ i18n.lang() === 'fr' ? 'APK Android' : 'Android APK' }}
+                                    </span>
+                                }
+                            </div>
                             <div class="project-action">
                                 {{ getProjectActionLabel(project) }} <span class="arrow">→</span>
                             </div>

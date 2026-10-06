@@ -892,3 +892,11 @@
     align-self: flex-start;
   }
 }
+
+/* Real screenshot in the hero instead of a drawing */
+.hero-shot {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}

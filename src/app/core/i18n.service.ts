@@ -60,7 +60,7 @@ export class I18nService {
       'projects.lab.footer': 'Not a product — an engineering lab for mastering deployment from the ground up.',
       'projects.group.devops': 'Backend & DevOps Systems',
       'projects.group.fullstack': 'Production Systems',
-      'projects.group.completed': 'Completed Systems',
+      'projects.group.completed': 'Completed Systems: live demos and source code',
       'projects.group.development': 'In Development',
 
       'infra.label': '— Infrastructure & Production Engineering',
@@ -183,7 +183,7 @@ export class I18nService {
       'projects.lab.footer': 'Ce n’est pas un produit — c’est un laboratoire d’ingénierie pour maîtriser le déploiement de bout en bout.',
       'projects.group.devops': 'Systèmes Backend & DevOps',
       'projects.group.fullstack': 'Systèmes en production',
-      'projects.group.completed': 'Systèmes terminés',
+      'projects.group.completed': 'Systèmes terminés : démos en ligne et code source',
       'projects.group.development': 'En développement',
 
       'infra.label': '— Infrastructure & ingénierie de production',

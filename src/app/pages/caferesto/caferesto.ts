@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ProjectNavComponent } from '../../shared/project-nav.component';
 import { FadeInDirective } from '../../directives/fade-in.directive';
 import { I18nService } from '../../core/i18n.service';
 import { OnInit } from '@angular/core';
@@ -56,7 +57,7 @@ interface ProjectDetail {
 @Component({
   selector: 'app-caferesto',
   standalone: true,
-  imports: [FadeInDirective, RouterLink],
+  imports: [FadeInDirective, RouterLink, ProjectNavComponent],
   templateUrl: './caferesto.html',
   styleUrl: './caferesto.css',
 })

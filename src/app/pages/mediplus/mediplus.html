@@ -20,10 +20,10 @@
             {{ getStatusLabel(project.status) }}
           </span>
           <span class="role-badge">{{ project.roleContext }}</span>
-          @if (project.deployment.liveUrl) {
-            <a [href]="project.deployment.liveUrl" target="_blank" rel="noopener noreferrer" class="live-badge">
-              <span class="live-dot"></span>
-              https://massarat-plus.com
+          @if (project.deployment.apkUrl) {
+            <a [href]="project.deployment.apkUrl" rel="noopener noreferrer" class="apk-badge" aria-label="Download Android APK">
+              <span class="apk-badge-icon">⬇</span>
+              {{ i18n.lang() === 'fr' ? 'APK Android' : 'Android APK' }}
             </a>
           }
         </div>
@@ -43,46 +43,51 @@
       <div class="hero-visual">
         <div class="visual-container">
           <div class="visual-frame">
-            <svg class="hero-architecture-svg" width="100%" viewBox="0 0 520 300" aria-label="Massarat+ ecosystem architecture" role="img" preserveAspectRatio="xMidYMid meet">
+            <svg class="hero-architecture-svg" width="100%" viewBox="0 0 520 300" aria-label="MediPlus platform architecture" role="img" preserveAspectRatio="xMidYMid meet">
               <defs>
                 <marker id="dm-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
                   <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8a6a0"></path>
                 </marker>
               </defs>
               
-              <rect x="25" y="20" width="145" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-              <text x="97.5" y="42" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Angular 19 Web</text>
+              <rect x="25" y="20" width="140" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
+              <text x="95" y="42" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Angular Backoffice</text>
               
-              <rect x="350" y="20" width="145" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-              <text x="422.5" y="42" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Expo Mobile App</text>
+              <rect x="355" y="20" width="140" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
+              <text x="425" y="40" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Expo Mobile App</text>
+              <text x="425" y="56" text-anchor="middle" font-family="inherit" font-size="9" fill="var(--color-text-2)">Patient · Doctor · Helper</text>
               
-              <rect x="175" y="100" width="170" height="60" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.7" stroke-width="1"></rect>
-              <text x="260" y="125" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Spring Boot 3 Backend</text>
-              <text x="260" y="140" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">JWT · Stomp · WebSocket</text>
+              <rect x="160" y="100" width="200" height="58" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.7" stroke-width="1"></rect>
+              <text x="260" y="125" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">Spring Boot Backend</text>
+              <text x="260" y="141" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">Java 21 · Spring Security</text>
               
-              <rect x="35" y="190" width="110" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-              <text x="90" y="215" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">MySQL</text>
+              <rect x="40" y="195" width="110" height="46" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
+              <text x="95" y="222" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">MySQL</text>
               
-              <rect x="205" y="190" width="130" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-              <text x="270" y="210" text-anchor="middle" font-family="inherit" font-size="12" fill="var(--color-text)">🔒 File Storage</text>
-              <text x="270" y="225" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">AES-128 encrypted</text>
+              <rect x="205" y="195" width="175" height="46" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
+              <text x="292" y="210" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text)">RBAC Roles</text>
+              <text x="292" y="224" text-anchor="middle" font-family="inherit" font-size="8.5" fill="var(--color-text-2)">SUPER_ADMIN·ADMIN·AGENT_SUPPORT</text>
+              <text x="292" y="236" text-anchor="middle" font-family="inherit" font-size="8.5" fill="var(--color-text-2)">PATIENT·DOCTOR·TUTEUR</text>
               
-              <rect x="375" y="190" width="120" height="50" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-              <text x="435" y="210" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Payment Gateways</text>
-              <text x="435" y="225" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text-2)">D17 · GPG · Konnect</text>
+              <rect x="405" y="195" width="100" height="46" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
+              <text x="455" y="210" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text)">Dashboard</text>
+              <text x="455" y="225" text-anchor="middle" font-family="inherit" font-size="8.5" fill="var(--color-text-2)">ngx-charts · chart.js</text>
               
-              <line x1="97.5" y1="70" x2="240" y2="100" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
-              <line x1="422.5" y1="70" x2="280" y2="100" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
+              <rect x="410" y="128" width="95" height="36" rx="5" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.6" stroke-width="1"></rect>
+              <text x="457" y="149" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text)">Firebase FCM</text>
               
-              <line x1="230" y1="160" x2="90" y2="190" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
-              <line x1="260" y1="160" x2="270" y2="190" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
-              <line x1="290" y1="160" x2="435" y2="190" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
+              <line x1="95" y1="70" x2="240" y2="100" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
+              <line x1="425" y1="70" x2="280" y2="100" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
               
-              <line x1="495" y1="130" x2="480" y2="190" stroke="#a8a6a0" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#dm-arrow)"></line>
-              <text x="465" y="155" font-family="inherit" font-size="10" fill="var(--color-text-2)">push</text>
+              <line x1="185" y1="158" x2="95" y2="195" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
+              <line x1="255" y1="158" x2="297" y2="195" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
+              <line x1="340" y1="158" x2="455" y2="195" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
               
-              <rect x="370" y="260" width="120" height="20" rx="4" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="0.8"></rect>
-              <text x="430" y="273" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Firebase</text>
+              <line x1="360" y1="129" x2="410" y2="129" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow)"></line>
+              <text x="385" y="123" text-anchor="middle" font-family="inherit" font-size="8" fill="var(--color-text-2)">FCM</text>
+              
+              <line x1="457" y1="128" x2="457" y2="70" stroke="#a8a6a0" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#dm-arrow)"></line>
+              <text x="447" y="102" text-anchor="end" font-family="inherit" font-size="8" fill="var(--color-text-2)">push</text>
             </svg>
           </div>
         </div>
@@ -171,42 +176,38 @@
       <!-- Left: Diagram Placeholder -->
       <div class="architecture-diagram">
         <div class="diagram-frame">
-          <svg class="focus-architecture-svg" width="100%" viewBox="0 0 400 280" aria-label="Document security and payment flow" role="img" preserveAspectRatio="xMidYMid meet">
+          <svg class="focus-architecture-svg" width="100%" viewBox="0 0 400 280" aria-label="MediPlus access control and client flow" role="img" preserveAspectRatio="xMidYMid meet">
             <defs>
               <marker id="dm-arrow-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
                 <path d="M 0 0 L 10 5 L 0 10 z" fill="#a8a6a0"></path>
               </marker>
             </defs>
             
-            <text x="80" y="15" font-family="inherit" font-size="10" fill="var(--color-text-2)">Document security</text>
-            <text x="280" y="15" font-family="inherit" font-size="10" fill="var(--color-text-2)">Payment flow</text>
+            <text x="80" y="15" font-family="inherit" font-size="10" fill="var(--color-text-2)">Backoffice</text>
+            <text x="280" y="15" font-family="inherit" font-size="10" fill="var(--color-text-2)">Mobile apps</text>
             
             <line x1="200" y1="30" x2="200" y2="260" stroke="#a8a6a0" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.4"></line>
             
-            <rect x="20" y="35" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-            <text x="90" y="62" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Client request</text>
+            <rect x="20" y="35" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.7" stroke-width="1"></rect>
+            <text x="90" y="62" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">JWT auth layer</text>
             
-            <rect x="20" y="95" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.7" stroke-width="1"></rect>
-            <text x="90" y="122" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">JWT auth layer</text>
+            <rect x="20" y="95" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
+            <text x="90" y="122" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">RBAC role check</text>
             
             <rect x="20" y="155" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-            <text x="90" y="182" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">AES-128 encryption</text>
-            
-            <rect x="20" y="215" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-            <text x="90" y="242" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Encrypted storage</text>
+            <text x="90" y="182" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Protected routes</text>
             
             <rect x="240" y="35" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-            <text x="310" y="62" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Payment webhook</text>
+            <text x="310" y="62" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">REST API (Java)</text>
             
             <rect x="240" y="95" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-            <text x="310" y="122" text-anchor="middle" font-family="inherit" font-size="10" fill="var(--color-text)">Idempotent processor</text>
+            <text x="310" y="122" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Shared DTOs</text>
             
             <rect x="240" y="155" width="140" height="40" rx="6" fill="var(--color-surface)" stroke="#a8a6a0" stroke-opacity="0.5" stroke-width="1"></rect>
-            <text x="310" y="182" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">Wallet</text>
+            <text x="310" y="182" text-anchor="middle" font-family="inherit" font-size="11" fill="var(--color-text)">MySQL</text>
             
             <line x1="90" y1="75" x2="90" y2="95" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow-2)"></line>
             <line x1="90" y1="135" x2="90" y2="155" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow-2)"></line>
-            <line x1="90" y1="195" x2="90" y2="215" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow-2)"></line>
             
             <line x1="310" y1="75" x2="310" y2="95" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow-2)"></line>
             <line x1="310" y1="135" x2="310" y2="155" stroke="#a8a6a0" stroke-width="0.5" marker-end="url(#dm-arrow-2)"></line>
@@ -314,13 +315,14 @@
             }
           </ul>
         </div>
-        @if (project.deployment.liveUrl) {
-          <div class="deployment-live-link">
-            <a [href]="project.deployment.liveUrl" target="_blank" rel="noopener noreferrer">
-              View live → massarat-plus.com
+        <div class="deploy-actions">
+          @if (project.deployment.apkUrl) {
+            <a [href]="project.deployment.apkUrl" rel="noopener noreferrer" class="apk-button">
+              <span class="apk-icon">⬇</span>
+              {{ i18n.lang() === 'fr' ? 'Télécharger l’APK Android' : 'Download Android APK' }}
             </a>
-          </div>
-        }
+          }
+        </div>
       } @else {
         <!-- Not Deployed — Production Considerations -->
         <div class="deploy-considerations">
@@ -430,23 +432,5 @@
 <!-- ═══════════════════════════════════════════════════════════
      FINAL — NAVIGATION CLOSURE
      ═══════════════════════════════════════════════════════════ -->
-<section class="detail-section nav-closure">
-  <div class="detail-container">
-    <div class="nav-closure-inner" appFadeIn>
-      <a routerLink="/projects/document-marketplace" class="nav-link prev-link">
-        <span class="nav-direction">{{ i18n.t('detail.prevProject') }}</span>
-        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'Massarat+ — Marketplace de Contenu Éducatif' : 'Massarat+ — Educational Content Marketplace' }}</span>
-      </a>
-
-      <a routerLink="/" fragment="projects" class="nav-link back-link-center">
-        {{ i18n.t('detail.backAll') }}
-      </a>
-
-      <a routerLink="/projects/n8n" class="nav-link next-link">
-        <span class="nav-direction">{{ i18n.t('detail.nextProject') }}</span>
-        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'n8n Automation Core — Plateforme d’Automatisation de Workflows' : 'n8n Automation Core — Workflow Automation Platform' }}</span>
-      </a>
-    </div>
-  </div>
-</section>
+<app-project-nav currentId="mediplus" />
 }

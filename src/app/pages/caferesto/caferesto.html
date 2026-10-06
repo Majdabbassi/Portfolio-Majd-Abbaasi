@@ -444,23 +444,5 @@
 <!-- ═══════════════════════════════════════════════════════════
      FINAL — NAVIGATION CLOSURE
      ═══════════════════════════════════════════════════════════ -->
-<section class="detail-section nav-closure">
-  <div class="detail-container">
-    <div class="nav-closure-inner" appFadeIn>
-      <a routerLink="/projects/mallos" class="nav-link prev-link">
-        <span class="nav-direction">{{ i18n.t('detail.prevProject') }}</span>
-        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'Mall OS — Plateforme B2B de Gestion de Centres Commerciaux (MVP)' : 'Mall OS — B2B Mall Management Platform (MVP)' }}</span>
-      </a>
-
-      <a routerLink="/" fragment="projects" class="nav-link back-link-center">
-        {{ i18n.t('detail.backAll') }}
-      </a>
-
-      <a routerLink="/projects/bookpro" class="nav-link next-link">
-        <span class="nav-direction">{{ i18n.t('detail.nextProject') }}</span>
-        <span class="nav-project-name">{{ i18n.lang() === 'fr' ? 'BookPro — Plateforme de Réservation Salon & Professionnels' : 'BookPro — Salon & Professional Booking Platform' }}</span>
-      </a>
-    </div>
-  </div>
-</section>
+<app-project-nav currentId="caferesto" />
 }

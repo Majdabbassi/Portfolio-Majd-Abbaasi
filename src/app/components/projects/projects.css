@@ -216,6 +216,57 @@
     color: var(--card-accent);
 }
 
+/* ─── Card Live / APK Links ──────────────────────────── */
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.6rem;
+    border-radius: 100px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-2);
+    color: var(--color-text-2);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.project-link:hover {
+    border-color: var(--card-accent);
+    color: var(--card-accent);
+    transform: translateY(-1px);
+}
+
+.project-link--live .link-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--color-success, #10b981);
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+
+.project-link--apk .link-icon {
+    font-size: 0.9em;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
 /* ─── Card Body (icon + info layout) ────────────────────── */
 .project-card__body {
     display: flex;
@@ -373,8 +424,9 @@
 .card-footer {
     margin-top: auto;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+    gap: 0.75rem;
     padding-top: 0.75rem;
     border-top: 1px solid var(--color-border);
     position: relative;
