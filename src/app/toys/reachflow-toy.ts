@@ -38,14 +38,14 @@ const TXT = {
   styles: `
     .col { flex-direction: column; align-items: stretch; }
     .top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
-    .count { font-size: 13px; color: var(--accent-soft); }
-    .progress { height: 6px; border-radius: 3px; background: #1E2A33; overflow: hidden; }
+    .count { font-size: 13px; color: var(--soft-text); }
+    .progress { height: 6px; border-radius: 3px; background: var(--toy-cell); overflow: hidden; }
     .progress div { height: 100%; background: var(--accent); transition: width .4s ease; }
     .list { padding: 12px 20px; display: flex; flex-direction: column; gap: 6px; }
     .lead { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; padding: 0 12px; border-radius: 10px; transition: background .25s ease; }
-    .lead.done { background: #17303D; }
-    .sent { font-size: 12px; color: var(--accent); animation: fly .35s ease both; }
-    .wait { font-size: 12px; color: #6E7D88; }
+    .lead.done { background: color-mix(in oklab, var(--accent) 16%, var(--panel)); }
+    .sent { font-size: 12px; color: var(--accent-text); animation: fly .35s ease both; }
+    .wait { font-size: 12px; color: var(--text-4); }
     @keyframes fly { 0% { transform: translateX(-12px); opacity: 0; } 100% { transform: none; opacity: 1; } }
     .row { display: flex; flex-wrap: wrap; gap: 8px; }
     .grow { flex: 1 1 200px; }

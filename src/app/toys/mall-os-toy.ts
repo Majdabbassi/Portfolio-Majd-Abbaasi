@@ -33,8 +33,8 @@ const TXT = {
         @for (u of units; track u.code) {
           <button type="button" class="unit mono" [attr.aria-label]="'Unit ' + u.code"
                   [style.grid-column]="u.col" [style.grid-row]="u.row"
-                  [style.background]="byLease() ? lease[u.status].color : '#2A3A55'"
-                  [class.picked]="picked() === u.code" (click)="picked.set(u.code)">{{ u.code }}</button>
+                  [style.background]="byLease() ? lease[u.status].color : 'var(--toy-cell)'"
+                  [class.picked]="picked() === u.code" [class.plain]="!byLease()" (click)="picked.set(u.code)">{{ u.code }}</button>
         }
         <div class="corridor mono">CORRIDOR</div>
       </div>
@@ -50,18 +50,19 @@ const TXT = {
     </div>
   `,
   styles: `
-    .sub { font-size: 13px; color: var(--accent-soft); }
+    .sub { font-size: 13px; color: var(--soft-text); }
     .toy-btn.small { min-height: 40px; font-size: 14px; }
-    .plan { padding: 20px; background-color: #121722; display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 78px 78px 34px 78px; gap: 8px;
-      background-image: linear-gradient(#1F2838 1px, transparent 1px), linear-gradient(90deg, #1F2838 1px, transparent 1px); background-size: 20px 20px; }
-    .unit { border-radius: 6px; border: 2px solid transparent; color: var(--text); font-size: 12px; cursor: pointer; display: flex; align-items: flex-end; padding: 8px;
+    .plan { padding: 20px; background-color: var(--toy-bg); display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 78px 78px 34px 78px; gap: 8px;
+      background-image: linear-gradient(var(--toy-grid) 1px, transparent 1px), linear-gradient(90deg, var(--toy-grid) 1px, transparent 1px); background-size: 20px 20px; }
+    .unit { border-radius: 6px; border: 2px solid transparent; color: #F3EADB; font-size: 12px; cursor: pointer; display: flex; align-items: flex-end; padding: 8px;
       transition: background .35s ease, transform .2s ease; }
     .unit:hover { transform: scale(1.03); }
     .unit.picked { border-color: var(--text); }
-    .corridor { grid-column: 1 / 7; grid-row: 3; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: #1C2433; font-size: 11px; color: #6E7D99; letter-spacing: .2em; }
+    .unit.plain { color: var(--text-3); }
+    .corridor { grid-column: 1 / 7; grid-row: 3; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: var(--toy-cell); font-size: 11px; color: var(--text-4); letter-spacing: .2em; }
     .sel { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; }
     .sel .panel-title { font-size: 20px; }
-    .chip-s { font-size: 13px; padding: 4px 10px; border-radius: 999px; color: var(--text); }
+    .chip-s { font-size: 13px; padding: 4px 10px; border-radius: 999px; color: #fff; }
     .legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12px; color: var(--text-3); }
     .legend span { display: inline-flex; align-items: center; gap: 6px; }
     .legend i { width: 10px; height: 10px; border-radius: 3px; }

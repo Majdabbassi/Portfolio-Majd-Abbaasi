@@ -48,16 +48,16 @@ const TXT = {
     </div>
   `,
   styles: `
-    .map { position: relative; height: 300px; background-color: #17130F; --grid: #2E2620; }
+    .map { position: relative; height: 300px; background-color: var(--toy-bg); --grid: var(--toy-grid); }
     svg { position: absolute; inset: 0; width: 100%; height: 100%; }
     .place { position: absolute; transform: translate(-50%, 16px); font-size: 11px; color: var(--text-3); }
     .house { position: absolute; left: 86%; top: 22%; width: 22px; height: 22px; transform: translate(-50%, -50%); border-radius: 6px; border: 3px solid var(--accent); }
     .driver { position: absolute; width: 20px; height: 20px; transform: translate(-50%, -50%); transition: left .8s cubic-bezier(.5,0,.3,1), top .8s cubic-bezier(.5,0,.3,1); }
     .driver i { position: absolute; inset: 0; border-radius: 50%; background: var(--accent); }
-    .driver i:last-child { border: 3px solid #17130F; }
-    .status { position: absolute; left: 16px; top: 16px; padding: 8px 12px; border-radius: 10px; background: rgba(23,19,15,.92); font-size: 13px; color: var(--accent-soft); }
+    .driver i:last-child { border: 3px solid var(--toy-bg); }
+    .status { position: absolute; left: 16px; top: 16px; padding: 8px 12px; border-radius: 10px; background: var(--overlay); font-size: 13px; color: var(--soft-text); }
     .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-    .step { padding: 8px 4px; border-radius: 8px; text-align: center; font-size: 11px; border: 1px solid #3A322A; color: var(--text-3); transition: all .3s ease; }
+    .step { padding: 8px 4px; border-radius: 8px; text-align: center; font-size: 11px; border: 1px solid var(--chip-line); color: var(--text-3); transition: all .3s ease; }
     .step.done { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
     .row { display: flex; flex-wrap: wrap; gap: 8px; }
     .grow { flex: 1 1 200px; }

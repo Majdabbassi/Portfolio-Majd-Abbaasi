@@ -48,6 +48,12 @@
         <div><span class="label">{{ i18n.t('timeline') }}</span><strong>{{ d.metrics.duration }}</strong></div>
         <div><span class="label">{{ i18n.t('scale') }}</span><strong>{{ d.metrics.scale }}</strong></div>
       </section>
+      @if (p.toy && d.metrics.keyOutcomes.length) {
+        <section class="outcomes" appReveal>
+          <span class="label">{{ i18n.t('keyOutcomes') }}</span>
+          <ul class="ticks">@for (o of d.metrics.keyOutcomes; track $index) { <li>{{ o }}</li> }</ul>
+        </section>
+      }
 
       <!-- SCREENS + LOGINS -->
       @if (d.showcase?.screens?.length || d.showcase?.logins?.length) {
@@ -90,6 +96,10 @@
         <div class="card-box">
           <span class="label">{{ i18n.t('goals') }}</span>
           <ul class="ticks">@for (g of d.context.goals; track $index) { <li>{{ g }}</li> }</ul>
+          @if (d.context.constraints.length) {
+            <span class="label">{{ i18n.t('constraints') }}</span>
+            <ul class="ticks warn">@for (c of d.context.constraints; track $index) { <li>{{ c }}</li> }</ul>
+          }
         </div>
       </section>
 
@@ -111,12 +121,15 @@
               }
               @if (d.architecture.note) { <p class="mono note">{{ d.architecture.note }}</p> }
             </div>
-          } @else if (d.architecture.highlights.length) {
-            <div class="tiers">
-              @for (h of d.architecture.highlights; track h.title) { <div class="node wide"><strong>{{ h.title }}</strong><span>{{ h.description }}</span></div> }
-            </div>
           }
         </div>
+        @if (d.architecture.highlights.length) {
+          <div class="highlights">
+            @for (h of d.architecture.highlights; track h.title) {
+              <div class="hl"><span class="label">{{ i18n.t('highlights') }}</span><strong>{{ h.title }}</strong><p>{{ h.description }}</p></div>
+            }
+          </div>
+        }
       </section>
 
       <!-- 03 DECISIONS -->
@@ -191,13 +204,6 @@
                 <dt>{{ i18n.t('build') }}</dt><dd>{{ m.build }}</dd>
               </dl>
               <ul class="ticks">@for (x of m.details; track $index) { <li>{{ x }}</li> }</ul>
-            </div>
-          } @else if (d.architecture.tiers?.length && d.architecture.highlights.length) {
-            <div class="card-box">
-              @for (h of d.architecture.highlights; track h.title) {
-                <span class="label">{{ h.title }}</span>
-                <p class="env">{{ h.description }}</p>
-              }
             </div>
           }
         </div>

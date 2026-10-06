@@ -36,15 +36,15 @@ const TXT = {
     </div>
   `,
   styles: `
-    .sub { font-size: 13px; color: var(--accent-soft); }
+    .sub { font-size: 13px; color: var(--soft-text); }
     .meta { font-size: 12px; color: var(--text-3); }
     .scroll { padding: 16px 20px; overflow-x: auto; }
     .table { min-width: 420px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; font-size: 13px; }
     .col { display: flex; flex-direction: column; gap: 6px; }
     .head { color: var(--text); font-weight: 600; padding: 6px 8px; }
     .role { align-self: flex-start; padding: 3px 8px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 600; animation: pop .4s ease both; }
-    .cell { padding: 6px 8px; border-radius: 6px; background: #221E30; color: var(--text-2); transition: background .3s ease, color .3s ease; white-space: nowrap; }
-    .cell.outlier { background: #5A2330; color: #FFB3C0; }
+    .cell { padding: 6px 8px; border-radius: 6px; background: var(--toy-cell); color: var(--text-2); transition: background .3s ease, color .3s ease; white-space: nowrap; }
+    .cell.outlier { background: var(--bad-bg); color: var(--bad-text); }
   `,
 })
 export class InsighthubToy {

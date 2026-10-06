@@ -100,7 +100,7 @@ import { Component, computed, input } from '@angular/core';
     .p0 { left: 30%; top: 40%; } .p1 { left: 62%; top: 30%; } .p2 { left: 48%; top: 62%; }
     .dot { position: absolute; inset: 0; border-radius: 50%; background: var(--a); border: 2px solid var(--bg); }
     .dot.ping { border: 0; }
-    .dot.off { background: #5A4F44; }
+    .dot.off { background: var(--line-3); }
     @keyframes wander { 0%,100% { transform: translate(0,0); } 25% { transform: translate(28px,-14px); } 50% { transform: translate(10px,22px); } 75% { transform: translate(-22px,6px); } }
     /* albumy */
     .cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 22px; }
@@ -135,9 +135,9 @@ import { Component, computed, input } from '@angular/core';
     .lane { flex: 1; height: 16px; border-radius: 4px; background: var(--line); }
     .bar { display: block; height: 100%; border-radius: 4px; background: var(--a); transform-origin: left; animation: grow 4.5s ease-in-out infinite; }
     @keyframes grow { 0% { transform: scaleX(0); } 40%,90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
-    .box { width: 18px; height: 18px; border-radius: 6px; border: 2px solid #5A4F44; flex: none; }
+    .box { width: 18px; height: 18px; border-radius: 6px; border: 2px solid var(--line-3); flex: none; }
     .box.check { animation: tick 4s ease infinite; }
-    @keyframes tick { 0%,20% { background: transparent; border-color: #5A4F44; } 30%,90% { background: var(--a); border-color: var(--a); } 100% { background: transparent; } }
+    @keyframes tick { 0%,20% { background: transparent; border-color: var(--line-3); } 30%,90% { background: var(--a); border-color: var(--a); } 100% { background: transparent; } }
     .name { height: 10px; border-radius: 5px; background: var(--line-2); }
     /* reachflow */
     .mail { display: flex; flex-direction: column; justify-content: center; gap: 18px; padding-left: 20px; }

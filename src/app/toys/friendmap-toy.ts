@@ -38,18 +38,18 @@ const TXT = {
     </div>
   `,
   styles: `
-    .map { position: relative; height: 360px; background-color: #141A16; --grid: #26302A; background-size: 32px 32px; }
+    .map { position: relative; height: 360px; background-color: var(--toy-bg); --grid: var(--toy-grid); background-size: 32px 32px; }
     .pin { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 6px; transition: opacity .35s ease, transform .35s ease; }
     .pin.hidden { opacity: .12; transform: scale(.85); }
     .dot { position: relative; width: 18px; height: 18px; }
     .dot i { position: absolute; inset: 0; border-radius: 50%; background: var(--accent); }
-    .dot i:last-child { border: 3px solid #141A16; }
+    .dot i:last-child { border: 3px solid var(--toy-bg); }
     .pin span { font-size: 12px; padding: 3px 8px; border-radius: 6px; background: var(--accent-ink); color: #CFEFDC; }
     .me { position: absolute; left: 46%; top: 46%; display: flex; flex-direction: column; align-items: center; gap: 6px; animation: bob 2.4s ease-in-out infinite; }
-    .me-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--lamp); border: 4px solid #141A16; box-shadow: 0 0 0 2px var(--lamp); }
+    .me-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--lamp); border: 4px solid var(--toy-bg); box-shadow: 0 0 0 2px var(--lamp); }
     .me span { font-size: 12px; padding: 3px 8px; border-radius: 6px; background: var(--lamp); color: var(--lamp-ink); font-weight: 600; }
     @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-    .status { position: absolute; left: 16px; top: 16px; padding: 8px 12px; border-radius: 10px; background: rgba(14,31,22,.9); font-size: 13px; color: #CFEFDC; }
+    .status { position: absolute; left: 16px; top: 16px; padding: 8px 12px; border-radius: 10px; background: var(--overlay); font-size: 13px; color: var(--soft-text); }
     .modes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
     @media (max-width: 480px) { .modes { grid-template-columns: repeat(2, 1fr); } }
   `,

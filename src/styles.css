@@ -3,7 +3,7 @@
    Change the look of the whole site here.
    ============================================================ */
 /* ---------- DARK (default) ---------- */
-:root, [data-theme='light'] .island {
+:root {
   --bg: #15120F;
   --surface: #1E1A16;
   --surface-2: #1A1714;
@@ -19,11 +19,13 @@
   --lamp-text: #F2A93B;   /* amber used as TEXT (darker in light mode) */
   --ok: #6BD49A;
   --ok-text: #6BD49A;
+  --bad-text: #F28B82;
+  --bad-bg: #5A2330;
   --nav-bg: rgba(21, 18, 15, .72);
   --shadow: rgba(0, 0, 0, .45);
+  --overlay: rgba(14, 12, 10, .86);
   color-scheme: dark;
-}
-:root {
+
   /* Per-project accent — overridden on each project page */
   --accent: var(--lamp);
   --accent-soft: #FFD08A;
@@ -35,8 +37,16 @@
   --mono: 'JetBrains Mono', ui-monospace, monospace;
   --radius: 20px;
 }
-/* Accent colours used as text/borders follow the page accent */
-* { --accent-text: var(--accent); --soft-text: var(--accent-soft); --chip-line: var(--accent-line); }
+/* Colours derived from the current accent (recomputed on every element, so they follow each project) */
+* {
+  --accent-text: var(--accent);
+  --soft-text: var(--accent-soft);
+  --chip-line: var(--accent-line);
+  --panel: var(--panel-bg);                                              /* toy panels, diagrams, logins */
+  --toy-bg: color-mix(in oklab, var(--panel-bg) 72%, #000);            /* maps, plans, galleries */
+  --toy-grid: color-mix(in oklab, var(--accent) 14%, var(--toy-bg));
+  --toy-cell: color-mix(in oklab, var(--accent) 10%, #26221E);         /* empty cells, lanes, slots */
+}
 
 /* ---------- LIGHT ("daylight") ---------- */
 :root[data-theme='light'] {
@@ -51,25 +61,22 @@
   --text-3: #5F5246;
   --text-4: #75685B;
   --lamp-text: #A35F00;
-  --ok-text: #1F8A55;
+  --ok-text: #1F7A4C;
+  --bad-text: #B3261E;
+  --bad-bg: #F9D9D6;
   --nav-bg: rgba(246, 240, 230, .8);
-  --shadow: rgba(60, 40, 20, .18);
+  --shadow: rgba(60, 40, 20, .16);
+  --overlay: rgba(255, 252, 246, .9);
   color-scheme: light;
 }
 [data-theme='light'] * {
   --accent-text: color-mix(in oklab, var(--accent) 58%, #000);
   --soft-text: color-mix(in oklab, var(--accent) 52%, #000);
   --chip-line: color-mix(in oklab, var(--accent) 40%, transparent);
-}
-/* "Islands" stay dark in light mode: toys, terminals, diagrams, the lightbox… like little screens */
-[data-theme='light'] :is(.island, .panel, .terminal, .lab-console, .motif, .lightbox, .tiers, .logins, .next, .challenge .good),
-[data-theme='light'] :is(.island, .panel, .terminal, .lab-console, .motif, .lightbox, .tiers, .logins, .next, .challenge .good) * {
-  --accent-text: var(--accent); --soft-text: var(--accent-soft); --chip-line: var(--accent-line);
-}
-[data-theme='light'] :is(.panel, .terminal, .lab-console, .motif, .lightbox, .tiers, .logins, .next, .challenge .good) {
-  --bg: #15120F; --surface: #1E1A16; --surface-2: #1A1714; --line: #2A2520; --line-2: #332B24; --line-3: #4A4036;
-  --text: #F3EADB; --text-2: #CFC3B1; --text-3: #A99C8A; --text-4: #8C8072; --lamp-text: #F2A93B; --ok-text: #6BD49A;
-  color: var(--text); color-scheme: dark;
+  --panel: color-mix(in oklab, var(--accent) 6%, #FFFCF6);
+  --toy-bg: color-mix(in oklab, var(--accent) 9%, #F3ECE1);
+  --toy-grid: color-mix(in oklab, var(--accent) 20%, var(--toy-bg));
+  --toy-cell: color-mix(in oklab, var(--accent) 12%, #EAE1D3);
 }
 
 * { box-sizing: border-box; }
@@ -111,26 +118,26 @@ button { font-family: var(--font); }
 
 /* Toy panel (the interactive box on every project page) */
 .panel {
-  background: var(--panel-bg); border: 1px solid var(--accent-line); border-radius: 24px;
-  overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.45);
+  background: var(--panel); border: 1px solid var(--chip-line); border-radius: 24px;
+  overflow: hidden; box-shadow: 0 30px 80px var(--shadow);
 }
 .panel-head {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 16px 20px; border-bottom: 1px solid var(--accent-line);
+  padding: 16px 20px; border-bottom: 1px solid var(--chip-line);
 }
-.panel-foot { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--accent-line); }
+.panel-foot { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--chip-line); }
 .panel-title { font-weight: 600; font-size: 17px; }
 .hint { margin: 0; font-size: 14px; color: var(--text-3); line-height: 1.5; }
 .label { font-family: var(--mono); font-size: 12px; color: var(--text-4); text-transform: uppercase; }
 .toy-btn {
-  min-height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--accent-line);
-  background: transparent; color: var(--accent-soft); font-weight: 600; font-size: 15px; cursor: pointer;
+  min-height: 46px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--chip-line);
+  background: transparent; color: var(--soft-text); font-weight: 600; font-size: 15px; cursor: pointer;
   transition: background .2s ease, color .2s ease;
 }
 .toy-btn.is-on, .toy-btn.solid { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .grid-bg {
-  background-image: linear-gradient(var(--grid, #2A2520) 1px, transparent 1px),
-                    linear-gradient(90deg, var(--grid, #2A2520) 1px, transparent 1px);
+  background-image: linear-gradient(var(--grid, var(--toy-grid)) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--grid, var(--toy-grid)) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 

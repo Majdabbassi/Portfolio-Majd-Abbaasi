@@ -2,7 +2,10 @@
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="hero-copy">
-      <div class="eyebrow">{{ i18n.tr(site.hero.eyebrow) }}</div>
+      <div class="hello">
+        <img [src]="site.photo" alt="" width="44" height="44" />
+        <div><strong>{{ i18n.tr(site.hero.hello) }}</strong><span class="eyebrow">{{ i18n.tr(site.hero.eyebrow) }}</span></div>
+      </div>
       <h1>{{ i18n.tr(site.hero.title) }} <span class="lamp">{{ i18n.tr(site.hero.titleAccent) }}</span></h1>
       <p>{{ i18n.tr(site.hero.text) }}</p>
       <ul class="creds">
@@ -117,20 +120,53 @@
       </div>
     </div>
 
-    <div class="timeline" appReveal>
-      <h3 class="mono">{{ i18n.t('experience') }}</h3>
-      <ol>
-        @for (e of site.experience; track $index; let first = $first) {
-          <li [class.now]="first">
-            <span class="dot"></span>
-            <div class="mono when">{{ i18n.tr(e.when) }}</div>
-            <div class="what">{{ i18n.tr(e.title) }}</div>
-            <ul>
-              @for (pt of e.points; track $index) { <li>{{ i18n.tr(pt) }}</li> }
-            </ul>
-          </li>
+    <div class="skills" appReveal>
+      <h3 class="mono sec">{{ i18n.tr(site.skills.title) }}</h3>
+      <p class="skills-intro">{{ i18n.tr(site.skills.text) }}</p>
+      @for (g of site.skills.groups; track $index) {
+        <div class="skill-row">
+          <span class="mono skill-name">{{ i18n.tr(g.name) }}</span>
+          <div class="skill-tags">
+            @for (t of g.core; track t) { <span class="tag core">{{ t }}</span> }
+            @for (t of g.more; track t) { <span class="tag">{{ t }}</span> }
+          </div>
+        </div>
+      }
+      <blockquote class="today">{{ i18n.tr(site.skills.today) }}</blockquote>
+    </div>
+
+    <div class="journey" appReveal>
+      <div class="journey-head">
+        <h3>{{ i18n.tr(site.journey.title) }}</h3>
+        <p>{{ i18n.tr(site.journey.text) }}</p>
+      </div>
+      <div class="timelines">
+        @for (tl of timelines; track tl.key) {
+          <div class="timeline">
+            <h4 class="mono sec">
+              @if (tl.key === 'work') {
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>
+              } @else {
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c3 2 9 2 12 0v-5" /></svg>
+              }
+              {{ i18n.t(tl.label) }}
+            </h4>
+            <ol>
+              @for (e of tl.items; track $index; let first = $first) {
+                <li [class.now]="first">
+                  <span class="dot"></span>
+                  <div class="mono when">{{ i18n.tr(e.when) }}</div>
+                  <div class="what">{{ i18n.tr(e.title) }}</div>
+                  <div class="where">{{ i18n.tr(e.place) }}</div>
+                  @if (e.points.length) {
+                    <ul>@for (pt of e.points; track $index) { <li>{{ i18n.tr(pt) }}</li> }</ul>
+                  }
+                </li>
+              }
+            </ol>
+          </div>
         }
-      </ol>
+      </div>
     </div>
   </section>
 
@@ -144,6 +180,10 @@
       <a [href]="site.contact.linkedin" target="_blank" rel="noopener" class="btn">LinkedIn</a>
       <a [href]="site.contact.github" target="_blank" rel="noopener" class="btn">GitHub</a>
       <a [href]="i18n.tr(site.contact.cv)" target="_blank" rel="noopener" class="btn">{{ i18n.t('downloadCv') }}</a>
+    </div>
+    <div class="foot mono">
+      <span>© {{ year }} {{ site.name }} · {{ i18n.tr(site.contact.footer) }}</span>
+      <a href="#top">{{ i18n.t('toTop') }}</a>
     </div>
   </footer>
 </div>

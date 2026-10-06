@@ -47,10 +47,10 @@ const TXT = {
     .toy-btn.small { min-height: 40px; font-size: 14px; }
     .grid { padding: 16px 20px; display: grid; gap: 8px; }
     .time { font-size: 12px; color: var(--text-3); align-self: center; }
-    .slot { min-height: 34px; border-radius: 8px; border: 1px solid var(--accent-line); background: transparent; color: var(--accent-soft); font-size: 12px; cursor: pointer; transition: all .25s ease; }
-    .slot.taken { background: #1B2422; border-color: #1B2422; color: #5C6B68; cursor: not-allowed; }
+    .slot { min-height: 34px; border-radius: 8px; border: 1px solid var(--chip-line); background: transparent; color: var(--soft-text); font-size: 12px; cursor: pointer; transition: all .25s ease; }
+    .slot.taken { background: var(--toy-cell); border-color: var(--toy-cell); color: var(--text-4); cursor: not-allowed; }
     .slot.mine { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); animation: pop .35s ease; }
-    .soft { color: var(--accent-soft); }
+    .soft { color: var(--soft-text); }
   `,
 })
 export class BookproToy {

@@ -17,6 +17,11 @@ export class Home {
   site = SITE;
   projects = PROJECTS;
   more = MORE_PROJECTS;
+  year = new Date().getFullYear();
+  timelines = [
+    { key: 'work', label: 'workTl' as const, items: SITE.work },
+    { key: 'studies', label: 'studiesTl' as const, items: SITE.studies },
+  ];
 
   statusKey(s: string) { return ('status_' + s) as 'status_production'; }
 }

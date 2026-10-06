@@ -58,7 +58,7 @@ export const UI = {
     switchLang: 'FR', switchLangLabel: 'Passer en français', themeLight: 'Switch to light theme', themeDark: 'Switch to dark theme',
     deployment: 'Deployment', deployFlow: 'Release flow', environment: 'Environment', infra: 'Infrastructure details',
     considerations: 'Production considerations', notDeployed: "This project was built as a case study. Here's what a production deployment would require:",
-    live: 'Live', mobile: 'Mobile app', platform: 'Platform', store: 'Store', build: 'Build',
+    live: 'Live', mobile: 'Mobile app', workTl: 'Work', studiesTl: 'Studies', keyOutcomes: 'Key outcomes', constraints: 'Constraints', highlights: 'Highlights', toTop: 'Back to top ↑', platform: 'Platform', store: 'Store', build: 'Build',
   },
   fr: {
     work: 'Projets', about: 'À propos', contact: 'Contact', cv: 'CV',
@@ -77,6 +77,6 @@ export const UI = {
     switchLang: 'EN', switchLangLabel: 'Switch to English', themeLight: 'Passer au thème clair', themeDark: 'Passer au thème sombre',
     deployment: 'Déploiement', deployFlow: 'Flux de release', environment: 'Environnement', infra: "Détails d'infrastructure",
     considerations: 'Considérations de production', notDeployed: 'Ce projet a été conçu comme une étude de cas. Voici ce qu’un déploiement en production nécessiterait :',
-    live: 'En ligne', mobile: 'Application mobile', platform: 'Plateforme', store: 'Store', build: 'Build',
+    live: 'En ligne', mobile: 'Application mobile', workTl: 'Expérience', studiesTl: 'Études', keyOutcomes: 'Résultats clés', constraints: 'Contraintes', highlights: 'Points forts', toTop: 'Haut de page ↑', platform: 'Plateforme', store: 'Store', build: 'Build',
   },
 } as const;

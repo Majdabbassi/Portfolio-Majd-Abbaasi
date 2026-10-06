@@ -46,11 +46,11 @@ const TXT = {
     .qr { width: 40px; height: 40px; border-radius: 6px; border: 4px solid var(--text); background-color: var(--text);
       background-image: linear-gradient(90deg, var(--bg) 50%, transparent 50%), linear-gradient(var(--bg) 50%, transparent 50%); background-size: 12px 12px; }
     .sub { font-size: 12px; color: var(--text-3); }
-    .live { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--accent-soft); }
+    .live { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--soft-text); }
     .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
     .gallery { height: 300px; overflow: hidden; padding: 16px; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 84px; gap: 10px; align-content: start; }
     .tile { position: relative; border-radius: 10px; overflow: hidden; animation: drop .55s cubic-bezier(.2,.8,.3,1.2) both; }
-    .tile span { position: absolute; left: 6px; bottom: 6px; font-size: 11px; padding: 2px 6px; border-radius: 5px; background: rgba(21,18,15,.75); color: var(--text); }
+    .tile span { position: absolute; left: 6px; bottom: 6px; font-size: 11px; padding: 2px 6px; border-radius: 5px; background: rgba(21,18,15,.75); color: #F3EADB; }
     .bar { position: absolute; left: 0; top: 0; height: 3px; background: var(--text); animation: chunk .6s ease-out both; }
     @keyframes drop { 0% { opacity: 0; transform: translateY(-36px) rotate(-6deg) scale(.9); } 60% { opacity: 1; transform: translateY(4px) rotate(1deg); } 100% { transform: none; } }
     @keyframes chunk { from { width: 0; } to { width: 100%; } }

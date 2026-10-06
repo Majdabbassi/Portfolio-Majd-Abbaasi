@@ -33,9 +33,9 @@ import { I18n } from '../i18n/i18n';
     .strip { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-color: var(--line-3) transparent; }
     .shot { flex: 0 0 min(78%, 520px); scroll-snap-align: start; padding: 0; border: 1px solid var(--line-2); border-radius: 16px; overflow: hidden; background: var(--surface); cursor: zoom-in; text-align: left; color: inherit; transition: border-color .2s ease, transform .2s ease; }
     .shot:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .shot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: #0d0b09; }
+    .shot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; background: var(--surface-2); }
     .cap { display: block; padding: 12px 14px; font-size: 14px; color: var(--text-2); }
-    .lightbox { position: fixed; inset: 0; z-index: 200; background: rgba(10,8,6,.92); display: grid; place-items: center; padding: 24px; animation: rise .2s ease; }
+    .lightbox { position: fixed; inset: 0; z-index: 200; background: color-mix(in oklab, var(--bg) 95%, transparent); display: grid; place-items: center; padding: 24px; animation: rise .2s ease; }
     figure { position: relative; margin: 0; max-width: min(1200px, 100%); max-height: 100%; display: flex; flex-direction: column; gap: 12px; }
     figure img { max-width: 100%; max-height: calc(100vh - 140px); object-fit: contain; border-radius: 12px; }
     figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--text-2); font-size: 15px; }

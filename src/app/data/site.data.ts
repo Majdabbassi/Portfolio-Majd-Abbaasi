@@ -4,6 +4,8 @@
 // ============================================================
 import { L } from '../i18n/i18n';
 
+export interface TimelineItem { when: L; title: L; place: L; points: L[] }
+
 export const SITE = {
   name: 'Majd Abbassi',
   handle: 'majd.abbassi',
@@ -11,6 +13,7 @@ export const SITE = {
   status: { en: 'Open to opportunities', fr: 'Ouvert aux opportunités' } as L,
 
   hero: {
+    hello: { en: "Hi, I'm Majd Abbassi", fr: 'Salut, je suis Majd Abbassi' } as L,
     eyebrow: { en: 'Full-stack engineer · Sousse, Tunisia', fr: 'Ingénieur full-stack · Sousse, Tunisie' } as L,
     title: { en: 'I build the software behind real businesses.', fr: 'Je construis le logiciel qui fait tourner de vraies entreprises.' } as L,
     titleAccent: { en: 'Go ahead — poke at it.', fr: 'Allez-y — touchez à tout.' } as L,
@@ -84,39 +87,78 @@ export const SITE = {
     ] as L[],
   },
 
+  journey: {
+    title: { en: 'Engineering Journey', fr: 'Parcours d’ingénierie' } as L,
+    text: {
+      en: 'A structured progression from academic foundations to full ownership of production systems.',
+      fr: 'Une progression structurée : des fondations académiques vers l’ownership complet des systèmes en production.',
+    } as L,
+  },
+
   // Newest first
-  experience: [
-    {
-      when: { en: '[START DATE] — Present', fr: '[DATE DE DÉBUT] — Aujourd’hui' },
-      title: { en: 'Full-Stack Developer — Tripteck', fr: 'Développeur Full-Stack — Tripteck' },
-      points: [
-        { en: 'TripTek: staff transport and shuttle management. [WHAT YOU WORK ON]', fr: 'TripTek : transport de personnel et navettes. [CE SUR QUOI VOUS TRAVAILLEZ]' },
-      ],
-    },
+  work: [
     {
       when: { en: 'Jul 2025 — Present', fr: 'juil. 2025 — Aujourd’hui' },
-      title: { en: 'Full-Stack Developer — Educanet', fr: 'Développeur Full-Stack — Educanet' },
+      title: { en: 'Full-Stack Developer', fr: 'Développeur Full-Stack' },
+      place: { en: 'Educanet · Tunis, Tunisia', fr: 'Educanet · Tunis, Tunisie' },
       points: [
-        { en: 'Contributed to architectural decisions and improved internal code structure.', fr: 'Contribution aux décisions d’architecture et amélioration de l’organisation du code en équipe.' },
-        { en: 'Production deployment using WAR + Apache Tomcat.', fr: 'Déploiement en production via Apache Tomcat (WAR).' },
+        { en: 'Contributed to architectural decisions on production systems serving active clients.', fr: 'Contribution aux décisions d’architecture sur des systèmes de production utilisés par des clients actifs.' },
+        { en: 'Worked in a security-conscious, performance-oriented engineering environment.', fr: 'Travail dans un environnement d’ingénierie sécurisé et orienté performance.' },
+        { en: 'Production deployment via WAR artifact on Apache Tomcat infrastructure.', fr: 'Déploiement en production via un artefact WAR sur Apache Tomcat.' },
       ],
     },
     {
-      when: { en: 'Dec 2024 — Jun 2025', fr: 'déc. 2024 — juin 2025' },
-      title: { en: 'First internship — Educanet', fr: 'Premier stage — Educanet' },
+      when: { en: 'Jan 2025 — Jun 2025', fr: 'janv. 2025 — juin 2025' },
+      title: { en: 'Full-Stack Developer Intern', fr: 'Stagiaire Développeur Full-Stack' },
+      place: { en: 'Educanet · Tunis, Tunisia', fr: 'Educanet · Tunis, Tunisie' },
       points: [
-        { en: 'Worked on a real production system used by clients.', fr: 'Travail sur un système de production utilisé par de vrais clients.' },
+        { en: 'Worked on a live production system used by real clients from day one.', fr: 'Travail sur un système de production utilisé par de vrais clients dès le premier jour.' },
         { en: 'Shifted from feature delivery to reliability-focused system thinking.', fr: 'Passage d’une logique « faire marcher une fonctionnalité » à une logique de fiabilité système.' },
       ],
     },
     {
-      when: { en: 'Sep 2022 — Jun 2025', fr: 'sept. 2022 — juin 2025' },
-      title: { en: 'Computer Science studies — ISITCOM', fr: 'Études en informatique — ISITCOM' },
+      when: { en: 'Ongoing', fr: 'En continu' },
+      title: { en: 'Independent Deployment Lab', fr: 'Laboratoire de déploiement personnel' },
+      place: { en: 'Self-driven', fr: 'Auto-formation' },
       points: [
-        { en: 'Solid foundations in programming, logic and structured problem solving.', fr: 'Bases solides en programmation, logique et résolution structurée de problèmes.' },
+        { en: 'Repeatedly redeployed a controlled application to study production behavior.', fr: 'Redéploiement répété d’une application pour comprendre le comportement en production.' },
+        { en: 'Tested reverse proxies, server configuration, containerization and Docker orchestration.', fr: 'Expérimentation des reverse proxies, configurations serveur, conteneurisation et orchestration Docker.' },
       ],
     },
-  ] as { when: L; title: L; points: L[] }[],
+  ] as TimelineItem[],
+
+  studies: [
+    {
+      when: { en: '2025 — Present', fr: '2025 — Aujourd’hui' },
+      title: { en: 'Engineering Degree (currently enrolled)', fr: 'Cycle ingénieur (en cours)' },
+      place: { en: 'Polytechnique de Sousse · Sahloul, Tunisia', fr: 'Polytechnique de Sousse · Sahloul, Tunisie' },
+      points: [],
+    },
+    {
+      when: { en: '2022 — 2025', fr: '2022 — 2025' },
+      title: { en: 'Licence in Computer Science (Bac+3)', fr: 'Licence en informatique (Bac+3)' },
+      place: { en: 'ISITCOM · Hammam Sousse, Tunisia', fr: 'ISITCOM · Hammam Sousse, Tunisie' },
+      points: [
+        { en: 'Built solid foundations in programming, logic, and structured problem solving.', fr: 'Bases solides en programmation, logique et résolution structurée de problèmes.' },
+        { en: 'Learned to reason about systems behavior, not only syntax and implementation details.', fr: 'Compréhension du comportement des systèmes au-delà de la simple implémentation.' },
+      ],
+    },
+  ] as TimelineItem[],
+
+  skills: {
+    title: { en: 'Tech Stack', fr: 'Stack technique' } as L,
+    text: { en: 'Organized by domain for a quick scan of the tools I use every day.', fr: 'Organisation par domaines pour une lecture rapide de mes outils quotidiens.' } as L,
+    groups: [
+      { name: { en: 'Backend', fr: 'Backend' }, core: ['Spring Boot', 'Java', 'PostgreSQL'], more: ['MySQL', 'JWT', 'WebSocket', 'Flyway'] },
+      { name: { en: 'DevOps', fr: 'DevOps' }, core: ['Docker', 'Nginx', 'Prometheus'], more: ['Docker Compose', 'Grafana', 'Alertmanager', 'Linux'] },
+      { name: { en: 'Frontend', fr: 'Frontend' }, core: ['Angular'], more: ['React', 'TypeScript', 'HTML/CSS'] },
+      { name: { en: 'AI / Tools', fr: 'IA / Outils' }, core: [], more: ['Python', 'Groq LLM', 'Firebase', 'Maven', 'Git'] },
+    ] as { name: L; core: string[]; more: string[] }[],
+    today: {
+      en: 'Today, I focus on building systems end-to-end — architecture, deployment, and operations — with long-term ownership in mind.',
+      fr: 'Aujourd’hui, je construis des systèmes de bout en bout — architecture, déploiement et exploitation — avec une logique de responsabilité long terme.',
+    } as L,
+  },
 
   contact: {
     eyebrow: { en: 'Still here? Nice.', fr: 'Toujours là ? Top.' } as L,
@@ -125,6 +167,7 @@ export const SITE = {
       en: 'Open to backend, full-stack and systems engineering roles — and to freelance work. I usually answer within 24 hours.',
       fr: 'Ouvert aux postes backend, full-stack et ingénierie systèmes — et aux missions freelance. Je réponds généralement sous 24h.',
     } as L,
+    footer: { en: 'Production Systems Engineer · Built with Angular.', fr: 'Ingénieur systèmes de production · Construit avec Angular.' } as L,
     email: 'majdabbassi11@gmail.com',
     github: 'https://github.com/Majdabbassi',
     linkedin: 'https://www.linkedin.com/in/majd-abbassi',

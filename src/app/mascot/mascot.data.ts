@@ -24,7 +24,8 @@ export const MASCOT = {
     { sel: '#shelf .card', text: { en: 'Each card is a project you can play with. Click one after the tour!', fr: 'Chaque carte est un projet jouable. Cliquez-en une après la visite !' } },
     { sel: '#shelf .more', text: { en: 'Real products in production live here too.', fr: 'Ici, des produits réels en production.' } },
     { sel: '#lab', text: { en: 'The lab: where things get broken on purpose, so they don’t break in production.', fr: 'Le labo : on casse exprès ici, pour ne pas casser en production.' } },
-    { sel: '#about .timeline', text: { en: 'The road so far — studies, internship, jobs.', fr: 'Le parcours — études, stage, postes.' } },
+    { sel: '#about .skills', text: { en: 'The everyday toolbox, by domain.', fr: 'La boîte à outils du quotidien, par domaine.' } },
+    { sel: '#about .timelines', text: { en: 'Work on one side, studies on the other — Polytechnique de Sousse included.', fr: 'Le travail d’un côté, les études de l’autre — Polytechnique de Sousse comprise.' } },
     { sel: '#contact', text: { en: 'And this is how you reach the real me. See you!', fr: 'Et voici comment joindre le vrai moi. À bientôt !' } },
   ] as { sel: string; text: L }[],
 

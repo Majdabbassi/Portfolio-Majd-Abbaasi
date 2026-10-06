@@ -63,11 +63,11 @@ const TXT = {
     .body { padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; }
     .days, .lane-row { display: grid; grid-template-columns: 56px 1fr; align-items: center; }
     .days { grid-template-columns: 56px repeat(10, 1fr); font-size: 11px; color: var(--text-4); }
-    .days .want { color: var(--accent); }
+    .days .want { color: var(--accent-text); }
     .name { font-size: 12px; color: var(--text-2); }
-    .lane { position: relative; height: 30px; border-radius: 6px; background: #2A2618; }
-    .window { position: absolute; top: 0; bottom: 0; left: 30%; width: 30%; background: rgba(242,201,76,.08); border-left: 1px dashed var(--accent-line); border-right: 1px dashed var(--accent-line); }
-    .bar { position: absolute; top: 4px; bottom: 4px; border-radius: 4px; background: #8C7A3A; color: var(--accent-ink); font-size: 10px; display: flex; align-items: center; padding-left: 6px; overflow: hidden; white-space: nowrap; }
+    .lane { position: relative; height: 30px; border-radius: 6px; background: var(--toy-cell); }
+    .window { position: absolute; top: 0; bottom: 0; left: 30%; width: 30%; background: rgba(242,201,76,.08); border-left: 1px dashed var(--chip-line); border-right: 1px dashed var(--chip-line); }
+    .bar { position: absolute; top: 4px; bottom: 4px; border-radius: 4px; background: color-mix(in oklab, var(--accent) 50%, var(--toy-cell)); color: var(--accent-ink); font-size: 10px; display: flex; align-items: center; padding-left: 6px; overflow: hidden; white-space: nowrap; }
     .bar.new { background: var(--accent); transform-origin: left; animation: grow .5s ease both; }
     .shake { animation: shake .3s ease 2; }
     @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -103,8 +103,8 @@ export class CarRentalToy {
   }
 
   msg = computed(() => {
-    if (this.refused()) return { text: this.t().refused.replace('{car}', this.refused()!).replace('{c}', this.clash() ?? ''), color: '#F28B82' };
-    if (this.booked()) return { text: this.t().booked.replace('{car}', this.booked()!), color: '#9EE0A8' };
-    return { text: this.t().question, color: 'var(--accent-soft)' };
+    if (this.refused()) return { text: this.t().refused.replace('{car}', this.refused()!).replace('{c}', this.clash() ?? ''), color: 'var(--bad-text)' };
+    if (this.booked()) return { text: this.t().booked.replace('{car}', this.booked()!), color: 'var(--ok-text)' };
+    return { text: this.t().question, color: 'var(--soft-text)' };
   });
 }
