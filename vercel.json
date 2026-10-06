@@ -1,3 +1,5 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/majd-portfolio/browser",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
