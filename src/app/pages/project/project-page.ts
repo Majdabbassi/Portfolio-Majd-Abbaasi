@@ -40,6 +40,8 @@ export class ProjectPage {
   liveUrl = computed(() => this.d()?.showcase?.live ?? this.d()?.deployment.liveUrl);
   apkUrl = computed(() => { const a = this.d()?.deployment.apkUrl; return a && !a.startsWith('#') ? a : undefined; });
 
+  flowSteps = computed(() => (this.d()?.deployment.flow ?? '').split(/→|->/).map((x) => x.trim()).filter(Boolean));
+
   copied = signal<string | null>(null);
 
   constructor() {

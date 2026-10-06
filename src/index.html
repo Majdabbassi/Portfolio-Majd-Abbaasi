@@ -8,6 +8,10 @@
   <meta name="description" content="Full-stack developer in Sousse, Tunisia. Spring Boot, Angular, Docker. Nine projects you can play with.">
   <meta name="theme-color" content="#15120F">
   <link rel="icon" type="image/x-icon" href="assets/majdface.png">
+  <script>
+    // Apply the saved theme before the first paint (no flash)
+    try { var t = localStorage.getItem('portfolio_theme'); document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">

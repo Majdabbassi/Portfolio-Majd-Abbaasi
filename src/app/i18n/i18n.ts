@@ -55,7 +55,10 @@ export const UI = {
     noToy: 'No toy for this one yet', noToyText: 'This project is a real product with real users. Here is what it does:',
     experience: 'The road so far', close: 'Close', previous: 'Previous', nextShot: 'Next',
     status_production: 'In production', status_completed: 'Completed', 'status_in-development': 'In development', status_flagship: 'My favourite',
-    switchLang: 'FR', switchLangLabel: 'Passer en français',
+    switchLang: 'FR', switchLangLabel: 'Passer en français', themeLight: 'Switch to light theme', themeDark: 'Switch to dark theme',
+    deployment: 'Deployment', deployFlow: 'Release flow', environment: 'Environment', infra: 'Infrastructure details',
+    considerations: 'Production considerations', notDeployed: "This project was built as a case study. Here's what a production deployment would require:",
+    live: 'Live', mobile: 'Mobile app', platform: 'Platform', store: 'Store', build: 'Build',
   },
   fr: {
     work: 'Projets', about: 'À propos', contact: 'Contact', cv: 'CV',
@@ -71,6 +74,9 @@ export const UI = {
     noToy: 'Pas encore de jouet pour celui-ci', noToyText: 'Ce projet est un vrai produit avec de vrais utilisateurs. Voici ce qu’il fait :',
     experience: 'Le chemin jusqu’ici', close: 'Fermer', previous: 'Précédent', nextShot: 'Suivant',
     status_production: 'En production', status_completed: 'Terminé', 'status_in-development': 'En développement', status_flagship: 'Mon préféré',
-    switchLang: 'EN', switchLangLabel: 'Switch to English',
+    switchLang: 'EN', switchLangLabel: 'Switch to English', themeLight: 'Passer au thème clair', themeDark: 'Passer au thème sombre',
+    deployment: 'Déploiement', deployFlow: 'Flux de release', environment: 'Environnement', infra: "Détails d'infrastructure",
+    considerations: 'Considérations de production', notDeployed: 'Ce projet a été conçu comme une étude de cas. Voici ce qu’un déploiement en production nécessiterait :',
+    live: 'En ligne', mobile: 'Application mobile', platform: 'Plateforme', store: 'Store', build: 'Build',
   },
 } as const;

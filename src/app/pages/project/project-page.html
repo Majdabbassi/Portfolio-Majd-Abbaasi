@@ -152,10 +152,61 @@
         </section>
       }
 
-      <!-- 05 IMPACT -->
+      <!-- 05 DEPLOYMENT -->
+      <section class="block" id="deployment" appReveal>
+        <div class="eyebrow-row">
+          <span class="eyebrow">05 · {{ i18n.t('deployment') }}</span>
+          @if (d.deployment.isDeployed) { <span class="status-badge"><i></i>{{ i18n.t('live') }}</span> }
+        </div>
+        @if (flowSteps().length) {
+          <div class="pipeline" [attr.aria-label]="i18n.t('deployFlow')">
+            @for (f of flowSteps(); track $index; let last = $last) {
+              <span class="mono stage">{{ f }}</span>
+              @if (!last) { <span class="pipe" aria-hidden="true"></span> }
+            }
+          </div>
+        }
+        <div class="split-inner">
+          <div class="card-box">
+            @if (d.deployment.environment) {
+              <span class="label">{{ i18n.t('environment') }}</span>
+              <p class="env">{{ d.deployment.environment }}</p>
+            }
+            @if (d.deployment.details.length) {
+              <span class="label">{{ i18n.t('infra') }}</span>
+              <ul class="ticks">@for (x of d.deployment.details; track $index) { <li>{{ x }}</li> }</ul>
+            }
+            @if (d.deployment.considerations?.length) {
+              <span class="label">{{ i18n.t('considerations') }}</span>
+              @if (!d.deployment.isDeployed) { <p class="env">{{ i18n.t('notDeployed') }}</p> }
+              <ul class="ticks">@for (x of d.deployment.considerations!; track $index) { <li>{{ x }}</li> }</ul>
+            }
+          </div>
+          @if (d.mobile; as m) {
+            <div class="card-box">
+              <span class="label">{{ i18n.t('mobile') }}</span>
+              <dl class="mobile-facts">
+                <dt>{{ i18n.t('platform') }}</dt><dd>{{ m.platform }}</dd>
+                <dt>{{ i18n.t('store') }}</dt><dd>{{ m.storeStatus }}</dd>
+                <dt>{{ i18n.t('build') }}</dt><dd>{{ m.build }}</dd>
+              </dl>
+              <ul class="ticks">@for (x of m.details; track $index) { <li>{{ x }}</li> }</ul>
+            </div>
+          } @else if (d.architecture.tiers?.length && d.architecture.highlights.length) {
+            <div class="card-box">
+              @for (h of d.architecture.highlights; track h.title) {
+                <span class="label">{{ h.title }}</span>
+                <p class="env">{{ h.description }}</p>
+              }
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- 06 IMPACT -->
       <section class="split" appReveal>
         <div class="card-box">
-          <span class="label">05 · {{ i18n.t('result') }}</span>
+          <span class="label">06 · {{ i18n.t('result') }}</span>
           <ul class="ticks">@for (x of d.impact.improvements; track $index) { <li>{{ x }}</li> }</ul>
         </div>
         <div class="card-box">

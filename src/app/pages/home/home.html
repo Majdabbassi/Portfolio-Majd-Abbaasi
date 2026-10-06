@@ -5,6 +5,14 @@
       <div class="eyebrow">{{ i18n.tr(site.hero.eyebrow) }}</div>
       <h1>{{ i18n.tr(site.hero.title) }} <span class="lamp">{{ i18n.tr(site.hero.titleAccent) }}</span></h1>
       <p>{{ i18n.tr(site.hero.text) }}</p>
+      <ul class="creds">
+        @for (c of site.creds; track $index; let i = $index) {
+          <li [style.animation-delay]="0.5 + i * 0.15 + 's'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+            <span>{{ i18n.tr(c) }}</span>
+          </li>
+        }
+      </ul>
       <div class="actions">
         <a routerLink="/" fragment="shelf" class="btn btn-primary">{{ i18n.t('playProjects') }}</a>
         <a [href]="i18n.tr(site.contact.cv)" target="_blank" rel="noopener" class="btn">{{ i18n.t('downloadCv') }}</a>
@@ -74,6 +82,25 @@
           <span class="mono go">{{ i18n.t('open') }}</span>
         </a>
       }
+    </div>
+  </section>
+
+  <!-- DEPLOYMENT LAB -->
+  <section class="lab" id="lab" appReveal>
+    <div class="lab-copy">
+      <div class="eyebrow">{{ i18n.tr(site.lab.eyebrow) }}</div>
+      <h2>{{ i18n.tr(site.lab.title) }}</h2>
+      <p class="lab-sub">{{ i18n.tr(site.lab.subtitle) }}</p>
+      <p>{{ i18n.tr(site.lab.text) }}</p>
+    </div>
+    <div class="lab-console">
+      <div class="term-bar"><i style="background:#E2685B"></i><i style="background:#E9B44C"></i><i style="background:#6BD49A"></i><span class="mono">~/lab — {{ i18n.tr(site.lab.handsOn) }}</span></div>
+      <ol class="mono lab-steps">
+        @for (it of site.lab.items; track $index; let i = $index) {
+          <li><span class="n">0{{ i + 1 }}</span>{{ i18n.tr(it) }}<em>ok</em></li>
+        }
+      </ol>
+      <p class="lab-foot">{{ i18n.tr(site.lab.footer) }}</p>
     </div>
   </section>
 

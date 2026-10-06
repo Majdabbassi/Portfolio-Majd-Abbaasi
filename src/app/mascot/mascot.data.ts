@@ -23,6 +23,7 @@ export const MASCOT = {
     { sel: '#top h1', text: { en: 'This is Majd. Full-stack, production-minded, based in Sousse.', fr: 'Voici Majd. Full-stack, orienté production, basé à Sousse.' } },
     { sel: '#shelf .card', text: { en: 'Each card is a project you can play with. Click one after the tour!', fr: 'Chaque carte est un projet jouable. Cliquez-en une après la visite !' } },
     { sel: '#shelf .more', text: { en: 'Real products in production live here too.', fr: 'Ici, des produits réels en production.' } },
+    { sel: '#lab', text: { en: 'The lab: where things get broken on purpose, so they don’t break in production.', fr: 'Le labo : on casse exprès ici, pour ne pas casser en production.' } },
     { sel: '#about .timeline', text: { en: 'The road so far — studies, internship, jobs.', fr: 'Le parcours — études, stage, postes.' } },
     { sel: '#contact', text: { en: 'And this is how you reach the real me. See you!', fr: 'Et voici comment joindre le vrai moi. À bientôt !' } },
   ] as { sel: string; text: L }[],
@@ -34,6 +35,7 @@ export const MASCOT = {
     { sel: '#screens', text: { en: 'The real app. Click a screenshot to zoom.', fr: 'La vraie app. Cliquez sur une capture pour zoomer.' } },
     { sel: '#logins', text: { en: 'Demo accounts — click to copy, then try the live demo.', fr: 'Comptes démo — cliquez pour copier, puis testez la démo.' } },
     { sel: '.challenges', text: { en: 'The hard parts, and how they were solved.', fr: 'Les parties difficiles, et comment elles ont été résolues.' } },
+    { sel: '#deployment', text: { en: 'How it ships: the release flow and where it runs.', fr: 'Comment c’est livré : le flux de release et où ça tourne.' } },
     { sel: '.next', text: { en: 'Next project is right here. Enjoy!', fr: 'Le projet suivant est juste là. Bonne visite !' } },
   ] as { sel: string; text: L }[],
 

@@ -2,7 +2,8 @@
    Global design tokens + shared building blocks.
    Change the look of the whole site here.
    ============================================================ */
-:root {
+/* ---------- DARK (default) ---------- */
+:root, [data-theme='light'] .island {
   --bg: #15120F;
   --surface: #1E1A16;
   --surface-2: #1A1714;
@@ -15,8 +16,14 @@
   --text-4: #8C8072;
   --lamp: #F2A93B;        /* the warm amber accent of the whole site */
   --lamp-ink: #1A140D;
+  --lamp-text: #F2A93B;   /* amber used as TEXT (darker in light mode) */
   --ok: #6BD49A;
-
+  --ok-text: #6BD49A;
+  --nav-bg: rgba(21, 18, 15, .72);
+  --shadow: rgba(0, 0, 0, .45);
+  color-scheme: dark;
+}
+:root {
   /* Per-project accent — overridden on each project page */
   --accent: var(--lamp);
   --accent-soft: #FFD08A;
@@ -28,18 +35,55 @@
   --mono: 'JetBrains Mono', ui-monospace, monospace;
   --radius: 20px;
 }
+/* Accent colours used as text/borders follow the page accent */
+* { --accent-text: var(--accent); --soft-text: var(--accent-soft); --chip-line: var(--accent-line); }
+
+/* ---------- LIGHT ("daylight") ---------- */
+:root[data-theme='light'] {
+  --bg: #F6F0E6;
+  --surface: #FFFCF6;
+  --surface-2: #EFE6D8;
+  --line: #E6DCCB;
+  --line-2: #DDD0BC;
+  --line-3: #C7B6A0;
+  --text: #1E1813;
+  --text-2: #43382E;
+  --text-3: #5F5246;
+  --text-4: #75685B;
+  --lamp-text: #A35F00;
+  --ok-text: #1F8A55;
+  --nav-bg: rgba(246, 240, 230, .8);
+  --shadow: rgba(60, 40, 20, .18);
+  color-scheme: light;
+}
+[data-theme='light'] * {
+  --accent-text: color-mix(in oklab, var(--accent) 58%, #000);
+  --soft-text: color-mix(in oklab, var(--accent) 52%, #000);
+  --chip-line: color-mix(in oklab, var(--accent) 40%, transparent);
+}
+/* "Islands" stay dark in light mode: toys, terminals, diagrams, the lightbox… like little screens */
+[data-theme='light'] :is(.island, .panel, .terminal, .lab-console, .motif, .lightbox, .tiers, .logins, .next, .challenge .good),
+[data-theme='light'] :is(.island, .panel, .terminal, .lab-console, .motif, .lightbox, .tiers, .logins, .next, .challenge .good) * {
+  --accent-text: var(--accent); --soft-text: var(--accent-soft); --chip-line: var(--accent-line);
+}
+[data-theme='light'] :is(.panel, .terminal, .lab-console, .motif, .lightbox, .tiers, .logins, .next, .challenge .good) {
+  --bg: #15120F; --surface: #1E1A16; --surface-2: #1A1714; --line: #2A2520; --line-2: #332B24; --line-3: #4A4036;
+  --text: #F3EADB; --text-2: #CFC3B1; --text-3: #A99C8A; --text-4: #8C8072; --lamp-text: #F2A93B; --ok-text: #6BD49A;
+  color: var(--text); color-scheme: dark;
+}
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--bg);
+  transition: background-color .35s ease, color .35s ease;
   color: var(--text);
   font-family: var(--font);
   -webkit-font-smoothing: antialiased;
 }
-a { color: var(--accent); }
-a:hover { color: var(--accent-soft); }
+a { color: var(--accent-text); }
+a:hover { color: var(--soft-text); }
 button { font-family: var(--font); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
@@ -47,7 +91,7 @@ button { font-family: var(--font); }
 .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
 @media (max-width: 640px) { .container { padding: 0 16px; } }
 
-.eyebrow { font-family: var(--mono); font-size: 14px; color: var(--accent); letter-spacing: .04em; text-transform: uppercase; }
+.eyebrow { font-family: var(--mono); font-size: 14px; color: var(--accent-text); letter-spacing: .04em; text-transform: uppercase; }
 
 /* Buttons */
 .btn {
@@ -63,7 +107,7 @@ button { font-family: var(--font); }
 
 /* Chips */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: 13px; }
-.chip { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--accent-line); color: var(--accent-soft); }
+.chip { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--chip-line); color: var(--soft-text); }
 
 /* Toy panel (the interactive box on every project page) */
 .panel {
@@ -120,5 +164,5 @@ button { font-family: var(--font); }
 
 .status-badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--line-3); color: var(--text-2); }
 .status-badge i { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); }
-.status-badge.flagship { border-color: var(--lamp); color: var(--lamp); }
+.status-badge.flagship { border-color: var(--lamp); color: var(--lamp-text); }
 .status-badge.flagship i { background: var(--lamp); }

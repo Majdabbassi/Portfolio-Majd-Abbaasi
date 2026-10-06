@@ -20,6 +20,13 @@ export const SITE = {
     } as L,
   },
 
+  // Three proof lines under the hero text
+  creds: [
+    { en: 'Backend systems built for production · multi-tenant', fr: 'Systèmes backend construits pour la production · multi-tenant' },
+    { en: 'DevOps from zero · full stack deployed & monitored', fr: 'DevOps de zéro · déployé, monitoré, de bout en bout' },
+    { en: 'AI features shipped · deployed', fr: 'Features IA livrées · déployées' },
+  ] as L[],
+
   // Lines typed in the hero terminal
   terminal: [
     { key: 'backend', value: 'spring-boot · java 21' },
@@ -35,6 +42,28 @@ export const SITE = {
     text: {
       en: 'Every card loops the one mechanic that project is really about. Open it to play — then read how it was built.',
       fr: 'Chaque carte rejoue le mécanisme central du projet. Ouvrez-la pour jouer — puis découvrez comment il a été construit.',
+    } as L,
+  },
+
+  // The self-training block shown after the projects
+  lab: {
+    eyebrow: { en: 'Side quest', fr: 'Quête annexe' } as L,
+    title: { en: 'Deployment Lab', fr: 'Laboratoire de déploiement' } as L,
+    subtitle: { en: 'Self-driven infrastructure training initiative.', fr: 'Initiative d’auto-formation infrastructure.' } as L,
+    text: {
+      en: 'To deeply understand production behavior, I repeatedly deployed a simplified application using multiple strategies — refining server setup, configuration logic, and release flows.',
+      fr: 'Pour comprendre en profondeur le comportement en production, j’ai redéployé une application simplifiée via plusieurs stratégies — en affinant la configuration serveur, la logique de configuration et les flux de release.',
+    } as L,
+    handsOn: { en: 'Hands-on experimentation included:', fr: 'Expérimentations pratiques :' } as L,
+    items: [
+      { en: 'Nginx reverse proxy (direct deployment)', fr: 'Proxy inverse Nginx (déploiement direct)' },
+      { en: 'Docker containerization', fr: 'Conteneurisation Docker' },
+      { en: 'Docker Compose multi-service orchestration', fr: 'Orchestration multi-services Docker Compose' },
+      { en: 'Service restart & failure recovery testing', fr: 'Tests de redémarrage des services et récupération après panne' },
+    ] as L[],
+    footer: {
+      en: 'Built to understand what breaks in production — before users find it.',
+      fr: 'Conçu pour comprendre ce qui casse en production — avant que ce soit les utilisateurs qui le découvrent.',
     } as L,
   },
 
