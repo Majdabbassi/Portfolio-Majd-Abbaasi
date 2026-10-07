@@ -9,7 +9,7 @@ import { DOCUMENT, Injectable, inject } from '@angular/core';
 //  2. Open the site once with ?me=1 on each of your own devices so
 //     your visits are not recorded (?me=0 undoes it).
 // ============================================================
-const CLARITY_ID = '';
+const CLARITY_ID = 'ytw6a5mip7';
 const LIVE_HOSTS = ['majd-abbassi.vercel.app'];
 const OWNER_KEY = 'portfolio_owner';
 
