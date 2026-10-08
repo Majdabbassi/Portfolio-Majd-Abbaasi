@@ -1,27 +1,20 @@
-import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { MORE_PROJECTS, PROJECTS } from '../../data/projects.data';
-import { SITE } from '../../data/site.data';
-import { I18n } from '../../i18n/i18n';
-import { CardMotif } from '../../shared/card-motif';
-import { RevealDirective } from '../../shared/reveal.directive';
+import { Component } from '@angular/core';
+import { Hero } from './hero/hero';
+import { Shelf } from './shelf/shelf';
+import { Lab } from './lab/lab';
+import { About } from './about/about';
+import { Contact } from './contact/contact';
 
+/** The landing page, top to bottom. Each section is its own component in this folder. */
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, CardMotif, RevealDirective],
-  templateUrl: './home.html',
-  styleUrl: './home.css',
+  imports: [Hero, Shelf, Lab, About, Contact],
+  template: `
+    <app-hero />
+    <app-shelf />
+    <app-lab />
+    <app-about />
+    <app-contact />
+  `,
 })
-export class Home {
-  i18n = inject(I18n);
-  site = SITE;
-  projects = PROJECTS;
-  more = MORE_PROJECTS;
-  year = new Date().getFullYear();
-  timelines = [
-    { key: 'work', label: 'workTl' as const, items: SITE.work },
-    { key: 'studies', label: 'studiesTl' as const, items: SITE.studies },
-  ];
-
-  statusKey(s: string) { return ('status_' + s) as 'status_production'; }
-}
+export class Home {}

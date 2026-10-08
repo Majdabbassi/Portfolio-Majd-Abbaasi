@@ -1,0 +1,140 @@
+<!-- 1 · about me -->
+<section class="container about">
+  <div class="me" appReveal>
+    <div class="portrait">
+      <div class="frame"><img [src]="site.portrait" [alt]="site.name" width="900" height="1200" loading="lazy" /></div>
+      <span class="sticker hi mono">{{ i18n.tr(site.about.hi) }}</span>
+      <span class="sticker where mono"><i></i>Sousse · {{ localTime() }}</span>
+    </div>
+    <div class="facts">
+      @for (f of site.about.facts; track f.icon) {
+        <span class="fact">
+          @switch (f.icon) {
+            @case ('pin') { <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg> }
+            @case ('work') { <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg> }
+            @case ('study') { <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z" /><path d="M6 12v5c3 2 9 2 12 0v-5" /></svg> }
+            @default { <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" /></svg> }
+          }
+          {{ i18n.tr(f.text) }}
+        </span>
+      }
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="eyebrow" appReveal>{{ i18n.tr(site.about.eyebrow) }}</div>
+    <h2 appReveal>{{ i18n.tr(site.about.title) }} <span class="mark">{{ i18n.tr(site.about.titleAccent) }}</span> {{ i18n.tr(site.about.titleEnd) }}</h2>
+    @for (para of site.about.paragraphs; track $index) { <p appReveal>{{ i18n.tr(para) }}</p> }
+    <blockquote class="today" appReveal>{{ i18n.tr(site.about.today) }}</blockquote>
+  </div>
+</section>
+
+<!-- 2 · toolbox: stack explorer + terminal -->
+<section class="container toolbox">
+  <div class="sec-head" appReveal>
+    <div><div class="eyebrow">{{ i18n.tr(site.toolbox.eyebrow) }}</div><h3>{{ i18n.tr(site.toolbox.title) }}</h3></div>
+    <p>{{ i18n.tr(site.toolbox.text) }}</p>
+  </div>
+  <div class="tools-grid">
+    <div class="stack skills" appReveal>
+      <div class="card-head"><h4 class="mono">{{ i18n.tr(site.toolbox.stackTitle) }}</h4><span class="mono">{{ i18n.tr(site.toolbox.pick) }}</span></div>
+      <div class="domains" role="tablist" [attr.aria-label]="i18n.tr(site.toolbox.stackTitle)">
+        @for (g of site.skills.groups; track $index; let i = $index) {
+          <button type="button" role="tab" class="domain" [class.on]="domain() === i" [attr.aria-selected]="domain() === i" (click)="pickDomain(i)">{{ i18n.tr(g.name) }}</button>
+        }
+      </div>
+      <div class="tags">
+        @for (t of tags(); track domain() + t.name; let i = $index) {
+          <button type="button" class="tag" [class.core]="t.core" [class.on]="tool() === t.name" [attr.aria-pressed]="tool() === t.name" [style.animation-delay]="i * 0.03 + 's'" (click)="tool.set(t.name)">{{ t.name }}</button>
+        }
+      </div>
+      <div class="used" aria-live="polite">
+        @if (uses().length) {
+          <span class="used-title mono">{{ i18n.tr(site.toolbox.usedIn) }} {{ uses().length }} {{ uses().length > 1 ? i18n.tr(site.toolbox.projects) : i18n.tr(site.toolbox.project) }} · <b>{{ tool() }}</b></span>
+          <div class="chips">
+            @for (p of uses(); track tool() + p.slug; let i = $index) {
+              <span class="chip hue" [style.--h]="p.hue" [style.animation-delay]="i * 0.04 + 's'"><i></i>{{ p.name }}</span>
+            }
+          </div>
+        } @else {
+          <span class="used-title mono"><b>{{ tool() }}</b></span>
+          <span class="everyday">{{ i18n.tr(site.toolbox.everyday) }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="terminal" appReveal #term>
+      <div class="term-bar" aria-hidden="true"><i style="background: #E2685B"></i><i style="background: #E9B44C"></i><i style="background: #6BD49A"></i><span class="mono">~/majd — zsh</span></div>
+      <div class="term-body mono" aria-live="polite">
+        @if (seen()) {
+          @for (c of [cmd()]; track c) {
+            <div class="typed"><b>$</b> {{ site.terminal[c].cmd }}</div>
+            @for (l of i18n.tr(site.terminal[c].lines); track $index; let i = $index) {
+              <div class="tl" [style.animation-delay]="0.9 + i * 0.22 + 's'">@if (l.mark) {<em [class.lamp]="l.lamp">{{ l.mark }}</em>{{ ' ' }}}{{ l.text }}@if (l.dim) {<u>{{ l.dim }}</u>}</div>
+            }
+            <div class="tl" [style.animation-delay]="0.9 + i18n.tr(site.terminal[c].lines).length * 0.22 + 's'"><b>$</b> <span class="cursor">▋</span></div>
+          }
+        } @else {
+          <div><b>$</b> <span class="cursor">▋</span></div>
+        }
+      </div>
+      <div class="cmds">
+        <span class="lbl mono">{{ i18n.tr(site.toolbox.tryCmd) }}</span>
+        @for (c of site.terminal; track c.cmd; let i = $index) {
+          <button type="button" class="cmd mono" [class.on]="cmd() === i" [attr.aria-pressed]="cmd() === i" (click)="run(i)">$ {{ c.cmd }}</button>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · journey -->
+<section class="container journey">
+  <div class="sec-head" appReveal>
+    <div><div class="eyebrow">{{ i18n.tr(site.journey.eyebrow) }}</div><h3>{{ i18n.tr(site.journey.title) }}</h3></div>
+    <p>{{ i18n.tr(site.journey.text) }}</p>
+  </div>
+  <div class="chart timelines" appReveal role="group" [attr.aria-label]="i18n.tr(site.journey.eyebrow)">
+    <div class="axis mono"><span></span><div class="ticks">@for (b of breaks; track $index) { <span class="brk" [style.left]="b" title="The scale changes here" aria-hidden="true">≈</span> }@for (t of ticks; track $index) { <span [style.left]="t.left">{{ i18n.tr(t.label) }}</span> }</div></div>
+    @for (lane of lanes; track lane) {
+      <div class="lane" [class.side]="lane === 'side'">
+        <span class="lane-name mono">{{ i18n.tr(site.journey.lanes[lane]) }}</span>
+        <div [class]="lane === 'side' ? 'cells' : 'direct'" [style.margin-left]="lane === 'side' ? projectsFrom : null" [style.--rows]="lane === 'side' ? projRows : null">
+          @for (x of barsIn(lane); track x.i) {
+            <button type="button" class="bar" [class.hue]="!!x.b.project" [class.proj]="!!x.b.project" [class.live]="x.b.live" [class.join-next]="x.b.join === 'next'" [class.join-prev]="x.b.join === 'prev'" [class.on]="isOn(x.i)" [attr.aria-pressed]="isOn(x.i)"
+                    [style.--h]="x.b.project?.hue ?? null" [style.--x]="x.b.x ?? null" [style.--w]="x.b.w ?? null" [style.--r]="x.b.row ?? null" [style.margin-left]="margin(x.b, 'l')" [style.margin-right]="margin(x.b, 'r')" [style.animation-delay]="0.1 + x.i * 0.12 + 's'"
+                    [attr.aria-label]="x.b.project ? x.b.project.name : null" [attr.title]="x.b.project ? x.b.project.name : null"
+                    (click)="stop.set(x.i)">@if (x.b.project) { <span class="ico"><img [src]="x.b.project.icon" alt="" width="26" height="26" /></span><span class="txt"><strong>{{ i18n.tr(x.b.label) }}</strong><small class="mono">{{ i18n.tr(x.b.sub!) }}</small></span> } @else { {{ i18n.tr(x.b.label) }} }</button>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  @if (detail(); as d) {
+    <div class="detail" [class.hue]="!!d.project" [style.--h]="d.project?.hue ?? null" appReveal>
+      <div>
+        <div class="when mono">{{ i18n.tr(d.when) }}</div>
+        <div class="what">{{ i18n.tr(d.title) }}</div>
+        <div class="where">{{ i18n.tr(d.place) }}</div>
+        @if (d.points.length) {
+          <ul>@for (pt of d.points; track $index) { <li>{{ i18n.tr(pt) }}</li> }</ul>
+        }
+        @if (d.sections; as ss) {
+          <div class="jobs">
+            @for (j of ss; track $index) {
+              <div class="job">
+                <div class="job-head"><strong>{{ i18n.tr(j.title) }}</strong><span class="mono">{{ i18n.tr(j.when) }}</span></div>
+                <ul>@for (pt of j.points; track $index) { <li>{{ i18n.tr(pt) }}</li> }</ul>
+              </div>
+            }
+          </div>
+        }
+        @if (d.project; as p) {
+          <p class="desc">{{ i18n.tr(p.cardLine) }}</p>
+          <a class="more mono" [routerLink]="['/projects', p.slug]">{{ i18n.tr(site.shelf.caseStudy) }}</a>
+        }
+      </div>
+      <span class="kind mono">{{ i18n.tr(site.journey.lanes[d.lane]) }}@if (d.live) { · {{ i18n.tr(site.journey.now) }} }</span>
+    </div>
+  }
+</section>

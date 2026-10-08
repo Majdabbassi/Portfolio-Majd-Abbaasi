@@ -1,0 +1,81 @@
+<div class="dots" aria-hidden="true"></div>
+<div class="dots lit" aria-hidden="true"></div>
+<div class="spot" aria-hidden="true"></div>
+
+<div class="container hero" id="top">
+  <div class="copy">
+    <div class="who">
+      <span class="status"><i></i>{{ i18n.tr(site.status) }}</span>
+      <span class="mono role">{{ i18n.tr(site.hero.role) }}</span>
+    </div>
+
+    <h1>
+      @for (w of i18n.tr(site.hero.titleStart).split(' '); track $index; let i = $index) {
+        <span class="w" [style.animation-delay]="0.12 + i * 0.07 + 's'">{{ w }}</span>{{ ' ' }}
+      }
+      <span class="rot" aria-live="polite">
+        @for (p of projects; track p.slug; let i = $index) {
+          <span class="phr hue" [class.on]="i === active()" [style.--h]="p.hue" [attr.aria-hidden]="i !== active()">{{ i18n.tr(p.phrase) }}</span>
+        }
+      </span>
+    </h1>
+
+    <p class="lead">{{ i18n.tr(site.hero.text) }}</p>
+
+    <div class="actions">
+      <a routerLink="/" fragment="shelf" class="btn btn-primary">
+        {{ i18n.tr(site.hero.play) }}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
+      </a>
+      <a routerLink="/" fragment="contact" class="btn">{{ i18n.tr(site.hero.talk) }}</a>
+    </div>
+
+    <div class="proof mono">
+      @for (s of site.hero.proof; track s.n) { <span><b>{{ s.n }}</b>{{ i18n.tr(s.text) }}</span> }
+    </div>
+  </div>
+
+  <div class="orbit hue" [style.--h]="current().hue" (mouseenter)="hold(true)" (mouseleave)="hold(false)">
+    <div class="halo" aria-hidden="true"></div>
+    <svg class="rings" viewBox="0 0 100 100" aria-hidden="true">
+      <circle class="dash" cx="50" cy="50" r="44" />
+      <circle cx="50" cy="50" r="39.5" style="opacity: .5" />
+    </svg>
+    <svg class="textring" viewBox="0 0 100 100" aria-hidden="true">
+      <defs><path id="hero-ring-path" d="M50,14 a36,36 0 1,1 -0.01,0" /></defs>
+      <text><textPath href="#hero-ring-path" textLength="225" lengthAdjust="spacing">{{ site.hero.ring }}</textPath></text>
+    </svg>
+
+    <div class="ring">
+      @for (p of projects; track p.slug; let i = $index) {
+        <div class="planet hue" [style.left]="spots[i].x" [style.top]="spots[i].y" [style.--h]="p.hue">
+          <div class="planet-in">
+            <button type="button" class="pbtn" [class.on]="i === active()" [attr.aria-label]="p.name" [attr.aria-pressed]="i === active()" (click)="pick(i)" (focus)="pick(i)">
+              <img [src]="p.icon" alt="" width="28" height="28" />
+              <span class="tip mono">{{ p.name }}</span>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="core">
+      @for (p of projects; track p.slug; let i = $index) {
+        <div class="pc hue" [class.on]="i === active()" [style.--h]="p.hue" [attr.aria-hidden]="i !== active()" [attr.inert]="i === active() ? null : ''">
+          <div class="pc-head"><img [src]="p.icon" alt="" width="30" height="30" /><strong>{{ p.name }}</strong></div>
+          <span [class]="'badge ' + p.badge"><i></i>{{ i18n.tr(site.shelf.badges[p.badge]) }}</span>
+          <p>{{ i18n.tr(p.cardLine) }}</p>
+          <a routerLink="/" fragment="shelf" class="mono">{{ i18n.tr(site.hero.playIt) }}</a>
+        </div>
+      }
+    </div>
+    <span class="orbit-hint mono">{{ i18n.tr(site.hero.orbitHint) }}</span>
+  </div>
+</div>
+
+<div class="foot">
+  <a routerLink="/" fragment="shelf" class="mono">
+    <span>{{ i18n.tr(site.hero.scroll) }}</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
+  </a>
+</div>

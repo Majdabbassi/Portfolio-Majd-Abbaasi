@@ -42,7 +42,7 @@ export class I18n {
 /** Short interface labels. Long texts live in the data/ files. */
 export const UI = {
   en: {
-    work: 'Work', about: 'About', contact: 'Contact', cv: 'CV',
+    work: 'Work', about: 'About', contact: 'Contact', cv: 'CV', projects: 'Projects', lab: 'Lab',
     playProjects: 'Play with my projects', downloadCv: 'Download CV',
     play: 'Play →', open: 'Open →', moreTitle: 'More projects', moreText: 'Real products without a toy (yet) — open them for the full case study.',
     back: '← back to the shelf', liveDemo: 'Live demo', github: 'GitHub', privateRepo: 'Code on request', apk: 'Android APK',
@@ -61,7 +61,7 @@ export const UI = {
     live: 'Live', mobile: 'Mobile app', workTl: 'Work', studiesTl: 'Studies', keyOutcomes: 'Key outcomes', constraints: 'Constraints', highlights: 'Highlights', toTop: 'Back to top ↑', platform: 'Platform', store: 'Store', build: 'Build',
   },
   fr: {
-    work: 'Projets', about: 'À propos', contact: 'Contact', cv: 'CV',
+    work: 'Projets', about: 'À propos', contact: 'Contact', cv: 'CV', projects: 'Projets', lab: 'Labo',
     playProjects: 'Jouer avec mes projets', downloadCv: 'Télécharger le CV',
     play: 'Jouer →', open: 'Ouvrir →', moreTitle: 'Autres projets', moreText: 'De vrais produits sans jouet (pour l’instant) — ouvrez-les pour l’étude de cas complète.',
     back: '← retour à l’étagère', liveDemo: 'Démo en ligne', github: 'GitHub', privateRepo: 'Code sur demande', apk: 'APK Android',
