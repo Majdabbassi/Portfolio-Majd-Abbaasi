@@ -16,7 +16,7 @@ const T = {
   browser: l('browser', 'navigateur'), proxy: l('reverse proxy', 'proxy inverse'), db: l('database', 'base'),
   reset: l('Reset', 'Réinitialiser'), working: l('Running…', 'En cours…'),
   st: { up: l('healthy', 'sain'), starting: l('starting…', 'démarre…'), down: l('down', 'arrêté') } as Record<RState, L>,
-  rps: l('req/s', 'req/s'), p95: l('p95 latency', 'latence p95'), err: l('errors', 'erreurs'), up: l('replicas up', 'réplicas actifs'),
+  rps: l('req/s', 'req/s'), p95: l('p95', 'p95'), err: l('errors', 'erreurs'), up: l('replicas', 'réplicas'),
   ok: l('healthy', 'tout va bien'), alert: l('alert firing', 'alerte active'),
   deploy: l('Deploy v2', 'Déployer v2'), bad: l('Deploy a broken build', 'Déployer un build cassé'),
   spike: l('Send a traffic spike', 'Envoyer un pic de trafic'), calm: l('Back to normal', 'Retour à la normale'),
@@ -120,7 +120,7 @@ const T = {
     </section>
   `,
   styles: `
-    .lab { padding: 88px 0 96px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 56px; align-items: center; }
+    .lab { padding-block: 88px 96px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 56px; align-items: center; }
     .copy { display: flex; flex-direction: column; gap: 16px; }
     .eyebrow { color: var(--lamp-text); }
     h2 { margin: 0; font-size: clamp(36px, 4.5vw, 54px); font-weight: 800; letter-spacing: -.025em; line-height: 1.04; }
@@ -157,10 +157,10 @@ const T = {
     .box { position: relative; display: flex; align-items: center; padding: 22px 10px 10px; border-radius: 14px; border: 1px dashed var(--line-3); }
     .box::before { content: attr(data-label); position: absolute; top: 6px; left: 10px; font: 500 10px var(--mono); color: var(--text-4); }
     .reps { display: flex; flex-direction: column; gap: 6px; }
-    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.6fr); gap: 8px; padding: 12px 16px; border-top: 1px dashed var(--line-3); align-items: stretch; transition: background .4s ease; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.2fr); gap: 8px; padding: 12px 16px; border-top: 1px dashed var(--line-3); align-items: stretch; transition: background .4s ease; }
     .metrics.alerting { background: color-mix(in oklab, var(--bad) 7%, transparent); }
-    .tile { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--surface-2); min-width: 0; }
-    .tile small { font-size: 10px; color: var(--text-4); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tile { display: flex; flex-direction: column; gap: 2px; padding: 8px; border-radius: 10px; background: var(--surface-2); min-width: 0; }
+    .tile small { font-size: 9.5px; color: var(--text-4); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .tile strong { font-size: 17px; font-weight: 700; letter-spacing: -.01em; white-space: nowrap; }
     .tile.bad strong { color: var(--bad); }
     .spark { position: relative; border-radius: 10px; background: var(--surface-2); overflow: hidden; min-height: 52px; }
@@ -192,7 +192,7 @@ const T = {
     @keyframes shake { 0%, 100% { transform: none; } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
     @media (prefers-reduced-motion: reduce) { .log li { animation: none; } }
     @media (max-width: 640px) {
-      .lab { padding: 56px 0 64px; }
+      .lab { padding-block: 56px 64px; }
       .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .wire { width: 16px; }
       .node { min-width: 64px; padding: 8px 8px; }

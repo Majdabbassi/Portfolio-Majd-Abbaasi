@@ -50,7 +50,7 @@ h2 { margin: 0; font-size: clamp(36px, min(4.8vw, 7.6vh), 66px); font-weight: 80
 .lcard-ico { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--lamp-soft); color: var(--lamp-text); flex: none; }
 .lcard-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
 .lcard-text strong { font-size: 18px; letter-spacing: -.01em; }
-.lcard-text span { color: var(--text-3); font-size: 14px; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lcard-text span { color: var(--text-3); font-size: 14px; line-height: 1.4; }
 .arrow { color: var(--text-4); flex: none; transition: transform .25s ease, color .25s ease; }
 .lcard:hover .arrow { transform: translate(3px, -3px); color: var(--lamp-text); }
 .cv-row { display: flex; gap: 6px; flex: none; }
@@ -69,5 +69,6 @@ h2 { margin: 0; font-size: clamp(36px, min(4.8vw, 7.6vh), 66px); font-weight: 80
   .looking .lbl { text-align: left; }
   .links { grid-template-columns: minmax(0, 1fr); }
 }
-@media (max-width: 760px) { .direct { grid-template-columns: minmax(0, 1fr); } .contact { min-height: 0; } }
+@media (max-width: 900px) { .direct { grid-template-columns: minmax(0, 1fr); } .contact { min-height: 0; } }
+@media (max-width: 480px) { .ch-text a { white-space: normal; overflow-wrap: anywhere; font-size: 18px; } }
 @media (max-width: 640px) { .lcard { flex-wrap: wrap; } .cv-row { width: 100%; } .cv-row .btn { flex: 1; } }

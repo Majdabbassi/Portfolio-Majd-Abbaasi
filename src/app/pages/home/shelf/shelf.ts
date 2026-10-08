@@ -68,7 +68,7 @@ import { MediplusMini } from './toys/mediplus-mini';
     </section>
   `,
   styles: `
-    .shelf { padding: 72px 0 104px; display: flex; flex-direction: column; gap: 40px; }
+    .shelf { padding-block: 72px 104px; display: flex; flex-direction: column; gap: 40px; }
     .shelf-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
     h2 { margin: 10px 0 0; font-size: clamp(34px, 4.5vw, 50px); font-weight: 800; letter-spacing: -.02em; line-height: 1.08; text-wrap: balance; }
     .shelf-head p { margin: 0; color: var(--text-3); font-size: 17px; max-width: 420px; line-height: 1.55; }
@@ -94,7 +94,7 @@ import { MediplusMini } from './toys/mediplus-mini';
     .badge.fav { border-color: var(--lamp); color: var(--lamp-text); }
     .badge.fav i { background: var(--lamp); }
     .badge.local i { background: var(--text-4); }
-    @media (max-width: 640px) { .shelf { padding: 40px 0 72px; } .stage { height: 310px; } }
+    @media (max-width: 640px) { .shelf { padding-block: 40px 72px; } .stage { height: 310px; } }
   `,
 })
 export class Shelf {

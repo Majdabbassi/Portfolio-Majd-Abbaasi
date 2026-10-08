@@ -2,7 +2,7 @@
 .eyebrow { color: var(--lamp-text); }
 
 /* 1 · about me */
-.about { padding: 88px 0 56px; display: grid; grid-template-columns: minmax(260px, 380px) minmax(0, 1fr); gap: 64px; align-items: start; }
+.about { padding-block: 88px 56px; display: grid; grid-template-columns: minmax(260px, 380px) minmax(0, 1fr); gap: 64px; align-items: start; }
 .me { display: flex; flex-direction: column; gap: 20px; }
 @property --turn { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 .portrait { position: relative; border-radius: 30px; padding: 5px; transform: rotate(-2deg); box-shadow: 0 30px 70px var(--shadow); transition: transform .5s cubic-bezier(.2, .9, .3, 1.2); animation: turn 12s linear infinite;
@@ -25,7 +25,7 @@ h2 { margin: 0; font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; letter-sp
 .today::before { content: "“"; position: absolute; top: -18px; left: 16px; font: 800 54px var(--font); color: var(--lamp-text); line-height: 1; }
 
 /* 2 · toolbox */
-.toolbox { padding: 40px 0 24px; display: flex; flex-direction: column; gap: 24px; }
+.toolbox { padding-block: 40px 24px; display: flex; flex-direction: column; gap: 24px; }
 .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px; }
 .sec-head h3 { margin: 6px 0 0; font-size: clamp(28px, 3.4vw, 40px); font-weight: 800; letter-spacing: -.02em; }
 .sec-head p { margin: 0; color: var(--text-3); font-size: 16px; max-width: 460px; }
@@ -67,7 +67,7 @@ h2 { margin: 0; font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; letter-sp
 .cmd.on { background: var(--lamp); border-color: var(--lamp); color: var(--lamp-ink); }
 
 /* 3 · journey */
-.journey { padding: 48px 0 110px; display: flex; flex-direction: column; gap: 26px; }
+.journey { padding-block: 48px 110px; display: flex; flex-direction: column; gap: 26px; }
 .chart { background: var(--surface); border: 1px solid var(--line-2); border-radius: 22px; padding: 22px 24px 18px; overflow-x: auto; }
 .axis, .lane { display: grid; grid-template-columns: 110px minmax(0, 1fr); align-items: center; min-width: 1120px; }
 .direct { grid-column: 2; grid-row: 1; display: grid; grid-template-columns: minmax(0, 1fr); }
@@ -138,7 +138,9 @@ h2 { margin: 0; font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; letter-sp
 @media (prefers-reduced-motion: reduce) { .typed { max-width: 100%; } .tl, .tag, .chip { opacity: 1; } .bar { clip-path: none; } .bar.proj { opacity: 1; } }
 @media (max-width: 980px) { .about { grid-template-columns: minmax(0, 1fr); gap: 40px; } .me { max-width: 420px; } .tools-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 640px) {
-  .about { padding: 56px 0 32px; }
+  .portrait { transform: none; }
+  .term-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .about { padding-block: 56px 32px; }
   .term-body { font-size: 12.5px; padding: 16px 14px 8px; }
   .detail { grid-template-columns: 1fr; }
   .sticker.hi { left: 8px; } .sticker.where { right: 8px; }

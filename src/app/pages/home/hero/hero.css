@@ -82,6 +82,7 @@ h1 { margin: 0; font-size: clamp(38px, min(4.7vw, 7.4vh), 72px); line-height: 1.
 @keyframes beacon { 0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--ok-text) 55%, transparent); } 100% { box-shadow: 0 0 0 10px transparent; } }
 @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
 
+@media (hover: none) { .orbit-hint { display: none; } }
 @media (prefers-reduced-motion: reduce) { .w, .lead, .actions, .proof, .who, .orbit { opacity: 1; transform: none; } }
 @media (max-width: 900px) {
   :host { min-height: 0; }

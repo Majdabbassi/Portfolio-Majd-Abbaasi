@@ -35,6 +35,7 @@ export class About {
   i18n = inject(I18n);
   site = SITE;
   private destroy = inject(DestroyRef);
+  private host = inject(ElementRef<HTMLElement>);
 
   // ---------- local time on the photo ----------
   now = signal(Date.now());
@@ -115,6 +116,13 @@ export class About {
   constructor() {
     afterNextRender(() => {
       const tick = setInterval(() => this.now.set(Date.now()), 30_000);
+      // on a narrow screen the chart scrolls sideways: open it around mid-2025, where the work and the projects begin
+      const chart = this.host.nativeElement.querySelector('.chart') as HTMLElement | null;
+      const area = chart?.querySelector('.ticks') as HTMLElement | null;
+      if (chart && area && chart.scrollWidth > chart.clientWidth) {
+        const areaLeft = area.getBoundingClientRect().left - chart.getBoundingClientRect().left + chart.scrollLeft;
+        chart.scrollLeft = areaLeft + area.clientWidth * 0.25 - chart.clientWidth * 0.12;
+      }
       const el = this.terminal()?.nativeElement;
       let io: IntersectionObserver | undefined;
       if (el && typeof IntersectionObserver !== 'undefined') {
