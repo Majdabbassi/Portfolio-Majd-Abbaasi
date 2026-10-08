@@ -35,10 +35,10 @@ const SESSION = 'Football U10 · 17:00';
   `,
   styleUrl: './mini.css',
   styles: `
-    .scene { display: grid; grid-template-columns: 1fr 132px; gap: 16px; }
+    .scene { display: grid; grid-template-columns: minmax(0, 1fr) 132px; gap: 16px; }
     .roll { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
     .roll li { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--text-2); padding: 4px 4px 4px 10px; border-radius: 10px; background: var(--cell); }
-    .pill { min-width: 76px; min-height: 36px; border-radius: 9px; border: 1px solid var(--acc-line); background: transparent; color: var(--acc-text); font: 600 12px var(--font); cursor: pointer; transition: background .25s ease, color .25s ease; }
+    .pill { min-width: 76px; min-height: 40px; border-radius: 9px; border: 1px solid var(--acc-line); background: transparent; color: var(--acc-text); font: 600 12px var(--font); cursor: pointer; transition: background .25s ease, color .25s ease; }
     .pill.absent { background: var(--bad); border-color: var(--bad); color: #2a0e0c; }
     :host-context([data-theme='light']) .pill.absent { color: #fff; }
     .note { padding: 7px 8px; border-radius: 10px; background: var(--acc-soft); font-size: 11px; line-height: 1.35; color: var(--text); animation: slidein .45s cubic-bezier(.2, 1.2, .4, 1) both; }
@@ -46,7 +46,8 @@ const SESSION = 'Football U10 · 17:00';
     .note:nth-child(3) { animation-delay: .15s; }
     .note:nth-child(4) { animation-delay: .3s; }
     .idle { font-size: 11px; color: var(--text-4); text-align: center; margin: auto 0; }
-    @media (max-width: 640px) { .scene { grid-template-columns: 1fr 110px; } }
+    @media (max-width: 640px) { .scene { grid-template-columns: minmax(0, 1fr) 110px; gap: 12px; } }
+    @media (max-width: 360px) { .scene { grid-template-columns: minmax(0, 1fr) 92px; gap: 10px; } .pill { min-width: 64px; } }
   `,
 })
 export class SportclubMini {

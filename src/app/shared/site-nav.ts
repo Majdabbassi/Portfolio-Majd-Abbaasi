@@ -8,7 +8,7 @@ import { ThemeService } from './theme';
 @Component({
   selector: 'app-site-nav',
   imports: [RouterLink],
-  host: { '(window:scroll)': 'onScroll()' },
+  host: { '(window:scroll)': 'onScroll()', '(document:keydown.escape)': 'open.set(false)' },
   template: `
     <header class="bar" [class.small]="scrolled()">
       <div class="container inner">
@@ -35,8 +35,20 @@ import { ThemeService } from './theme';
             }
           </button>
           <a [href]="i18n.tr(site.contact.cv)" target="_blank" rel="noopener" class="cv">{{ i18n.t('downloadCv') }}</a>
+          <button type="button" class="burger" [attr.aria-expanded]="open()" aria-controls="mobile-menu" [attr.aria-label]="i18n.t('menu')" (click)="open.set(!open())">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              @if (open()) { <path d="M6 6l12 12M18 6 6 18" /> } @else { <path d="M4 7h16M4 12h16M4 17h16" /> }
+            </svg>
+          </button>
         </div>
       </div>
+      <nav id="mobile-menu" class="menu" [class.open]="open()" [attr.aria-label]="i18n.t('menu')">
+        <a routerLink="/" fragment="shelf" (click)="open.set(false)">{{ i18n.t('projects') }}</a>
+        <a routerLink="/" fragment="lab" (click)="open.set(false)">{{ i18n.t('lab') }}</a>
+        <a routerLink="/" fragment="about" (click)="open.set(false)">{{ i18n.t('about') }}</a>
+        <a routerLink="/" fragment="contact" (click)="open.set(false)">{{ i18n.t('contact') }}</a>
+        <a [href]="i18n.tr(site.contact.cv)" target="_blank" rel="noopener" class="menu-cv">{{ i18n.t('downloadCv') }}</a>
+      </nav>
       <div class="progress" [style.transform]="'scaleX(' + progress() + ')'"></div>
     </header>
   `,
@@ -62,8 +74,18 @@ import { ThemeService } from './theme';
     .cv { display: inline-flex; align-items: center; min-height: 42px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--line-3); color: var(--text); text-decoration: none; font-weight: 600; font-size: 15px; transition: border-color .2s ease, transform .2s ease; }
     .cv:hover { border-color: var(--lamp); color: var(--text); transform: translateY(-1px); }
     .progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--accent); transform-origin: left; }
-    @media (max-width: 900px) { .links { display: none; } }
-    @media (max-width: 480px) { .cv { display: none; } .brand span { display: none; } }
+    .burger { display: none; place-items: center; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line-2); background: transparent; color: var(--text-2); cursor: pointer; }
+    .burger:hover { border-color: var(--lamp); color: var(--text); }
+    .menu { display: none; }
+    @media (max-width: 900px) {
+      .links { display: none; }
+      .burger { display: grid; }
+      .menu.open { display: flex; flex-direction: column; gap: 2px; position: absolute; top: 100%; left: 0; right: 0; padding: 8px 16px 14px; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: 0 18px 40px var(--shadow); }
+      .menu a { padding: 13px 12px; border-radius: 10px; color: var(--text); text-decoration: none; font-size: 17px; font-weight: 600; }
+      .menu a:hover { background: var(--surface); }
+      .menu .menu-cv { display: none; color: var(--lamp-text); }
+    }
+    @media (max-width: 480px) { .cv { display: none; } .menu .menu-cv { display: block; } .brand span { display: none; } }
   `,
 })
 export class SiteNav {
@@ -71,6 +93,7 @@ export class SiteNav {
   themes = inject(ThemeService);
   site = SITE;
   scrolled = signal(false);
+  open = signal(false);
   progress = signal(0);
 
   onScroll() {
