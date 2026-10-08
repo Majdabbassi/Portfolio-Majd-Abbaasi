@@ -71,14 +71,16 @@ export class Analytics {
     const href = el.getAttribute('href') ?? '';
 
     if (el.closest('app-toy-host')) return this.track('toy_play_' + project);
+    if (el.closest('.stage')) return this.track('home_toy_' + el.closest('[data-slug]')?.getAttribute('data-slug'));
     if (el.matches('.cred')) return this.track('copy_login_' + project);
     if (href.endsWith('.pdf')) return this.track('cv_download');
     if (href.startsWith('mailto:')) return this.track('contact_email');
     if (href.includes('linkedin.com')) return this.track('open_linkedin');
     if (href.includes('github.com')) return this.track(project ? 'open_repo_' + project : 'open_github');
+    if (href.includes('wa.me/')) return this.track('contact_whatsapp');
     if (href.endsWith('.apk')) return this.track('apk_download_' + project);
     if (/^https?:/.test(href)) return this.track('open_demo_' + at);
-    if (el.matches('a.card, a.mini')) return this.track('home_card_' + href.split('/').pop());
+    if (el.matches('a.open')) return this.track('home_card_' + href.split('/').pop());
     if (el.matches('a.next')) return this.track('next_project');
     if (el.matches('.theme')) return this.track('theme_switch');
     if (el.matches('.lang')) return this.track('lang_switch');

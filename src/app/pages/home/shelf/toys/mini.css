@@ -1,0 +1,27 @@
+/* Shared by every card toy on the home shelf.
+   The card sets --h; colours come from the global .hue class (styles.css). */
+:host { display: contents; }
+.scene { position: relative; flex: 1; min-height: 0; padding: 16px 18px 0; }
+.paper { background-image: linear-gradient(var(--gridc) 1px, transparent 1px), linear-gradient(90deg, var(--gridc) 1px, transparent 1px); background-size: 26px 26px; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 12px 16px 14px; }
+.play { min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--btn); background: var(--btn); color: var(--btn-ink); font: 600 14px var(--font); cursor: pointer; transition: transform .15s ease, filter .2s ease; }
+.play:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.play:active { transform: scale(.97); }
+.play.ghost { background: transparent; color: var(--acc-text); border-color: var(--acc-line); }
+.play:disabled { cursor: progress; opacity: .8; }
+.readout { font: 400 12px var(--mono); color: var(--text-3); flex: 1; min-width: 150px; line-height: 1.4; }
+.seg { display: flex; border: 1px solid var(--acc-line); border-radius: 12px; overflow: hidden; }
+.seg button { min-height: 42px; padding: 0 12px; border: 0; background: transparent; color: var(--acc-text); font: 600 13px var(--font); cursor: pointer; transition: background .25s ease, color .25s ease; }
+.seg button.on { background: var(--btn); color: var(--btn-ink); }
+.mono { font-family: var(--mono); }
+.phone { position: relative; border-radius: 22px; border: 2px solid var(--line-3); background: var(--surface); padding: 22px 8px 10px; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+.phone::before { content: ""; position: absolute; top: 8px; left: 50%; width: 34px; height: 5px; margin-left: -17px; border-radius: 3px; background: var(--line-3); }
+.phone .app { font: 600 10px var(--mono); color: var(--text-3); text-align: center; }
+
+@keyframes blink { 50% { opacity: .25; } }
+@keyframes ping { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(2.8); opacity: 0; } }
+@keyframes pop { 0% { transform: scale(.85); opacity: 0; } 70% { transform: scale(1.08); opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes drop { from { transform: translateY(-14px) scale(.7); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes slidein { from { transform: translateX(18px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
