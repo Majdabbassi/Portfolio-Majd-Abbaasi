@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Majd Abbassi — CV</title>
+<link rel="stylesheet" href="cv.css">
+</head>
+<body>
+<main class="page">
+  <header class="head">
+    <div class="who">
+      <h1>Majd Abbassi</h1>
+      <p class="title">Ingénieur full-stack orienté backend · Java / Spring Boot · Angular · Docker</p>
+      <p class="contact">
+        <a href="mailto:majdabbassi11@gmail.com">majdabbassi11@gmail.com</a> · +216 28 819 394 · Sousse, Tunisie · <strong>disponible</strong>
+      </p>
+      <p class="contact">
+        <a href="https://majd-abbassi.vercel.app">majd-abbassi.vercel.app</a> · <a href="https://www.linkedin.com/in/majd-abbassi">linkedin.com/in/majd-abbassi</a> · <a href="https://github.com/Majdabbassi">github.com/Majdabbassi</a>
+      </p>
+    </div>
+    <img class="photo" src="../public/assets/majd-portrait.jpg" alt="">
+  </header>
+
+  <p class="summary">
+    Ingénieur full-stack orienté backend. Chez Educanet depuis janvier 2025, où je construis et fais tourner trois produits en production.
+    Je conçois pour les cas qui cassent un logiciel en production — deux clients qui réservent le même créneau, des callbacks de paiement, des pannes — et je livre avec Docker, des tests et du monitoring.
+  </p>
+
+  <section>
+    <h2>Expérience</h2>
+    <div class="job">
+      <div class="row"><h3>Développeur Full-Stack · Educanet, Tunis</h3><span class="when">juil. 2025 – aujourd’hui</span></div>
+      <ul>
+        <li><b>BookPro</b> (bookpro.educanet.pro) — construit et exploité de bout en bout : plateforme de réservation pour professionnels indépendants, web + Android, 4 langues. Spring Boot 3.5 / Java 21, Angular 20, MySQL, Docker sur un VPS avec sauvegardes nocturnes, Prometheus + Grafana. Réservations sûres en concurrence (verrous de ligne), mises à jour en direct via STOMP.</li>
+        <li><b>Massarat+</b> (massarat-plus.com) — ingénieur principal, chiffrement et paiements : marketplace éducative avec paiements Konnect, GPG et D17 plus un wallet prépayé ; documents chiffrés au repos et servis uniquement après achat ; chat parent–enseignant en temps réel. Spring Boot 3.5, Angular 19/20, Expo.</li>
+        <li><b>Medi+</b> — ingénieur principal, backend et back-office : rappels de médicaments avec un moteur à la minute, alarmes plein écran via FCM, synchronisation hors ligne et alerte à la famille après une prise oubliée. Spring Boot 4.1, Angular 20, React Native.</li>
+        <li>Déploiement en production : artefacts WAR sur Apache Tomcat et services Dockerisés sur Linux.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="row"><h3>Stagiaire Développeur Full-Stack · Educanet, Tunis</h3><span class="when">janv. 2025 – juin 2025</span></div>
+      <ul>
+        <li><b>SportClub</b> (démo en ligne) — construit une plateforme de club sportif : console Angular pour l’équipe et les coachs, app React Native pour les parents, une API Spring Boot avec contrôles de propriété sur chaque endpoint, chaque famille ne voit que ses enfants. 20 tests.</li>
+        <li>Passage d’une logique « faire marcher une fonctionnalité » à une logique de fiabilité système.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projets choisis <span class="note">— tous jouables sur majd-abbassi.vercel.app</span></h2>
+    <div class="proj"><div class="row"><h3>Car Rental Manager</h3><span class="tag">démo en ligne</span></div>
+      <p>Flotte, contrats au calendrier, paiements et rapports. Deux réservations simultanées de la même voiture : une seule gagne (SELECT … FOR UPDATE). 27 tests d’intégration. Spring Boot 3.5, Angular 18.</p></div>
+    <div class="proj"><div class="row"><h3>SwiftDeliver</h3><span class="tag">démo en ligne</span></div>
+      <p>Marketplace de livraison : les sociétés enchérissent ou sont assignées, les livreurs envoient leur position, le client suit sa commande en direct via STOMP ; monitoring Grafana. 73 tests. Spring Boot 4.1, Angular 20.</p></div>
+    <div class="proj"><div class="row"><h3>Mall OS</h3><span class="tag">démo en ligne</span></div>
+      <p>Gestion de centre commercial multi-tenant : boutiques tracées sur un plan, baux, facturation mensuelle des loyers, exports CSV. 41 tests. Spring Boot 4.1, Angular 18.</p></div>
+    <div class="proj"><div class="row"><h3>CaféResto</h3><span class="tag">équipe de 3 · architecte backend</span></div>
+      <p>Plateforme restaurant multi-tenant : commande par QR, cuisine et stock en direct via STOMP, import de menu par IA (EasyOCR + LLM), stack Docker de 13 services avec Prometheus, Grafana et Alertmanager. Spring Boot 3.5, PostgreSQL, React, Expo.</p></div>
+    <p class="also">Aussi : Albumy (albums photo d’événements remplis en direct, Redis + worker), FriendMap (partage de position avec confidentialité appliquée côté serveur, NestJS), InsightHub (analyse de CSV avec un LLM local, FastAPI + DuckDB), ReachFlow (automatisation de prospection avec n8n).</p>
+  </section>
+
+  <section class="two">
+    <div>
+      <h2>Compétences</h2>
+      <p><b>Backend :</b> Java 21, Spring Boot, Spring Security, JPA / Hibernate, REST, WebSocket / STOMP, JWT, Quartz, PostgreSQL, MySQL, Redis, Flyway</p>
+      <p><b>Frontend :</b> Angular, TypeScript, React, React Native / Expo</p>
+      <p><b>DevOps :</b> Docker, Docker Compose, Nginx, Linux, Tomcat, GitHub Actions, Prometheus, Grafana, Alertmanager</p>
+      <p><b>Autres :</b> Git, Maven, Python, FastAPI, NestJS, n8n</p>
+    </div>
+    <div>
+      <h2>Formation</h2>
+      <div class="row"><h3>Cycle ingénieur (en cours)</h3><span class="when">2025 – aujourd’hui</span></div>
+      <p class="place">Polytechnique de Sousse, Tunisie</p>
+      <div class="row"><h3>Licence en informatique</h3><span class="when">2022 – 2025</span></div>
+      <p class="place">ISITCOM, Hammam Sousse, Tunisie · Bac+3</p>
+      <h2 class="lang">Langues</h2>
+      <p>Arabe (langue maternelle) · Anglais · Français</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

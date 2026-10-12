@@ -167,7 +167,7 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    slug: 'sportclub', name: 'SportClub', icon: '/assets/icon-chellysport.png', toy: true,
+    slug: 'sportclub', name: 'SportClub', icon: '/assets/icon-sportclub.png', toy: true,
     eyebrow: { en: 'Web + mobile · One API', fr: 'Web + mobile · Une API' },
     cardLine: {
       en: 'Teams, attendance, payments and a parents’ app. One API for two clients, and every family sees only its own children.',
@@ -248,5 +248,7 @@ export const MORE_PROJECTS: Project[] = [
   },
 ];
 
-export const ALL_PROJECTS = [...PROJECTS, ...MORE_PROJECTS];
+/** Order on the shelf and on the project pages ("01 ·", "Next on the shelf"): production first, then live demos, then local tools. */
+const ORDER = ['bookpro', 'massarat', 'mediplus', 'caferesto', 'mall-os', 'swiftdeliver', 'car-rental', 'sportclub', 'albumy', 'friendmap', 'insighthub', 'reachflow'];
+export const ALL_PROJECTS = ORDER.map((slug) => [...PROJECTS, ...MORE_PROJECTS].find((p) => p.slug === slug)!);
 export const findProject = (slug: string | null) => ALL_PROJECTS.find((p) => p.slug === slug);

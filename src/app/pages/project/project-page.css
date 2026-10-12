@@ -16,8 +16,17 @@ h1 img { width: clamp(40px, 5vw, 56px); height: auto; border-radius: 12px; backg
 .subtitle { margin: 0; font-size: 18px; color: var(--soft-text); font-weight: 600; }
 .intro { margin: 0; font-size: 19px; line-height: 1.6; color: var(--text-2); max-width: 540px; }
 
-.no-toy ul { margin: 0; padding-left: 18px; color: var(--text-2); font-size: 15px; line-height: 1.6; display: flex; flex-direction: column; gap: 8px; }
-.no-toy .panel-head img { border-radius: 8px; }
+/* projects without a full toy show the small one from the home shelf */
+.mini-panel { border-color: var(--acc-line); }
+.mini-panel .panel-head img { border-radius: 8px; }
+.mini-stage { position: relative; height: 290px; display: flex; flex-direction: column; background: var(--stage); overflow: hidden; }
+@media (max-width: 640px) { .mini-stage { height: 310px; } }
+
+/* in short: problem, role, result */
+.tldr { margin: 0 0 24px; padding: 20px 22px; border-radius: var(--radius); border: 1px solid var(--chip-line); background: var(--surface); display: flex; flex-direction: column; gap: 12px; }
+.tldr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 18px; }
+.tldr-grid strong { display: block; font-size: 14px; color: var(--soft-text); margin-bottom: 4px; }
+.tldr-grid p { margin: 0; color: var(--text-2); font-size: 15px; line-height: 1.55; }
 
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 1px; background: var(--line-2); border: 1px solid var(--line-2); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
 .facts > div { background: var(--surface); padding: 20px 22px; display: flex; flex-direction: column; gap: 6px; }

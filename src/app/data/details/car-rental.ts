@@ -22,7 +22,7 @@ export const CAR_RENTAL: { en: ProjectDetail; fr: ProjectDetail } = {
     metrics: {
       team: 'Solo',
       duration: 'Audited, rebuilt and shipped in 2026',
-      scale: '22 integration tests · live demo',
+      scale: '27 integration tests · live demo',
       keyOutcomes: [
         'Closed an API that was fully open (permitAll, no admin account) with deny-by-default and per-section access rights',
         'Double-booking protection proven by a test that fires 8 simultaneous requests: exactly one wins',
@@ -90,7 +90,7 @@ export const CAR_RENTAL: { en: ProjectDetail; fr: ProjectDetail } = {
       environment: 'Free tiers: Vercel (web, proxying /api), Render (API), TiDB Cloud (MySQL)',
       details: [
         'docker compose up starts MySQL, the API and the web app locally',
-        'CI runs the 22 backend tests, builds the front end and validates the compose file',
+        'CI runs the 27 backend tests, builds the front end and validates the compose file',
         'vercel.json forwards /api to the API, so the browser talks to one origin and no CORS setup is needed',
       ],
     },
@@ -108,7 +108,7 @@ export const CAR_RENTAL: { en: ProjectDetail; fr: ProjectDetail } = {
     ],
     impact: {
       improvements: [
-        'From an open API to deny-by-default with 12 access tests and 10 booking-feature tests',
+        'From an open API to deny-by-default, with 27 tests on access rules, bookings, payments and reports',
         'Contracts and invoices a client can sign, price rules an admin can change, alerts nobody has to remember',
       ],
       learnings: [
@@ -146,7 +146,7 @@ export const CAR_RENTAL: { en: ProjectDetail; fr: ProjectDetail } = {
     metrics: {
       team: 'En solo',
       duration: 'Audité, refondu et livré en 2026',
-      scale: '22 tests d’intégration · démo en ligne',
+      scale: '27 tests d’intégration · démo en ligne',
       keyOutcomes: [
         'API entièrement ouverte (permitAll, aucun compte admin) remplacée par un refus par défaut et des droits par section',
         'Protection contre la double réservation prouvée par un test de 8 requêtes simultanées : une seule passe',
@@ -214,7 +214,7 @@ export const CAR_RENTAL: { en: ProjectDetail; fr: ProjectDetail } = {
       environment: 'Offres gratuites : Vercel (web, proxy de /api), Render (API), TiDB Cloud (MySQL)',
       details: [
         'docker compose up lance MySQL, l’API et le web en local',
-        'La CI exécute les 22 tests backend, compile le front et valide le fichier compose',
+        'La CI exécute les 27 tests backend, compile le front et valide le fichier compose',
         'vercel.json redirige /api vers l’API : le navigateur ne parle qu’à une origine, aucun réglage CORS',
       ],
     },
@@ -232,7 +232,7 @@ export const CAR_RENTAL: { en: ProjectDetail; fr: ProjectDetail } = {
     ],
     impact: {
       improvements: [
-        'D’une API ouverte à un refus par défaut avec 12 tests d’accès et 10 tests de fonctionnalités de réservation',
+        'D’une API ouverte à un refus par défaut, avec 27 tests sur les accès, les réservations, les paiements et les rapports',
         'Des contrats et factures signables, des règles de prix modifiables par un admin, des alertes que personne n’a à retenir',
       ],
       learnings: [

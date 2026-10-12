@@ -91,7 +91,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
       details: [
         'docker compose up seeds a demo mall with a traced floor plan, 11 stores on two floors and three months of invoices',
         'The demo floor image ships in the jar and is restored on start, because the free host loses its disk',
-        'CI runs the 38 tests and builds the web app',
+        'CI runs the 41 tests and builds the web app',
       ],
     },
     challenges: [
@@ -109,7 +109,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
     impact: {
       improvements: [
         'From a stack that could not start to a deployed product with finance, analytics and history',
-        '38 tests covering the permission matrix, billing arithmetic and the audit rules',
+        '41 tests covering the permission matrix, billing arithmetic and the audit rules',
       ],
       learnings: [
         'Good authorization is the start: the work is making the product usable around it',
@@ -146,7 +146,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
     metrics: {
       team: 'En solo',
       duration: 'Audité, complété et livré en 2026',
-      scale: '38 tests d’intégration · démo en ligne',
+      scale: '41 tests d’intégration · démo en ligne',
       keyOutcomes: [
         'Isolation stricte entre centres et entre rôles (admin, manager, assistants à permissions fines)',
         'Factures de loyer mensuelles avec prorata, échéances, pénalités et rapport des impayés',
@@ -215,7 +215,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
       details: [
         'docker compose up crée un centre de démo avec un plan tracé, 11 magasins sur deux étages et trois mois de factures',
         'L’image du plan de démo est dans le jar et restaurée au démarrage, car l’hébergeur gratuit perd son disque',
-        'La CI exécute les 38 tests et compile le web',
+        'La CI exécute les 41 tests et compile le web',
       ],
     },
     challenges: [
@@ -233,7 +233,7 @@ export const MALLOS: { en: ProjectDetail; fr: ProjectDetail } = {
     impact: {
       improvements: [
         'D’une pile qui ne démarrait pas à un produit déployé avec finance, analyses et historique',
-        '38 tests couvrant la matrice de permissions, le calcul de facturation et les règles d’audit',
+        '41 tests couvrant la matrice de permissions, le calcul de facturation et les règles d’audit',
       ],
       learnings: [
         'Une bonne autorisation n’est que le début : le travail est de rendre le produit utilisable autour',

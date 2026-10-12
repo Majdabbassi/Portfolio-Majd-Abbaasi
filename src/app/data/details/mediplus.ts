@@ -3,32 +3,30 @@ import { ProjectDetail } from '../project-detail';
 export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
   en: {
     id: 'mediplus',
-    title: 'MediPlus (Dhakerni) — Medication Reminder Platform',
+    title: 'Medi+ (Dhakerni) — Medication Reminder Platform',
     summary:
-      'Medication-reminder platform (Dhakerni): role-based Angular backoffice over a Spring Boot backend, plus React Native (Expo) apps for patients, doctors and helpers — with reminders, adherence tracking, vocal messages, offline sync and push.',
+      'A medication-reminder platform in production: every dose wakes the patient’s phone with a full-screen alarm, even offline, and if it is not confirmed within 30 minutes the family is alerted. One Spring Boot API, an Angular back-office and the Dhakerni mobile app for patients, guardians and doctors.',
     status: 'production',
     role: 'Full Stack Engineer',
-    roleContext: 'Full Stack Engineer (Backend & Web Backoffice)',
+    roleContext: 'Primary engineer: backend and web back-office',
     techStack: [
-      'Java 21',
-      'Spring Boot',
+      'Spring Boot 4.1 · Java 21',
       'Angular 20',
-      'React Native (Expo)',
-      'MySQL',
-      'JWT',
+      'React Native 0.71 · Expo 48',
+      'Quartz',
       'Firebase FCM',
+      'MySQL',
     ],
     metrics: {
-      team: 'Full Stack Engineer (primary)',
-      duration: 'Multi-phase delivery across backend, web backoffice and mobile',
-      scale: 'Three interconnected products: Spring Boot API, Angular backoffice, and React Native apps for patient, doctor and tuteur roles',
+      team: 'Primary full-stack engineer across the three products',
+      duration: 'At Educanet, 2025 → today',
+      scale: 'One API, an Angular back-office with seven statistics dashboards, and a mobile app for patients, guardians and doctors · 4 languages',
       keyOutcomes: [
-        'Role-based access control across SUPER_ADMIN, ADMIN and AGENT_SUPPORT tiers',
-        'Quartz-scheduled reminder engine with acknowledgment and adherence tracking',
-        'Vocal reminder messages delivered alongside FCM push, SMS and email notifications',
-        'Offline-first mobile sync: local cache, background tasks and exact-alarm scheduling',
-        'JWT authentication with token refresh and automated token attachment',
-        'Doctor verification, medicine catalog, subscriptions/payments and PDF reports',
+        'A per-minute reminder engine that fires each dose once, with snooze and a missed-dose alert to guardians after 30 minutes',
+        'Full-screen alarm over the lock screen through a native Android module, driven by high-priority FCM data messages',
+        'Offline-first app: changes queued on the phone and replayed through a sync endpoint',
+        'Adherence statistics and downloadable PDF reports for patients and doctors',
+        'Back-office for doctor verification, the medicine catalogue, plans and subscriptions, and support tickets',
       ],
     },
     context: {
@@ -38,19 +36,19 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
         'Multiple operator tiers (SUPER_ADMIN, ADMIN, AGENT_SUPPORT) with distinct permissions',
         'Secure JWT-based authentication with token refresh for long backoffice sessions',
         'Role-aware mobile usage for patients, clinicians (DOCTOR) and helpers (TUTEUR)',
-        'Reminders must fire reliably: exact alarms, background sync, push, SMS, email and vocal messages',
+        'Reminders must fire reliably, on time, even when the phone is locked or offline',
         'Operational oversight through analytics and exportable KPI reports',
       ],
       goals: [
         'Schedule and reschedule medication reminders with acknowledgment and adherence tracking',
-        'Deliver reminders through push (FCM), SMS, email and recorded vocal messages',
+        'Deliver each dose as a full-screen alarm (FCM push), with an optional recorded voice message',
         'Keep mobile clients synchronized with the backend through local caching and background reconciliation',
         'Implement role-based access control across all admin tiers with protected routes',
         'Secure a full JWT lifecycle with refresh tokens and an auto-attach interceptor',
       ],
     },
     architecture: {
-      diagramPlaceholder: 'MediPlus Platform Architecture',
+      diagramPlaceholder: 'Medi+ Platform Architecture',
       bullets: [
         'Spring Boot backend (Java 21) with Spring Security, Spring Data JPA and JWT',
         'Quartz-based reminder engine with acknowledgment and adherence tracking',
@@ -59,13 +57,13 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
         'React Native (Expo) apps for PATIENT, DOCTOR and TUTEUR with exact-alarm scheduling and FCM push',
         'Offline-first sync via local caching, background tasks and device registration',
         'Analytics/KPI dashboards with ngx-charts and chart.js and xlsx exports',
-        'Subscriptions and payments with email/SMS notifications and iText PDF reports',
+        'Plans and subscriptions managed in the back-office; password reset codes by SMS or e-mail; iText PDF reports',
       ],
       highlights: [
         {
           title: 'Reminder & Adherence Engine',
           description:
-            'Quartz-scheduled medication reminders with acknowledgment tracking, adherence metrics and multi-channel delivery (push, SMS, email, vocal).',
+            'Each minute, due doses are sent once as a high-priority push that opens a full-screen alarm; snooze schedules a one-off Quartz job, and a dose left unconfirmed for 30 minutes alerts every linked guardian.',
         },
         {
           title: 'Role-Based Access Control',
@@ -119,11 +117,11 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
     deployment: {
       isDeployed: true,
       apkUrl: '#apk-placeholder',
-      flow: 'Spring Boot (Java 21) → HTTPS API → Swagger UI → MySQL + Firebase FCM',
+      flow: 'Maven build → WAR → Tomcat 10.1 → MySQL + Firebase FCM',
       environment:
-        'Spring Boot WAR on HTTPS (medclock.educanet.pro) with MySQL as the primary store, Firebase Cloud Messaging for push, and a publicly served OpenAPI/Swagger surface',
+        'Spring Boot WAR on Tomcat over HTTPS, MySQL as the primary store and Firebase Cloud Messaging for push',
       details: [
-        'Backend live — REST API responds 401 without credentials while Swagger UI and OpenAPI docs are served publicly',
+        'Backend live in production behind HTTPS',
         'React Native app configured with production EAS builds (Android APK) targeting the same deployed API',
         'Firebase Cloud Messaging wired end-to-end with device registration and push handling',
         'JWT keys and Firebase service credentials managed through environment configuration rather than source code',
@@ -152,7 +150,7 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
     impact: {
       improvements: [
         'A complete medication-adherence loop: scheduling, delivery, acknowledgment and adherence analytics',
-        'Multi-channel delivery (push, SMS, email, vocal messages) improving the reach of reminders',
+        'Families are told automatically when a dose is missed, instead of finding out later',
         'Clear role separation enabling internal teams and role-specific mobile surfaces',
         'Analytics and exports turning operational data into reviewable reports',
       ],
@@ -165,32 +163,30 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
   },
   fr: {
     id: 'mediplus',
-    title: 'MediPlus (Dhakerni) — Plateforme de Rappels de Médicaments',
+    title: 'Medi+ (Dhakerni) — Plateforme de rappels de médicaments',
     summary:
-      'Plateforme de rappels de médicaments (Dhakerni) : backoffice Angular basé sur les rôles sur backend Spring Boot, plus des apps React Native (Expo) pour patients, médecins et tuteurs — avec rappels, suivi d’adhérence, messages vocaux, synchronisation hors ligne et push.',
+      'Une plateforme de rappels de médicaments en production : chaque prise réveille le téléphone du patient avec une alarme plein écran, même hors ligne, et si elle n’est pas confirmée en 30 minutes, la famille est prévenue. Une API Spring Boot, un back-office Angular et l’app mobile Dhakerni pour patients, tuteurs et médecins.',
     status: 'production',
     role: 'Ingénieur Full Stack',
-    roleContext: 'Ingénieur Full Stack (Backend & Backoffice Web)',
+    roleContext: 'Ingénieur principal : backend et back-office web',
     techStack: [
-      'Java 21',
-      'Spring Boot',
+      'Spring Boot 4.1 · Java 21',
       'Angular 20',
-      'React Native (Expo)',
-      'MySQL',
-      'JWT',
+      'React Native 0.71 · Expo 48',
+      'Quartz',
       'Firebase FCM',
+      'MySQL',
     ],
     metrics: {
-      team: 'Ingénieur Full Stack (principal)',
-      duration: 'Livraison multi-phases : backend, backoffice web et mobile',
-      scale: 'Trois produits interconnectés : API Spring Boot, backoffice Angular et apps React Native pour les rôles patient, médecin et tuteur',
+      team: 'Ingénieur full-stack principal sur les trois produits',
+      duration: 'Chez Educanet, 2025 → aujourd’hui',
+      scale: 'Une API, un back-office Angular avec sept tableaux de bord statistiques et une app mobile pour patients, tuteurs et médecins · 4 langues',
       keyOutcomes: [
-        'Contrôle d’accès basé sur les rôles SUPER_ADMIN, ADMIN et AGENT_SUPPORT',
-        'Moteur de rappels planifié avec Quartz, accusé de réception et suivi d’adhérence',
-        'Messages vocaux de rappel livrés avec notifications push FCM, SMS et e-mail',
-        'Synchronisation mobile hors ligne : cache local, tâches en arrière-plan et alarmes exactes',
-        'Authentification JWT avec renouvellement du token et rattachement automatique',
-        'Vérification des médecins, catalogue de médicaments, abonnements/paiements et rapports PDF',
+        'Un moteur de rappels à la minute qui déclenche chaque prise une seule fois, avec report et alerte aux tuteurs après 30 minutes sans confirmation',
+        'Alarme plein écran par-dessus l’écran verrouillé via un module Android natif, déclenchée par des messages FCM prioritaires',
+        'App hors ligne d’abord : les changements sont mis en file sur le téléphone et rejoués via un endpoint de synchronisation',
+        'Statistiques d’observance et rapports PDF téléchargeables pour patients et médecins',
+        'Back-office : vérification des médecins, catalogue de médicaments, offres et abonnements, tickets de support',
       ],
     },
     context: {
@@ -200,19 +196,19 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
         'Plusieurs niveaux d’opérateurs (SUPER_ADMIN, ADMIN, AGENT_SUPPORT) avec des permissions distinctes',
         'Authentification sécurisée JWT avec renouvellement du token pour les longues sessions du backoffice',
         'Usage mobile par rôles : patients, cliniciens (DOCTOR) et proches aidants (TUTEUR)',
-        'Les rappels doivent se déclencher de manière fiable : alarmes exactes, synchronisation en arrière-plan, push, SMS, e-mail et messages vocaux',
+        'Les rappels doivent sonner à l’heure, de façon fiable, même téléphone verrouillé ou hors ligne',
         'Supervision opérationnelle via des statistiques et des rapports KPI exportables',
       ],
       goals: [
         'Planifier et replanifier les rappels de médicaments avec accusé de réception et suivi d’adhérence',
-        'Délivrer les rappels par push (FCM), SMS, e-mail et messages vocaux enregistrés',
+        'Délivrer chaque prise en alarme plein écran (push FCM), avec un message vocal enregistré en option',
         'Synchroniser les clients mobiles avec le backend grâce au cache local et à la réconciliation en arrière-plan',
         'Implémenter le contrôle d’accès basé sur les rôles à tous les niveaux avec des routes protégées',
         'Sécuriser le cycle de vie complet du JWT avec tokens de rafraîchissement et interceptor auto-attaché',
       ],
     },
     architecture: {
-      diagramPlaceholder: 'Architecture de la Plateforme MediPlus',
+      diagramPlaceholder: 'Architecture de la plateforme Medi+',
       bullets: [
         'Backend Spring Boot (Java 21) avec Spring Security, Spring Data JPA et JWT',
         'Moteur de rappels planifié avec Quartz, accusé de réception et suivi d’adhérence',
@@ -221,13 +217,13 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
         'Apps React Native (Expo) pour PATIENT, DOCTOR et TUTEUR avec alarmes exactes et push FCM',
         'Synchronisation hors ligne : cache local, tâches en arrière-plan et enregistrement des appareils',
         'Tableaux de bord analytiques/KPI avec ngx-charts, chart.js et exports xlsx',
-        'Abonnements et paiements avec notifications e-mail/SMS et rapports PDF iText',
+        'Offres et abonnements gérés dans le back-office ; codes de réinitialisation par SMS ou e-mail ; rapports PDF iText',
       ],
       highlights: [
         {
           title: 'Moteur de Rappels & d’Adhérence',
           description:
-            'Rappels de médicaments planifiés avec Quartz, suivi des accusés de réception, métriques d’adhérence et livraison multi-canaux (push, SMS, e-mail, vocal).',
+            'Chaque minute, les prises dues partent une seule fois en push prioritaire qui ouvre une alarme plein écran ; le report programme un job Quartz ponctuel, et une prise non confirmée en 30 minutes alerte chaque tuteur lié.',
         },
         {
           title: 'Contrôle d’Accès Basé sur les Rôles',
@@ -281,11 +277,11 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
     deployment: {
       isDeployed: true,
       apkUrl: '#apk-placeholder',
-      flow: 'Spring Boot (Java 21) → API HTTPS → Swagger UI → MySQL + Firebase FCM',
+      flow: 'Build Maven → WAR → Tomcat 10.1 → MySQL + Firebase FCM',
       environment:
-        'WAR Spring Boot sur HTTPS (medclock.educanet.pro) avec MySQL comme stockage principal, Firebase Cloud Messaging pour le push et une surface OpenAPI/Swagger accessible publiquement',
+        'WAR Spring Boot sur Tomcat en HTTPS, MySQL comme stockage principal et Firebase Cloud Messaging pour le push',
       details: [
-        'Backend en ligne — l’API REST répond 401 sans identifiants alors que Swagger UI et les docs OpenAPI sont publics',
+        'Backend en production derrière HTTPS',
         'App React Native configurée avec des builds de production EAS (APK Android) ciblant la même API déployée',
         'Firebase Cloud Messaging connecté de bout en bout : enregistrement des appareils et gestion du push',
         'Clés JWT et identifiants Firebase gérés via la configuration d’environnement plutôt que le code source',
@@ -314,7 +310,7 @@ export const MEDIPLUS: { en: ProjectDetail; fr: ProjectDetail } = {
     impact: {
       improvements: [
         'Un cycle complet d’adhérence médicamenteuse : planification, livraison, accusé de réception et analyses d’adhérence',
-        'Livraison multi-canaux (push, SMS, e-mail, messages vocaux) améliorant la portée des rappels',
+        'Les familles sont prévenues automatiquement d’une prise oubliée, au lieu de l’apprendre plus tard',
         'Séparation claire des rôles pour les équipes internes et des surfaces mobiles dédiées',
         'Statistiques et exports transformant les données opérationnelles en rapports exploitables',
       ],

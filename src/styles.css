@@ -209,3 +209,6 @@ button { font-family: var(--font); }
 .status-badge i { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); }
 .status-badge.flagship { border-color: var(--lamp); color: var(--lamp-text); }
 .status-badge.flagship i { background: var(--lamp); }
+
+/* Visually hidden, still read by screen readers */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

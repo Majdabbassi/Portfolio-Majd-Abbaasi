@@ -15,15 +15,18 @@ export const SITE = {
   handle: 'majd.abbassi',
   photo: '/assets/majdface.png',          // nav avatar + mini-Majd
   portrait: '/assets/majd-portrait.jpg',  // the real photo in "About"
-  status: { en: 'Open to opportunities', fr: 'Ouvert aux opportunités' } as L,
+  status: { en: 'Available for new roles', fr: 'Disponible pour de nouveaux postes' } as L,
 
   hero: {
-    role: { en: 'Majd Abbassi · full-stack engineer · Sousse', fr: 'Majd Abbassi · ingénieur full-stack · Sousse' } as L,
+    // who + what + where + availability, in one line a recruiter can scan
+    role: { en: 'Majd Abbassi · backend-leaning full-stack engineer · Sousse, Tunisia', fr: 'Majd Abbassi · ingénieur full-stack orienté backend · Sousse, Tunisie' } as L,
     // "I build the software behind" + the phrase of each project (projects.data.ts → phrase)
     titleStart: { en: 'I build the software behind', fr: 'Je construis le logiciel derrière' } as L,
+    // what screen readers hear instead of the rotating phrase
+    titleSr: { en: 'I build the software behind real businesses: a shopping mall, a café, a sports club, a car rental, a delivery fleet, a hair salon and more.', fr: 'Je construis le logiciel de vraies entreprises : un centre commercial, un café, un club de sport, une agence de location, une flotte de livreurs, un salon de coiffure et plus.' } as L,
     text: {
-      en: 'Spring Boot and Angular, shipped with Docker and watched after release. Twelve projects, and each one has a tiny playable version on this page — no login, no waiting for a free server to wake up.',
-      fr: 'Spring Boot et Angular, livrés avec Docker et surveillés après la mise en ligne. Douze projets, et chacun a une petite version jouable sur cette page — sans compte, sans attendre qu’un serveur gratuit se réveille.',
+      en: 'Spring Boot and Angular, shipped with Docker and watched after release. At Educanet since January 2025, building three products that are live in production. Every project below has a tiny playable version — no login, no waiting for a free server to wake up.',
+      fr: 'Spring Boot et Angular, livrés avec Docker et surveillés après la mise en ligne. Chez Educanet depuis janvier 2025, où je construis trois produits en production. Chaque projet ci-dessous a une petite version jouable — sans compte, sans attendre qu’un serveur gratuit se réveille.',
     } as L,
     play: { en: 'Play with the projects', fr: 'Jouer avec les projets' } as L,
     talk: { en: 'Get in touch', fr: 'Me contacter' } as L,
@@ -43,13 +46,13 @@ export const SITE = {
     eyebrow: { en: 'The shelf', fr: 'L’étagère' } as L,
     title: { en: 'Twelve projects. Each one is a toy.', fr: 'Douze projets. Chacun est un jouet.' } as L,
     text: {
-      en: 'Every card plays the one mechanic that project is really about. Press its button — then open it to read how it was built.',
-      fr: 'Chaque carte rejoue le mécanisme central du projet. Appuyez sur son bouton — puis ouvrez-la pour découvrir comment il a été construit.',
+      en: 'The first three run in production at Educanet. Every card plays the one mechanic that project is really about — press its button, then open it to read how it was built.',
+      fr: 'Les trois premiers tournent en production chez Educanet. Chaque carte rejoue le mécanisme central du projet — appuyez sur son bouton, puis ouvrez-la pour découvrir comment il a été construit.',
     } as L,
     caseStudy: { en: 'Case study →', fr: 'Étude de cas →' } as L,
     badges: {
       live: { en: 'Live demo', fr: 'Démo en ligne' },
-      prod: { en: 'In production', fr: 'En production' },
+      prod: { en: 'In production · Educanet', fr: 'En production · Educanet' },
       local: { en: 'Runs locally', fr: 'Tourne en local' },
       fav: { en: 'My favourite', fr: 'Mon préféré' },
     } as Record<'live' | 'prod' | 'local' | 'fav', L>,
@@ -95,19 +98,19 @@ export const SITE = {
       { icon: 'pin', text: { en: 'Sousse, Tunisia', fr: 'Sousse, Tunisie' } },
       { icon: 'work', text: { en: 'Full-stack developer · Educanet', fr: 'Développeur full-stack · Educanet' } },
       { icon: 'study', text: { en: 'Engineering student · Polytechnique de Sousse', fr: 'Élève ingénieur · Polytechnique de Sousse' } },
-      { icon: 'lang', text: { en: 'English · French', fr: 'Anglais · Français' } },
+      { icon: 'lang', text: { en: 'Arabic (native) · English · French', fr: 'Arabe (langue maternelle) · Anglais · Français' } },
     ] as { icon: 'pin' | 'work' | 'study' | 'lang'; text: L }[],
     title: { en: 'Not just screens.', fr: 'Pas juste des écrans.' } as L,
     titleAccent: { en: 'Systems that keep running', fr: 'Des systèmes qui tournent encore' } as L,
     titleEnd: { en: 'when the demo ends.', fr: 'quand la démo s’arrête.' } as L,
     paragraphs: [
       {
-        en: 'I’m a systems-oriented engineer focused on building reliable, production-grade software. My work combines backend architecture, DevOps automation, and observability to create systems that scale and remain maintainable over time.',
-        fr: 'Je suis un ingénieur orienté systèmes, focalisé sur des logiciels fiables et prêts pour la production. Mon travail combine architecture backend, automatisation DevOps et observabilité pour créer des systèmes scalables et maintenables dans le temps.',
+        en: 'I’m a full-stack engineer who leans backend. Since January 2025 I’ve been building products at Educanet that people use every day — a booking platform, an education marketplace and a medication-reminder service — and I deploy and run them myself.',
+        fr: 'Je suis un ingénieur full-stack orienté backend. Depuis janvier 2025, je construis chez Educanet des produits utilisés au quotidien — une plateforme de réservation, une marketplace éducative et un service de rappels de médicaments — et je les déploie et les fais tourner moi-même.',
       },
       {
-        en: 'Deployment is just the beginning. I constantly analyze bottlenecks, refine pipelines, and iterate based on real-world metrics. I’m driven by building things that outlive trends — systems designed to endure change.',
-        fr: 'Le déploiement n’est que le début. J’analyse les goulots d’étranglement, j’améliore les pipelines et j’itère selon les métriques réelles. Je construis des systèmes qui résistent au changement.',
+        en: 'What I care about is what happens after the demo: two people booking the last slot at the same time, a payment callback that must be verified, a server that falls over at night. I design for those cases, write tests that attack them, and put monitoring in place so I hear about problems before users do.',
+        fr: 'Ce qui m’intéresse, c’est ce qui se passe après la démo : deux personnes qui réservent le dernier créneau en même temps, un callback de paiement à vérifier, un serveur qui tombe la nuit. Je conçois pour ces cas, j’écris des tests qui les attaquent et je mets en place le monitoring pour être prévenu avant les utilisateurs.',
       },
     ] as L[],
     today: {
@@ -138,14 +141,14 @@ export const SITE = {
           { text: 'full-stack developer · ', dim: 'Educanet, since Jan 2025' },
           { text: 'engineering student · ', dim: 'Polytechnique de Sousse' },
           { text: 'licence in CS       · ', dim: 'ISITCOM, 2022–2025' },
-          { text: 'speaks              · ', dim: 'English · French' },
+          { text: 'speaks              · ', dim: 'Arabic (native) · English · French' },
           { mark: '→', text: 'open to backend, full-stack and systems roles' },
         ],
         fr: [
           { text: 'développeur full-stack · ', dim: 'Educanet, depuis janv. 2025' },
           { text: 'élève ingénieur        · ', dim: 'Polytechnique de Sousse' },
           { text: 'licence informatique   · ', dim: 'ISITCOM, 2022–2025' },
-          { text: 'langues                · ', dim: 'anglais · français' },
+          { text: 'langues                · ', dim: 'arabe (maternelle) · anglais · français' },
           { mark: '→', text: 'ouvert aux postes backend, full-stack et systèmes' },
         ],
       },
@@ -158,14 +161,14 @@ export const SITE = {
           { mark: '✓', text: 'frontend     angular · typescript' },
           { mark: '✓', text: 'realtime     websocket · stomp · redis' },
           { mark: '✓', text: 'ops          docker · nginx · grafana' },
-          { mark: '✓', text: 'projects     12 shipped · 12 playable' },
+          { mark: '✓', text: 'projects     12 built · 6 live · 3 in production' },
         ],
         fr: [
           { mark: '✓', text: 'backend      spring-boot · java 21' },
           { mark: '✓', text: 'frontend     angular · typescript' },
           { mark: '✓', text: 'temps réel   websocket · stomp · redis' },
           { mark: '✓', text: 'ops          docker · nginx · grafana' },
-          { mark: '✓', text: 'projets      12 livrés · 12 jouables' },
+          { mark: '✓', text: 'projets      12 construits · 6 en ligne · 3 en production' },
         ],
       },
     },
@@ -208,10 +211,13 @@ export const SITE = {
       when: { en: 'Jan 2025 — Present', fr: 'janv. 2025 — Aujourd’hui' } as L,
       title: { en: 'Educanet', fr: 'Educanet' } as L,
       place: { en: 'Tunis, Tunisia', fr: 'Tunis, Tunisie' } as L,
+      // the products built there, linked from the card
+      built: ['bookpro', 'massarat', 'mediplus', 'sportclub'],
+      builtLabel: { en: 'Built here', fr: 'Construits ici' } as L,
     },
     // the projects lane: one cell per project, in this order (left to right)
     // Two rows. x = left edge in % of the project lane, w = width in %, row = 0 (top) or 1 (bottom).
-    // Placed for looks, not to scale; the dates are only written on the cards.
+    // Placed for looks, not to scale. The dates are kept here but not shown: tightly packed recent dates read as rushed to a recruiter.
     personal: [
       { slug: 'swiftdeliver', x: 0, w: 17, row: 0, dates: { en: 'Jun → Jul 2025', fr: 'juin → juil. 2025' } },
       { slug: 'car-rental', x: 9.5, w: 17, row: 1, dates: { en: 'Aug → Oct 2025', fr: 'août → oct. 2025' } },
@@ -231,8 +237,8 @@ export const SITE = {
       title: { en: 'Full-Stack Developer', fr: 'Développeur Full-Stack' },
       place: { en: 'Educanet · Tunis, Tunisia', fr: 'Educanet · Tunis, Tunisie' },
       points: [
-        { en: 'Contributed to architectural decisions on production systems serving active clients.', fr: 'Contribution aux décisions d’architecture sur des systèmes de production utilisés par des clients actifs.' },
-        { en: 'Worked in a security-conscious, performance-oriented engineering environment.', fr: 'Travail dans un environnement d’ingénierie sécurisé et orienté performance.' },
+        { en: 'Built and run BookPro end to end: a booking platform for independent professionals (web + Android, 4 languages), Spring Boot 3.5 and Angular 20, deployed with Docker on a VPS with nightly backups and Prometheus + Grafana.', fr: 'Construit et exploite BookPro de bout en bout : une plateforme de réservation pour professionnels indépendants (web + Android, 4 langues), Spring Boot 3.5 et Angular 20, déployée avec Docker sur un VPS avec sauvegardes nocturnes et Prometheus + Grafana.' },
+        { en: 'Primary engineer on Massarat+ (education marketplace: card, D17 and wallet payments, encrypted documents, live chat) and Medi+ (medication reminders with full-screen alarms and guardian alerts).', fr: 'Ingénieur principal sur Massarat+ (marketplace éducative : paiements carte, D17 et wallet, documents chiffrés, chat en direct) et Medi+ (rappels de médicaments avec alarmes plein écran et alertes aux proches).' },
         { en: 'Production deployment via WAR artifact on Apache Tomcat infrastructure.', fr: 'Déploiement en production via un artefact WAR sur Apache Tomcat.' },
       ],
     },
@@ -241,7 +247,7 @@ export const SITE = {
       title: { en: 'Full-Stack Developer Intern', fr: 'Stagiaire Développeur Full-Stack' },
       place: { en: 'Educanet · Tunis, Tunisia', fr: 'Educanet · Tunis, Tunisie' },
       points: [
-        { en: 'Worked on a live production system used by real clients from day one.', fr: 'Travail sur un système de production utilisé par de vrais clients dès le premier jour.' },
+        { en: 'Built SportClub: a sports-club platform with an Angular console for staff and coaches and a React Native app for parents, all on one Spring Boot API.', fr: 'Construit SportClub : une plateforme de club sportif avec une console Angular pour l’équipe et les coachs et une app React Native pour les parents, sur une seule API Spring Boot.' },
         { en: 'Shifted from feature delivery to reliability-focused system thinking.', fr: 'Passage d’une logique « faire marcher une fonctionnalité » à une logique de fiabilité système.' },
       ],
     },
@@ -329,7 +335,7 @@ export const SITE = {
     linkedinText: { en: 'Experience, education and what I’m working on.', fr: 'Expérience, études et ce sur quoi je travaille.' } as L,
     githubText: { en: 'The code behind every project, with READMEs on the decisions.', fr: 'Le code de chaque projet, avec des README sur les décisions.' } as L,
     cvText: { en: 'One page.', fr: 'Une page.' } as L,
-    footer: { en: 'Production Systems Engineer · Built with Angular.', fr: 'Ingénieur systèmes de production · Construit avec Angular.' } as L,
+    footer: { en: 'Backend-leaning full-stack engineer · Built with Angular.', fr: 'Ingénieur full-stack orienté backend · Construit avec Angular.' } as L,
     stats: { en: 'Anonymous visit stats by Microsoft Clarity.', fr: 'Statistiques de visite anonymes par Microsoft Clarity.' } as L,
     email: 'majdabbassi11@gmail.com',
     // WhatsApp number, written however you like (the link keeps only the digits). Empty = the WhatsApp card is hidden.

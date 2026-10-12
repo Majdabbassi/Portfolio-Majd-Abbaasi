@@ -1,4 +1,4 @@
-import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
+import { Component, DestroyRef, ElementRef, computed, effect, inject, signal, viewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { I18n, L } from '../i18n/i18n';
@@ -11,8 +11,10 @@ type Mode = 'idle' | 'say' | 'menu' | 'ask' | 'tour';
 interface Step { sel: string; text: L }
 
 const HIDE_KEY = 'mini_majd_hidden';
-const W = 76;   // mascot box size, keep in sync with CSS
-const H = 128;
+// mascot box size, keep in sync with CSS (phones use the small figure)
+const SIZE = { desk: { w: 76, h: 128 }, phone: { w: 50, h: 84 } };
+const EDGE = 16;   // gap between the docked mascot and the window edges
+const MARGIN = 8;  // the bubble never comes closer than this to a window edge
 const LINE_EVERY_MS = 45_000;
 const MAX_LINES = 6;
 
@@ -40,6 +42,14 @@ export class Mascot {
   pos = signal<{ x: number; y: number } | null>(null); // null = docked in the corner
   flip = signal(false); // bubble on the right side of mini-Majd
 
+  /** Bubble placement, measured after each render so it always stays inside the window. */
+  shift = signal(0);      // px to slide the bubble sideways
+  below = signal(false);  // no room above the mascot: show the bubble under it
+  private bubbleEl = viewChild<ElementRef<HTMLElement>>('bubble');
+  private figEl = viewChild<ElementRef<HTMLElement>>('fig');
+  /** Window size without the scrollbar, so the docked mascot never hides under it. */
+  private vp = signal(this.viewport());
+
   ui = computed(() => MASCOT.ui[this.i18n.lang()]);
   tourSteps = signal<Step[]>([]);
   tourIndex = signal(0);
@@ -54,8 +64,16 @@ export class Mascot {
   private reduced = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
   // On a phone any bubble covers the text being read, so mini-Majd only talks when tapped.
   private quiet = () => typeof matchMedia !== 'undefined' && matchMedia('(max-width: 640px)').matches;
+  private size = () => (this.quiet() ? SIZE.phone : SIZE.desk);
 
   constructor() {
+    // re-place the bubble whenever what it shows, or where mini-Majd stands, changes
+    effect(() => {
+      this.mode(); this.text(); this.pos(); this.flip(); this.vp(); this.tourIndex();
+      // after the view has updated, and once more after the pop-in animation and fonts settle
+      setTimeout(() => this.placeBubble(), 30);
+      setTimeout(() => this.placeBubble(), 320);
+    });
     const sub = this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe((e) => this.onPage((e as NavigationEnd).urlAfterRedirects));
     this.lineTimer = setInterval(() => this.randomLine(), LINE_EVERY_MS);
     inject(DestroyRef).onDestroy(() => { sub.unsubscribe(); clearInterval(this.lineTimer); this.clearTimers(); });
@@ -153,6 +171,7 @@ export class Mascot {
   startTour() {
     const all = this.currentProject() ? MASCOT.tourProject : MASCOT.tourHome;
     const steps = all.filter((s) => document.querySelector(s.sel));
+    this.pos.set(null);
     if (!steps.length) return;
     this.analytics.track('mascot_tour');
     this.tourSteps.set(steps);
@@ -180,13 +199,16 @@ export class Mascot {
     if (!el) { this.nextStep(); return; }
     this.text.set('…');
     el.scrollIntoView({ behavior: this.reduced ? 'auto' : 'smooth', block: 'center' });
+    // on a phone there is no room to walk around: stay in the corner and just talk
+    if (this.quiet()) { this.later(() => this.text.set(this.i18n.tr(step.text)), this.reduced ? 50 : 500); return; }
     this.later(() => {
+      const { w: W, h: H } = this.size();
       const r = el.getBoundingClientRect();
-      const vw = window.innerWidth, vh = window.innerHeight;
-      const roomRight = vw - r.right > W + 280;
+      const { w: vw, h: vh } = this.viewport();
+      const roomRight = vw - r.right > W + 300;
       let x = roomRight ? r.right + 16 : r.left - W - 16;
-      if (x < 8 || x > vw - W - 8) x = Math.min(vw - W - 12, Math.max(12, r.left + 12));
-      const y = Math.min(vh - H - 16, Math.max(90, r.top + Math.min(40, r.height / 3)));
+      if (x < MARGIN || x > vw - W - MARGIN) x = Math.min(vw - W - EDGE, Math.max(EDGE, r.left + 12));
+      const y = Math.min(vh - H - EDGE, Math.max(90, r.top + Math.min(40, r.height / 3)));
       this.flip.set(x < vw / 2);
       this.walk({ x, y }, () => this.text.set(this.i18n.tr(step.text)));
     }, this.reduced ? 50 : 650);
@@ -199,14 +221,43 @@ export class Mascot {
     this.later(() => { this.walking.set(false); done?.(); }, this.reduced ? 0 : 900);
   }
 
-  onResize() { if (this.mode() === 'tour') this.goTo(this.tourIndex()); }
+  onResize() {
+    this.vp.set(this.viewport());
+    if (this.mode() === 'tour') this.goTo(this.tourIndex());
+  }
+
+  private viewport() {
+    if (typeof document === 'undefined') return { w: 1280, h: 800 };
+    return { w: document.documentElement.clientWidth, h: window.innerHeight };
+  }
+
+  /** Keeps the bubble inside the window: slides it sideways, and puts it under mini-Majd when there is no room above. */
+  private placeBubble() {
+    const b = this.bubbleEl()?.nativeElement, fig = this.figEl()?.nativeElement;
+    if (!b || !fig) return;
+    const { w: vw, h: vh } = this.viewport();
+    const r = b.getBoundingClientRect(), f = fig.getBoundingClientRect();
+    const left = r.left - this.shift(), right = r.right - this.shift();
+    let s = 0;
+    if (left < MARGIN) s = MARGIN - left;
+    else if (right > vw - MARGIN) s = vw - MARGIN - right;
+    this.shift.set(Math.round(s));
+    const roomAbove = f.top - 14 - r.height >= MARGIN;
+    const roomBelow = f.bottom + 14 + r.height <= vh - MARGIN;
+    this.below.set(!roomAbove && roomBelow);
+  }
 
   // ---------- helpers ----------
   private later(fn: () => void, ms: number) { this.timers.push(setTimeout(fn, ms)); }
   private clearTimers() { this.timers.forEach(clearTimeout); this.timers = []; }
 
+  /** Where mini-Majd stands: a tour stop, or docked in the bottom-right corner (inside the scrollbar, above the phone's home bar). */
   style = computed(() => {
     const p = this.pos();
-    return p ? { left: p.x + 'px', top: p.y + 'px' } : { left: `calc(100vw - ${W + 24}px)`, top: `calc(100vh - ${H + 20}px)` };
+    if (p) return { left: p.x + 'px', top: p.y + 'px' };
+    this.vp(); // re-evaluate on resize (phone vs desktop size)
+    const { w, h } = this.size();
+    // % of the fixed layer = the window without its scrollbar, so the dock always follows the real window size
+    return { left: `calc(100% - ${w + EDGE}px)`, top: `calc(100% - ${h + EDGE}px - env(safe-area-inset-bottom, 0px))` };
   });
 }

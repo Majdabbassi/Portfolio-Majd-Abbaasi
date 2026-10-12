@@ -21,7 +21,7 @@ const M = (ym: string) => { const [y, m] = ym.split('-').map(Number); return (y 
 const JAN_25 = M('2025-01');
 const JUL_25 = M('2025-07');
 const pos = (m: number) => (m <= JAN_25 ? (m / JAN_25) * 12 : m <= JUL_25 ? 12 + ((m - JAN_25) / (JUL_25 - JAN_25)) * 13 : 25 + ((m - JUL_25) / (SPAN - JUL_25)) * 75);
-interface Bar { lane: Lane; when: L; title: L; place: L; points: L[]; project?: Project; x?: string; w?: string; row?: number; sub?: L; label: L; from?: number; to?: number; live?: boolean; join?: 'next' | 'prev'; group?: string; sections?: { when: L; title: L; points: L[] }[] }
+interface Bar { lane: Lane; when: L; title: L; place: L; points: L[]; project?: Project; x?: string; w?: string; row?: number; sub?: L; label: L; from?: number; to?: number; live?: boolean; join?: 'next' | 'prev'; group?: string; sections?: { when: L; title: L; points: L[] }[]; built?: Project[] }
 
 /** About me, the toolbox (stack explorer + terminal) and the journey chart. */
 @Component({
@@ -85,7 +85,7 @@ export class About {
     ...SITE.journey.personal.map((it): Bar => {
       const p = ALL_PROJECTS.find((x) => x.slug === it.slug)!;
       const name = p.name.replace(' Manager', '');
-      return { lane: 'side', when: it.dates, title: { en: p.name, fr: p.name }, place: { en: p.cardStack, fr: p.cardStack }, points: [], project: p, sub: it.dates, label: { en: name, fr: name }, x: it.x + '%', w: it.w + '%', row: it.row };
+      return { lane: 'side', when: SITE.shelf.badges[p.badge], title: { en: p.name, fr: p.name }, place: { en: p.cardStack, fr: p.cardStack }, points: [], project: p, sub: SITE.shelf.badges[p.badge], label: { en: name, fr: name }, x: it.x + '%', w: it.w + '%', row: it.row };
     }),
   ];
   /** Left/right margin of a dated bar inside the 5 year columns (a 3px gap keeps neighbours apart). */
@@ -109,7 +109,9 @@ export class About {
     const b = this.bars[this.stop()];
     if (!b.group) return b;
     const roles = this.bars.filter((x) => x.group === b.group).reverse();
-    return { ...b, ...SITE.journey.educanet, points: [], live: true, sections: roles.map((r) => ({ when: r.when, title: r.title, points: r.points })) };
+    const { when, title, place } = SITE.journey.educanet;
+    const built = SITE.journey.educanet.built.map((slug) => ALL_PROJECTS.find((p) => p.slug === slug)!);
+    return { ...b, when, title, place, points: [], live: true, built, sections: roles.map((r) => ({ when: r.when, title: r.title, points: r.points })) };
   });
   barsIn(lane: Lane) { return this.bars.map((b, i) => ({ b, i })).filter((x) => x.b.lane === lane); }
 

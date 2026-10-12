@@ -21,8 +21,8 @@ export const SPORTCLUB: { en: ProjectDetail; fr: ProjectDetail } = {
     techStack: ['Java 21', 'Spring Boot 3', 'MySQL', 'JWT', 'STOMP/WebSocket', 'Angular 16', 'React Native (Expo)', 'Docker'],
     metrics: {
       team: 'Solo',
-      duration: 'Rebuilt, secured and deployed in 2026',
-      scale: '17 integration tests · web + mobile · live demo',
+      duration: 'Built during my internship at Educanet (2025), secured and deployed in 2026',
+      scale: '20 integration tests · web + mobile · live demo',
       keyOutcomes: [
         'Per-role and per-family access control enforced by the API, whichever client calls it',
         'One backend serving an Angular console and an Expo parent app',
@@ -84,7 +84,7 @@ export const SPORTCLUB: { en: ProjectDetail; fr: ProjectDetail } = {
       environment: 'Free tiers: Vercel (console and parent app), Render (API), TiDB Cloud (MySQL)',
       details: [
         'docker compose up seeds a fictional club with teams, families, sessions, payments and a shop',
-        'CI runs the 17 backend tests and builds the web console',
+        'CI runs the 20 backend tests and builds the web console',
         'The lockfile is regenerated with the same Node and npm that Vercel uses, which avoids install failures',
       ],
     },
@@ -135,8 +135,8 @@ export const SPORTCLUB: { en: ProjectDetail; fr: ProjectDetail } = {
     techStack: ['Java 21', 'Spring Boot 3', 'MySQL', 'JWT', 'STOMP/WebSocket', 'Angular 16', 'React Native (Expo)', 'Docker'],
     metrics: {
       team: 'En solo',
-      duration: 'Refait, sécurisé et déployé en 2026',
-      scale: '17 tests d’intégration · web + mobile · démo en ligne',
+      duration: 'Construit pendant mon stage chez Educanet (2025), sécurisé et déployé en 2026',
+      scale: '20 tests d’intégration · web + mobile · démo en ligne',
       keyOutcomes: [
         'Contrôle d’accès par rôle et par famille appliqué par l’API, quel que soit le client',
         'Un seul backend pour une console Angular et une application Expo pour les parents',
@@ -198,7 +198,7 @@ export const SPORTCLUB: { en: ProjectDetail; fr: ProjectDetail } = {
       environment: 'Offres gratuites : Vercel (console et app parents), Render (API), TiDB Cloud (MySQL)',
       details: [
         'docker compose up crée un club fictif avec équipes, familles, séances, paiements et boutique',
-        'La CI exécute les 17 tests backend et compile la console web',
+        'La CI exécute les 20 tests backend et compile la console web',
         'Le fichier de verrouillage est régénéré avec les mêmes Node et npm que Vercel, ce qui évite les échecs d’installation',
       ],
     },

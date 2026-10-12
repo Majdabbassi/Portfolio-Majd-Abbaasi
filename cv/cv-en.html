@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Majd Abbassi — CV</title>
+<link rel="stylesheet" href="cv.css">
+</head>
+<body>
+<main class="page">
+  <header class="head">
+    <div class="who">
+      <h1>Majd Abbassi</h1>
+      <p class="title">Backend-leaning full-stack engineer · Java / Spring Boot · Angular · Docker</p>
+      <p class="contact">
+        <a href="mailto:majdabbassi11@gmail.com">majdabbassi11@gmail.com</a> · +216 28 819 394 · Sousse, Tunisia · <strong>available</strong>
+      </p>
+      <p class="contact">
+        <a href="https://majd-abbassi.vercel.app">majd-abbassi.vercel.app</a> · <a href="https://www.linkedin.com/in/majd-abbassi">linkedin.com/in/majd-abbassi</a> · <a href="https://github.com/Majdabbassi">github.com/Majdabbassi</a>
+      </p>
+    </div>
+    <img class="photo" src="../public/assets/majd-portrait.jpg" alt="">
+  </header>
+
+  <p class="summary">
+    Full-stack engineer who leans backend. At Educanet since January 2025, where I build and run three products that are live in production.
+    I design for the cases that break software in production — two users booking the same slot, payment callbacks, crashes — and ship with Docker, tests and monitoring.
+  </p>
+
+  <section>
+    <h2>Experience</h2>
+    <div class="job">
+      <div class="row"><h3>Full-Stack Developer · Educanet, Tunis</h3><span class="when">Jul 2025 – present</span></div>
+      <ul>
+        <li><b>BookPro</b> (bookpro.educanet.pro) — built and run end to end: booking platform for independent professionals, web + Android, 4 languages. Spring Boot 3.5 / Java 21, Angular 20, MySQL, Docker on a VPS with nightly backups, Prometheus + Grafana. Bookings are concurrency-safe (row locks), live updates over STOMP.</li>
+        <li><b>Massarat+</b> (massarat-plus.com) — primary engineer, encryption and payments: education marketplace with Konnect, GPG and D17 payments plus a prepaid wallet; documents encrypted at rest and served only after purchase; real-time parent–teacher chat. Spring Boot 3.5, Angular 19/20, Expo.</li>
+        <li><b>Medi+</b> — primary engineer, backend and back-office: medication reminders with a per-minute engine, full-screen alarms through FCM, offline sync and an alert to the family after a missed dose. Spring Boot 4.1, Angular 20, React Native.</li>
+        <li>Production deployment: WAR artifacts on Apache Tomcat and Dockerised services on Linux.</li>
+      </ul>
+    </div>
+    <div class="job">
+      <div class="row"><h3>Full-Stack Developer Intern · Educanet, Tunis</h3><span class="when">Jan 2025 – Jun 2025</span></div>
+      <ul>
+        <li><b>SportClub</b> (live demo) — built a sports-club platform: Angular console for staff and coaches, React Native app for parents, one Spring Boot API with ownership checks on every endpoint so each family sees only its own children. 20 tests.</li>
+        <li>Shifted from feature delivery to reliability-focused system thinking.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Selected projects <span class="note">— all playable at majd-abbassi.vercel.app</span></h2>
+    <div class="proj"><div class="row"><h3>Car Rental Manager</h3><span class="tag">live demo</span></div>
+      <p>Fleet, contracts on a calendar, payments and reports. Two simultaneous bookings of the same car: exactly one wins (SELECT … FOR UPDATE). 27 integration tests. Spring Boot 3.5, Angular 18.</p></div>
+    <div class="proj"><div class="row"><h3>SwiftDeliver</h3><span class="tag">live demo</span></div>
+      <p>Delivery marketplace: companies bid or are auto-assigned, drivers report positions, customers follow the order live over STOMP; Grafana monitoring. 73 tests. Spring Boot 4.1, Angular 20.</p></div>
+    <div class="proj"><div class="row"><h3>Mall OS</h3><span class="tag">live demo</span></div>
+      <p>Multi-tenant mall management: shop units traced on a floor plan, leases, monthly rent billing, CSV exports. 41 tests. Spring Boot 4.1, Angular 18.</p></div>
+    <div class="proj"><div class="row"><h3>CaféResto</h3><span class="tag">team of 3 · backend architect</span></div>
+      <p>Multi-tenant restaurant platform: QR ordering, live kitchen and stock over STOMP, AI menu import (EasyOCR + LLM), 13-service Docker stack with Prometheus, Grafana and Alertmanager. Spring Boot 3.5, PostgreSQL, React, Expo.</p></div>
+    <p class="also">Also: Albumy (event photo albums filled live, Redis + worker), FriendMap (location sharing with server-enforced privacy, NestJS), InsightHub (CSV analysis with a local LLM, FastAPI + DuckDB), ReachFlow (n8n outreach automation).</p>
+  </section>
+
+  <section class="two">
+    <div>
+      <h2>Skills</h2>
+      <p><b>Backend:</b> Java 21, Spring Boot, Spring Security, JPA / Hibernate, REST, WebSocket / STOMP, JWT, Quartz, PostgreSQL, MySQL, Redis, Flyway</p>
+      <p><b>Frontend:</b> Angular, TypeScript, React, React Native / Expo</p>
+      <p><b>DevOps:</b> Docker, Docker Compose, Nginx, Linux, Tomcat, GitHub Actions, Prometheus, Grafana, Alertmanager</p>
+      <p><b>Other:</b> Git, Maven, Python, FastAPI, NestJS, n8n</p>
+    </div>
+    <div>
+      <h2>Education</h2>
+      <div class="row"><h3>Engineering degree, in progress</h3><span class="when">2025 – present</span></div>
+      <p class="place">Polytechnique de Sousse, Tunisia</p>
+      <div class="row"><h3>Licence in Computer Science</h3><span class="when">2022 – 2025</span></div>
+      <p class="place">ISITCOM, Hammam Sousse, Tunisia · Bac+3</p>
+      <h2 class="lang">Languages</h2>
+      <p>Arabic (native) · English · French</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

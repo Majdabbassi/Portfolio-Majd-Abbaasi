@@ -103,6 +103,13 @@ h2 { margin: 0; font-size: clamp(34px, 4.4vw, 56px); font-weight: 800; letter-sp
 .when { font-size: 12px; color: var(--text-4); }
 .what { font-size: 24px; font-weight: 800; margin: 4px 0 2px; letter-spacing: -.01em; }
 .where { font-size: 15px; color: var(--lamp-text); margin-bottom: 10px; }
+.built { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line-3); display: flex; flex-direction: column; gap: 10px; }
+.built-label { font-size: 11px; color: var(--text-4); text-transform: uppercase; letter-spacing: .05em; }
+.built-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.built-item { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--acc-line); background: var(--acc-soft); color: var(--text); font-weight: 600; font-size: 14px; text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
+.built-item img { border-radius: 6px; object-fit: contain; }
+.built-item span { color: var(--acc-text); }
+.built-item:hover { border-color: var(--acc); color: var(--text); transform: translateY(-1px); }
 .jobs { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
 .job + .job { border-top: 1px dashed var(--line-3); padding-top: 14px; }
 .job-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; margin-bottom: 6px; }

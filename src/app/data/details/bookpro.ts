@@ -29,7 +29,7 @@ export const BOOKPRO: { en: ProjectDetail; fr: ProjectDetail } = {
     metrics: {
       team: 'Full-Stack Engineer (end-to-end, product to ops)',
       duration: 'Full lifecycle — from design to live production',
-      scale: '17 REST controllers · 24 domain entities · multi-role web + Android app',
+      scale: '18 REST controllers · 24 domain entities · multi-role web + Android app',
       keyOutcomes: [
         'Live production deployment served at bookpro.educanet.pro',
         'Containerized multi-service stack with scheduled database backups (7-day retention, configurable)',
@@ -55,7 +55,7 @@ export const BOOKPRO: { en: ProjectDetail; fr: ProjectDetail } = {
       diagramPlaceholder: 'BookPro Production Architecture',
       bullets: [
         'Angular + Angular Material client split into role-scoped areas: client, professional, aide, and admin.',
-        'Spring Boot backend with 17 controllers (auth, reservations, waitlist, caisse, wholesale, favorites, and more) with real-time updates over WebSocket.',
+        'Spring Boot backend with 18 controllers (auth, reservations, waitlist, caisse, wholesale, favorites, and more) with real-time updates over WebSocket.',
         'Firebase Cloud Messaging push notifications, Leaflet map-based discovery, and Chart.js analytics dashboards.',
         'Capacitor wraps the Angular app into a native Android APK via the GitHub Actions CI pipeline.',
         'MySQL 8.4 (bookpro_db) with scheduled Docker backups and configurable 7-day retention.',
@@ -169,7 +169,7 @@ export const BOOKPRO: { en: ProjectDetail; fr: ProjectDetail } = {
     metrics: {
       team: 'Ingénieur Full-Stack (de bout en bout, produit vers ops)',
       duration: 'Cycle complet — de la conception a la production live',
-      scale: '17 controleurs REST · 24 entites de domaine · plateforme multi-roles web + Android',
+      scale: '18 contrôleurs REST · 24 entites de domaine · plateforme multi-roles web + Android',
       keyOutcomes: [
         'Systeme de production live servi sur bookpro.educanet.pro',
         'Stack conteneurisee multi-services avec sauvegardes base planifiees (retention 7 jours, configurable)',
@@ -195,7 +195,7 @@ export const BOOKPRO: { en: ProjectDetail; fr: ProjectDetail } = {
       diagramPlaceholder: 'Architecture de Production BookPro',
       bullets: [
         'Client Angular + Angular Material decoupe en zones par role : client, professionnel, aide et admin.',
-        'Backend Spring Boot avec 17 controleurs (auth, reservations, liste d\'attente, caisse, grossiste, favoris, etc.) avec temps reel via WebSocket.',
+        'Backend Spring Boot avec 18 contrôleurs (auth, reservations, liste d\'attente, caisse, grossiste, favoris, etc.) avec temps reel via WebSocket.',
         'Notifications push Firebase Cloud Messaging, decouverte sur carte Leaflet et dashboards analytics Chart.js.',
         'Capacitor empaquette l\'app Angular en APK Android natif via le pipeline CI GitHub Actions.',
         'MySQL 8.4 (bookpro_db) avec sauvegardes Docker planifiees et retention configurable de 7 jours.',

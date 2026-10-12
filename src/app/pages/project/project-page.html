@@ -30,11 +30,15 @@
           @if (p.toy) {
             <app-toy-host [slug]="p.slug" />
           } @else {
-            <div class="panel no-toy">
-              <div class="panel-head"><span class="panel-title">{{ i18n.t('noToy') }}</span><img [src]="p.icon" alt="" width="36" height="36" /></div>
-              <div class="panel-foot">
-                <p class="hint">{{ i18n.t('noToyText') }}</p>
-                <ul>@for (o of d.metrics.keyOutcomes; track $index) { <li>{{ o }}</li> }</ul>
+            <!-- the same small toy as on the home shelf -->
+            <div class="panel mini-panel hue" [style.--h]="p.hue">
+              <div class="panel-head"><span class="panel-title">{{ i18n.t('toyHere') }}</span><img [src]="p.icon" alt="" width="36" height="36" /></div>
+              <div class="mini-stage">
+                @switch (p.slug) {
+                  @case ('caferesto') { <app-caferesto-mini /> }
+                  @case ('massarat') { <app-massarat-mini /> }
+                  @case ('mediplus') { <app-mediplus-mini /> }
+                }
               </div>
             </div>
           }
@@ -48,7 +52,17 @@
         <div><span class="label">{{ i18n.t('timeline') }}</span><strong>{{ d.metrics.duration }}</strong></div>
         <div><span class="label">{{ i18n.t('scale') }}</span><strong>{{ d.metrics.scale }}</strong></div>
       </section>
-      @if (p.toy && d.metrics.keyOutcomes.length) {
+      <!-- IN SHORT: what a recruiter needs in ten seconds -->
+      <section class="tldr" appReveal>
+        <span class="label">{{ i18n.t('inShort') }}</span>
+        <div class="tldr-grid">
+          <div><strong>{{ i18n.t('problemShort') }}</strong><p>{{ firstSentence(d.context.problem) }}</p></div>
+          <div><strong>{{ i18n.t('roleShort') }}</strong><p>{{ d.role }} — {{ d.roleContext }}</p></div>
+          <div><strong>{{ i18n.t('resultShort') }}</strong><p>{{ firstResult(d) }}</p></div>
+        </div>
+      </section>
+
+      @if (d.metrics.keyOutcomes.length) {
         <section class="outcomes" appReveal>
           <span class="label">{{ i18n.t('keyOutcomes') }}</span>
           <ul class="ticks">@for (o of d.metrics.keyOutcomes; track $index) { <li>{{ o }}</li> }</ul>

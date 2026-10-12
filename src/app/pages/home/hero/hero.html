@@ -11,9 +11,10 @@
 
     <h1>
       @for (w of i18n.tr(site.hero.titleStart).split(' '); track $index; let i = $index) {
-        <span class="w" [style.animation-delay]="0.12 + i * 0.07 + 's'">{{ w }}</span>{{ ' ' }}
+        <span class="w" aria-hidden="true" [style.animation-delay]="0.12 + i * 0.07 + 's'">{{ w }}</span>{{ ' ' }}
       }
-      <span class="rot" aria-live="polite">
+      <span class="sr-only">{{ i18n.tr(site.hero.titleSr) }}</span>
+      <span class="rot" aria-hidden="true">
         @for (p of projects; track p.slug; let i = $index) {
           <span class="phr hue" [class.on]="i === active()" [style.--h]="p.hue" [attr.aria-hidden]="i !== active()">{{ i18n.tr(p.phrase) }}</span>
         }

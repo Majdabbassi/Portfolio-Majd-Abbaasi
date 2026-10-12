@@ -6,10 +6,13 @@ import { I18n } from '../../i18n/i18n';
 import { RevealDirective } from '../../shared/reveal.directive';
 import { ScreenGallery } from '../../shared/screen-gallery';
 import { ToyHost } from '../../toys/toy-host';
+import { CaferestoMini } from '../home/shelf/toys/caferesto-mini';
+import { MassaratMini } from '../home/shelf/toys/massarat-mini';
+import { MediplusMini } from '../home/shelf/toys/mediplus-mini';
 
 @Component({
   selector: 'app-project-page',
-  imports: [RouterLink, RevealDirective, ToyHost, ScreenGallery],
+  imports: [RouterLink, RevealDirective, ToyHost, ScreenGallery, CaferestoMini, MassaratMini, MediplusMini],
   templateUrl: './project-page.html',
   styleUrl: './project-page.css',
   host: {
@@ -53,6 +56,12 @@ export class ProjectPage {
   }
 
   statusKey(s: string) { return ('status_' + s) as 'status_production'; }
+
+  /** First sentence of a paragraph, for the "In short" box. */
+  firstSentence(text: string) { const m = text.match(/^.*?[.!?](\s|$)/); return (m ? m[0] : text).trim(); }
+
+  /** The headline result: the first key outcome, or the first improvement when there is none. */
+  firstResult(d: { metrics: { keyOutcomes: string[] }; impact: { improvements: string[] } }) { return d.metrics.keyOutcomes.length ? d.metrics.keyOutcomes[0] : d.impact.improvements[0]; }
 
   async copy(text: string, id: string) {
     try { await navigator.clipboard.writeText(text); } catch { return; }

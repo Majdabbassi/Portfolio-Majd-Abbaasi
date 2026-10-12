@@ -129,6 +129,16 @@
             }
           </div>
         }
+        @if (d.built?.length) {
+          <div class="built">
+            <span class="built-label mono">{{ i18n.tr(site.journey.educanet.builtLabel) }}</span>
+            <div class="built-list">
+              @for (p of d.built!; track p.slug) {
+                <a class="built-item hue" [routerLink]="['/projects', p.slug]" [style.--h]="p.hue"><img [src]="p.icon" alt="" width="22" height="22" />{{ p.name }}<span aria-hidden="true">→</span></a>
+              }
+            </div>
+          </div>
+        }
         @if (d.project; as p) {
           <p class="desc">{{ i18n.tr(p.cardLine) }}</p>
           <a class="more mono" [routerLink]="['/projects', p.slug]">{{ i18n.tr(site.shelf.caseStudy) }}</a>

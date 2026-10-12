@@ -1,0 +1,31 @@
+/* One A4 page, printed to PDF by build-cv.ps1. Real text only (ATS-friendly): no icons, no letter-spacing tricks. */
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: "Segoe UI", Arial, sans-serif; color: #1E1813; font-size: 9.2pt; line-height: 1.33; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; height: 297mm; padding: 11mm 13mm 8mm; overflow: hidden; }
+a { color: #8A5200; text-decoration: none; }
+b { font-weight: 600; }
+.head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8mm; padding-bottom: 3.5mm; border-bottom: 1.6pt solid #C98A22; }
+h1 { margin: 0; font-size: 23pt; line-height: 1.05; }
+.title { margin: 1.4mm 0 1.8mm; font-size: 10.6pt; font-weight: 600; color: #8A5200; }
+.contact { margin: 0.5mm 0; font-size: 8.9pt; color: #43382E; }
+.photo { width: 24mm; height: 29mm; object-fit: cover; object-position: 50% 18%; border-radius: 3mm; flex: none; }
+.summary { margin: 3mm 0 .5mm; font-size: 9.4pt; color: #2B231C; }
+section { margin-top: 2.8mm; }
+h2 { margin: 0 0 1.4mm; font-size: 9.8pt; text-transform: uppercase; color: #8A5200; border-bottom: .6pt solid #E1D3BF; padding-bottom: .7mm; }
+h2 .note { text-transform: none; font-weight: 400; color: #6A5D50; font-size: 8.5pt; }
+h3 { margin: 0; font-size: 9.6pt; }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+.when { font-size: 8.6pt; color: #6A5D50; white-space: nowrap; }
+.tag { font-size: 8pt; color: #6A5D50; white-space: nowrap; }
+.job { margin-bottom: 1.6mm; }
+ul { margin: .8mm 0 0; padding-left: 4.2mm; }
+li { margin: .45mm 0; }
+.proj { margin-bottom: 1.2mm; }
+.proj p { margin: .3mm 0 0; }
+.also { margin: 1.2mm 0 0; color: #43382E; }
+.two { display: grid; grid-template-columns: 1.2fr 1fr; gap: 7mm; }
+.two p { margin: .7mm 0; }
+.place { margin: 0 0 1.4mm !important; color: #6A5D50; }
+.lang { margin-top: 2mm; }

@@ -3,11 +3,11 @@
     <img [src]="photo" alt="" width="40" height="40" />
   </button>
 } @else {
-  <div class="mascot" [style.left]="style().left" [style.top]="style().top"
+  <div class="mascot" #fig [style.left]="style().left" [style.top]="style().top"
        [class.walking]="walking()" [class.waving]="waving()" [class.flip]="flip()">
 
     @if (mode() !== 'idle') {
-      <div class="bubble" role="status" aria-live="polite">
+      <div class="bubble" #bubble role="status" aria-live="polite" [class.below]="below()" [style.--shift]="shift() + 'px'">
         @switch (mode()) {
           @case ('menu') {
             <div class="actions col">
@@ -46,6 +46,8 @@
         <g class="arm-l"><rect x="10" y="6" width="9" height="26" rx="4.5" fill="#D9C2AE" /><circle cx="14.5" cy="33" r="4.5" fill="#B98E6E" /></g>
         <!-- right arm -->
         <g class="arm-r"><rect x="57" y="6" width="9" height="26" rx="4.5" fill="#D9C2AE" /><circle cx="61.5" cy="33" r="4.5" fill="#B98E6E" /></g>
+        <!-- soft shadow under the feet -->
+        <ellipse class="shadow" cx="38" cy="62" rx="20" ry="3" />
         <!-- legs -->
         <g class="leg-l"><rect x="27" y="36" width="9" height="22" rx="4" fill="#3A322A" /><rect x="24" y="55" width="14" height="7" rx="3.5" fill="#F3EADB" /></g>
         <g class="leg-r"><rect x="40" y="36" width="9" height="22" rx="4" fill="#3A322A" /><rect x="38" y="55" width="14" height="7" rx="3.5" fill="#F3EADB" /></g>
