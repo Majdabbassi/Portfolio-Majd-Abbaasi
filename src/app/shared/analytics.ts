@@ -71,6 +71,9 @@ export class Analytics {
     const href = el.getAttribute('href') ?? '';
 
     if (el.closest('app-toy-host')) return this.track('toy_play_' + project);
+    const card = el.closest('[data-slug]')?.getAttribute('data-slug');
+    if (el.closest('.pager')) return this.track('home_screens_' + card);
+    if (el.matches('.btn-live')) return this.track('home_demo_' + card);
     if (el.closest('.stage')) return this.track('home_toy_' + el.closest('[data-slug]')?.getAttribute('data-slug'));
     if (el.matches('.cred')) return this.track('copy_login_' + project);
     if (href.endsWith('.pdf')) return this.track('cv_download');

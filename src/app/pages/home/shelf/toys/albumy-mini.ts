@@ -35,7 +35,7 @@ const QR = '1110111101010110111011000100101101011101011101111';
     .qr-grid span { width: 12px; height: 12px; border-radius: 2px; }
     .qr-grid span.on { background: var(--text); }
     .qr small { font-size: 11px; color: var(--text-3); }
-    .album { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .album { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; width: min(100%, 280px); justify-self: center; }
     .tile { aspect-ratio: 1; border-radius: 10px; border: 1px dashed var(--acc-line); transition: background .4s ease; }
     .tile.ready { border: 0; background: oklch(.78 .12 calc(var(--h) + var(--i) * 14) / .85); }
     :host-context([data-theme='light']) .tile.ready { background: oklch(.66 .12 calc(var(--h) + var(--i) * 14) / .9); }

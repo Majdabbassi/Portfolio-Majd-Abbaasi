@@ -140,6 +140,14 @@ export const BOOKPRO: { en: ProjectDetail; fr: ProjectDetail } = {
         'Deploying and operating a live product surfaces issues that feature development alone never reveals',
       ],
     },
+    showcase: {
+      live: 'https://bookpro.educanet.pro',
+      screens: [
+        { src: '/assets/screens/bookpro/home.jpg', caption: 'Home: search a professional by name, city or specialty' },
+        { src: '/assets/screens/bookpro/professional.jpg', caption: 'Professional page: services, prices and booking' },
+        { src: '/assets/screens/bookpro/mobile-home.jpg', caption: 'Mobile web, with the Android app banner' },
+      ],
+    },
   },
   fr: {
     id: 'bookpro',
@@ -278,6 +286,14 @@ export const BOOKPRO: { en: ProjectDetail; fr: ProjectDetail } = {
         'Des roles utilisateur varies exigent des frontieres d\'API propres et des guards d\'autorisation rigoureux dans chaque module',
         'Monitoring, sauvegardes et health checks sont des prerequis, pas des apres-pensees, pour un systeme de reservation en production',
         'Deployer et exploiter un produit live revele des problemes que le seul developpement de features ne montre jamais',
+      ],
+    },
+    showcase: {
+      live: 'https://bookpro.educanet.pro',
+      screens: [
+        { src: '/assets/screens/bookpro/home.jpg', caption: 'Accueil : chercher un professionnel par nom, ville ou spécialité' },
+        { src: '/assets/screens/bookpro/professional.jpg', caption: 'Page d’un professionnel : services, prix et réservation' },
+        { src: '/assets/screens/bookpro/mobile-home.jpg', caption: 'Version mobile, avec le bandeau de l’app Android' },
       ],
     },
   },

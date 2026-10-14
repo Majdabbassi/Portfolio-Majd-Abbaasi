@@ -123,6 +123,14 @@ export const MASSARAT: { en: ProjectDetail; fr: ProjectDetail } = {
         'One API serving three clients keeps rules consistent but needs disciplined DTOs',
       ],
     },
+    showcase: {
+      live: 'https://massarat-plus.com',
+      screens: [
+        { src: '/assets/screens/massarat/home.jpg', caption: 'Home (the site runs in Arabic, French and English)' },
+        { src: '/assets/screens/massarat/levels.jpg', caption: 'Levels and sponsored documents' },
+        { src: '/assets/screens/massarat/store.jpg', caption: 'Store: filters by type, level, subject and price' },
+      ],
+    },
   },
   fr: {
     id: 'massarat-plus',
@@ -242,6 +250,14 @@ export const MASSARAT: { en: ProjectDetail; fr: ProjectDetail } = {
         'Les paiements, c’est surtout les cas limites : callbacks, revérifications et validations',
         'Quand les fichiers sont le produit, le contrôle d’accès se fait dans le téléchargement lui-même',
         'Une API pour trois clients garde les règles cohérentes mais demande des DTO rigoureux',
+      ],
+    },
+    showcase: {
+      live: 'https://massarat-plus.com',
+      screens: [
+        { src: '/assets/screens/massarat/home.jpg', caption: 'Accueil (le site existe en arabe, français et anglais)' },
+        { src: '/assets/screens/massarat/levels.jpg', caption: 'Niveaux et documents sponsorisés' },
+        { src: '/assets/screens/massarat/store.jpg', caption: 'Boutique : filtres par type, niveau, matière et prix' },
       ],
     },
   },

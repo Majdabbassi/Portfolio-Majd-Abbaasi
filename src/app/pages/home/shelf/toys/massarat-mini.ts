@@ -35,7 +35,7 @@ const T = {
   styleUrl: './mini.css',
   styles: `
     .scene { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: center; }
-    .doc { position: relative; height: 190px; border-radius: 12px; background: var(--surface); border: 1px solid var(--acc-line); padding: 14px 12px; display: flex; flex-direction: column; gap: 7px; overflow: hidden; }
+    .doc { position: relative; height: 172px; border-radius: 12px; background: var(--surface); border: 1px solid var(--acc-line); padding: 14px 12px; display: flex; flex-direction: column; gap: 7px; overflow: hidden; }
     .tag { font-size: 10px; font-weight: 600; color: var(--acc-text); }
     .ttl { font-size: 13px; font-weight: 600; line-height: 1.25; }
     .ln { height: 6px; border-radius: 3px; background: var(--line-3); filter: blur(3px); opacity: .6; transition: filter .6s ease, opacity .6s ease; }

@@ -46,10 +46,19 @@ export const SITE = {
     eyebrow: { en: 'The shelf', fr: 'L’étagère' } as L,
     title: { en: 'Twelve projects. Each one is a toy.', fr: 'Douze projets. Chacun est un jouet.' } as L,
     text: {
-      en: 'The first three run in production at Educanet. Every card plays the one mechanic that project is really about — press its button, then open it to read how it was built.',
-      fr: 'Les trois premiers tournent en production chez Educanet. Chaque carte rejoue le mécanisme central du projet — appuyez sur son bouton, puis ouvrez-la pour découvrir comment il a été construit.',
+      en: 'The first three run in production at Educanet. Every card plays the one mechanic that project is really about — press its button, swipe to see the real screens, open the live demo or read how it was built.',
+      fr: 'Les trois premiers tournent en production chez Educanet. Chaque carte rejoue le mécanisme central du projet — appuyez sur son bouton, glissez pour voir les vrais écrans, ouvrez la démo ou découvrez comment il a été construit.',
     } as L,
     caseStudy: { en: 'Case study →', fr: 'Étude de cas →' } as L,
+    liveDemo: { en: 'Live demo ↗', fr: 'Démo en ligne ↗' } as L,
+    visitSite: { en: 'Visit site ↗', fr: 'Voir le site ↗' } as L,
+    code: { en: 'Code on GitHub ↗', fr: 'Code sur GitHub ↗' } as L,
+    // the toy / screenshots pager on each card
+    slides: { en: 'Toy and screenshots', fr: 'Jouet et captures' } as L,
+    play: { en: 'Play with it', fr: 'Jouer avec' } as L,
+    prev: { en: 'Previous', fr: 'Précédent' } as L,
+    next: { en: 'Next', fr: 'Suivant' } as L,
+    screens: { en: 'screens', fr: 'écrans' } as L,
     badges: {
       live: { en: 'Live demo', fr: 'Démo en ligne' },
       prod: { en: 'In production · Educanet', fr: 'En production · Educanet' },

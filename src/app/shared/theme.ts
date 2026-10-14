@@ -3,11 +3,11 @@ import { DOCUMENT, Injectable, inject, signal } from '@angular/core';
 export type Theme = 'dark' | 'light';
 const KEY = 'portfolio_theme';
 
-/** Dark (default) / light "daylight" theme, saved per visitor. */
+/** Light "daylight" (default) / dark theme, saved per visitor. */
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
   private doc = inject(DOCUMENT);
-  readonly theme = signal<Theme>(this.doc.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+  readonly theme = signal<Theme>(this.doc.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
 
   constructor() { this.apply(); }
 
